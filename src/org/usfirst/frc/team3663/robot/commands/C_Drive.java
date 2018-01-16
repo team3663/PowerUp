@@ -13,8 +13,8 @@ import org.usfirst.frc.team3663.robot.Robot;
 /**
  * Have the robot drive tank style using the PS3 Joystick until interrupted.
  */
-public class TankDriveWithJoystick extends Command {
-	public TankDriveWithJoystick() {
+public class C_Drive extends Command {
+	public C_Drive() {
 		requires(Robot.m_drivetrain);
 	}
 

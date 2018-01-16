@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.usfirst.frc.team3663.robot.Robot;
-import org.usfirst.frc.team3663.robot.commands.TankDriveWithJoystick;
+import org.usfirst.frc.team3663.robot.commands.C_Drive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -27,7 +27,7 @@ import com.ctre.phoenix.motorcontrol.can.*;
  * the robots chassis. These include four drive motors, a left and right encoder
  * and a gyro.
  */
-public class DriveTrain extends Subsystem {
+public class SS_DriveTrain extends Subsystem {
 	public WPI_TalonSRX left
 			= new WPI_TalonSRX(1);
 	public WPI_TalonSRX right
@@ -47,7 +47,7 @@ public class DriveTrain extends Subsystem {
 		// per tick in the real world, but the simulated encoders
 		// simulate 360 tick encoders. This if statement allows for the
 		// real robot to handle this difference in devices.
-	//this is a test boi
+		//this is a test boi
 		
 
 	/**
@@ -56,7 +56,7 @@ public class DriveTrain extends Subsystem {
 	 */
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new TankDriveWithJoystick());
+		setDefaultCommand(new C_Drive());
 	}
 
 	/**

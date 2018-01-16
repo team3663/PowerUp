@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team3663.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,7 +22,7 @@ import org.usfirst.frc.team3663.robot.subsystems.DriveTrain;
  */
 public class Robot extends IterativeRobot {
 
-	public static DriveTrain m_drivetrain;
+	public static SS_DriveTrain m_drivetrain;
 	public static OI m_oi;
 
 	/**
@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
-		m_drivetrain = new DriveTrain();
+		m_drivetrain = new SS_DriveTrain();
 		m_oi = new OI();
 
 		// instantiate the command used for the		// Show what command your subsystem is running on the SmartDashboard
