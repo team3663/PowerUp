@@ -9,6 +9,7 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
+import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
 
 /**
  * Have the robot drive tank style using the PS3 Joystick until interrupted.
@@ -22,6 +23,7 @@ public class C_Drive extends Command {
 	@Override
 	protected void execute() {
 		Robot.m_drivetrain.drive.arcadeDrive(Robot.m_oi.getStickX(), Robot.m_oi.getStickY());
+		SS_LimitSwitch.Limit();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
