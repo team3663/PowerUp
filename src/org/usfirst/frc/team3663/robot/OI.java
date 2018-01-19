@@ -29,4 +29,5 @@ public class OI {
 	public double getStickY() {
 		return m_joystick.getRawAxis(0);
 	}
+	
 }
