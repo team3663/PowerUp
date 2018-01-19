@@ -33,6 +33,7 @@ public class Robot extends IterativeRobot {
 		// Initialize all subsystems
 		m_drivetrain = new SS_DriveTrain();
 		m_oi = new OI();
+		SS_DriveTrain.setEnc();
 
 		// instantiate the command used for the		// Show what command your subsystem is running on the SmartDashboard
 		SmartDashboard.putData(m_drivetrain);

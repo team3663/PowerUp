@@ -9,6 +9,7 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
+import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
 import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
 
 /**
@@ -17,6 +18,7 @@ import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
 public class C_Drive extends Command {
 	public C_Drive() {
 		requires(Robot.m_drivetrain);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -24,6 +26,7 @@ public class C_Drive extends Command {
 	protected void execute() {
 		Robot.m_drivetrain.drive.arcadeDrive(Robot.m_oi.getStickX(), Robot.m_oi.getStickY());
 		SS_LimitSwitch.Limit();
+		SS_DriveTrain.encoder();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

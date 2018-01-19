@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -21,6 +22,7 @@ import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.motorcontrol.*;
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
@@ -31,17 +33,30 @@ public class SS_DriveTrain extends Subsystem {
 	public WPI_TalonSRX left
 			= new WPI_TalonSRX(1);
 	public WPI_TalonSRX right
+			= new WPI_TalonSRX(3);
+	public static WPI_TalonSRX enc
 			= new WPI_TalonSRX(2);
 	
 	public DifferentialDrive drive
 			= new DifferentialDrive(right, left);
+	
 
 	
 	public void drivetest (int pVal, int pTim) {
 		left.set(pVal);
 		right.set(pVal);
 	}
+	public static void setEnc(){
+		
+		enc.getSensorCollection().setQuadraturePosition(0, 0);
+	}
 
+	public static void encoder() {
+		int val = enc.getSensorCollection().getQuadraturePosition();
+		
+		System.out.println(val);
+		
+	}
 		// Encoders may measure differently in the real world and in
 		// simulation. In this example the robot moves 0.042 barleycorns
 		// per tick in the real world, but the simulated encoders
