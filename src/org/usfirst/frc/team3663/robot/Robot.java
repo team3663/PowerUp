@@ -6,11 +6,15 @@
 
 package org.usfirst.frc.team3663.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,12 +35,21 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
+	
+	
 		m_drivetrain = new SS_DriveTrain();
 		m_oi = new OI();
 		SS_DriveTrain.setEnc();
 
-		// instantiate the command used for the		// Show what command your subsystem is running on the SmartDashboard
-		SmartDashboard.putData(m_drivetrain);
+
+		//init gyro 
+		AHRS ahrs;
+		 
+     	 try {
+  			    ahrs = new AHRS(SerialPort.Port.kMXP); 
+  	        } catch (RuntimeException ex ) {
+  	            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+  	        }
 	}
 
 	@Override
