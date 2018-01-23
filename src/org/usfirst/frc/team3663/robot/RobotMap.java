@@ -23,30 +23,11 @@ public class RobotMap {
 	
 /***LIFT PORTS***/
 	//motor
-	public static int liftFeedMotor = 8;
-	public static int liftYellowMotor = 9;
+	public static int left = 1;
+	public static int right = 3;
+	public static int lift = 2;
 	
 /***CLIMBER PORTS***/
 	//motor
-	public static int climberMotor = 4;
-	public static int climberMotor2 = 5;
 	
-/***GearPickup***/
-	//motors
-	public static int gearPickupMotor = 11;
-	//pneumatics
-	public static int gearMain = 0;
-	public static int gearPickupUpOne = 2;
-	public static int gearPickupUpTwo = 3;
-	public static int gearPickupCloseOne = 0;
-	public static int gearPickupCloseTwo = 1;
-	//DIO
-
-	public static int gearTrigger = 8;
-	//Relay
-
-	public static int pickupLED= 0; //0
-
-/***AutoPorts***/
-	public static int autoAnalog = 0;
 }
