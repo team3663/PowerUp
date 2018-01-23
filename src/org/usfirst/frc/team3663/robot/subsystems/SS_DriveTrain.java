@@ -43,6 +43,7 @@ public class SS_DriveTrain extends Subsystem {
 
 	
 	public void drivetest (double pVal, double pTim) {
+		pVal = -pVal;
 		left.set(pVal);
 		right.set(pVal);
 	}

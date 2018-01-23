@@ -24,10 +24,10 @@ public class OI {
 			}
 
 	public double getStickX() {
-		return m_joystick.getRawAxis(0);
+		return m_joystick.getRawAxis(1);
 	}
 	public double getStickY() {
-		return m_joystick.getRawAxis(1);
+		return m_joystick.getRawAxis(0);
 	}
 	public double getLiftY() {
 		return m_joystick.getRawAxis(5);
