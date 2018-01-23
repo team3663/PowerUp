@@ -15,18 +15,18 @@ public class SS_LimitSwitch extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand()); fdsfdsaf
+        //setDefaultCommand(new MySpecialCommand());
     }
 
     
-    public static void Limit() {
+    public void Limit() {
     	//to fix git
-    	if (limit.get()==true && Robot.m_oi.last == false) {
-    		Robot.m_oi.last = true;
+    	if (limit.get()==true && Robot.oi.last == false) {
+    		Robot.oi.last = true;
     	}
-    	if (limit.get() == false && Robot.m_oi.last == true) {
+    	if (limit.get() == false && Robot.oi.last == true) {
     		System.out.println("feels good bois");
-    		Robot.m_oi.last = false;
+    		Robot.oi.last = false;
     	}
     }
 

@@ -24,10 +24,33 @@ public class OI {
 			}
 
 	public double getStickX() {
-		return m_joystick.getRawAxis(1);
+		return m_joystick.getRawAxis(0);
 	}
 	public double getStickY() {
-		return m_joystick.getRawAxis(0);
+		return m_joystick.getRawAxis(1);
+	}
+	public double getLiftY() {
+		return m_joystick.getRawAxis(5);
 	}
 	
 }
+/*
+* 1 = A
+* 2 = B
+* 3 = X
+* 4 = Y
+* 5 = LEFT-BUMPER
+* 6 = RIGHT-BUMPER
+* 7 = BACK
+* 8 = START
+* 9 = LEFT-STICK		as a side note please refrain from using 9-10 
+* 10 = RIGHT-STICK		because the can cause issues with commands using
+* 						the stick axis	
+* AXIS ARE AS FOLLOWS
+* 0 = LEFT-X-AXIS
+* 1 = LEFT-Y-AXIS
+* 2 = LEFT-TRIGGER
+* 3 = RIGHT-TRIGGER
+* 4 = RIGHT-X-AXIS
+* 5 = RIGHT-Y-AXIS
+*/

@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Gyro;
+import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -25,8 +27,10 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class Robot extends IterativeRobot {
 
-	public static SS_DriveTrain m_drivetrain;
-	public static OI m_oi;
+	public static SS_DriveTrain ss_drivetrain;
+	public static OI oi;
+	public static SS_Gyro ss_gyro;
+	public static SS_LimitSwitch ss_limitSwitch;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -37,19 +41,15 @@ public class Robot extends IterativeRobot {
 		// Initialize all subsystems
 	
 	
-		m_drivetrain = new SS_DriveTrain();
-		m_oi = new OI();
-		SS_DriveTrain.setEnc();
+		ss_drivetrain = new SS_DriveTrain();
+		oi = new OI();
+		
+		//SS_DriveTrain.setEnc();
 
 
 		//init gyro 
-		AHRS ahrs;
-		 
-     	 try {
-  			    ahrs = new AHRS(SerialPort.Port.kMXP); 
-  	        } catch (RuntimeException ex ) {
-  	            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-  	        }
+		
+     	 
 	}
 
 	@Override

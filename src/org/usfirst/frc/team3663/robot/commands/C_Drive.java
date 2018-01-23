@@ -10,6 +10,7 @@ package org.usfirst.frc.team3663.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Gyro;
 import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
 
 /**
@@ -17,16 +18,19 @@ import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
  */
 public class C_Drive extends Command {
 	public C_Drive() {
-		requires(Robot.m_drivetrain);
+		requires(Robot.ss_drivetrain);
 		
 	}
-
+	protected void initialize() {
+    	SS_DriveTrain.setEnc();
+    }
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.m_drivetrain.drive.arcadeDrive(Robot.m_oi.getStickX(), Robot.m_oi.getStickY());
-		SS_LimitSwitch.Limit();
+		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.getStickX(), Robot.oi.getStickY());
+		Robot.ss_drivetrain.liftest(Robot.oi.getLiftY());
 		SS_DriveTrain.encoder();
+		//Robot.ss_limitSwitch.Limit();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

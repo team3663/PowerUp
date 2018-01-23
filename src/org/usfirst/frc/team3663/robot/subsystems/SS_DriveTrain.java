@@ -34,7 +34,7 @@ public class SS_DriveTrain extends Subsystem {
 			= new WPI_TalonSRX(1);
 	public WPI_TalonSRX right
 			= new WPI_TalonSRX(3);
-	public static WPI_TalonSRX enc
+	public static WPI_TalonSRX lift
 			= new WPI_TalonSRX(2);
 	
 	public DifferentialDrive drive
@@ -42,21 +42,25 @@ public class SS_DriveTrain extends Subsystem {
 	
 
 	
-	public void drivetest (int pVal, int pTim) {
+	public void drivetest (double pVal, double pTim) {
 		left.set(pVal);
 		right.set(pVal);
 	}
+	public void liftest (double spd) {
+		lift.set(spd);
+	}
 	public static void setEnc(){
 		
-		enc.getSensorCollection().setQuadraturePosition(0, 0);
+		lift.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 
 	public static void encoder() {
-		int val = enc.getSensorCollection().getQuadraturePosition();
+		int val = lift.getSensorCollection().getQuadraturePosition();
 		
 		System.out.println(val);
 		
 	}
+	
 		// Encoders may measure differently in the real world and in
 		// simulation. In this example the robot moves 0.042 barleycorns
 		// per tick in the real world, but the simulated encoders
