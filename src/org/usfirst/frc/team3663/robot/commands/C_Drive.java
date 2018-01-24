@@ -27,8 +27,8 @@ public class C_Drive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.getStickX(), Robot.oi.getStickY());
-		Robot.ss_drivetrain.liftest(Robot.oi.getLiftY());
+		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
+		Robot.ss_drivetrain.liftest(Robot.oi.driveStick.getRawAxis(5));
 		SS_DriveTrain.encoder();
 		//Robot.ss_limitSwitch.Limit();
 	}
