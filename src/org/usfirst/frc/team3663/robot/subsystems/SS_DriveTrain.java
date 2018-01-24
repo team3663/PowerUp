@@ -29,9 +29,13 @@ import com.ctre.phoenix.motorcontrol.*;
  * the robots chassis. These include four drive motors, a left and right encoder
  * and a gyro.
  */
+
+
 public class SS_DriveTrain extends Subsystem {
+
+	public static int liftPos;
 	
-	//Motor Init
+
 	public WPI_TalonSRX left
 			= new WPI_TalonSRX(Robot.RobotMap.left);
 	public WPI_TalonSRX right
@@ -42,7 +46,6 @@ public class SS_DriveTrain extends Subsystem {
 	public DifferentialDrive drive //arcade drive
 			= new DifferentialDrive(right, left);
 	
-
 	
 	public void drivetest (double pVal, double pTim) {
 		pVal = -pVal; //reverse motors
@@ -59,8 +62,17 @@ public class SS_DriveTrain extends Subsystem {
 
 	public static void encoder() {
 		int val = lift.getSensorCollection().getQuadraturePosition();
-		
+		liftPos = val;
 		System.out.println(val);
+		
+	}
+	public static void liftToPos() {
+		if (liftPos<4000) {
+			lift.set(1);
+		}
+		else {
+			lift.set(0);
+		}
 		
 	}
 	
