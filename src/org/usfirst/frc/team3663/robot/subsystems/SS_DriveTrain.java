@@ -30,20 +30,22 @@ import com.ctre.phoenix.motorcontrol.*;
  * and a gyro.
  */
 public class SS_DriveTrain extends Subsystem {
-	public WPI_TalonSRX left
-			= new WPI_TalonSRX(1);
-	public WPI_TalonSRX right
-			= new WPI_TalonSRX(3);
-	public static WPI_TalonSRX lift
-			= new WPI_TalonSRX(2);
 	
-	public DifferentialDrive drive
+	//Motor Init
+	public WPI_TalonSRX left
+			= new WPI_TalonSRX(Robot.RobotMap.left);
+	public WPI_TalonSRX right
+			= new WPI_TalonSRX(Robot.RobotMap.right);
+	public static WPI_TalonSRX lift
+			= new WPI_TalonSRX(Robot.RobotMap.lift);
+	
+	public DifferentialDrive drive //arcade drive
 			= new DifferentialDrive(right, left);
 	
 
 	
 	public void drivetest (double pVal, double pTim) {
-		pVal = -pVal;
+		pVal = -pVal; //reverse motors
 		left.set(pVal);
 		right.set(pVal);
 	}

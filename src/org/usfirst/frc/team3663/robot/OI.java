@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class OI {
 	public boolean last = true;
 	private Joystick m_joystick = new Joystick(0);
+	
 
 	public OI() {
 		// Put Some buttons on the SmartDashboard

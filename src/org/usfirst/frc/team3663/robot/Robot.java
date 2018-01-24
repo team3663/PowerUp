@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 
 	public static SS_DriveTrain ss_drivetrain;
 	public static OI oi;
+	public static RobotMap RobotMap;
 	public static SS_Gyro ss_gyro;
 	public static SS_LimitSwitch ss_limitSwitch;
 
