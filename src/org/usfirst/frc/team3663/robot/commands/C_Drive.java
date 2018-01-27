@@ -9,6 +9,7 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Camera;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
 import org.usfirst.frc.team3663.robot.subsystems.SS_Gyro;
 import org.usfirst.frc.team3663.robot.subsystems.SS_LimitSwitch;
@@ -30,6 +31,7 @@ public class C_Drive extends Command {
 		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
 		Robot.ss_drivetrain.liftest(Robot.oi.driveStick.getRawAxis(5));
 		SS_DriveTrain.encoder();
+		SS_Camera.initCam();
 		//Robot.ss_limitSwitch.Limit();
 	}
 
