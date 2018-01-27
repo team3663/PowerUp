@@ -55,6 +55,11 @@ public class SS_DriveTrain extends Subsystem {
 		right.set(-pVal);
 	}
 	
+	public void turn(double pVel) {
+		left.set(pVel);
+		right .set(pVel);
+	}
+	
 	/**
 	 * Sets lift speed
 	 * @param spd Lift speed
