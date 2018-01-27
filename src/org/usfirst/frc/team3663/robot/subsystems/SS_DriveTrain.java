@@ -32,17 +32,13 @@ import com.ctre.phoenix.motorcontrol.*;
 
 
 public class SS_DriveTrain extends Subsystem {
-	public static int liftPos;
 	
 	// Highest position lift should go
 	private static final int LIFT_POS_MAX = 4000;
 	
-	public WPI_TalonSRX left
-			= new WPI_TalonSRX(1);
-	public WPI_TalonSRX right
-			= new WPI_TalonSRX(3);
-	public static WPI_TalonSRX lift
-			= new WPI_TalonSRX(2);
+	public WPI_TalonSRX left        = new WPI_TalonSRX(1);
+	public WPI_TalonSRX right       = new WPI_TalonSRX(3);
+	public static WPI_TalonSRX lift = new WPI_TalonSRX(2);
 	
 	public DifferentialDrive drive
 			= new DifferentialDrive(right, left);
@@ -72,17 +68,22 @@ public class SS_DriveTrain extends Subsystem {
 	public static void initEnc(){
 		lift.getSensorCollection().setQuadraturePosition(0, 0);
 	}
+	
+	public static int getLiftPos() {
+		return lift.getSensorCollection().getQuadraturePosition();
+	}
 
 	// TODO: refactor this so that code outside this class doesn't need to worry
 	//       about it.
 	public static void updateLiftPos() {
-		liftPos = lift.getSensorCollection().getQuadraturePosition();
+		int liftPos = getLiftPos();
 		System.out.println(liftPos);
 	}
 	
 	public static void liftToTop() {
 		// Keeps lift moving unless it reaches the highest
 		//   it should go.
+		int liftPos = getLiftPos();
 		lift.set( (liftPos < LIFT_POS_MAX) ? 1 : 0);
 	}
 	
