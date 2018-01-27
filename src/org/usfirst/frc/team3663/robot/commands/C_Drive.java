@@ -22,14 +22,14 @@ public class C_Drive extends Command {
 		
 	}
 	protected void initialize() {
-    	SS_DriveTrain.setEnc();
+    	SS_DriveTrain.initEnc();
     }
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
 		Robot.ss_drivetrain.liftest(Robot.oi.driveStick.getRawAxis(5));
-		SS_DriveTrain.encoder();
+		SS_DriveTrain.updateLiftPos();
 		//Robot.ss_limitSwitch.Limit();
 	}
 
