@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
 	public boolean last = true;
+	
 	public Joystick driveStick = new Joystick(0);
 
 	public OI() {
