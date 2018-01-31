@@ -32,7 +32,8 @@ public class Robot extends IterativeRobot {
 	public static SS_Gyro ss_gyro;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
-
+	
+	public static int cTime;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.git test

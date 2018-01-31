@@ -49,10 +49,11 @@ public class SS_DriveTrain extends Subsystem {
 	 * Drive backwards
 	 * @param pVal power of robot
 	 * @param pTim time (unused)
+	 * 
 	 */
-	public void drivetest (double pVal, double pTim) {
+	public void drivetest (double pVal) {
 		left.set(-pVal);
-		right.set(-pVal);
+		right.set(pVal);
 	}
 	
 	public void turn(double pVel) {
