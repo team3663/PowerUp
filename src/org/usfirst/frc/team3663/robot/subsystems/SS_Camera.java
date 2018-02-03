@@ -23,6 +23,7 @@ public class SS_Camera extends Subsystem {
     	NetworkTableEntry tx = table.getEntry("tx");
     	NetworkTableEntry ta = table.getEntry("ta");
     	NetworkTableEntry tv = table.getEntry("tv");
+    	
     	int thresh = 6;
     	
     	table.getEntry("ledMode").setNumber(1);
@@ -34,20 +35,20 @@ public class SS_Camera extends Subsystem {
     	double steeringChange = 0;
     	
     	if (target == 1) {
-    	if (a < 60) {
-    		if (x < -thresh) {
-    			System.out.println("left");
-    			Robot.ss_drivetrain.turn(.2);
-    			
-    		}
-    		else if (x > thresh) {
-    			System.out.println("right");
-    			Robot.ss_drivetrain.turn(-.2);
-    		}
-    		else if (x < thresh || x > -thresh) {
-    			System.out.println(">>>>>>good");
-    		}
-    	}
+	    	if (a < 60) {
+	    		if (x < -thresh) {
+	    			System.out.println("left");
+	    			Robot.ss_drivetrain.turn(.2);
+	    			
+	    		}
+	    		else if (x > thresh) {
+	    			System.out.println("right");
+	    			Robot.ss_drivetrain.turn(-.2);
+	    		}
+	    		else if (x < thresh || x > -thresh) {
+	    			System.out.println(">>>>>>good");
+	    		}
+	    	}
     	}
     	//float heading_error = tx;
     	//steering_adjust = Kp * tx;

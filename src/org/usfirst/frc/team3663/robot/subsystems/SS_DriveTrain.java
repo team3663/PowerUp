@@ -57,7 +57,7 @@ public class SS_DriveTrain extends Subsystem {
 	
 	public void turn(double pVel) {
 		left.set(pVel);
-		right .set(pVel);
+		right.set(pVel);
 	}
 	
 	/**
