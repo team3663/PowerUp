@@ -16,7 +16,7 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
  */
 public class C_IntakeMonitor extends Command {
 	public C_IntakeMonitor() {
-		requires(Robot.ss_CubeIntake);
+		requires(Robot.ss_cubeIntake);
 		
 	}
 	protected void initialize() {
@@ -25,7 +25,7 @@ public class C_IntakeMonitor extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		System.out.println(Robot.SS_CubeIntake.getSwitchState());
+		System.out.println(Robot.ss_cubeIntake.getSwitchState());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

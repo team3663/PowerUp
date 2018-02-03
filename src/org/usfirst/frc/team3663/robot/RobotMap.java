@@ -6,23 +6,23 @@ package org.usfirst.frc.team3663.robot;
 public class RobotMap {
 	// Digital Inputs
 	public static final int LIMIT_SWITCH = 0;
-	public static final int LIMIT_SWITCH_INTAKE = -1;
+	public static final int LIMIT_SWITCH_INTAKE = 1;
 	
 	// Talons
 	public static final int DRIVE_LEFT = 1;
 	public static final int DRIVE_RIGHT = 3;
 	public static final int LIFT = 2;
-	public static final int ELEVATOR = -1;
+	public static final int ELEVATOR = 0;
 	
-	public static final int CUBE_INTAKE_LEFT = -1;
-	public static final int CUBE_INTAKE_RIGHT = -1;
-	public static final int CUBE_SHOOTER = -1;
-	public static final int CUBE_ROTATOR = -1;
+	public static final int CUBE_INTAKE_LEFT = 50;
+	public static final int CUBE_INTAKE_RIGHT = 51;
+	public static final int CUBE_SHOOTER = 52;
+	public static final int CUBE_ROTATOR = 53;
 	
 	// Pneumatics
-	public static final int CUBE_SHOOTER_FORWARD = -1;
-	public static final int CUBE_SHOOTER_REVERSE = -1;
-	public static final int CUBE_INTAKE_FORWARD = -1;
-	public static final int CUBE_INTAKE_REVERSE = -1;
+	public static final int CUBE_SHOOTER_FORWARD = 0;
+	public static final int CUBE_SHOOTER_REVERSE = 1;
+	public static final int CUBE_INTAKE_FORWARD = 2;
+	public static final int CUBE_INTAKE_REVERSE = 3;
 	
 }
