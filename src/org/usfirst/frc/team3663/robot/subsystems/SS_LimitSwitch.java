@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_LimitSwitch extends Subsystem {
 	
-	static DigitalInput limit = new DigitalInput(RobotMap.limitSwitch);
+	static DigitalInput limitSwitch = new DigitalInput(RobotMap.limitSwitch);
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -19,12 +19,12 @@ public class SS_LimitSwitch extends Subsystem {
     }
 
     
-    public void Limit() {
+    public void limit() {
     	//to fix git
-    	if (limit.get()==true && Robot.oi.last == false) {
+    	if (limitSwitch.get() && !Robot.oi.last) {
     		Robot.oi.last = true;
     	}
-    	if (limit.get() == false && Robot.oi.last == true) {
+    	if (!limitSwitch.get() && Robot.oi.last) {
     		System.out.println("feels good bois");
     		Robot.oi.last = false;
     	}

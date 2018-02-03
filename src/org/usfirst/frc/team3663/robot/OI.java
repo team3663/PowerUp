@@ -1,19 +1,19 @@
 package org.usfirst.frc.team3663.robot;
 
-
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
+/**
+ * Input/Output devices for the driver station
+ */
 public class OI {
+	// TODO: describe what `last` means
 	public boolean last = true;
 	
 	public Joystick driveStick = new Joystick(0);
 
 	public OI() {
-		Button exampleButton = new JoystickButton(driveStick, 1);
-		
+		//Button exampleButton = new JoystickButton(driveStick, 1);
 		//exampleButton.whenPressed(randomms);
 	}
 }

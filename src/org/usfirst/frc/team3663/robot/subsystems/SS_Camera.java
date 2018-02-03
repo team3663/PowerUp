@@ -23,8 +23,7 @@ public class SS_Camera extends Subsystem {
 	public static void initCam() {
 		/*
 		 * Variables `tx`, `ta`, and `tv` are a part of the Limelight API. See:
-		 * <http://docs.limelightvision.io/en/latest/getting_started.html#basic-
-		 * programming>
+		 * https://goo.gl/G4rMVZ
 		 */
 		final NetworkTableEntry tx = table.getEntry("tx");
 		final NetworkTableEntry ta = table.getEntry("ta");
@@ -49,10 +48,10 @@ public class SS_Camera extends Subsystem {
 
 					if (tgtOffset > 0) {
 						System.out.println("right");
-						Robot.ss_drivetrain.turn(speed);
+						Robot.ss_drivetrain.turnRight(speed);
 					} else {
 						System.out.println("left");
-						Robot.ss_drivetrain.turn(-speed);
+						Robot.ss_drivetrain.turnRight(-speed);
 					}
 					Robot.cTime = 0;
 				} else {
@@ -65,7 +64,7 @@ public class SS_Camera extends Subsystem {
 
 			if (Robot.cTime > 10) {
 				if (tgtArea < 45) {
-					Robot.ss_drivetrain.drivetest(-.3);
+					Robot.ss_drivetrain.driveForward(.3);
 				}
 				System.out.println("drivefowward u tard");
 			}

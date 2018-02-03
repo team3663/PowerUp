@@ -35,13 +35,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
-	
-	
 		ss_drivetrain = new SS_DriveTrain();
 		oi = new OI();
 		
 		//SS_DriveTrain.setEnc();
-
 
 		//init gyro 
 		
@@ -66,7 +63,6 @@ public class Robot extends IterativeRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-
 	}
 
 	/**
@@ -84,9 +80,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 	}
-
-	/**
-	 * The log method puts interesting information to the SmartDashboard.
-	 */
 
 }

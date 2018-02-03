@@ -22,7 +22,6 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 
 public class SS_DriveTrain extends Subsystem {
-
 	
 	// Highest position lift should go
 	private static final int LIFT_POS_MAX = 4000;
@@ -35,27 +34,21 @@ public class SS_DriveTrain extends Subsystem {
 			= new DifferentialDrive(right, left);
 	
 	
-	/**
-	 * Drive backwards
-	 * @param pVal power of robot
-	 * @param pTim time (unused)
-	 * 
-	 */
-	public void drivetest (double pVal) {
-		left.set(-pVal);
-		right.set(pVal);
+	public void driveForward(double speed) {
+		left.set(speed);
+		right.set(-speed);
 	}
 	
-	public void turn(double pVel) {
-		left.set(pVel);
-		right .set(pVel);
+	public void turnRight(double speed) {
+		left.set(speed);
+		right.set(speed);
 	}
 	
 	/**
 	 * Sets lift speed
 	 * @param spd Lift speed
 	 */
-	public void liftest(double spd) {
+	public void setLift(double spd) {
 		lift.set(spd);
 	}
 	
