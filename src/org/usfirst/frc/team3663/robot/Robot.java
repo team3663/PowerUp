@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static SS_CubeIntake ss_cubeIntake;
 	
 	public static int cTime;
+	public static int testCounter = 0;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.git test

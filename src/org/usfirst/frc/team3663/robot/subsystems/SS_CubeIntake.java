@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_IntakeMonitor;
 
@@ -28,17 +29,35 @@ public class SS_CubeIntake extends Subsystem {
 		//leftIntake.set(0);
 	}
 	
-	public void extendIntake() {
-		intakePneumatic.set(DoubleSolenoid.Value.kForward);
+	public void Intake(boolean pState) {
+		//true = foward
+		//false = reverse
+		if(pState) {
+			intakePneumatic.set(DoubleSolenoid.Value.kForward);
+		}
+		else {
+			intakePneumatic.set(DoubleSolenoid.Value.kReverse);
+		}
 	}
 	
-	public void retractIntake() {
-		intakePneumatic.set(DoubleSolenoid.Value.kReverse);
-	}
 	
 	public void secureCube() {
 		stopIntake();
-		retractIntake();
+		Intake(true);
+	}
+	//TODO this is test code pls dont use unless ur a potato
+	public void testIntake() {
+		Robot.testCounter ++;
+		int count = Robot.testCounter;
+		if(count > 10) {
+			Intake(true);
+		}
+		else {
+			Intake(false);
+		}
+		if(count > 20) {
+			Robot.testCounter = 0;
+		}
 	}
 	
 	public boolean getSwitchState() {

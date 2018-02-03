@@ -20,9 +20,9 @@ public class RobotMap {
 	public static final int CUBE_ROTATOR = 53;
 	
 	// Pneumatics
-	public static final int CUBE_SHOOTER_FORWARD = 0;
-	public static final int CUBE_SHOOTER_REVERSE = 1;
-	public static final int CUBE_INTAKE_FORWARD = 2;
-	public static final int CUBE_INTAKE_REVERSE = 3;
+	public static final int CUBE_SHOOTER_FORWARD = 3;
+	public static final int CUBE_SHOOTER_REVERSE = 2;
+	public static final int CUBE_INTAKE_FORWARD = 1;
+	public static final int CUBE_INTAKE_REVERSE = 0;
 	
 }
