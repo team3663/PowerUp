@@ -26,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Gyro ss_gyro;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
+	public static SS_CubeIntake ss_cubeIntake;
 	
 	public static int cTime;
 	/**
@@ -36,6 +37,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// Initialize all subsystems
 		ss_drivetrain = new SS_DriveTrain();
+		ss_cubeIntake = new SS_CubeIntake();
 		oi = new OI();
 		
 		//SS_DriveTrain.setEnc();

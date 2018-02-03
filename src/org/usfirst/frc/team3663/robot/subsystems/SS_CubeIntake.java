@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class SS_CubeIntake extends Subsystem {
-	private WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE);
-	//private WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE);
+	private WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_RIGHT);
+	//private WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 	
 	private DoubleSolenoid intakePneumatic = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD, 
 				RobotMap.CUBE_INTAKE_REVERSE);
