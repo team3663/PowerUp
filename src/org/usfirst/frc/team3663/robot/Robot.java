@@ -6,16 +6,10 @@
 
 package org.usfirst.frc.team3663.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.command.*;
 
 import org.usfirst.frc.team3663.robot.subsystems.*;
-
-import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,7 +26,8 @@ public class Robot extends IterativeRobot {
 	public static SS_Gyro ss_gyro;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
-
+	
+	public static int cTime;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.git test
@@ -40,13 +35,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
-	
-	
 		ss_drivetrain = new SS_DriveTrain();
 		oi = new OI();
 		
 		//SS_DriveTrain.setEnc();
-
 
 		//init gyro 
 		
@@ -71,7 +63,6 @@ public class Robot extends IterativeRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-
 	}
 
 	/**
@@ -89,9 +80,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 	}
-
-	/**
-	 * The log method puts interesting information to the SmartDashboard.
-	 */
 
 }

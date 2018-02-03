@@ -14,22 +14,18 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
 /**
  * Have the robot drive tank style using the PS3 Joystick until interrupted.
  */
-public class C_Drive extends Command {
-	public C_Drive() {
-		requires(Robot.ss_drivetrain);
+public class C_IntakeMonitor extends Command {
+	public C_IntakeMonitor() {
+		requires(Robot.ss_CubeIntake);
 		
 	}
 	protected void initialize() {
-    	SS_DriveTrain.initEnc();
     }
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-		Robot.ss_drivetrain.setLift(Robot.oi.driveStick.getRawAxis(5));
-		SS_Camera.initCam();
-		//Robot.ss_limitSwitch.Limit();
+		System.out.println(Robot.SS_CubeIntake.getSwitchState());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

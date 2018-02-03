@@ -7,22 +7,12 @@
 
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.*;
-import com.ctre.phoenix.motorcontrol.*;
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
@@ -32,7 +22,6 @@ import com.ctre.phoenix.motorcontrol.*;
 
 
 public class SS_DriveTrain extends Subsystem {
-
 	
 	// Highest position lift should go
 	private static final int LIFT_POS_MAX = 4000;
@@ -45,26 +34,23 @@ public class SS_DriveTrain extends Subsystem {
 			= new DifferentialDrive(right, left);
 	
 	
-	/**
-	 * Drive backwards
-	 * @param pVal power of robot
-	 * @param pTim time (unused)
-	 */
-	public void drivetest (double pVal, double pTim) {
-		left.set(-pVal);
-		right.set(-pVal);
+	public void driveForward(double speed) {
+		left.set(speed);
+		right.set(-speed);
 	}
 	
-	public void turn(double pVel) {
-		left.set(pVel);
-		right.set(pVel);
+
+	public void turnRight(double speed) {
+		left.set(speed);
+		right.set(speed);
+
 	}
 	
 	/**
 	 * Sets lift speed
 	 * @param spd Lift speed
 	 */
-	public void liftest(double spd) {
+	public void setLift(double spd) {
 		lift.set(spd);
 	}
 	
@@ -77,13 +63,6 @@ public class SS_DriveTrain extends Subsystem {
 	
 	public static int getLiftPos() {
 		return lift.getSensorCollection().getQuadraturePosition();
-	}
-
-	// TODO: refactor this so that code outside this class doesn't need to worry
-	//       about it.
-	public static void updateLiftPos() {
-		int liftPos = getLiftPos();
-		System.out.println(liftPos);
 	}
 	
 	public static void liftToTop() {
