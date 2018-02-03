@@ -21,51 +21,50 @@ public class SS_Camera extends Subsystem {
     }
     
     public static void initCam() {
-    	
+    	/*
+    	 * Variables `tx`, `ta`, and `tv` are a part of the Limelight
+    	 * API. See: <http://docs.limelightvision.io/en/latest/getting_started.html#basic-programming>
+    	 */
     	NetworkTableEntry tx = table.getEntry("tx");
     	NetworkTableEntry ta = table.getEntry("ta");
     	NetworkTableEntry tv = table.getEntry("tv");
-    	int sThresh = 4;
-    	int lThresh = 8;
-    	int time = 0;
     	
-    	table.getEntry("ledMode").setNumber(0); //0=on  1=off
+    	final int sThresh = 4;
+    	final int lThresh = 8;
     	
-   
-    	double x = tx.getDouble(0);
-    	double a = ta.getDouble(0);
-    	double target = tv.getDouble(0);
-    	double steeringChange = 0;
+    	table.getEntry("ledMode").setNumber(0); // 0=on  1=off
     	
-    	if (target == 1) {
-    		if (a < 60) {
-    			// - is left and + is right
-    			if (x < -lThresh) {
-    				System.out.println("left");
-    				Robot.ss_drivetrain.turn(.3);
+    	// Get vision camera data
+    	final double tgtOffset = tx.getDouble(0); // Horizontal offset from crosshair to target (-27° to 27°)
+    	final double tgtArea = ta.getDouble(0); // Target area (range 0-100)
+    	boolean isTargetDetected = (tv.getDouble(0) == 1); // 1 = target detected; 0 otherwise
+    	
+    	
+    	if (isTargetDetected) {
+    		if (tgtArea < 60) {
+    			if (Math.abs(tgtOffset) > sThresh) {
+    				double speed = .2;
+    				if (Math.abs(tgtOffset) > lThresh)
+    					speed = .3;
+    				
+    				if (tgtOffset > 0) {
+    					System.out.println("right");
+    					Robot.ss_drivetrain.turn(speed);
+    				} else {
+    					System.out.println("left");
+    					Robot.ss_drivetrain.turn(-speed);
+    				}
     				Robot.cTime = 0;
-    			
-    			} else if (x > lThresh) {
-    				System.out.println("right");
-    				Robot.ss_drivetrain.turn(-.3);
-    				Robot.cTime = 0;
-    			} else if (x < -sThresh) {
-        			System.out.println("left");
-        			Robot.ss_drivetrain.turn(.2);
-        			Robot.cTime = 0;
-        		} else if (x > sThresh) {
-        			System.out.println("right");
-        			Robot.ss_drivetrain.turn(-.2);
-        			Robot.cTime = 0;
-        		} else if (x < sThresh || x > -sThresh) {
+    			} else {
         			System.out.println(">>>>>>better");
         			Robot.cTime++;
         			System.out.println(Robot.cTime);
-        		}
+    			}
     				
     		}
+    		
     		if (Robot.cTime > 10) {
-    			if (a < 45) {
+    			if (tgtArea < 45) {
     				Robot.ss_drivetrain.drivetest(-.3);
     			}
     			System.out.println("drivefowward u tard");
