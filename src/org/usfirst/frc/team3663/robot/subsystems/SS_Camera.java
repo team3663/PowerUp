@@ -19,6 +19,7 @@ public class SS_Camera extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
     public static void initCam() {
     	
     	NetworkTableEntry tx = table.getEntry("tx");
@@ -44,42 +45,34 @@ public class SS_Camera extends Subsystem {
     				Robot.ss_drivetrain.turn(.3);
     				Robot.cTime = 0;
     			
-    			}
-    			else if (x > lThresh) {
+    			} else if (x > lThresh) {
     				System.out.println("right");
     				Robot.ss_drivetrain.turn(-.3);
     				Robot.cTime = 0;
-    			}
-    				else if (x < -sThresh) {
-        				System.out.println("left");
-        				Robot.ss_drivetrain.turn(.2);
-        				Robot.cTime = 0;
-        			
-        			}
-        			else if (x > sThresh) {
-        				System.out.println("right");
-        				Robot.ss_drivetrain.turn(-.2);
-        				Robot.cTime = 0;
-        			}
-        			else if (x < sThresh || x > -sThresh) {
-        				System.out.println(">>>>>>better");
-        				Robot.cTime++;
-        				System.out.println(Robot.cTime);
-        			
-        			}
+    			} else if (x < -sThresh) {
+        			System.out.println("left");
+        			Robot.ss_drivetrain.turn(.2);
+        			Robot.cTime = 0;
+        		} else if (x > sThresh) {
+        			System.out.println("right");
+        			Robot.ss_drivetrain.turn(-.2);
+        			Robot.cTime = 0;
+        		} else if (x < sThresh || x > -sThresh) {
+        			System.out.println(">>>>>>better");
+        			Robot.cTime++;
+        			System.out.println(Robot.cTime);
+        		}
     				
-    			}
-    			if (Robot.cTime > 10) {
-    				if (a < 45) {
-    					
-    					Robot.ss_drivetrain.drivetest(-.3);
-    				}
-    				System.out.println("drivefowward u tard");
-    			}
-    	
     		}
-    	}	
-    }
+    		if (Robot.cTime > 10) {
+    			if (a < 45) {
+    				Robot.ss_drivetrain.drivetest(-.3);
+    			}
+    			System.out.println("drivefowward u tard");
+    		}
+    	}
+    }	
+}
     	//float heading_error = tx;
     	//steering_adjust = Kp * tx;
     	

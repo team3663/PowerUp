@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import org.usfirst.frc.team3663.robot.*;
+
 import org.usfirst.frc.team3663.robot.commands.C_GyroPrint;
 
 import com.kauailabs.navx.frc.*;
@@ -23,16 +23,13 @@ public class SS_Gyro extends Subsystem {
     	setDefaultCommand(new C_GyroPrint());
     	
     	AHRS ahrs;
-    	  try 
-      	{
-              ahrs = new AHRS(SerialPort.Port.kMXP); 
-          } catch (RuntimeException ex ) 
-      	{
-              DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-          }
+    	try {
+    		ahrs = new AHRS(SerialPort.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+        	DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
     }
     
-     //AHRS ahrs;
   /*  
     public double gyroReadx() {
         return ahrs.getRawGyroX();

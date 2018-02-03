@@ -1,4 +1,6 @@
 package org.usfirst.frc.team3663.robot;
+
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -12,12 +14,8 @@ public class OI {
 	public OI() {
 		Button exampleButton = new JoystickButton(driveStick, 1);
 		
-		
-		
-		
 		//exampleButton.whenPressed(randomms);
-		
-		}	
+	}
 }
 /*
 * 1 = A
