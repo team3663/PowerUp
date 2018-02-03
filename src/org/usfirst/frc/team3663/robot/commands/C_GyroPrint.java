@@ -19,8 +19,8 @@ public class C_GyroPrint extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	//Robot.ss_gyro.gyroReady();
-    	//System.out.println(Robot.ss_gyro.gyroReadz());
+    	//Robot.ss_gyro.gyroReadY();
+    	//System.out.println(Robot.ss_gyro.gyroReadZ());
     }
 
     // Make this return true when this Command no longer needs to run execute()

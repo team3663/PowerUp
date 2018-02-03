@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class SS_Gyro extends Subsystem {
-
+	AHRS ahrs;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -21,17 +21,25 @@ public class SS_Gyro extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new C_GyroPrint());
-
+		
 		try {
-			new AHRS(SerialPort.Port.kMXP);
+			ahrs = new AHRS(SerialPort.Port.kMXP);
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
+		
 	}
-
-	/*
-	 * public double gyroReadx() { return ahrs.getRawGyroX(); } public double
-	 * gyroReady() { return ahrs.getRawGyroY(); } public double gyroReadz() { return
-	 * ahrs.getRawGyroZ(); }
-	 */
+	 
+	public double gyroReadX() { 
+		return ahrs.getRawGyroX();
+	} 
+	
+	public double gyroReadY() { 
+		return ahrs.getRawGyroY(); 
+	} 
+	
+	public double gyroReadZ() { 
+		return ahrs.getRawGyroZ(); 
+	}
+	 
 }
