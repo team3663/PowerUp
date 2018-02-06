@@ -23,12 +23,12 @@ import com.ctre.phoenix.motorcontrol.can.*;
 
 public class SS_DriveTrain extends Subsystem {
 	
-	// Highest position lift should go
-	private static final int LIFT_POS_MAX = 4000;
+	// Highest position elevator should go
+	private static final int ELEVATOR_POS_MAX = 4000;
 	
 	public WPI_TalonSRX left        = new WPI_TalonSRX(1);
 	public WPI_TalonSRX right       = new WPI_TalonSRX(3);
-	public static WPI_TalonSRX lift = new WPI_TalonSRX(2);
+	public static WPI_TalonSRX elevator = new WPI_TalonSRX(2);
 	
 	public DifferentialDrive drive //arcade drive
 			= new DifferentialDrive(right, left);
@@ -50,26 +50,26 @@ public class SS_DriveTrain extends Subsystem {
 	 * Sets lift speed
 	 * @param spd Lift speed
 	 */
-	public void setLift(double spd) {
-		lift.set(spd);
+	public void setElevator(double spd) {
+		elevator.set(spd);
 	}
 	
 	/**
 	 * Sets up encoder for use
 	 */
 	public static void initEnc(){
-		lift.getSensorCollection().setQuadraturePosition(0, 0);
+		elevator.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 	
-	public static int getLiftPos() {
-		return lift.getSensorCollection().getQuadraturePosition();
+	public static int getElevatorPos() {
+		return elevator.getSensorCollection().getQuadraturePosition();
 	}
 	
-	public static void liftToTop() {
+	public static void elevatorToTop() {
 		// Keeps lift moving unless it reaches the highest
 		//   it should go.
-		int liftPos = getLiftPos();
-		lift.set( (liftPos < LIFT_POS_MAX) ? 1 : 0);
+		int elevatorPos = getElevatorPos();
+		elevator.set( (elevatorPos < ELEVATOR_POS_MAX) ? 1 : 0);
 	}
 	
 		/* Encoders may measure differently in the real world and in

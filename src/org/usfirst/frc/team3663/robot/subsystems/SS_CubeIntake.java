@@ -19,9 +19,9 @@ public class SS_CubeIntake extends Subsystem {
 	
 	private DigitalInput cubePresent = new DigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
 	
-	public void spinIntake() {
-		rightIntake.set(.3);
-		//leftIntake.set(.3);
+	public void spinIntake(double speed) {
+		rightIntake.set(speed);
+		//leftIntake.set(speed);
 	}
 	
 	public void stopIntake() {
@@ -32,10 +32,10 @@ public class SS_CubeIntake extends Subsystem {
 	public void Intake(boolean pState) {
 		//true = foward
 		//false = reverse
-		if(pState) {
+		if(pState == true) {
 			intakePneumatic.set(DoubleSolenoid.Value.kForward);
 		}
-		else {
+		else if (pState == false){
 			intakePneumatic.set(DoubleSolenoid.Value.kReverse);
 		}
 	}

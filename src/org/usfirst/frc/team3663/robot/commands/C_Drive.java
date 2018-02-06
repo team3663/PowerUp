@@ -27,8 +27,8 @@ public class C_Drive extends Command {
 	@Override
 	protected void execute() {
 		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-		Robot.ss_drivetrain.setLift(Robot.oi.driveStick.getRawAxis(5));
-		SS_Camera.initCam();
+		Robot.ss_drivetrain.setElevator(Robot.oi.driveStick.getRawAxis(5));
+		//SS_Camera.initCam();
 		//Robot.ss_limitSwitch.Limit();
 	}
 

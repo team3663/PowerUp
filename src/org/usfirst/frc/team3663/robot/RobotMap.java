@@ -9,14 +9,14 @@ public class RobotMap {
 	public static final int LIMIT_SWITCH_INTAKE = 1;
 	
 	// Talons
-	public static final int DRIVE_LEFT = 1;
-	public static final int DRIVE_RIGHT = 3;
-	public static final int LIFT = 2;
-	public static final int ELEVATOR = 0;
+	public static final int DRIVE_LEFT = 5; //
+	public static final int DRIVE_RIGHT = 6; //
+	public static final int LIFT = 35; 
+	public static final int ELEVATOR = 1;//
 	
-	public static final int CUBE_INTAKE_LEFT = 50;
+	public static final int CUBE_INTAKE_LEFT = 3; //
 	public static final int CUBE_INTAKE_RIGHT = 51;
-	public static final int CUBE_SHOOTER = 52;
+	public static final int CUBE_SHOOTER = 2; //
 	public static final int CUBE_ROTATOR = 53;
 	
 	// Pneumatics
