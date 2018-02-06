@@ -20,6 +20,10 @@ public class SS_CubeManipulator extends Subsystem {
 	private void rotateCube(double speed, Double angle) {
 		rotatorTalon.set(speed);
 	}
+	
+	public void pullCube() {
+		shooterTalon.set(.3);
+	}
 
 	public void shootCube() {
 		shooterTalon.set(SHOOTER_SPEED);

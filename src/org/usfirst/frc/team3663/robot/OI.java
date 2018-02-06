@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3663.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 /**
@@ -11,10 +13,13 @@ public class OI {
 	public boolean last = true;
 	
 	public Joystick driveStick = new Joystick(0);
+	
+	
 
 	public OI() {
 		//Button exampleButton = new JoystickButton(driveStick, 1);
-		//exampleButton.whenPressed(randomms);
+		//exampleButton.whenPressed(randomms); 
+		Button intakeCubeCycle = new JoystickButton(driveStick, 4);
 	}
 }
 /*
