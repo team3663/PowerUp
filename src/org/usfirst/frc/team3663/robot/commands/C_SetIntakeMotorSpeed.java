@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_SetIntakeMotorSpeed extends Command {
 
     public C_SetIntakeMotorSpeed() {
-        requires (Robot.ss_cubeIntake);
+    	requires (Robot.ss_cubeIntake);
+        requires (Robot.ss_cubeManipulator);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +25,11 @@ public class C_SetIntakeMotorSpeed extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if(Robot.ss_cubeManipulator.getSwitchState() == true) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true

@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_CubeCycle extends CommandGroup {
 
     public CG_CubeCycle() {
+    	addSequential(new C_ExtendIntakeArms());
     	addParallel(new C_SetIntakeMotorSpeed());
+    	addParallel(new C_SetManipulatorMotorSpeed());
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

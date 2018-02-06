@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3663.robot;
 
+import org.usfirst.frc.team3663.robot.commands.*;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -9,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * Input/Output devices for the driver station
  */
 public class OI {
-	// TODO: describe what `last` means
+	// TODO: last is for the limit switch
 	public boolean last = true;
 	
 	public Joystick driveStick = new Joystick(0);
@@ -20,6 +22,10 @@ public class OI {
 		//Button exampleButton = new JoystickButton(driveStick, 1);
 		//exampleButton.whenPressed(randomms); 
 		Button intakeCubeCycle = new JoystickButton(driveStick, 4);
+		intakeCubeCycle.whenPressed(new CG_CubeCycle());
+		
+		Button shootCube = new JoystickButton(driveStick, 3);
+		shootCube.whenPressed(new C_ShootCube());
 	}
 }
 /*

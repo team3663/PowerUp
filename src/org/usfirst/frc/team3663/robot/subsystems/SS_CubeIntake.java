@@ -17,7 +17,7 @@ public class SS_CubeIntake extends Subsystem {
 	private DoubleSolenoid intakePneumatic = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD, 
 				RobotMap.CUBE_INTAKE_REVERSE);
 	
-	private DigitalInput cubePresent = new DigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
+	
 	
 	public void spinIntake(double speed) {
 		rightIntake.set(speed);
@@ -29,7 +29,7 @@ public class SS_CubeIntake extends Subsystem {
 		//leftIntake.set(0);
 	}
 	
-	public void Intake(boolean pState) {
+	public void extendIntake(boolean pState) {
 		//true = foward
 		//false = reverse
 		if(pState == true) {
@@ -43,26 +43,24 @@ public class SS_CubeIntake extends Subsystem {
 	
 	public void secureCube() {
 		stopIntake();
-		Intake(true);
+		extendIntake(true);
 	}
 	//TODO this is test code pls dont use unless ur a potato
 	public void testIntake() {
 		Robot.testCounter ++;
 		int count = Robot.testCounter;
 		if(count > 10) {
-			Intake(true);
+			extendIntake(true);
 		}
 		else {
-			Intake(false);
+			extendIntake(false);
 		}
 		if(count > 20) {
 			Robot.testCounter = 0;
 		}
 	}
 	
-	public boolean getSwitchState() {
-		return cubePresent.get();
-	}
+	
 	
 	@Override
 	public void initDefaultCommand() {

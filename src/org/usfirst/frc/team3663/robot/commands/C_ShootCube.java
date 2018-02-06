@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetManipulatorMotorSpeed extends Command {
+public class C_ShootCube extends Command {
 
-    public C_SetManipulatorMotorSpeed() {
-    	requires(Robot.ss_cubeManipulator);
+    public C_ShootCube() {
+    	requires (Robot.ss_cubeManipulator);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -21,12 +21,12 @@ public class C_SetManipulatorMotorSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ss_cubeManipulator.pullCube();
+    	Robot.ss_cubeManipulator.shootCube();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.ss_cubeManipulator.getSwitchState() == true) {
+    	if(Robot.ss_cubeManipulator.getSwitchState() == false) {
     		return true;
     	} else {
     		return false;
