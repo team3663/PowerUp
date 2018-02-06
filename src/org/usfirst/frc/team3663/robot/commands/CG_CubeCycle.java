@@ -8,25 +8,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_CubeCycle extends CommandGroup {
 
     public CG_CubeCycle() {
-    	addSequential(new C_ExtendIntakeArms());
-    	addParallel(new C_SetIntakeMotorSpeed());
-    	addParallel(new C_SetManipulatorMotorSpeed());
+    	addSequential(new C_IntakeExtnd(true));
+    	addSequential(new C_IntakeSqz(true));
+    	addSequential(new C_SetIntakeSpd(.3));
+    	addSequential(new C_SetGriffSpd(.3));
+    	addSequential(new C_GriffSensor()); //wait for sensor
+    	addSequential(new C_GriffSqz(true));
+    	addSequential(new C_SetIntakeSpd(0));
+    	addSequential(new C_SetGriffSpd(0));
+    	addSequential(new C_IntakeSqz(false));
+    	addSequential(new C_IntakeExtnd(false));
     	
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     }
 }

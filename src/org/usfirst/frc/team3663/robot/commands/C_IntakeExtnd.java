@@ -7,12 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_ShootCube extends Command {
-
-    public C_ShootCube() {
-    	requires (Robot.ss_cubeManipulator);
+public class C_IntakeExtnd extends Command {
+public boolean state;
+    public C_IntakeExtnd(boolean  pState) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.ss_cubeIntake);
+    	state = pState;
     }
 
     // Called just before this Command runs the first time
@@ -21,21 +22,16 @@ public class C_ShootCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ss_cubeManipulator.shootCube();
+    	Robot.ss_cubeIntake.extndIntake(state);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.ss_cubeManipulator.getSwitchState() == false) {
-    		return true;
-    	} else {
-    		return false;
-    	}
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ss_cubeManipulator.stopManipulatorSpinning();
     }
 
     // Called when another command which requires one or more of the same

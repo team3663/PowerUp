@@ -7,11 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetIntakeMotorSpeed extends Command {
+public class C_IntakeSqz extends Command {
 
-    public C_SetIntakeMotorSpeed() {
-    	requires (Robot.ss_cubeIntake);
-        requires (Robot.ss_cubeManipulator);
+public boolean state;
+//true = down 
+//false = up
+    public C_IntakeSqz(boolean pState) {
+    	requires(Robot.ss_cubeIntake);
+    	requires(Robot.ss_Griff);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	state = pState;
     }
 
     // Called just before this Command runs the first time
@@ -20,21 +26,18 @@ public class C_SetIntakeMotorSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ss_cubeIntake.spinIntake(.3);
+    	Robot.ss_cubeIntake.sqzIntake(state);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.ss_cubeManipulator.getSwitchState() == true) {
     		return true;
-    	} else {
-    		return false;
-    	}
+    	
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ss_cubeIntake.stopIntake();
+    
     }
 
     // Called when another command which requires one or more of the same

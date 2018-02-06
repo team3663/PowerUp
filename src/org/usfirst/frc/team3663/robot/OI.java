@@ -25,7 +25,8 @@ public class OI {
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 		
 		Button shootCube = new JoystickButton(driveStick, 3);
-		shootCube.whenPressed(new C_ShootCube());
+		shootCube.whenPressed(new C_SetGriffSpd(1));
+		shootCube.whenReleased(new C_SetGriffSpd(0));
 	}
 }
 /*

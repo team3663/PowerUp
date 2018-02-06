@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class SS_CubeManipulator extends Subsystem {
-	private final WPI_TalonSRX shooterTalon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
-	private final WPI_TalonSRX rotatorTalon = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
-	private final DoubleSolenoid shooterPneumatic = new DoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD,
+public class SS_Griff extends Subsystem {
+	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
+	private final WPI_TalonSRX griffRot = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
+	private final DoubleSolenoid griffPneumatics = new DoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD,
 			RobotMap.CUBE_SHOOTER_REVERSE);
 	
 	private DigitalInput cubePresent = new DigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
@@ -21,28 +21,25 @@ public class SS_CubeManipulator extends Subsystem {
 	}
 	
 	private void rotateCube(double speed, Double angle) {
-		rotatorTalon.set(speed);
+		griffRot.set(speed);
 	}
-	
-	public void pullCube() {
-		shooterTalon.set(.3);
+	public void setGriffSpd(double pSpd) {
+		griffon.set(pSpd);
 	}
-
-	public void shootCube() {
-		shooterTalon.set(SHOOTER_SPEED);
-	}
-
-	public void stopManipulatorSpinning() {
-		shooterTalon.set(0);
-	}
-
 	public void turnCube(double speed) {
 		rotateCube(speed, null);
 	}
-
-	public void moveShooter(DoubleSolenoid.Value val) {
-		shooterPneumatic.set(val);
+	public void sqzGriff(boolean pState) {
+		//true = foward
+		//false = reverse
+		if(pState == true) {
+			griffPneumatics.set(DoubleSolenoid.Value.kForward);
+		}
+		else if (pState == false){
+			griffPneumatics.set(DoubleSolenoid.Value.kReverse);
+		}
 	}
+
 	public boolean getSwitchState() {
 		return cubePresent.get();
 	}

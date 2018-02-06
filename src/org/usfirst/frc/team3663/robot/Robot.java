@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
 	public static SS_CubeIntake ss_cubeIntake;
-	public static SS_CubeManipulator ss_cubeManipulator;
+	public static SS_Griff ss_Griff;
 	
 	public static int cTime;
 	public static int testCounter = 0;

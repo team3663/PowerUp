@@ -11,6 +11,7 @@ public class RobotMap {
 	// Talons
 	public static final int DRIVE_LEFT = 5; //
 	public static final int DRIVE_RIGHT = 6; //
+	
 	public static final int LIFT = 35; 
 	public static final int ELEVATOR = 1;//
 	
@@ -22,7 +23,11 @@ public class RobotMap {
 	// Pneumatics
 	public static final int CUBE_SHOOTER_FORWARD = 3;
 	public static final int CUBE_SHOOTER_REVERSE = 2;
+	
 	public static final int CUBE_INTAKE_FORWARD = 1;
 	public static final int CUBE_INTAKE_REVERSE = 0;
+	
+	public static final int CUBE_INTAKE_LIFT_FOWARD = 51;
+	public static final int CUBE_INTAKE_LIFT_REVERSE = 51;
 	
 }

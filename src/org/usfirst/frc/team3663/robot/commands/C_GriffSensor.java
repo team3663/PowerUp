@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetManipulatorMotorSpeed extends Command {
+public class C_GriffSensor extends Command {
 
-    public C_SetManipulatorMotorSpeed() {
-    	requires(Robot.ss_cubeManipulator);
+    public C_GriffSensor() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.ss_Griff);
     }
 
     // Called just before this Command runs the first time
@@ -21,21 +21,20 @@ public class C_SetManipulatorMotorSpeed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ss_cubeManipulator.pullCube();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.ss_cubeManipulator.getSwitchState() == true) {
-    		return true;
-    	} else {
+    	if (!Robot.ss_Griff.getSwitchState()) {
     		return false;
+    	}
+    	else {
+    		return true;
     	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ss_cubeManipulator.stopManipulatorSpinning();
     }
 
     // Called when another command which requires one or more of the same
