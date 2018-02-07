@@ -19,15 +19,18 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	public static OI oi; 
 	public static SS_DriveTrain ss_drivetrain;
-	public static OI oi;
+	
 	public static RobotMap RobotMap;
 	public static SS_Gyro ss_gyro;
+	public static SS_CubeIntake ss_cubeIntake;
+	public static SS_Griff ss_griff;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
-	public static SS_CubeIntake ss_cubeIntake;
-	public static SS_Griff ss_Griff;
+	
+	
+	//oi must be initilized last PLEASE
 	
 	public static int cTime;
 	public static int testCounter = 0;
@@ -40,6 +43,7 @@ public class Robot extends IterativeRobot {
 		// Initialize all subsystems
 		ss_drivetrain = new SS_DriveTrain();
 		ss_cubeIntake = new SS_CubeIntake();
+		ss_griff = new SS_Griff();
 		oi = new OI();
 		
 		//SS_DriveTrain.setEnc();

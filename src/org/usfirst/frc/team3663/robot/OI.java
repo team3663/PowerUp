@@ -21,12 +21,32 @@ public class OI {
 	public OI() {
 		//Button exampleButton = new JoystickButton(driveStick, 1);
 		//exampleButton.whenPressed(randomms); 
-		Button intakeCubeCycle = new JoystickButton(driveStick, 4);
+		Button intakeCubeCycle = new JoystickButton(driveStick, 3);
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 		
-		Button shootCube = new JoystickButton(driveStick, 3);
-		shootCube.whenPressed(new C_SetGriffSpd(1));
-		shootCube.whenReleased(new C_SetGriffSpd(0));
+		Button griffSqz = new JoystickButton(driveStick, 1);
+		griffSqz.whenPressed(new C_GriffSqz(true));
+		griffSqz.whenReleased(new C_GriffSqz(false));
+		
+		/*Button intakeExtnd = new JoystickButton(driveStick, 2);
+		intakeExtnd.whenPressed(new C_IntakeExtnd(true));
+		intakeExtnd.whenReleased(new C_IntakeExtnd(true));
+		*/
+		Button intakeSqz = new JoystickButton(driveStick, 4);
+		intakeSqz.whenPressed(new C_IntakeSqz(true));
+		intakeSqz.whenReleased(new C_IntakeSqz(false));
+		
+		Button  inGriff = new JoystickButton(driveStick, 5);
+		inGriff.whenPressed(new C_SetGriffSpd(1));
+		inGriff.whenReleased(new C_SetGriffSpd(0));
+		
+		Button setIntakeSpd = new JoystickButton(driveStick, 6);
+		setIntakeSpd.whenPressed(new C_SetIntakeSpd(-1));
+		setIntakeSpd.whenReleased(new C_SetIntakeSpd(0));
+		
+		Button outGriff = new JoystickButton(driveStick, 2);
+		outGriff.whenPressed(new C_SetGriffSpd(-1));
+		outGriff.whenReleased(new C_SetGriffSpd(0));
 	}
 }
 /*

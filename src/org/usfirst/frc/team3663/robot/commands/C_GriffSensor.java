@@ -12,7 +12,7 @@ public class C_GriffSensor extends Command {
     public C_GriffSensor() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ss_Griff);
+    	requires(Robot.ss_griff);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class C_GriffSensor extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (!Robot.ss_Griff.getSwitchState()) {
+    	if (!Robot.ss_griff.getSwitchState()) {
     		return false;
     	}
     	else {

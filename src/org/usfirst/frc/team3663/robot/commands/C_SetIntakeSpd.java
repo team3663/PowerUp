@@ -12,7 +12,6 @@ public class C_SetIntakeSpd extends Command {
 double spd;
     public C_SetIntakeSpd(double pSpd) {
     	requires (Robot.ss_cubeIntake);
-        requires (Robot.ss_Griff);
         spd = pSpd;
     }
 

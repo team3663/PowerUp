@@ -15,8 +15,8 @@ public class RobotMap {
 	public static final int LIFT = 35; 
 	public static final int ELEVATOR = 1;//
 	
-	public static final int CUBE_INTAKE_LEFT = 3; //
-	public static final int CUBE_INTAKE_RIGHT = 51;
+	public static final int CUBE_INTAKE_LEFT = 51; 
+	public static final int CUBE_INTAKE_RIGHT = 3;//
 	public static final int CUBE_SHOOTER = 2; //
 	public static final int CUBE_ROTATOR = 53;
 	
@@ -27,7 +27,7 @@ public class RobotMap {
 	public static final int CUBE_INTAKE_FORWARD = 1;
 	public static final int CUBE_INTAKE_REVERSE = 0;
 	
-	public static final int CUBE_INTAKE_LIFT_FOWARD = 51;
-	public static final int CUBE_INTAKE_LIFT_REVERSE = 51;
+	public static final int CUBE_INTAKE_LIFT_FOWARD = 7;
+	public static final int CUBE_INTAKE_LIFT_REVERSE = 6;
 	
 }

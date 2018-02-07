@@ -14,7 +14,6 @@ public boolean state;
 //false = up
     public C_IntakeSqz(boolean pState) {
     	requires(Robot.ss_cubeIntake);
-    	requires(Robot.ss_Griff);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	state = pState;

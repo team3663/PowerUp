@@ -14,10 +14,8 @@ public class SS_CubeIntake extends Subsystem {
 	private WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_RIGHT);
 	//private WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 	
-	private DoubleSolenoid intakePneumaticSqz = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD, 
-				RobotMap.CUBE_INTAKE_REVERSE);
-	private DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD, 
-				RobotMap.CUBE_INTAKE_LIFT_REVERSE);
+	private DoubleSolenoid intakePneumaticSqz = new DoubleSolenoid(Robot.RobotMap.CUBE_INTAKE_FORWARD, RobotMap.CUBE_INTAKE_REVERSE);
+	private DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(Robot.RobotMap.CUBE_INTAKE_LIFT_FOWARD, RobotMap.CUBE_INTAKE_LIFT_REVERSE);
 	
 	
 	public void spinIntake(double speed) {
@@ -47,14 +45,15 @@ public class SS_CubeIntake extends Subsystem {
 	}
 	
 	//TODO this is test code pls dont use unless ur a potato
+	
 	public void testIntake() {
 		Robot.testCounter ++;
 		int count = Robot.testCounter;
 		if(count > 10) {
-			extndIntake(true);
+			sqzIntake(true);
 		}
 		else {
-			extndIntake(false);
+			sqzIntake(false);
 		}
 		if(count > 20) {
 			Robot.testCounter = 0;

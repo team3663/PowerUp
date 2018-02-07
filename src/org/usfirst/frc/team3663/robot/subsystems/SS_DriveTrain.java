@@ -11,6 +11,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 import com.ctre.phoenix.motorcontrol.can.*;
 
@@ -26,9 +27,9 @@ public class SS_DriveTrain extends Subsystem {
 	// Highest position elevator should go
 	private static final int ELEVATOR_POS_MAX = 4000;
 	
-	public WPI_TalonSRX left        = new WPI_TalonSRX(1);
-	public WPI_TalonSRX right       = new WPI_TalonSRX(3);
-	public static WPI_TalonSRX elevator = new WPI_TalonSRX(2);
+	public WPI_TalonSRX left        = new WPI_TalonSRX(Robot.RobotMap.DRIVE_LEFT);
+	public WPI_TalonSRX right       = new WPI_TalonSRX(Robot.RobotMap.DRIVE_RIGHT);
+	public static WPI_TalonSRX elevator = new WPI_TalonSRX(Robot.RobotMap.ELEVATOR);
 	
 	public DifferentialDrive drive //arcade drive
 			= new DifferentialDrive(right, left);
@@ -52,7 +53,7 @@ public class SS_DriveTrain extends Subsystem {
 	 */
 	public void setElevator(double spd) {
 		elevator.set(spd);
-		elevator.setNeutralMode(null);
+		
 	}
 	
 	/**

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_SetGriffSpd extends Command {
 public double spd;
     public C_SetGriffSpd(double pSpd) {
-    	requires(Robot.ss_Griff);
+    	requires(Robot.ss_griff);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	spd = pSpd;
@@ -22,7 +22,7 @@ public double spd;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ss_Griff.setGriffSpd(spd);
+    	Robot.ss_griff.setGriffSpd(spd);
     }
 
     // Make this return true when this Command no longer needs to run execute()
