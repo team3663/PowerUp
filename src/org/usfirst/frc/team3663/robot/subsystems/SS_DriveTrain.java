@@ -53,6 +53,7 @@ public class SS_DriveTrain extends Subsystem {
 	 */
 	public void setElevator(double spd) {
 		elevator.set(spd);
+		
 	}
 	
 	/**

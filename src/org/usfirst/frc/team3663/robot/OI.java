@@ -1,20 +1,52 @@
 package org.usfirst.frc.team3663.robot;
 
+import org.usfirst.frc.team3663.robot.commands.*;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 /**
  * Input/Output devices for the driver station
  */
 public class OI {
-	// TODO: describe what `last` means
+	// TODO: last is for the limit switch
 	public boolean last = true;
 	
 	public Joystick driveStick = new Joystick(0);
+	
+	
 
 	public OI() {
 		//Button exampleButton = new JoystickButton(driveStick, 1);
-		//exampleButton.whenPressed(randomms);
+		//exampleButton.whenPressed(randomms); 
+		Button intakeCubeCycle = new JoystickButton(driveStick, 3);
+		intakeCubeCycle.whenPressed(new CG_CubeCycle());
+		
+		Button griffSqz = new JoystickButton(driveStick, 1);
+		griffSqz.whenPressed(new C_GriffSqz(true));
+		griffSqz.whenReleased(new C_GriffSqz(false));
+		
+		/*Button intakeExtnd = new JoystickButton(driveStick, 2);
+		intakeExtnd.whenPressed(new C_IntakeExtnd(true));
+		intakeExtnd.whenReleased(new C_IntakeExtnd(true));
+		*/
+		Button intakeSqz = new JoystickButton(driveStick, 4);
+		intakeSqz.whenPressed(new C_IntakeSqz(true));
+		intakeSqz.whenReleased(new C_IntakeSqz(false));
+		
+		Button  inGriff = new JoystickButton(driveStick, 5);
+		inGriff.whenPressed(new C_SetGriffSpd(1));
+		inGriff.whenReleased(new C_SetGriffSpd(0));
+		
+		Button setIntakeSpd = new JoystickButton(driveStick, 6);
+		setIntakeSpd.whenPressed(new C_SetIntakeSpd(-1));
+		setIntakeSpd.whenReleased(new C_SetIntakeSpd(0));
+		
+		Button outGriff = new JoystickButton(driveStick, 2);
+		outGriff.whenPressed(new C_SetGriffSpd(-1));
+		outGriff.whenReleased(new C_SetGriffSpd(0));
 	}
 }
 /*
