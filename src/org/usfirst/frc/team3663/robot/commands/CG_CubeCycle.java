@@ -13,7 +13,6 @@ public class CG_CubeCycle extends CommandGroup {
     	addSequential(new C_SetIntakeSpd(.3));
     	addSequential(new C_SetGriffSpd(.3));
     	addSequential(new C_GriffSensor()); //wait for sensor
-    	addSequential(new C_GriffSqz(true));
     	addSequential(new C_SetIntakeSpd(0));
     	addSequential(new C_SetGriffSpd(0));
     	addSequential(new C_IntakeSqz(false));

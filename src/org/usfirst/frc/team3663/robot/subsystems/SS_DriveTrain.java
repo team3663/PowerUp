@@ -47,6 +47,15 @@ public class SS_DriveTrain extends Subsystem {
 
 	}
 	
+	public void enableBrakeMode(boolean state) {
+		if(state) {
+			elevator.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		}
+		else {
+			elevator.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		}
+	}
+	
 	/**
 	 * Sets lift speed
 	 * @param spd Lift speed
