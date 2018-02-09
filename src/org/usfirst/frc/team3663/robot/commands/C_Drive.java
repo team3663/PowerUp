@@ -17,19 +17,21 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
 public class C_Drive extends Command {
 	public C_Drive() {
 		requires(Robot.ss_drivetrain);
-		
+
 	}
+
+	@Override
 	protected void initialize() {
-    	SS_DriveTrain.initEnc();
-    }
-	
+		SS_DriveTrain.initEnc();
+	}
+
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
 		Robot.ss_drivetrain.setElevator(Robot.oi.driveStick.getRawAxis(5));
-		//SS_Camera.initCam();
-		//Robot.ss_limitSwitch.Limit();
+		// SS_Camera.initCam();
+		// Robot.ss_limitSwitch.Limit();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

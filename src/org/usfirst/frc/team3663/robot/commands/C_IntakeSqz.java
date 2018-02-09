@@ -8,39 +8,42 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class C_IntakeSqz extends Command {
+	// false = down; true = up
+	private boolean goingDown;
 
-public boolean state;
-//true = down 
-//false = up
-    public C_IntakeSqz(boolean pState) {
-    	requires(Robot.ss_cubeIntake);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	state = pState;
-    }
+	public C_IntakeSqz(boolean state) {
+		requires(Robot.ss_cubeIntake);
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+		goingDown = state;
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.ss_cubeIntake.sqzIntake(state);
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize() {
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    		return true;
-    	
-    }
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute() {
+		Robot.ss_cubeIntake.sqzIntake(goingDown);
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called once after isFinished returns true
+	@Override
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted() {
+	}
 }

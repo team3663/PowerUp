@@ -19,24 +19,24 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	public static OI oi; 
+	public static OI oi;
 	public static SS_DriveTrain ss_drivetrain;
-	
+
 	public static RobotMap RobotMap;
 	public static SS_Gyro ss_gyro;
 	public static SS_CubeIntake ss_cubeIntake;
 	public static SS_Griff ss_griff;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
-	
-	
-	//oi must be initilized last PLEASE
-	
+
+	// oi must be initilized last PLEASE
+
 	public static int cTime;
 	public static int testCounter = 0;
+
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.git test
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.git test
 	 */
 	@Override
 	public void robotInit() {
@@ -46,11 +46,10 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		oi = new OI();
 		Robot.ss_drivetrain.enableBrakeMode(true);
-		//SS_DriveTrain.setEnc();
+		// SS_DriveTrain.setEnc();
 
-		//init gyro 
-		
-     	 
+		// init gyro
+
 	}
 
 	@Override
@@ -63,7 +62,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		
+
 	}
 
 	@Override
@@ -79,7 +78,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
+
 	}
 
 	/**

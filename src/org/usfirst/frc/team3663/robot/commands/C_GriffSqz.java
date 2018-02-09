@@ -8,34 +8,40 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class C_GriffSqz extends Command {
-public boolean state;
-    public C_GriffSqz(boolean pState) {
-    	requires(Robot.ss_griff);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	state = pState;
-    }
+	public boolean state;
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+	public C_GriffSqz(boolean pState) {
+		requires(Robot.ss_griff);
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		state = pState;
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.ss_griff.sqzGriff(state);
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize() {
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return true;
-    }
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute() {
+		Robot.ss_griff.sqzGriff(state);
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called once after isFinished returns true
+	@Override
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted() {
+	}
 }

@@ -9,7 +9,6 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
-import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
  * Have the robot drive tank style using the PS3 Joystick until interrupted.
@@ -17,17 +16,19 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
 public class C_IntakeMonitor extends Command {
 	public C_IntakeMonitor() {
 		requires(Robot.ss_cubeIntake);
-		
+
 	}
+
+	@Override
 	protected void initialize() {
-    }
-	
-	//Called repeatedly when this Command is scheduled to run
+	}
+
+	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//System.out.println(Robot.ss_cubeIntake.getSwitchState());
-		Robot.ss_cubeIntake.testIntake();   //WARNING DO NOT USE THIS UNLESS UR A POTATO
-		//Robot.ss_cubeIntake.extendIntake(true);
+		// System.out.println(Robot.ss_cubeIntake.getSwitchState());
+		Robot.ss_cubeIntake.testIntake(); // WARNING DO NOT USE THIS UNLESS UR A POTATO
+		// Robot.ss_cubeIntake.extendIntake(true);
 
 	}
 

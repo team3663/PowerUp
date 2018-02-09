@@ -21,25 +21,25 @@ public class SS_Gyro extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new C_GyroPrint());
-		
+
 		try {
 			ahrs = new AHRS(SerialPort.Port.kMXP);
 		} catch (final RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
-		
+
 	}
-	 
-	public double gyroReadX() { 
+
+	public double gyroReadX() {
 		return ahrs.getRawGyroX();
-	} 
-	
-	public double gyroReadY() { 
-		return ahrs.getRawGyroY(); 
-	} 
-	
-	public double gyroReadZ() { 
-		return ahrs.getRawGyroZ(); 
 	}
-	 
+
+	public double gyroReadY() {
+		return ahrs.getRawGyroY();
+	}
+
+	public double gyroReadZ() {
+		return ahrs.getRawGyroZ();
+	}
+
 }

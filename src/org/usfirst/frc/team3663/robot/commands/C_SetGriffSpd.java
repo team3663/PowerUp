@@ -8,35 +8,41 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class C_SetGriffSpd extends Command {
-public double spd;
-    public C_SetGriffSpd(double pSpd) {
-    	requires(Robot.ss_griff);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	spd = pSpd;
-    }
+	private final double spd;
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+	public C_SetGriffSpd(double spd) {
+		requires(Robot.ss_griff);
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		this.spd = spd;
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.ss_griff.setGriffSpd(spd);
-    }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize() {
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	return true;
-    }
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute() {
+		Robot.ss_griff.setGriffSpd(spd);
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished() {
+		return true;
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called once after isFinished returns true
+	@Override
+	protected void end() {
+
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted() {
+	}
 }

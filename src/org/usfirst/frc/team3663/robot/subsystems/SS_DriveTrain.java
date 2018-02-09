@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team3663.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -21,79 +20,76 @@ import com.ctre.phoenix.motorcontrol.can.*;
  * and a gyro.
  */
 
-
 public class SS_DriveTrain extends Subsystem {
-	
+
 	// Highest position elevator should go
 	private static final int ELEVATOR_POS_MAX = 4000;
-	
-	public WPI_TalonSRX left        = new WPI_TalonSRX(Robot.RobotMap.DRIVE_LEFT);
-	public WPI_TalonSRX right       = new WPI_TalonSRX(Robot.RobotMap.DRIVE_RIGHT);
+
+	public WPI_TalonSRX left = new WPI_TalonSRX(Robot.RobotMap.DRIVE_LEFT);
+	public WPI_TalonSRX right = new WPI_TalonSRX(Robot.RobotMap.DRIVE_RIGHT);
 	public static WPI_TalonSRX elevator = new WPI_TalonSRX(Robot.RobotMap.ELEVATOR);
-	
-	public DifferentialDrive drive //arcade drive
+
+	public DifferentialDrive drive // arcade drive
 			= new DifferentialDrive(right, left);
-	
-	
+
 	public void driveForward(double speed) {
 		left.set(speed);
 		right.set(-speed);
 	}
-	
 
 	public void turnRight(double speed) {
 		left.set(speed);
 		right.set(speed);
 
 	}
-	
+
 	public void enableBrakeMode(boolean state) {
-		if(state) {
+		if (state) {
 			elevator.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		}
-		else {
+		} else {
 			elevator.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
 		}
 	}
-	
+
 	/**
 	 * Sets lift speed
-	 * @param spd Lift speed
+	 * 
+	 * @param spd
+	 *            Lift speed
 	 */
 	public void setElevator(double spd) {
 		elevator.set(spd);
-		
+
 	}
-	
+
 	/**
 	 * Sets up encoder for use
 	 */
-	public static void initEnc(){
+	public static void initEnc() {
 		elevator.getSensorCollection().setQuadraturePosition(0, 0);
 	}
-	
+
 	public static int getElevatorPos() {
 		return elevator.getSensorCollection().getQuadraturePosition();
 	}
-	
+
 	public static void elevatorToTop() {
 		// Keeps lift moving unless it reaches the highest
-		//   it should go.
-		int elevatorPos = getElevatorPos();
-		elevator.set( (elevatorPos < ELEVATOR_POS_MAX) ? 1 : 0);
+		// it should go.
+		final int elevatorPos = getElevatorPos();
+		elevator.set((elevatorPos < ELEVATOR_POS_MAX) ? 1 : 0);
 	}
-	
-		/* Encoders may measure differently in the real world and in
-		   simulation. In this example the robot moves 0.042 barleycorns
-		   per tick in the real world, but the simulated encoders
-		   simulate 360 tick encoders. This if statement allows for the
-		   real robot to handle this difference in devices.
-		   this is a test boi x2 */
-		
+
+	/*
+	 * Encoders may measure differently in the real world and in simulation. In this
+	 * example the robot moves 0.042 barleycorns per tick in the real world, but the
+	 * simulated encoders simulate 360 tick encoders. This if statement allows for
+	 * the real robot to handle this difference in devices. this is a test boi x2
+	 */
 
 	/**
-	 * When no other command is running let the operator drive around using the
-	 * PS3 joystick.
+	 * When no other command is running let the operator drive around using the PS3
+	 * joystick.
 	 */
 	@Override
 	public void initDefaultCommand() {

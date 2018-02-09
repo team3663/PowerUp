@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class SS_Camera extends Subsystem {
 	static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-CPR");
 
-	
-
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
