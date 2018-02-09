@@ -5,6 +5,7 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_IntakeMonitor;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -14,9 +15,9 @@ public class SS_CubeIntake extends Subsystem {
 	// private WPI_TalonSRX leftIntake = new
 	// WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 
-	private final DoubleSolenoid intakePneumaticSqz = new DoubleSolenoid(Robot.RobotMap.CUBE_INTAKE_FORWARD,
+	private final DoubleSolenoid intakePneumaticSqz = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD,
 			RobotMap.CUBE_INTAKE_REVERSE);
-	private final DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(Robot.RobotMap.CUBE_INTAKE_LIFT_FOWARD,
+	private final DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
 			RobotMap.CUBE_INTAKE_LIFT_REVERSE);
 
 	public void spinIntake(double speed) {
@@ -24,24 +25,14 @@ public class SS_CubeIntake extends Subsystem {
 		// leftIntake.set(speed);
 	}
 
-	public void sqzIntake(boolean pState) {
-		// true = foward
-		// false = reverse
-		if (pState == true) {
-			intakePneumaticSqz.set(DoubleSolenoid.Value.kForward);
-		} else if (pState == false) {
-			intakePneumaticSqz.set(DoubleSolenoid.Value.kReverse);
-		}
+	public void sqzIntake(boolean isForward) {
+		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
+		intakePneumaticSqz.set(direction);
 	}
 
-	public void extndIntake(boolean pState) {
-		// true = foward
-		// false = reverse
-		if (pState == true) {
-			intakePneumaticLft.set(DoubleSolenoid.Value.kForward);
-		} else if (pState == false) {
-			intakePneumaticLft.set(DoubleSolenoid.Value.kReverse);
-		}
+	public void extndIntake(boolean isForward) {
+		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
+		intakePneumaticLft.set(direction);
 	}
 
 	// TODO this is test code pls dont use unless ur a potato
@@ -49,14 +40,10 @@ public class SS_CubeIntake extends Subsystem {
 	public void testIntake() {
 		Robot.testCounter++;
 		final int count = Robot.testCounter;
-		if (count > 10) {
-			sqzIntake(true);
-		} else {
-			sqzIntake(false);
-		}
-		if (count > 20) {
+		sqzIntake(count > 10);
+		
+		if (count > 20)
 			Robot.testCounter = 0;
-		}
 	}
 
 	@Override
