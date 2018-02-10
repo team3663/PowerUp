@@ -25,6 +25,7 @@ public class RobotMap {
 	public static final int CUBE_INTAKE_RIGHT = 3;
 	public static final int CUBE_SHOOTER = 2;
 	public static final int CUBE_ROTATOR = 53;
+	public static final int CUBE_ROTATOR_SENSOR = -1;
 
 	// Pneumatics
 	public static final int CUBE_SHOOTER_FORWARD = 3;
