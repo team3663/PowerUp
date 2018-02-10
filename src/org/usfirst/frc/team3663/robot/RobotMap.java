@@ -6,8 +6,8 @@ package org.usfirst.frc.team3663.robot;
  */
 public class RobotMap {
 	// Digital Inputs
-	public static final int LIMIT_SWITCH = 0;
-	public static final int LIMIT_SWITCH_INTAKE = 1;
+	public static final int LIMIT_SWITCH = 1;
+	public static final int LIMIT_SWITCH_INTAKE = 0;
 
 	// Talons
 	public static final int DRIVE_LEFT = 5; //

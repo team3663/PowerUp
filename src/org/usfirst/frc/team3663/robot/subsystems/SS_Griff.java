@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -40,13 +41,9 @@ public class SS_Griff extends Subsystem {
 	}
 
 	public void sqzGriff(boolean pState) {
-		// true = foward
-		// false = reverse
-		if (pState == true) {
-			griffPneumatics.set(DoubleSolenoid.Value.kForward);
-		} else if (pState == false) {
-			griffPneumatics.set(DoubleSolenoid.Value.kReverse);
-		}
+		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
+		
+		griffPneumatics.set(direction);
 	}
 
 	public boolean getSwitchState() {
