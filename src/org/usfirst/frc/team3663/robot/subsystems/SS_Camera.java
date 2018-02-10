@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.networktables.*;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -21,6 +22,7 @@ public class SS_Camera extends Subsystem {
 	}
 
 	public static void initCam() {
+		CameraServer.getInstance().startAutomaticCapture();
 		/*
 		 * Variables `tx`, `ta`, and `tv` are a part of the Limelight API. See:
 		 * https://goo.gl/G4rMVZ
