@@ -31,7 +31,6 @@ public class Robot extends IterativeRobot {
 
 	// oi must be initilized last PLEASE
 
-	public static int cTime;
 	public static int testCounter = 0;
 
 	/**

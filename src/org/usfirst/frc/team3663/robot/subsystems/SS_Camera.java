@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.ElapsedTime;
 import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.networktables.*;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SS_Camera extends Subsystem {
 	static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-CPR");
+	private static final ElapsedTime time = new ElapsedTime();
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -55,16 +57,15 @@ public class SS_Camera extends Subsystem {
 						System.out.println("left");
 						Robot.ss_drivetrain.turnRight(-speed);
 					}
-					Robot.cTime = 0;
+					time.reset();
 				} else {
 					System.out.println(">>>>>>better");
-					Robot.cTime++;
-					System.out.println(Robot.cTime);
+					System.out.println(time.getElapsedMillis());
 				}
 
 			}
 
-			if (Robot.cTime > 10) {
+			if (time.getElapsedMillis() > 500) {
 				if (tgtArea < 45) {
 					Robot.ss_drivetrain.driveForward(.3);
 				}
