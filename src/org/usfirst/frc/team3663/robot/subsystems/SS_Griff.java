@@ -27,9 +27,8 @@ public class SS_Griff extends Subsystem {
 	// here. Call these from Commands.
 	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
 	private final WPI_TalonSRX griffRot = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
-	private final DoubleSolenoid griffPneumatics = new DoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD,
-			RobotMap.CUBE_SHOOTER_REVERSE);
-	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
+	//private final DoubleSolenoid griffPneumatics = new DoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD, RobotMap.CUBE_SHOOTER_REVERSE);
+	//private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
 	private final DigitalInput cubePresent = new DigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
 
@@ -48,12 +47,12 @@ public class SS_Griff extends Subsystem {
 	public void sqzGriff(boolean pState) {
 		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
 		
-		griffPneumatics.set(direction);
+		//griffPneumatics.set(direction);
 	}
 	
 	public double getAngle() {
 		// TODO: Convert raw potentiometer data to angles.
-		double dataRaw = griffRotSensor.get();
+		double dataRaw = 0;//griffRotSensor.get();
 		System.out.println(dataRaw);
 		
 		return dataRaw;

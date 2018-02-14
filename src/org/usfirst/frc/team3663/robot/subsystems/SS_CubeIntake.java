@@ -15,10 +15,10 @@ public class SS_CubeIntake extends Subsystem {
 	// private WPI_TalonSRX leftIntake = new
 	// WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 
-	private final DoubleSolenoid intakePneumaticSqz = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD,
-			RobotMap.CUBE_INTAKE_REVERSE);
-	private final DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
-			RobotMap.CUBE_INTAKE_LIFT_REVERSE);
+	//private final DoubleSolenoid intakePneumaticSqz = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD,
+	//		RobotMap.CUBE_INTAKE_REVERSE);
+	//private final DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
+	//		RobotMap.CUBE_INTAKE_LIFT_REVERSE);
 
 	public void spinIntake(double speed) {
 		rightIntake.set(speed);
@@ -27,12 +27,12 @@ public class SS_CubeIntake extends Subsystem {
 
 	public void sqzIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		intakePneumaticSqz.set(direction);
+		//intakePneumaticSqz.set(direction);
 	}
 
 	public void extndIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		intakePneumaticLft.set(direction);
+		//intakePneumaticLft.set(direction);
 	}
 
 	// TODO this is test code pls dont use unless ur a potato
