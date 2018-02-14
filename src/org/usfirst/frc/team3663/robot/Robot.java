@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 		ss_drivetrain = new SS_DriveTrain();
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
+		ss_gyro = new SS_Gyro();
 		oi = new OI();
 		Robot.ss_drivetrain.enableBrakeMode(true);
 		// SS_DriveTrain.setEnc();
