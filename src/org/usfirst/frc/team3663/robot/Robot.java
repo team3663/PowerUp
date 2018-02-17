@@ -44,13 +44,12 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_elevator = new SS_Elevator();
-		oi = new OI();
-		// oi must be initilized last PLEASE
-		ss_elevator.enableBreakMode(true);
+		
+		oi = new OI(); // oi must be initilized last PLEASE
+		
+		
 		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
-
-
 	}
 
 	@Override

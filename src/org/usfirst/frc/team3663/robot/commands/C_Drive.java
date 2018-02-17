@@ -23,6 +23,7 @@ public class C_Drive extends Command {
 	@Override
 	protected void initialize() {
 		Robot.ss_elevator.initEnc();
+		Robot.ss_elevator.enableBreakMode(true);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
