@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.SpeedControllerGroup;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
-import com.ctre.phoenix.motorcontrol.can.*;
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to

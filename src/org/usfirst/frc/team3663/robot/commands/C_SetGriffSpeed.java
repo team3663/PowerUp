@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetGriffSpd extends Command {
+public class C_SetGriffSpeed extends Command {
 	private final double spd;
 
-	public C_SetGriffSpd(double spd) {
+	public C_SetGriffSpeed(double spd) {
 		requires(Robot.ss_griff);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);

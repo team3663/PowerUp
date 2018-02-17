@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_IntakeExtnd extends Command {
+public class C_IntakeExtend extends Command {
 	public boolean state;
 
-	public C_IntakeExtnd(boolean pState) {
+	public C_IntakeExtend(boolean pState) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.ss_cubeIntake);
@@ -25,7 +25,7 @@ public class C_IntakeExtnd extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_cubeIntake.extndIntake(state);
+		Robot.ss_cubeIntake.extendIntake(state);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

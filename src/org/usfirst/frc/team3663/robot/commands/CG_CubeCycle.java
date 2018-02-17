@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_CubeCycle extends CommandGroup {
 
 	public CG_CubeCycle() {
-		addSequential(new C_IntakeExtnd(true));
-		addSequential(new C_IntakeSqz(true));
-		addSequential(new C_SetIntakeSpd(.3));
-		addSequential(new C_SetGriffSpd(.3));
+		addSequential(new C_IntakeExtend(true));
+		addSequential(new C_IntakeSqueeze(true));
+		addSequential(new C_SetIntakeSpeed(.3));
+		addSequential(new C_SetGriffSpeed(.3));
 		addSequential(new C_GriffSensor()); // wait for sensor
-		addSequential(new C_SetIntakeSpd(0));
-		addSequential(new C_SetGriffSpd(0));
-		addSequential(new C_IntakeSqz(false));
-		addSequential(new C_IntakeExtnd(false));
+		addSequential(new C_SetIntakeSpeed(0));
+		addSequential(new C_SetGriffSpeed(0));
+		addSequential(new C_IntakeSqueeze(false));
+		addSequential(new C_IntakeExtend(false));
 	}
 }

@@ -18,7 +18,6 @@ public class C_Drive extends Command {
 		requires(Robot.ss_griff);
 		requires(Robot.ss_drivetrain);
 		requires(Robot.ss_elevator);
-
 	}
 
 	@Override

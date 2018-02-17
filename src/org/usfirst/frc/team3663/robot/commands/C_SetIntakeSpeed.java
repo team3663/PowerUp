@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetIntakeSpd extends Command {
+public class C_SetIntakeSpeed extends Command {
 
 	private final double spd;
 
-	public C_SetIntakeSpd(double spd) {
+	public C_SetIntakeSpeed(double spd) {
 		requires(Robot.ss_cubeIntake);
 		this.spd = spd;
 	}
