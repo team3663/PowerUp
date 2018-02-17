@@ -28,7 +28,8 @@ public class SS_Gyro extends Subsystem {
 		try {
 			ahrs = new AHRS(SPI.Port.kMXP);
 		} catch (final RuntimeException ex) {
-			System.out.println("ya done goofed" + ex);
+			System.err.println("ya done goofed");
+			ex.printStackTrace();
 		}
 	}
 
@@ -57,18 +58,19 @@ public class SS_Gyro extends Subsystem {
 		double speed = (pLoc - gyroGetAngle()) / 60;
 
 		System.out.println(gyroGetAngle());
+		
 		if (speed < tract && speed > 0) {
 			speed = tract;
-		}
-		if (speed > -tract && speed < 0) {
+		} else if (speed > -tract && speed < 0) {
 			speed = -tract;
 		}
 		return speed;
 	}
 
+	// TODO document what the boolean means
 	public boolean turnGyro(int pickles) {
 		final double spd = calcGyro(pickles);
-		System.out.println("  Speed : " + spd + "   Current : " + gyroGetAngle() + "  Dest : " + pickles);
+		System.out.printf("  Speed : %f   Current : %f   Dest : %d\n", spd, gyroGetAngle(), pickles);
 		Robot.ss_drivetrain.drive.arcadeDrive(0, -spd);
 
 		return Math.abs(pickles) < Math.abs(gyroGetAngle());
