@@ -12,8 +12,6 @@ public class C_SetGriffSpeed extends Command {
 
 	public C_SetGriffSpeed(double spd) {
 		requires(Robot.ss_griff);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 		this.spd = spd;
 	}
 

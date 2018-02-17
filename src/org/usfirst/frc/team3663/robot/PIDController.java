@@ -7,8 +7,8 @@ package org.usfirst.frc.team3663.robot;
  * we're doing
  */
 public class PIDController {
-	private static final double MIN_OUTPUT = -1;
-	private static final double MAX_OUTPUT = 1;
+	private final double minOutput;
+	private final double maxOutput;
 	
 	private double gainProportional;
 	private double gainDerivative;
@@ -18,19 +18,26 @@ public class PIDController {
 	private boolean firstTime = true;
 	private ElapsedTime timer = new ElapsedTime();
 	
-	public PIDController(double gainProportional, double gainDerivative) {
+	public PIDController(double gainProportional, double gainDerivative, double min, double max) {
 		this.gainProportional = gainProportional;
 		this.gainDerivative = gainDerivative;
+		
+		maxOutput = max;
+		minOutput = min;
+	}
+	
+	public PIDController(double gainProportional, double gainDerivative) {
+		this(gainProportional, gainDerivative, -1, 1);
 	}
 	
 	/**
 	 * Constrains value to min and max output
 	 */
-	private static double clamp(double val) {
-		if (val > MAX_OUTPUT)
-			val = MAX_OUTPUT;
-		else if (val < MIN_OUTPUT)
-			val = MIN_OUTPUT;
+	private double clamp(double val) {
+		if (val > maxOutput)
+			val = maxOutput;
+		else if (val < minOutput)
+			val = minOutput;
 		
 		return val;
 	}

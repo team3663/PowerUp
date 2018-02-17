@@ -5,13 +5,25 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
 	// Highest position elevator should go
-	private static final int ELEVATOR_MAX = 4000;
+	public static final int ELEVATOR_MAX = 4000;
+	
+	// Drum diameter = 1.21875in
+	// Circumference = dia * pi = 3.8288in
+	// Ticks = 256 ticks / rev
+	// 256 / 3.8288in = 66.861 ticks/in
+	public static final double TICKS_PER_INCH = 66.861;
 	
 	private WPI_TalonSRX elevator = new WPI_TalonSRX(RobotMap.ELEVATOR);
+	private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
+	
+	public static int inchesToTicks(double inches) {
+		return (int)(inches * TICKS_PER_INCH);
+	}
 
 	@Override
 	protected void initDefaultCommand() {
@@ -40,11 +52,15 @@ public class SS_Elevator extends Subsystem {
 		return elevator.getSensorCollection().getQuadraturePosition();
 	}
 	
+	public boolean atTop() {
+		return getPos() >= ELEVATOR_MAX || limitSwitchTop.get();
+	}
+	
 	/**
 	 * Lifts elevator unless it's at the top
 	 */
 	public void moveToTop() {
-		elevator.set((getPos() < ELEVATOR_MAX) ? 1 : 0);
+		elevator.set(atTop() ? 0 : 1);
 	}
 
 }

@@ -27,7 +27,6 @@ public class Robot extends IterativeRobot {
 	public static SS_Gyro ss_gyro;
 	public static SS_CubeIntake ss_cubeIntake;
 	public static SS_Griff ss_griff;
-	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	
@@ -44,13 +43,12 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_elevator = new SS_Elevator();
-		oi = new OI();
-		// oi must be initilized last PLEASE
-		ss_elevator.enableBreakMode(true);
+		
+		oi = new OI(); // oi must be initilized last PLEASE
+		
+		
 		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
-
-
 	}
 
 	@Override
