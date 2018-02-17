@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.SpeedControllerGroup;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
-import com.ctre.phoenix.motorcontrol.can.*;
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
@@ -23,15 +22,10 @@ import com.ctre.phoenix.motorcontrol.can.*;
  */
 
 public class SS_DriveTrain extends Subsystem {
-
-	// Highest position elevator should go
-	private static final int ELEVATOR_POS_MAX = 4000;
 	
 	 
 	private SpeedController left = new SpeedControllerGroup(RobotMap.DRIVE_LEFT_1);
 	private SpeedController right = new SpeedControllerGroup(RobotMap.DRIVE_RIGHT_1);
-
-	public static WPI_TalonSRX elevator = new WPI_TalonSRX(RobotMap.ELEVATOR);
 
 	public DifferentialDrive drive // arcade drive
 			= new DifferentialDrive(right, left);
@@ -45,43 +39,6 @@ public class SS_DriveTrain extends Subsystem {
 		left.set(speed);
 		right.set(speed);
 
-	}
-
-	public void enableBrakeMode(boolean state) {
-		if (state) {
-			elevator.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		} else {
-			elevator.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
-		}
-	}
-
-	/**
-	 * Sets lift speed
-	 * 
-	 * @param spd
-	 *            Lift speed
-	 */
-	public void setElevator(double spd) {
-		elevator.set(spd);
-
-	}
-
-	/**
-	 * Sets up encoder for use
-	 */
-	public static void initEnc() {
-		elevator.getSensorCollection().setQuadraturePosition(0, 0);
-	}
-
-	public static int getElevatorPos() {
-		return elevator.getSensorCollection().getQuadraturePosition();
-	}
-
-	public static void elevatorToTop() {
-		// Keeps lift moving unless it reaches the highest
-		// it should go.
-		final int elevatorPos = getElevatorPos();
-		elevator.set((elevatorPos < ELEVATOR_POS_MAX) ? 1 : 0);
 	}
 
 	/*

@@ -22,8 +22,8 @@ public class OI {
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 
 		final Button griffSqz = new JoystickButton(driveStick, 1);
-		griffSqz.whenPressed(new C_GriffSqz(true));
-		griffSqz.whenReleased(new C_GriffSqz(false));
+		griffSqz.whenPressed(new C_GriffSqueeze(true));
+		griffSqz.whenReleased(new C_GriffSqueeze(false));
 
 		/*
 		 * Button intakeExtnd = new JoystickButton(driveStick, 2);
@@ -31,20 +31,20 @@ public class OI {
 		 * intakeExtnd.whenReleased(new C_IntakeExtnd(true));
 		 */
 		final Button intakeSqz = new JoystickButton(driveStick, 4);
-		intakeSqz.whenPressed(new C_IntakeSqz(true));
-		intakeSqz.whenReleased(new C_IntakeSqz(false));
+		intakeSqz.whenPressed(new C_IntakeSqueeze(true));
+		intakeSqz.whenReleased(new C_IntakeSqueeze(false));
 
 		final Button inGriff = new JoystickButton(driveStick, 5);
-		inGriff.whenPressed(new C_SetGriffSpd(1));
-		inGriff.whenReleased(new C_SetGriffSpd(0));
+		inGriff.whenPressed(new C_SetGriffSpeed(1));
+		inGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		final Button setIntakeSpd = new JoystickButton(driveStick, 6);
-		setIntakeSpd.whenPressed(new C_SetIntakeSpd(-1));
-		setIntakeSpd.whenReleased(new C_SetIntakeSpd(0));
+		setIntakeSpd.whenPressed(new C_SetIntakeSpeed(-1));
+		setIntakeSpd.whenReleased(new C_SetIntakeSpeed(0));
 
 		final Button outGriff = new JoystickButton(driveStick, 2);
-		outGriff.whenPressed(new C_SetGriffSpd(-1));
-		outGriff.whenReleased(new C_SetGriffSpd(0));
+		outGriff.whenPressed(new C_SetGriffSpeed(-1));
+		outGriff.whenReleased(new C_SetGriffSpeed(0));
 	}
 }
 /*

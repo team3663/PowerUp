@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Griff ss_griff;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
+	public static SS_Elevator ss_elevator;
 	
 
 	/**
@@ -42,9 +43,10 @@ public class Robot extends IterativeRobot {
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
+		ss_elevator = new SS_Elevator();
 		oi = new OI();
 		// oi must be initilized last PLEASE
-		Robot.ss_drivetrain.enableBrakeMode(true); //brake mode for elevator
+		ss_elevator.enableBreakMode(true);
 		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
 

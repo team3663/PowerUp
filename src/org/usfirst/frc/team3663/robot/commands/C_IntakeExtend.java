@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetGriffSpd extends Command {
-	private final double spd;
+public class C_IntakeExtend extends Command {
+	public boolean state;
 
-	public C_SetGriffSpd(double spd) {
-		requires(Robot.ss_griff);
+	public C_IntakeExtend(boolean pState) {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		this.spd = spd;
+		requires(Robot.ss_cubeIntake);
+		state = pState;
 	}
 
 	// Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class C_SetGriffSpd extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_griff.setGriffSpd(spd);
+		Robot.ss_cubeIntake.extendIntake(state);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,6 @@ public class C_SetGriffSpd extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-
 	}
 
 	// Called when another command which requires one or more of the same

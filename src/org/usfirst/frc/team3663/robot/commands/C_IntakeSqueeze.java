@@ -7,13 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetIntakeSpd extends Command {
+public class C_IntakeSqueeze extends Command {
+	// false = down; true = up
+	private boolean goingDown;
 
-	private final double spd;
-
-	public C_SetIntakeSpd(double spd) {
+	public C_IntakeSqueeze(boolean state) {
 		requires(Robot.ss_cubeIntake);
-		this.spd = spd;
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+
+		goingDown = state;
 	}
 
 	// Called just before this Command runs the first time
@@ -24,7 +27,7 @@ public class C_SetIntakeSpd extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_cubeIntake.spinIntake(spd);
+		Robot.ss_cubeIntake.squeezeIntake(goingDown);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

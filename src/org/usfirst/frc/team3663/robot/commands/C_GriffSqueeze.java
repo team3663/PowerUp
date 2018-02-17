@@ -7,16 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_IntakeSqz extends Command {
-	// false = down; true = up
-	private boolean goingDown;
+public class C_GriffSqueeze extends Command {
+	public boolean state;
 
-	public C_IntakeSqz(boolean state) {
-		requires(Robot.ss_cubeIntake);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
-
-		goingDown = state;
+	public C_GriffSqueeze(boolean pState) {
+		requires(Robot.ss_griff);
+		state = pState;
 	}
 
 	// Called just before this Command runs the first time
@@ -27,7 +23,7 @@ public class C_IntakeSqz extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_cubeIntake.sqzIntake(goingDown);
+		Robot.ss_griff.sqzGriff(state);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

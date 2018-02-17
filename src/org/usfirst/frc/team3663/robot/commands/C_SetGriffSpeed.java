@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_GriffSqz extends Command {
-	public boolean state;
+public class C_SetGriffSpeed extends Command {
+	private final double spd;
 
-	public C_GriffSqz(boolean pState) {
+	public C_SetGriffSpeed(double spd) {
 		requires(Robot.ss_griff);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		state = pState;
+		this.spd = spd;
 	}
 
 	// Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class C_GriffSqz extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_griff.sqzGriff(state);
+		Robot.ss_griff.setGriffSpd(spd);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -37,6 +37,7 @@ public class C_GriffSqz extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
+
 	}
 
 	// Called when another command which requires one or more of the same
