@@ -4,8 +4,8 @@ import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_IntakeMonitor;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -26,12 +26,12 @@ public class SS_CubeIntake extends Subsystem {
 	}
 
 	public void sqzIntake(boolean isForward) {
-		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
+		//DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
 		//intakePneumaticSqz.set(direction);
 	}
 
 	public void extndIntake(boolean isForward) {
-		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
+		//DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
 		//intakePneumaticLft.set(direction);
 	}
 

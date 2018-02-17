@@ -9,10 +9,8 @@ package org.usfirst.frc.team3663.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 
-import org.usfirst.frc.team3663.robot.commands.C_Gyro;
+//import org.usfirst.frc.team3663.robot.commands.C_Gyro;
 import org.usfirst.frc.team3663.robot.subsystems.*;
-
-import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -62,8 +60,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		C_Gyro c_Gyro = new C_Gyro(10);
-		
+		//C_Gyro c_Gyro = new C_Gyro(10);
 	}
 
 	/**

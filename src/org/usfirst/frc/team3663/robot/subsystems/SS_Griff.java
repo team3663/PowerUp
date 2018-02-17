@@ -4,17 +4,16 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 /**
  *
  */
 public class SS_Griff extends Subsystem {
+	
 	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -45,14 +44,13 @@ public class SS_Griff extends Subsystem {
 	}
 
 	public void sqzGriff(boolean pState) {
-		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
-		
+		//DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
 		//griffPneumatics.set(direction);
 	}
 	
 	public double getAngle() {
 		// TODO: Convert raw potentiometer data to angles.
-		double dataRaw = 0;//griffRotSensor.get();
+		double dataRaw = /*griffRotSensor.get();*/ 0;
 		System.out.println(dataRaw);
 		
 		return dataRaw;
