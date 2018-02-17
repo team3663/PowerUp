@@ -2,6 +2,7 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -14,9 +15,9 @@ public class C_MoveElevatorToPos extends Command {
 	
 	private PIDController pidController = new PIDController(1, 1, -ELEVATOR_SPEED, ELEVATOR_SPEED);
 	
-	public C_MoveElevatorToPos(int destination) {
+	public C_MoveElevatorToPos(double inches) {
 		requires(Robot.ss_elevator);
-		this.destination = destination;
+		this.destination = (int)(inches * SS_Elevator.TICKS_PER_INCH);
 	}
 	
 	@Override
