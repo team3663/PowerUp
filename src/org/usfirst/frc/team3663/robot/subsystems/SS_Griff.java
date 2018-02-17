@@ -35,6 +35,9 @@ public class SS_Griff extends Subsystem {
 		griffRot.set(speed);
 	}
 
+	/**
+	 * Set speed of cube shooter
+	 */
 	public void setGriffSpd(double pSpd) {
 		griffon.set(pSpd);
 	}

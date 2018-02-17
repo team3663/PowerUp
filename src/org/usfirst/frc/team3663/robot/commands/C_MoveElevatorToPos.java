@@ -17,7 +17,7 @@ public class C_MoveElevatorToPos extends Command {
 	
 	public C_MoveElevatorToPos(double inches) {
 		requires(Robot.ss_elevator);
-		this.destination = (int)(inches * SS_Elevator.TICKS_PER_INCH);
+		this.destination = Math.floorDiv(SS_Elevator.inchesToTicks(inches), SS_Elevator.ELEVATOR_MAX);
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class C_MoveElevatorToPos extends Command {
 	@Override
 	protected boolean isFinished() {
 		if (goingUp) {
-			return Robot.ss_elevator.getPos() >= destination;
+			return Robot.ss_elevator.getPos() >= destination || Robot.ss_elevator.atTop();
 		} else {
 			return Robot.ss_elevator.getPos() <= destination;
 		}
