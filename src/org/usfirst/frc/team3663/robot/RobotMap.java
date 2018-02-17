@@ -10,11 +10,11 @@ public class RobotMap {
 	public static final int LIMIT_SWITCH_INTAKE = 0;
 
 	// Talons
-	public static final int DRIVE_LEFT_1 = 5;
+	public static final int DRIVE_LEFT_1 = 0;
 	public static final int DRIVE_LEFT_2 = -1;
 	public static final int DRIVE_LEFT_3 = -1;
 	
-	public static final int DRIVE_RIGHT_1 = 6;
+	public static final int DRIVE_RIGHT_1 = 1;
 	public static final int DRIVE_RIGHT_2 = -1;
 	public static final int DRIVE_RIGHT_3 = -1;
 

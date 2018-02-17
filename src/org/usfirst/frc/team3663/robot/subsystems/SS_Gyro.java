@@ -1,11 +1,13 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
 import org.usfirst.frc.team3663.robot.Robot;
+import org.usfirst.frc.team3663.robot.commands.C_Gyro;
 import org.usfirst.frc.team3663.robot.commands.C_GyroPrint;
 
 import com.kauailabs.navx.frc.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,16 +21,19 @@ public class SS_Gyro extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
+		setDefaultCommand(new C_Gyro(10));
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		
+	
 
+	}
+	public void initGyro() {
 		try {
-			ahrs = new AHRS(SerialPort.Port.kMXP);
-		} catch (final RuntimeException ex) {
-			//DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+			ahrs = new AHRS(SPI.Port.kMXP);
 		}
-
+		catch (RuntimeException ex) {
+			System.out.println("ya done goofed" + ex);
+		}
 	}
 	public void resetGyro() {
 		ahrs.reset();
@@ -45,10 +50,10 @@ public class SS_Gyro extends Subsystem {
 		return ahrs.getRawGyroZ();
 	}
 	public double gyroGetAngle() {
-		return 0;//ahrs.getAngle();
+		return ahrs.getAngle();
 	}
 	   public double calcGyro(double pLoc){
-           double tract = .75; //feild = .8
+           double tract = .5; //feild = .8
            double speed = (pLoc-gyroGetAngle())/60;
            
            System.out.println(gyroGetAngle());
@@ -62,7 +67,8 @@ public class SS_Gyro extends Subsystem {
    public boolean turnGyro(int pickles) {
 	   double spd = calcGyro(pickles);
 	   System.out.println("  Speed : " + spd + "   Current : " + gyroGetAngle() + "  Dest : " + pickles);
-	   Robot.ss_drivetrain.drive.arcadeDrive(0, spd);
+	   Robot.ss_drivetrain.drive.arcadeDrive(0, -
+			   spd);
 	
 	   return Math.abs(pickles) < Math.abs(gyroGetAngle());
    }

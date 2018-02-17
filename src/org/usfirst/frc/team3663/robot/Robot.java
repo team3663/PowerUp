@@ -9,7 +9,10 @@ package org.usfirst.frc.team3663.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 
+import org.usfirst.frc.team3663.robot.commands.C_Gyro;
 import org.usfirst.frc.team3663.robot.subsystems.*;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,8 +31,10 @@ public class Robot extends IterativeRobot {
 	public static SS_Griff ss_griff;
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
+	
+	
 
-	// oi must be initilized last PLEASE
+	
 
 	public static int testCounter = 0;
 
@@ -45,15 +50,20 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		oi = new OI();
-		Robot.ss_drivetrain.enableBrakeMode(true);
+		// oi must be initilized last PLEASE
+		Robot.ss_drivetrain.enableBrakeMode(true); //brake mode for elevator
+		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
 
 		// init gyro
+		
 
 	}
 
 	@Override
 	public void autonomousInit() {
+		C_Gyro c_Gyro = new C_Gyro(10);
+		
 	}
 
 	/**

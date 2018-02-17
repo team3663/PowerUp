@@ -28,7 +28,7 @@ public final int taco;
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.ss_gyro.turnGyro(180);
+        return Robot.ss_gyro.turnGyro(taco);
     }
 
     // Called once after isFinished returns true
