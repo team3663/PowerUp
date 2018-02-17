@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_IntakeMonitor;
 
@@ -19,6 +18,8 @@ public class SS_CubeIntake extends Subsystem {
 	//		RobotMap.CUBE_INTAKE_REVERSE);
 	//private final DoubleSolenoid intakePneumaticLft = new DoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
 	//		RobotMap.CUBE_INTAKE_LIFT_REVERSE);
+	
+	int counter = 0;
 
 	public void spinIntake(double speed) {
 		rightIntake.set(speed);
@@ -35,15 +36,14 @@ public class SS_CubeIntake extends Subsystem {
 		//intakePneumaticLft.set(direction);
 	}
 
-	// TODO this is test code pls dont use unless ur a potato
+	// TODO this is test code pls do use unless ur a potato
 
 	public void testIntake() {
-		Robot.testCounter++;
-		final int count = Robot.testCounter;
-		sqzIntake(count > 10);
+		counter++;
+		sqzIntake(counter > 10);
 		
-		if (count > 20)
-			Robot.testCounter = 0;
+		if (counter > 20)
+			counter = 0;
 	}
 
 	@Override

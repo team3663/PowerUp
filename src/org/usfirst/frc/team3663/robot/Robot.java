@@ -30,11 +30,6 @@ public class Robot extends IterativeRobot {
 	public static SS_LimitSwitch ss_limitSwitch;
 	public static SS_Camera ss_camera;
 	
-	
-
-	
-
-	public static int testCounter = 0;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -53,8 +48,6 @@ public class Robot extends IterativeRobot {
 		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
 
-		// init gyro
-		
 
 	}
 
