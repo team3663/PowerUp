@@ -7,13 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_GriffSqz extends Command {
+public class C_GriffSqueeze extends Command {
 	public boolean state;
 
-	public C_GriffSqz(boolean pState) {
+	public C_GriffSqueeze(boolean pState) {
 		requires(Robot.ss_griff);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 		state = pState;
 	}
 

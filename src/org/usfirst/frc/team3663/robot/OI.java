@@ -22,8 +22,8 @@ public class OI {
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 
 		final Button griffSqz = new JoystickButton(driveStick, 1);
-		griffSqz.whenPressed(new C_GriffSqz(true));
-		griffSqz.whenReleased(new C_GriffSqz(false));
+		griffSqz.whenPressed(new C_GriffSqueeze(true));
+		griffSqz.whenReleased(new C_GriffSqueeze(false));
 
 		/*
 		 * Button intakeExtnd = new JoystickButton(driveStick, 2);
