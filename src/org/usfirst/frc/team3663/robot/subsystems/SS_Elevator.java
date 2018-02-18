@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -9,14 +10,18 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
-	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 4000;
-	
 	// Drum diameter = 1.21875in
 	// Circumference = dia * pi = 3.8288in
 	// Ticks = 256 ticks / rev
 	// 256 / 3.8288in = 66.861 ticks/in
 	public static final double TICKS_PER_INCH = 66.861;
+	
+	// Highest position elevator should go
+	public static final int ELEVATOR_MAX = 4000;
+	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);
+	
+	// position to go to if elevator exceeds maximum
+	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
 	
 	private WPI_TalonSRX elevator = new WPI_TalonSRX(RobotMap.ELEVATOR);
 	private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
@@ -58,18 +63,44 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	public boolean atTop() {
+		// Uses both softcoded maximum and hardware limit switch
 		return getPos() >= ELEVATOR_MAX || limitSwitchTop.get();
 	}
 	
 	public boolean atBottom() {
-		return getPos() <= 0 || limitSwitchBottom.get();
+		// Uses both softcoded minimum and hardware limit switch
+		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.get();
 	}
 	
 	/**
-	 * Lifts elevator unless it's at the top
+	 * Make sure the elevator isn't going out of bounds
+	 * 
+	 * @return true if the elevator doesn't need to correct itself
 	 */
-	public void moveToTop() {
-		elevator.set(atTop() ? 0 : 1);
+	public boolean checkElevator() {
+		if (limitSwitchBottom.get())
+			initEnc(); // reset the encoder
+		
+		if (atBottom()) {
+			// should always be true so long as the previous `if` is true
+			
+			// if elevator going down, stop ASAP
+			if (elevator.get() < 0)
+				elevator.set(0);
+			
+			return false;
+		}
+		
+		if (atTop()) {
+			// if elevator going up, stop ASAP
+			if (elevator.get() > 0)
+				elevator.set(0);
+			
+			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
+			return false;
+		}
+		
+		return true;
 	}
 
 }

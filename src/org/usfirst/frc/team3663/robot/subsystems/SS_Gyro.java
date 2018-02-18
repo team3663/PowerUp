@@ -68,12 +68,12 @@ public class SS_Gyro extends Subsystem {
 	}
 
 	// TODO document what the boolean means
-	public boolean turnGyro(int pickles) {
-		final double spd = calcGyro(pickles);
-		System.out.printf("  Speed : %f   Current : %f   Dest : %d\n", spd, gyroGetAngle(), pickles);
+	public boolean turnGyro(int destination) {
+		final double spd = calcGyro(destination);
+		System.out.printf("Speed: %f\tCurrent: %f\tDest: %d\n", spd, gyroGetAngle(), destination);
 		Robot.ss_drivetrain.drive.arcadeDrive(0, -spd);
 
-		return Math.abs(pickles) < Math.abs(gyroGetAngle());
+		return Math.abs(destination) < Math.abs(gyroGetAngle());
 	}
 
 }

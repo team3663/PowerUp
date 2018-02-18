@@ -20,6 +20,11 @@ public class C_MoveElevatorToPos extends Command {
 		this.destination = SS_Elevator.clampTicks(SS_Elevator.inchesToTicks(inches));
 	}
 	
+	public C_MoveElevatorToPos(int ticks) {
+		requires(Robot.ss_elevator);
+		this.destination = SS_Elevator.clampTicks(ticks);
+	}
+	
 	@Override
 	protected void initialize() {
 		int originalPosition = Robot.ss_elevator.getPos();
