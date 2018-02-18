@@ -20,9 +20,14 @@ public class SS_Elevator extends Subsystem {
 	
 	private WPI_TalonSRX elevator = new WPI_TalonSRX(RobotMap.ELEVATOR);
 	private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
+	private DigitalInput limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
 	public static int inchesToTicks(double inches) {
 		return (int)(inches * TICKS_PER_INCH);
+	}
+	
+	public static int clampTicks(double val) {
+		return (int) Math.min(Math.max(0, val), ELEVATOR_MAX);
 	}
 
 	@Override
@@ -54,6 +59,10 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		return getPos() >= ELEVATOR_MAX || limitSwitchTop.get();
+	}
+	
+	public boolean atBottom() {
+		return getPos() <= 0 || limitSwitchBottom.get();
 	}
 	
 	/**

@@ -17,7 +17,7 @@ public class C_MoveElevatorToPos extends Command {
 	
 	public C_MoveElevatorToPos(double inches) {
 		requires(Robot.ss_elevator);
-		this.destination = Math.floorDiv(SS_Elevator.inchesToTicks(inches), SS_Elevator.ELEVATOR_MAX);
+		this.destination = SS_Elevator.clampTicks(SS_Elevator.inchesToTicks(inches));
 	}
 	
 	@Override
@@ -33,11 +33,16 @@ public class C_MoveElevatorToPos extends Command {
 
 	@Override
 	protected boolean isFinished() {
+		boolean atDest;
 		if (goingUp) {
-			return Robot.ss_elevator.getPos() >= destination || Robot.ss_elevator.atTop();
+			atDest = Robot.ss_elevator.getPos() >= destination || Robot.ss_elevator.atTop();
 		} else {
-			return Robot.ss_elevator.getPos() <= destination;
+			atDest = Robot.ss_elevator.getPos() <= destination || Robot.ss_elevator.atBottom();
 		}
+		
+		if (atDest)
+			Robot.ss_elevator.set(0);
+		return atDest;
 	}
 
 }
