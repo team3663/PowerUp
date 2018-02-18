@@ -7,6 +7,7 @@ package org.usfirst.frc.team3663.robot;
 public class RobotMap {
 	// Digital Inputs
 	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 1;
+	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = -1;
 	public static final int LIMIT_SWITCH_INTAKE = 0;
 
 	// Talons

@@ -9,12 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class C_Gyro extends Command {
 public final int taco;
-    public C_Gyro(int taco1) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public C_Gyro(int taco) {
     	requires(Robot.ss_drivetrain);
     	requires(Robot.ss_gyro);
-    	taco=taco1;
+    	
+    	this.taco = taco;
     }
 
     // Called just before this Command runs the first time
@@ -34,10 +33,5 @@ public final int taco;
     // Called once after isFinished returns true
     protected void end() {
     	Robot.ss_drivetrain.drive.arcadeDrive(0, 0);
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
     }
 }

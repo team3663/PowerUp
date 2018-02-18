@@ -4,10 +4,12 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 /**
  * Griff is the cube manipulator that goes up and down
@@ -27,7 +29,7 @@ public class SS_Griff extends Subsystem {
 	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
 	private final WPI_TalonSRX griffRot = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
 	private final DoubleSolenoid griffPneumatics = new DoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD, RobotMap.CUBE_SHOOTER_REVERSE);
-	//private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
+	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
 	private final DigitalInput cubePresent = new DigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
 
@@ -53,7 +55,7 @@ public class SS_Griff extends Subsystem {
 	
 	public double getAngle() {
 		// TODO: Convert raw potentiometer data to angles.
-		double dataRaw = /*griffRotSensor.get();*/ 0;
+		double dataRaw = griffRotSensor.get();
 		System.out.println(dataRaw);
 		
 		return dataRaw;
