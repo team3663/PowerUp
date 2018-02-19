@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_Gyro extends Command {
 public final int taco;
     public C_Gyro(int taco) {
-    	requires(Robot.ss_drivetrain);
+    	requires(Robot.ss_gearbox);
     	requires(Robot.ss_gyro);
     	
     	this.taco = taco;
@@ -32,6 +32,6 @@ public final int taco;
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ss_drivetrain.drive.arcadeDrive(0, 0);
+    	Robot.ss_gearbox.stop();
     }
 }

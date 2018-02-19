@@ -23,6 +23,10 @@ public class SS_Elevator extends Subsystem {
 	// position to go to if elevator exceeds maximum
 	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
 	
+	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
+	// Keep within range (0, 1]
+	public static final double ELEVATOR_SPEED = 0.333;
+	
 	 WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	 WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 	 
@@ -54,8 +58,7 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	public void elvSet(double speed) {
-		elevator1.set(speed/3);
-		//elevator2.set(speed);
+		elevator1.set(speed * ELEVATOR_SPEED);
 	}
 	
 	/**
@@ -85,6 +88,7 @@ public class SS_Elevator extends Subsystem {
 	
 	public int thresh = 50;
 	public int last_err;
+	
 	public boolean elvSetPos(int target) {
 		
 		int err = target-getPos();

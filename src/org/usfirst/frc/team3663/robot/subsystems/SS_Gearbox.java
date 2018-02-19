@@ -7,13 +7,13 @@
 
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
-import org.usfirst.frc.team3663.robot.SpeedControllerGroup;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
@@ -21,24 +21,40 @@ import org.usfirst.frc.team3663.robot.commands.C_Drive;
  * and a gyro.
  */
 
-public class SS_DriveTrain extends Subsystem {
+public class SS_Gearbox extends Subsystem {
 	
-	 
-	private SpeedController left = new SpeedControllerGroup(RobotMap.DRIVE_LEFT_1);
-	private SpeedController right = new SpeedControllerGroup(RobotMap.DRIVE_RIGHT_1);
-
-	public DifferentialDrive drive // arcade drive
-			= new DifferentialDrive(right, left);
-
-	public void driveForward(double speed) {
-		left.set(speed);
-		right.set(-speed);
+	private WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
+	private WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
+	private WPI_TalonSRX left3 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_3);
+	
+	private WPI_TalonSRX right1 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
+	private WPI_TalonSRX right2 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_2);
+	private WPI_TalonSRX right3 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_3);
+	
+	private DifferentialDrive drive = new DifferentialDrive(left1, right1);
+	
+	public SS_Gearbox() {
+		left2.follow(left1);
+		left3.follow(left1);
+		
+		right2.follow(right1);
+		right3.follow(right1);
+	}
+	
+	public void stop() {
+		drive.arcadeDrive(0, 0);
 	}
 
-	public void turnRight(double speed) {
-		left.set(speed);
-		right.set(speed);
-
+	public void driveForward(double speed) {
+		drive.arcadeDrive(speed, 0);
+	}
+	
+	/**
+	 * Turns in place
+	 * @param angle Clockwise if positive
+	 */
+	public void turn(double angle) {
+		drive.arcadeDrive(0, angle);
 	}
 
 	/*

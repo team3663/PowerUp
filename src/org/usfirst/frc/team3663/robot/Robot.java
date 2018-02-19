@@ -21,7 +21,7 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 	public static OI oi;
-	public static SS_DriveTrain ss_drivetrain;
+	public static SS_Gearbox ss_gearbox;
 
 	public static RobotMap RobotMap;
 	public static SS_Gyro ss_gyro;
@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
-		ss_drivetrain = new SS_DriveTrain();
+		ss_gearbox = new SS_Gearbox();
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
