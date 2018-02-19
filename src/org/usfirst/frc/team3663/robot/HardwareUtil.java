@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class HardwareUtil {
 	private HardwareUtil() {}
 	
-	private static <T> Optional<T> getHardware(Supplier<? extends T> supplier) {
+	public static <T> Optional<T> getHardware(Supplier<? extends T> supplier) {
 		try {
-			return Optional.of(supplier.get());
+			return Optional.ofNullable(supplier.get());
 		} catch (Exception e) {
 			System.err.println("WARNING: Hardware not detected. Using null default instead");
 			e.printStackTrace();
