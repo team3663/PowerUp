@@ -49,6 +49,11 @@ public class SS_Gyro extends Subsystem {
 		return ahrs.getRawGyroZ();
 	}
 
+	/**
+	 * Returns the total accumulated Z-axis angle reported by the sensor, in degrees.
+	 * <p>
+	 * NOTE: its range is beyond 360 degrees, so that algorithms don't have to worry about overflows
+	 */
 	public double gyroGetAngle() {
 		return ahrs.getAngle();
 	}

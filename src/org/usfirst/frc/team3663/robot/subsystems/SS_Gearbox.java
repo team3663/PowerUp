@@ -51,10 +51,10 @@ public class SS_Gearbox extends Subsystem {
 	
 	/**
 	 * Turns in place
-	 * @param angle Clockwise if positive
+	 * @param turns clockwise if positive
 	 */
-	public void turn(double angle) {
-		drive.arcadeDrive(0, angle);
+	public void turn(double speed) {
+		drive.arcadeDrive(0, speed);
 	}
 
 	/*
