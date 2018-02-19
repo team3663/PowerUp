@@ -9,24 +9,29 @@ public class RobotMap {
 	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 1;
 	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = -1;
 	public static final int LIMIT_SWITCH_INTAKE = 0;
+	public static final int CUBE_ROTATOR_SENSOR = -1;
 
 	// Talons
-	public static final int DRIVE_LEFT_1 = 0;
-	public static final int DRIVE_LEFT_2 = -1;
-	public static final int DRIVE_LEFT_3 = -1;
+	public static final int DRIVE_LEFT_1 = 11;
+	public static final int DRIVE_LEFT_2 = 12;
+	public static final int DRIVE_LEFT_3 = 13;
 	
-	public static final int DRIVE_RIGHT_1 = 1;
-	public static final int DRIVE_RIGHT_2 = -1;
-	public static final int DRIVE_RIGHT_3 = -1;
+	public static final int DRIVE_RIGHT_1 = 8;
+	public static final int DRIVE_RIGHT_2 = 9;
+	public static final int DRIVE_RIGHT_3 = 10;
 
-	public static final int LIFT = 35;
-	public static final int ELEVATOR = 1;
+	public static final int ELEVATOR_1 = 2;
+	public static final int ELEVATOR_2 = 3;
 
 	public static final int CUBE_INTAKE_LEFT = 51;
-	public static final int CUBE_INTAKE_RIGHT = 3;
-	public static final int CUBE_SHOOTER = 2;
+	public static final int CUBE_INTAKE_RIGHT = 43;
+	
+	public static final int CUBE_SHOOTER = 54;
 	public static final int CUBE_ROTATOR = 53;
-	public static final int CUBE_ROTATOR_SENSOR = -1;
+	
+	public static final int CLIMBER_1 = 1;
+	public static final int CLIMBER_2 = 4;
+	
 
 	// Pneumatics
 	public static final int CUBE_SHOOTER_FORWARD = 3;

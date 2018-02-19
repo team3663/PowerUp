@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be used

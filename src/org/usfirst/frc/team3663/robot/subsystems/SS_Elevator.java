@@ -14,7 +14,7 @@ public class SS_Elevator extends Subsystem {
 	// Circumference = dia * pi = 3.8288in
 	// Ticks = 256 ticks / rev
 	// 256 / 3.8288in = 66.861 ticks/in
-	public static final double TICKS_PER_INCH = 66.861;
+	public static final double TICKS_PER_INCH = 66.86;
 	
 	// Highest position elevator should go
 	public static final int ELEVATOR_MAX = 4000;
@@ -23,7 +23,9 @@ public class SS_Elevator extends Subsystem {
 	// position to go to if elevator exceeds maximum
 	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
 	
-	private WPI_TalonSRX elevator = new WPI_TalonSRX(RobotMap.ELEVATOR);
+	 WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
+	 WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
+	 
 	private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private DigitalInput limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
@@ -41,26 +43,35 @@ public class SS_Elevator extends Subsystem {
 
 	}
 	
+	
+	
+	
 	public void enableBreakMode(boolean breaksEnabled) {
 		// If breaks enabled, use Brake mode. Else, use Coast mode.
 		NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;
-		elevator.setNeutralMode(mode);
+		elevator1.setNeutralMode(mode);
+		elevator2.setNeutralMode(mode);
 	}
 	
-	public void set(double speed) {
-		elevator.set(speed);
+	public void elvSet(double speed) {
+		elevator1.set(speed/3);
+		//elevator2.set(speed);
 	}
 	
 	/**
 	 * Sets up encoder for use
 	 */
 	public void initEnc() {
-		elevator.getSensorCollection().setQuadraturePosition(0, 0);
+		//TODO convert to greyhill enc
 	}
 	
 	public int getPos() {
-		return elevator.getSensorCollection().getQuadraturePosition();
+		//TODO convert to greyhill enc
+		return 1;
 	}
+	
+	
+	
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
@@ -72,6 +83,22 @@ public class SS_Elevator extends Subsystem {
 		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.get();
 	}
 	
+	public int thresh = 50;
+	public int last_err;
+	public boolean elvSetPos(int target) {
+		
+		int err = target-getPos();
+		int Kp = 60;
+		
+		if(target < getPos()+thresh && target > getPos()-thresh) {
+			return true;
+		}
+		else {
+			return false;
+			//last_err = err;
+			
+		}
+	}
 	/**
 	 * Make sure the elevator isn't going out of bounds
 	 * 
@@ -85,16 +112,16 @@ public class SS_Elevator extends Subsystem {
 			// should always be true so long as the previous `if` is true
 			
 			// if elevator going down, stop ASAP
-			if (elevator.get() < 0)
-				elevator.set(0);
+			if (elevator1.get() < 0)
+				elvSet(0);
 			
 			return false;
 		}
 		
 		if (atTop()) {
 			// if elevator going up, stop ASAP
-			if (elevator.get() > 0)
-				elevator.set(0);
+			if (elevator1.get() > 0)
+				elvSet(0);
 			
 			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
 			return false;
