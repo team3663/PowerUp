@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import java.util.Optional;
+
+import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_IntakeMonitor;
 
@@ -15,9 +18,10 @@ public class SS_CubeIntake extends Subsystem {
 	private final WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_RIGHT);
 	private final WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 
-	private final DoubleSolenoid intakePneumaticSqueeze = new DoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD,
+	private final Optional<DoubleSolenoid> intakePneumaticSqueeze = HardwareUtil.getDoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD,
 			RobotMap.CUBE_INTAKE_REVERSE);
-	private final DoubleSolenoid intakePneumaticLift = new DoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
+	
+	private final Optional<DoubleSolenoid> intakePneumaticLift = HardwareUtil.getDoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
 			RobotMap.CUBE_INTAKE_LIFT_REVERSE);
 	
 	int counter = 0;
@@ -29,12 +33,12 @@ public class SS_CubeIntake extends Subsystem {
 
 	public void squeezeIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		intakePneumaticSqueeze.set(direction);
+		intakePneumaticSqueeze.ifPresent(p -> p.set(direction));
 	}
 
 	public void extendIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		intakePneumaticLift.set(direction);
+		intakePneumaticLift.ifPresent(p -> p.set(direction));
 	}
 
 	// TODO this is test code pls do use unless ur a potato

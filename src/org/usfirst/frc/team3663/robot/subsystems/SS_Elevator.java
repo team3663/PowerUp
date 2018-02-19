@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import java.util.Optional;
+
+import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
@@ -30,8 +33,8 @@ public class SS_Elevator extends Subsystem {
 	 WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	 WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 	 
-	private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
-	private DigitalInput limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
+	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
+	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
 	public static int inchesToTicks(double inches) {
 		return (int)(inches * TICKS_PER_INCH);
@@ -78,12 +81,14 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		return getPos() >= ELEVATOR_MAX || limitSwitchTop.get();
+		boolean topHit = limitSwitchTop.isPresent() && limitSwitchTop.get().get();
+		return getPos() >= ELEVATOR_MAX || topHit;
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.get();
+		boolean bottomHit = limitSwitchBottom.isPresent() && limitSwitchBottom.get().get();
+		return getPos() <= ELEVATOR_MIN || bottomHit;
 	}
 	
 	public int thresh = 50;
@@ -109,7 +114,7 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (limitSwitchBottom.get())
+		if (limitSwitchBottom.isPresent() && limitSwitchBottom.get().get())
 			initEnc(); // reset the encoder
 		
 		if (atBottom()) {
