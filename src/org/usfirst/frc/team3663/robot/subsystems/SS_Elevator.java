@@ -36,6 +36,10 @@ public class SS_Elevator extends Subsystem {
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
+	public SS_Elevator() {
+		elevator2.follow(elevator1);
+	}
+	
 	public static int inchesToTicks(double inches) {
 		return (int)(inches * TICKS_PER_INCH);
 	}
@@ -60,7 +64,7 @@ public class SS_Elevator extends Subsystem {
 		elevator2.setNeutralMode(mode);
 	}
 	
-	public void elvSet(double speed) {
+	public void set(double speed) {
 		elevator1.set(speed * ELEVATOR_SPEED);
 	}
 	
@@ -91,23 +95,6 @@ public class SS_Elevator extends Subsystem {
 		return getPos() <= ELEVATOR_MIN || bottomHit;
 	}
 	
-	public int thresh = 50;
-	public int last_err;
-	
-	public boolean elvSetPos(int target) {
-		
-		int err = target-getPos();
-		int Kp = 60;
-		
-		if(target < getPos()+thresh && target > getPos()-thresh) {
-			return true;
-		}
-		else {
-			return false;
-			//last_err = err;
-			
-		}
-	}
 	/**
 	 * Make sure the elevator isn't going out of bounds
 	 * 
@@ -122,7 +109,7 @@ public class SS_Elevator extends Subsystem {
 			
 			// if elevator going down, stop ASAP
 			if (elevator1.get() < 0)
-				elvSet(0);
+				set(0);
 			
 			return false;
 		}
@@ -130,7 +117,7 @@ public class SS_Elevator extends Subsystem {
 		if (atTop()) {
 			// if elevator going up, stop ASAP
 			if (elevator1.get() > 0)
-				elvSet(0);
+				set(0);
 			
 			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
 			return false;

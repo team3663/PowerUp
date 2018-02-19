@@ -30,6 +30,11 @@ public class PIDController {
 		this(gainProportional, gainDerivative, -1, 1);
 	}
 	
+	public PIDController(double gainProportional, double gainDerivative, double min, double max, double target) {
+		this(gainProportional, gainDerivative, min, max);
+		set(target);
+	}
+	
 	/**
 	 * Constrains value to min and max output
 	 */

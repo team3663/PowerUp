@@ -18,8 +18,8 @@ public class SS_CubeIntake extends Subsystem {
 	private final WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_RIGHT);
 	private final WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 
-	private final Optional<DoubleSolenoid> intakePneumaticSqueeze = HardwareUtil.getDoubleSolenoid(RobotMap.CUBE_INTAKE_FORWARD,
-			RobotMap.CUBE_INTAKE_REVERSE);
+	private final Optional<DoubleSolenoid> intakePneumaticSqueeze = HardwareUtil.getDoubleSolenoid(RobotMap.CLIMBER_PNEUM_FWD,
+			RobotMap.CLIMBER_PNEUM_REV);
 	
 	private final Optional<DoubleSolenoid> intakePneumaticLift = HardwareUtil.getDoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
 			RobotMap.CUBE_INTAKE_LIFT_REVERSE);

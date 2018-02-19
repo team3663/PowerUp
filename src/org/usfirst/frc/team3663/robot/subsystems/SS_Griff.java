@@ -31,7 +31,7 @@ public class SS_Griff extends Subsystem {
 	// here. Call these from Commands.
 	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
 	private final WPI_TalonSRX griffRot = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
-	private final Optional<DoubleSolenoid> griffPneumatics = HardwareUtil.getDoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD, RobotMap.CUBE_SHOOTER_REVERSE);
+	private final Optional<DoubleSolenoid> griffPneumatics = HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
 	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
 	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
