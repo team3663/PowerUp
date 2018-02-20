@@ -21,17 +21,17 @@ public class C_Drive extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.ss_elevator.initEnc();
-		Robot.ss_elevator.enableBreakMode(true);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-	
-		System.out.println("TOP:  " + Robot.ss_elevator.getTop());
-		System.out.println("BOTTOM:  " + Robot.ss_griff.getSwitchState());
+	//	Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
+		Robot.ss_drivetrain.left1.set(1);
+		System.out.println(Robot.ss_drivetrain.left1.get());
+		//System.out.println("TOP:    " + Robot.ss_elevator.getTop());
+		//System.out.println("BOTTOM:    " + Robot.ss_elevator.getBottom());
 		// SS_Camera.initCam();
 		// Robot.ss_limitSwitch.Limit();
 	}

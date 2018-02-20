@@ -17,8 +17,8 @@ public class C_DisplayEncoders extends Command {
 	
 	@Override
 	protected void execute() {
-		System.out.printf("Left: %d\tRight: %d\nElev: %d\n\n", Robot.ss_drivetrain.getLeft(),
-				Robot.ss_drivetrain.getRight(), Robot.ss_elevator.get());
+		//System.out.printf("Left: %d\tRight: %d\nElev: %d\n\n", Robot.ss_drivetrain.getLeft(),
+			//	Robot.ss_drivetrain.getRight(), Robot.ss_elevator.get());
 	}
 
 	@Override

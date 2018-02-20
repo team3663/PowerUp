@@ -22,9 +22,7 @@ public class C_Elevator extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
-    	System.out.println("TOP" + Robot.ss_elevator.atTop() );
-    	System.out.println("BOTTOM" + Robot.ss_elevator.atBottom());
+    	//Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
     }
 
     // Make this return true when this Command no longer needs to run execute()

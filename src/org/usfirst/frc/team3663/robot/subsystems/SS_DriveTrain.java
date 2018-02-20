@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -23,7 +24,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class SS_DriveTrain extends Subsystem {
 	
-	private WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
+	public WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
 	private WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
 	private WPI_TalonSRX left3 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_3);
 	
@@ -34,27 +35,30 @@ public class SS_DriveTrain extends Subsystem {
 	private Encoder leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENC_1, RobotMap.DRIVE_LEFT_ENC_2);
 	private Encoder rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENC_1, RobotMap.DRIVE_RIGHT_ENC_2);
 	
-	public DifferentialDrive drive = new DifferentialDrive(left1, right1);
+	//public DifferentialDrive drive = new DifferentialDrive(left1, right1);
 	
 	public SS_DriveTrain() {
+		/*
 		left2.follow(left1);
 		left3.follow(left1);
 		
 		right2.follow(right1);
 		right3.follow(right1);
+		*/
 	}
 
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new C_Drive());
 		// TODO Auto-generated method stub
 	}
 	
 	public void stop() {
-		drive.arcadeDrive(0, 0);
+		//drive.arcadeDrive(0, 0);
 	}
 
 	public void driveForward(double speed) {
-		drive.arcadeDrive(speed, 0);
+		//drive.arcadeDrive(speed, 0);
 	}
 	
 	/**
@@ -76,7 +80,7 @@ public class SS_DriveTrain extends Subsystem {
 	 * @param turns clockwise if positive
 	 */
 	public void turn(double speed) {
-		drive.arcadeDrive(0, speed);
+		//drive.arcadeDrive(0, speed);
 	}
 
 

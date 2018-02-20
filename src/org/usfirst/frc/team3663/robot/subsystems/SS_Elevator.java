@@ -42,7 +42,7 @@ public class SS_Elevator extends Subsystem {
 	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
 	
 	public SS_Elevator() {
-		elevator2.follow(elevator1);
+		//elevator2.follow(elevator1);
 	}
 	
 	public static int inchesToTicks(double inches) {
@@ -57,7 +57,7 @@ public class SS_Elevator extends Subsystem {
 	protected void initDefaultCommand() {
 		
 		setDefaultCommand(new C_Elevator());
-		setDefaultCommand(new C_DisplayEncoders());
+		//setDefaultCommand(new C_DisplayEncoders());
 		// TODO Auto-generated method stub
 
 	}
