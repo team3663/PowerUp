@@ -18,7 +18,7 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_ENC_1 = 6;
 	public static final int DRIVE_LEFT_ENC_2 = 7;
 	public static final int ELEVATOR_ENC_1 = 9;
-	public static final int ELEVATOR_ENC_2 = 10;
+	public static final int ELEVATOR_ENC_2 = 8;
 
 	
 	/// Analog
@@ -48,8 +48,8 @@ public class RobotMap {
 	public static final int CUBE_ROTATOR = 7;
 
 	// Pneumatics
-	public static final int GRIFF_SQUEEZE_FWD = 0;
-	public static final int GRIFF_SQUEEZE_REV = 1;
+	public static final int GRIFF_SQUEEZE_FWD = 1;
+	public static final int GRIFF_SQUEEZE_REV = 0;
 	
 	public static final int CLIMBER_PNEUM_FWD = 4;
 	public static final int CLIMBER_PNEUM_REV = 6;
@@ -57,8 +57,8 @@ public class RobotMap {
 	public static final int INTAKE_LIFT_FOWARD = 7;
 	public static final int INTAKE_LIFT_REVERSE = 5;
 	
-	public static final int INTAKE_SQZ_FOWARD = 2;
-	public static final int INTAKE_SQZ_REVERSE = 3;
+	public static final int INTAKE_SQZ_FOWARD = 3;
+	public static final int INTAKE_SQZ_REVERSE = 2;
 	
 
 }

@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_DisplayEncoders extends Command {
 	
 	public C_DisplayEncoders() {
-		requires(Robot.ss_elevator);
-		requires(Robot.ss_drivetrain);
+	
 	}
 	
 	@Override

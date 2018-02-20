@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 
@@ -116,7 +117,7 @@ public class SS_Elevator extends Subsystem {
 			
 			if (elevator1.get() <= 0) {
 				set(0);
-				C_MoveElevatorToPos(ELEVATOR_SAFE_BOT_IN).start();
+				//C_MoveElevatorToPos(ELEVATOR_SAFE_BOT_IN).start();
 			}
 			
 			return false;
@@ -125,7 +126,7 @@ public class SS_Elevator extends Subsystem {
 		if (getTop() || get() >= ELEVATOR_MAX) {
 			if (elevator1.get() >= 0) {
 				set(0);
-				C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
+				//C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
 			}
 			
 			return false;
