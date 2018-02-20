@@ -91,8 +91,8 @@ public class SS_Elevator extends Subsystem {
 		if (get() <= 0 && speed < 0)
 			speed = 0;
 		
-			elevator1.set(speed);
-			elevator2.set(speed);
+			elevator1.set(speed*ELEVATOR_SPEED);
+			elevator2.set(speed*ELEVATOR_SPEED);
 		//}
 	}
 	
