@@ -85,14 +85,12 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		boolean topHit = limitSwitchTop.isPresent() && limitSwitchTop.get().get();
-		return getPos() >= ELEVATOR_MAX || topHit;
+		return getPos() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		boolean bottomHit = limitSwitchBottom.isPresent() && limitSwitchBottom.get().get();
-		return getPos() <= ELEVATOR_MIN || bottomHit;
+		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
 	/**
@@ -101,7 +99,7 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (limitSwitchBottom.isPresent() && limitSwitchBottom.get().get())
+		if (limitSwitchBottom.map(DigitalInput::get).orElse(false))
 			initEnc(); // reset the encoder
 		
 		if (atBottom()) {

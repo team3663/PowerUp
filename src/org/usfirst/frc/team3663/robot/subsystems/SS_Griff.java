@@ -69,7 +69,8 @@ public class SS_Griff extends Subsystem {
 	}
 
 	public boolean getSwitchState() {
-		return cubePresent.isPresent() && cubePresent.get().get();
+		// Returns digital input result if exists; false otherwise
+		return cubePresent.map(DigitalInput::get).orElse(false);
 	}
 
 }

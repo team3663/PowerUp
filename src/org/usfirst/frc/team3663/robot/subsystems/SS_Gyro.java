@@ -1,7 +1,8 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import org.usfirst.frc.team3663.robot.Robot;
-import org.usfirst.frc.team3663.robot.commands.C_Gyro;
+import java.util.Optional;
+
+import org.usfirst.frc.team3663.robot.HardwareUtil;
 
 import com.kauailabs.navx.frc.*;
 
@@ -12,41 +13,48 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class SS_Gyro extends Subsystem {
-	AHRS ahrs;
+	private final Optional<AHRS> ahrs;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	@Override
 	public void initDefaultCommand() {
-		setDefaultCommand(new C_Gyro(10));
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-
 	}
-
-	public void initGyro() {
-		try {
-			ahrs = new AHRS(SPI.Port.kMXP);
-		} catch (final RuntimeException ex) {
-			System.err.println("ya done goofed");
-			ex.printStackTrace();
-		}
+	
+	public SS_Gyro() {
+		ahrs = HardwareUtil.getHardware(() -> new AHRS(SPI.Port.kMXP));
 	}
 
 	public void resetGyro() {
-		ahrs.reset();
+		ahrs.ifPresent(AHRS::reset);
+	}
+	
+	
+	// NOTE: if the Gyro can't be read, all angle readings default to 0.
+
+	// Since we have readAngle, should we keep these methods?
+	public float gyroReadX() {
+		// Here's how this code works:
+		//  1. Optional<T>.map() accepts a function which takes in a T and
+		//     gives a different value. in this case, it takes an AHRS and
+		//     returns a float. `.map()` will always return an Optional<Float>.
+		//  2. If `ahrs` is a present Optional (i.e. it's not empty), then
+		//     it returns an Optional of ahrs.getRawGyroX(). Else, it returns
+		//     an empty Optional<Float>.
+		//  3. .orElse(default) takes an Optional<T> and, if it's present, returns the
+		//     value it holds. Else, it returns the default value given.
+		//
+		//  TL;DR: It returns the result of AHRS.getRawGyroX() if the sensor exists;
+		//    it returns 0 otherwise.
+		return ahrs.map(AHRS::getRawGyroX).orElse(0f);
 	}
 
-	public double gyroReadX() {
-		return ahrs.getRawGyroX();
+	public float gyroReadY() {
+		return ahrs.map(AHRS::getRawGyroY).orElse(0f);
 	}
 
-	public double gyroReadY() {
-		return ahrs.getRawGyroY();
-	}
-
-	public double gyroReadZ() {
-		return ahrs.getRawGyroZ();
+	public float gyroReadZ() {
+		return ahrs.map(AHRS::getRawGyroZ).orElse(0f);
 	}
 
 	/**
@@ -55,9 +63,10 @@ public class SS_Gyro extends Subsystem {
 	 * NOTE: its range is beyond 360 degrees, so that algorithms don't have to worry about overflows
 	 */
 	public double gyroGetAngle() {
-		return ahrs.getAngle();
+		return ahrs.map(AHRS::getAngle).orElse(0.0);
 	}
 
+	// TODO document what this does
 	public double calcGyro(double pLoc) {
 		final double tract = .5; // field = .8
 		double speed = (pLoc - gyroGetAngle()) / 60;
@@ -70,15 +79,6 @@ public class SS_Gyro extends Subsystem {
 			speed = -tract;
 		}
 		return speed;
-	}
-
-	// TODO document what the boolean means
-	public boolean turnGyro(int destination) {
-		final double spd = calcGyro(destination);
-		System.out.printf("Speed: %f\tCurrent: %f\tDest: %d\n", spd, gyroGetAngle(), destination);
-		Robot.ss_gearbox.turn(-spd);
-
-		return Math.abs(destination) < Math.abs(gyroGetAngle());
 	}
 
 }

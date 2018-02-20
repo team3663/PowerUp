@@ -48,7 +48,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI(); // oi must be initilized last PLEASE
 		
 		
-		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
 	}
 
