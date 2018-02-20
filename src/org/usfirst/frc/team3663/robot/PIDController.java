@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3663.robot;
 
-import edu.wpi.first.wpilibj.Timer;
-
 /**
  * Generic PID controller for the motors
  * 

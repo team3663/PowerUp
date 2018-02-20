@@ -32,6 +32,8 @@ public class SS_Griff extends Subsystem {
 	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
 	private final WPI_TalonSRX griffRot = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
 	private final Optional<DoubleSolenoid> griffPneumatics = HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
+	
+	// Measures the rotation of the griff
 	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
 	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
@@ -57,9 +59,8 @@ public class SS_Griff extends Subsystem {
 	}
 	
 	public double getAngle() {
-		// TODO: Convert raw potentiometer data to angles.
-		//double dataRaw = griffRotSensor.get();
-		double dataRaw = 1;
+		// TODO: convert raw data to angles
+		double dataRaw = griffRotSensor.get();
 		System.out.println(dataRaw);
 		
 		return dataRaw;
