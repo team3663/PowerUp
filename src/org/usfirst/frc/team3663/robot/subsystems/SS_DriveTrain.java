@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
@@ -22,7 +21,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  * the robots chassis. These include four drive motors, a left and right encoder
  * and a gyro.
  */
-
 public class SS_DriveTrain extends Subsystem {
 	
 	public WPI_VictorSPX left1 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_1);
