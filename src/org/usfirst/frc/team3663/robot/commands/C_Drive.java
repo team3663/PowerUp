@@ -62,6 +62,4 @@ public class C_Drive extends Command {
 		return false; // Runs until interrupted
 	}
 
-	// Called once after isFinished returns true
-
 }

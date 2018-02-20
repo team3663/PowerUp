@@ -15,15 +15,14 @@ public class C_SetGriffSpeed extends Command {
 		spd = spd1;
 	}
 
-	// Called just before this Command runs the first time
+	// Called repeatedly when this Command is scheduled to run
 	@Override
-	protected void initialize() {
+	protected void execute() {
+
 		Robot.ss_griff.setGriffSpd(spd);
 	}
 	@Override
 	protected boolean isFinished() {
 		return true;
 	}
-
-
 }

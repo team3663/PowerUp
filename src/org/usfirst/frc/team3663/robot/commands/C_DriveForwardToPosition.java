@@ -17,7 +17,7 @@ public class C_DriveForwardToPosition extends Command {
 		requires(Robot.ss_drivetrain);
 		
 		dest = Robot.ss_drivetrain.getLeft() + SS_DriveTrain.inchesToTicks(inches);
-		controller = new PIDController(1, 1, -speed, speed, dest);
+		controller = new PIDController(1, 1, -speed, speed);
 	}
 	
 	private int getError() {
@@ -26,12 +26,18 @@ public class C_DriveForwardToPosition extends Command {
 	
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.driveForward(controller.get(Robot.ss_drivetrain.getLeft()));
+		Robot.ss_drivetrain.driveForward(controller.get(getError()));
 	}
 
 	@Override
 	protected boolean isFinished() {
 		return Math.abs(getError()) < TICK_THRESHOLD;
+	}
+	
+	@Override
+	protected void end() {
+		// Stop motor
+		Robot.ss_drivetrain.driveForward(0);
 	}
 
 }

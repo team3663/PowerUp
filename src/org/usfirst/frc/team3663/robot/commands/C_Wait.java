@@ -16,10 +16,6 @@ public class C_Wait extends Command {
 	protected void initialize() {
 		time.reset();
 	}
-	
-	@Override
-	protected void execute() {
-	}
 
 	@Override
 	protected boolean isFinished() {
