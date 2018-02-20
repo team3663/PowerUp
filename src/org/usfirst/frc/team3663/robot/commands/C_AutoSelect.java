@@ -26,27 +26,27 @@ public class C_AutoSelect extends Command {
     	if(leverPos != null) {
     		if (leverPos.charAt(0) == 'L') {
     			if (DriverStation.getInstance().getLocation() == 1) {
-    				new CG_Auto1.CG_Auto1().start();
+    				new CG_Auto1().start();
     			}
     			if (DriverStation.getInstance().getLocation() == 2) {
-    				new CG_Auto2.CG_Auto2().start();
+    				new CG_Auto2().start();
     			}
     			if (DriverStation.getInstance().getLocation() == 3) {
-    				new CG_Auto3.CG_Auto3().start();
+    				new CG_Auto3().start();
     			}
     		} else {
     			if (DriverStation.getInstance().getLocation() == 1) {
-    				new CG_Auto4.CG_Auto4().start();
+    				new CG_Auto4().start();
     			}
     			if (DriverStation.getInstance().getLocation() == 2) {
-    				new CG_Auto5.CG_Auto5().start();
+    				new CG_Auto5().start();
     			}
     			if (DriverStation.getInstance().getLocation() == 3) {
-    				new CG_Auto6.CG_Auto6().start();
+    				new CG_Auto6().start();
     			}
     		}
         } else {
-        	new C_Wait.C_Wait(50).start();
+        	new C_Wait(50).start();
         }
     }
 
