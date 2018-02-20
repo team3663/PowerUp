@@ -11,8 +11,6 @@ public class C_IntakeExtend extends Command {
 	public boolean state;
 
 	public C_IntakeExtend(boolean pState) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 		requires(Robot.ss_cubeIntake);
 		state = pState;
 	}

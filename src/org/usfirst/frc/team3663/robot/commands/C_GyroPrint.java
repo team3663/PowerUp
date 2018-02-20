@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3663.robot.commands;
 
+import org.usfirst.frc.team3663.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -8,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_GyroPrint extends Command {
 
 	public C_GyroPrint() {
-		// requires(Robot.ss_gyro);
+		requires(Robot.ss_gyro);
 	}
 
 	// Called just before this Command runs the first time
@@ -20,7 +22,6 @@ public class C_GyroPrint extends Command {
 	@Override
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-
 		// Robot.ss_gyro.gyroReadY();
 		// System.out.println(Robot.ss_gyro.gyroReadZ());
 	}

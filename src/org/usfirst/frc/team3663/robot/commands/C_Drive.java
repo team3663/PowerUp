@@ -15,7 +15,6 @@ import org.usfirst.frc.team3663.robot.Robot;
  */
 public class C_Drive extends Command {
 	public C_Drive() {
-		requires(Robot.ss_griff);
 		requires(Robot.ss_gearbox);
 		requires(Robot.ss_elevator);
 	}

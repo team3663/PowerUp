@@ -16,7 +16,6 @@ import org.usfirst.frc.team3663.robot.Robot;
 public class C_IntakeMonitor extends Command {
 	public C_IntakeMonitor() {
 		requires(Robot.ss_cubeIntake);
-
 	}
 
 	@Override
