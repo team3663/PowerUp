@@ -36,7 +36,7 @@ public class SS_Griff extends Subsystem {
 	// Measures the rotation of the griff
 	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
-	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
+	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
 
 	private void rotateCube(double speed, Double angle) {
 		griffRot.set(speed);

@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
@@ -37,6 +38,8 @@ public class SS_Elevator extends Subsystem {
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
+	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
+	
 	public SS_Elevator() {
 		elevator2.follow(elevator1);
 	}
@@ -58,8 +61,6 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	
-	
-	
 	public void enableBreakMode(boolean breaksEnabled) {
 		// If breaks enabled, use Brake mode. Else, use Coast mode.
 		NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;
@@ -69,6 +70,13 @@ public class SS_Elevator extends Subsystem {
 	
 	public void set(double speed) {
 		elevator1.set(speed * ELEVATOR_SPEED);
+	}
+	
+	/**
+	 * @return The current position of the encoders
+	 */
+	public int get() {
+		return encoder.get();
 	}
 	
 	/**

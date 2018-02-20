@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
@@ -30,6 +31,9 @@ public class SS_Gearbox extends Subsystem {
 	private WPI_TalonSRX right2 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_2);
 	private WPI_TalonSRX right3 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_3);
 	
+	private Encoder leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENC_1, RobotMap.DRIVE_LEFT_ENC_2);
+	private Encoder rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENC_1, RobotMap.DRIVE_RIGHT_ENC_2);
+	
 	private DifferentialDrive drive = new DifferentialDrive(left1, right1);
 	
 	public SS_Gearbox() {
@@ -43,9 +47,7 @@ public class SS_Gearbox extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
 	}
-
 	
 	public void stop() {
 		drive.arcadeDrive(0, 0);
@@ -53,6 +55,20 @@ public class SS_Gearbox extends Subsystem {
 
 	public void driveForward(double speed) {
 		drive.arcadeDrive(speed, 0);
+	}
+	
+	/**
+	 * @return position of left motor by ticks
+	 */
+	public int getLeft() {
+		return leftEnc.get();
+	}
+	
+	/**
+	 * @return position of right motor by ticks
+	 */
+	public int getRight() {
+		return rightEnc.get();
 	}
 	
 	/**
