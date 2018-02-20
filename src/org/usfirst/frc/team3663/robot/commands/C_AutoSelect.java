@@ -15,7 +15,7 @@ public class C_AutoSelect extends Command {
         // eg. requires(chassis);
     	requires(Robot.ss_autoSelect);
     }
-
+2
     // Called just before this Command runs the first time
     protected void initialize() {
     }
