@@ -23,6 +23,12 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
  */
 public class SS_DriveTrain extends Subsystem {
 	
+	// Wheel dia: 6.125"
+	// 6.125" * pi = 19.242" circumference
+	// Ticks/rot: 256
+	// 256 / 19.242 = 13.304 ticks/in
+	public static final double TICKS_PER_IN = 13.304;
+	
 	public WPI_VictorSPX left1 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_1);
 	public WPI_VictorSPX left2 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_2);
 	public WPI_VictorSPX left3 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_3);
@@ -44,6 +50,10 @@ public class SS_DriveTrain extends Subsystem {
 		right2.follow(right1);
 		right3.follow(right1);
 		
+	}
+	
+	public static int inchesToTicks(double inches) {
+		return (int)(inches * TICKS_PER_IN);
 	}
 
 	@Override
