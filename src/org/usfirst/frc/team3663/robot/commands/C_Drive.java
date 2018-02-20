@@ -35,7 +35,7 @@ public class C_Drive extends Command {
 		
 		Robot.ss_cubeIntake.spinIntake(Robot.oi.driveStick.getRawAxis(3));
 		Robot.ss_griff.setGriffSpd(Robot.oi.driveStick.getRawAxis(2));
-	
+		Robot.ss_elevator.checkElevator();
 		//DriverStation.Alliance side = DriverStation.getInstance().getAlliance();
 		//DriverStation.Alliance side = DriverStation.getInstance().getLocation();
 		

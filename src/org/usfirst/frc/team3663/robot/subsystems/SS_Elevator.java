@@ -64,11 +64,11 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	public boolean getTop() {
-		return limitSwitchTop.map(DigitalInput::get).orElse(false);
+		return !limitSwitchTop.map(DigitalInput::get).orElse(true);
 	}
 	
 	public boolean getBottom() {
-		return limitSwitchBottom.map(DigitalInput::get).orElse(false);
+		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);
 	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -117,7 +117,7 @@ public class SS_Elevator extends Subsystem {
 	 */
 	public boolean checkElevator() {
 		if (getBottom()) {
-			initEnc(); // reset the encoder
+			encoder.reset(); // reset the encoder
 			
 			if (elevator1.get() <= 0) {
 				set(0);

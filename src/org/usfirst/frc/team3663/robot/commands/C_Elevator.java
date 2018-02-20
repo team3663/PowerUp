@@ -27,6 +27,8 @@ public class C_Elevator extends Command {
     protected void execute() {
     	//Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
     	System.out.println("ELEVATOR  :  "  + Robot.ss_elevator.get());
+    	System.out.println("BOT  :  "  + Robot.ss_elevator.getBottom());
+    	System.out.println("TOP  :  "  + Robot.ss_elevator.getTop());
     	
 		Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
 		//Robot.ss_elevator.checkElevator();
