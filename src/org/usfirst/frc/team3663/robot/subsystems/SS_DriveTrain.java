@@ -15,6 +15,7 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
@@ -24,27 +25,27 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class SS_DriveTrain extends Subsystem {
 	
-	public WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
-	private WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
-	private WPI_TalonSRX left3 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_3);
+	public WPI_VictorSPX left1 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_1);
+	public WPI_VictorSPX left2 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_2);
+	public WPI_VictorSPX left3 = new WPI_VictorSPX(RobotMap.DRIVE_LEFT_3);
 	
-	private WPI_TalonSRX right1 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
-	private WPI_TalonSRX right2 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_2);
-	private WPI_TalonSRX right3 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_3);
+	public WPI_VictorSPX right1 = new WPI_VictorSPX(RobotMap.DRIVE_RIGHT_1);
+	public WPI_VictorSPX right2 = new WPI_VictorSPX(RobotMap.DRIVE_RIGHT_2);
+	public WPI_VictorSPX right3 = new WPI_VictorSPX(RobotMap.DRIVE_RIGHT_3);
 	
 	private Encoder leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENC_1, RobotMap.DRIVE_LEFT_ENC_2);
 	private Encoder rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENC_1, RobotMap.DRIVE_RIGHT_ENC_2);
 	
-	//public DifferentialDrive drive = new DifferentialDrive(left1, right1);
+	public DifferentialDrive drive = new DifferentialDrive(left1, right1);
 	
 	public SS_DriveTrain() {
-		/*
+		
 		left2.follow(left1);
 		left3.follow(left1);
 		
 		right2.follow(right1);
 		right3.follow(right1);
-		*/
+		
 	}
 
 	@Override
@@ -54,11 +55,11 @@ public class SS_DriveTrain extends Subsystem {
 	}
 	
 	public void stop() {
-		//drive.arcadeDrive(0, 0);
+		drive.arcadeDrive(0, 0);
 	}
 
 	public void driveForward(double speed) {
-		//drive.arcadeDrive(speed, 0);
+		drive.arcadeDrive(speed, 0);
 	}
 	
 	/**
@@ -80,7 +81,7 @@ public class SS_DriveTrain extends Subsystem {
 	 * @param turns clockwise if positive
 	 */
 	public void turn(double speed) {
-		//drive.arcadeDrive(0, speed);
+		drive.arcadeDrive(0, speed);
 	}
 
 

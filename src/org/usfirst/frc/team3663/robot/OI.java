@@ -18,22 +18,29 @@ public class OI {
 	public OI() {
 		// Button exampleButton = new JoystickButton(driveStick, 1);
 		// exampleButton.whenPressed(randoms);
-		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
+		final Button intakeCubeCycle = new JoystickButton(driveStick, 4);
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 
 		final Button griffSqz = new JoystickButton(driveStick, 1);
 		griffSqz.whenPressed(new C_GriffSqueeze(true));
 		griffSqz.whenReleased(new C_GriffSqueeze(false));
+		
 
+		final Button intakeLift = new JoystickButton(driveStick, 7);
+		intakeLift.whenPressed(new C_IntakeExtend(true));
+		intakeLift.whenReleased(new C_IntakeExtend(false));
+		
+		final Button intakeSqz = new JoystickButton(driveStick, 8);
+		intakeSqz.whenPressed(new C_IntakeSqueeze(true));
+		intakeSqz.whenReleased(new C_IntakeSqueeze(false));
+
+		
 		/*
 		 * Button intakeExtnd = new JoystickButton(driveStick, 2);
 		 * intakeExtnd.whenPressed(new C_IntakeExtnd(true));
 		 * intakeExtnd.whenReleased(new C_IntakeExtnd(true));
 		 */
-		final Button intakeSqz = new JoystickButton(driveStick, 4);
-		intakeSqz.whenPressed(new C_IntakeSqueeze(true));
-		intakeSqz.whenReleased(new C_IntakeSqueeze(false));
-
+		
 		final Button inGriff = new JoystickButton(driveStick, 5);
 		inGriff.whenPressed(new C_SetGriffSpeed(1));
 		inGriff.whenReleased(new C_SetGriffSpeed(0));
@@ -54,6 +61,8 @@ public class OI {
  * FOLLOWS
  *  0 = LEFT-X-AXIS
  *  1 = LEFT-Y-AXIS
- *  2 = LEFT-TRIGGER 3 = RIGHT-TRIGGER 4
- * = RIGHT-X-AXIS 5 = RIGHT-Y-AXIS
+ *  2 = LEFT-TRIGGER
+ *  3 = RIGHT-TRIGGER
+ *  4 = RIGHT-X-AXIS
+ *  5 = RIGHT-Y-AXIS
  */

@@ -6,7 +6,9 @@ import org.usfirst.frc.team3663.robot.HardwareUtil;
 
 import com.kauailabs.navx.frc.*;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,7 +24,7 @@ public class SS_Gyro extends Subsystem {
 	}
 	
 	public SS_Gyro() {
-		ahrs = HardwareUtil.getHardware(() -> new AHRS(SPI.Port.kMXP));
+		ahrs = HardwareUtil.getHardware(() -> new AHRS(SerialPort.Port.kUSB));
 	}
 
 	public void resetGyro() {
@@ -57,6 +59,12 @@ public class SS_Gyro extends Subsystem {
 		return ahrs.map(AHRS::getRawGyroZ).orElse(0f);
 	}
 
+	//below is very much test code
+	public void leverSide() {
+		DriverStation.Alliance side = DriverStation.getInstance().getAlliance();
+		
+	}
+	
 	/**
 	 * Returns the total accumulated Z-axis angle reported by the sensor, in degrees.
 	 * <p>

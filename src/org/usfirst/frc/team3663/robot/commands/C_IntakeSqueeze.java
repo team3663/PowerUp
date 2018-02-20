@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class C_IntakeSqueeze extends Command {
 	// false = down; true = up
-	private boolean goingDown;
+	private boolean state;
 
-	public C_IntakeSqueeze(boolean state) {
+	public C_IntakeSqueeze(boolean state1) {
 		requires(Robot.ss_cubeIntake);
 
-		goingDown = state;
+		state = state1;
 	}
 
 	// Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class C_IntakeSqueeze extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_cubeIntake.squeezeIntake(goingDown);
+		Robot.ss_cubeIntake.sqzIntake(state);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

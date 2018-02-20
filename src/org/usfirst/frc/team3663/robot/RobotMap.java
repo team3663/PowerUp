@@ -41,20 +41,24 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_2 = 12;
 	public static final int DRIVE_LEFT_3 = 13;
 
-	public static final int CUBE_INTAKE_LEFT = 51;
-	public static final int CUBE_INTAKE_RIGHT = 43;
+	public static final int CUBE_INTAKE_LEFT = 0;
+	public static final int CUBE_INTAKE_RIGHT = 5;
 	
-	public static final int CUBE_SHOOTER = 54;
-	public static final int CUBE_ROTATOR = 53;
+	public static final int CUBE_SHOOTER = 6;
+	public static final int CUBE_ROTATOR = 7;
 
 	// Pneumatics
-	public static final int GRIFF_SQUEEZE_FWD = 1;
-	public static final int GRIFF_SQUEEZE_REV = 0;
+	public static final int GRIFF_SQUEEZE_FWD = 0;
+	public static final int GRIFF_SQUEEZE_REV = 1;
 	
 	public static final int CLIMBER_PNEUM_FWD = 3;
 	public static final int CLIMBER_PNEUM_REV = 2;
 
-	public static final int CUBE_INTAKE_LIFT_FOWARD = 7;
-	public static final int CUBE_INTAKE_LIFT_REVERSE = 6;
+	public static final int INTAKE_LIFT_FOWARD = 5;
+	public static final int INTAKE_LIFT_REVERSE = 7;
+	
+	public static final int INTAKE_SQZ_FOWARD = 4;
+	public static final int INTAKE_SQZ_REVERSE = 6;
+	
 
 }

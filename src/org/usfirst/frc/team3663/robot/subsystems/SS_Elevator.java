@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_DisplayEncoders;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
@@ -33,8 +34,8 @@ public class SS_Elevator extends Subsystem {
 	// Keep within range (0, 1]
 	public static final double ELEVATOR_SPEED = 0.333;
 	
-	 WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
-	 WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
+	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
+	public WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 	 
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
@@ -77,8 +78,17 @@ public class SS_Elevator extends Subsystem {
 		elevator2.setNeutralMode(mode);
 	}
 	
+	double thresh = .05;
 	public void set(double speed) {
-		elevator1.set(speed * ELEVATOR_SPEED);
+		if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
+		{
+			elevator1.set(-.1);
+			elevator2.set(-.1);
+		}
+		else {
+			elevator1.set(speed);
+			elevator2.set(speed);
+		}
 	}
 	
 	/**

@@ -13,6 +13,7 @@ public class C_GriffSqueeze extends Command {
 	public C_GriffSqueeze(boolean pState) {
 		requires(Robot.ss_griff);
 		state = pState;
+		
 	}
 
 	// Called just before this Command runs the first time
