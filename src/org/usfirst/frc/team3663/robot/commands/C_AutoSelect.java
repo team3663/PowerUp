@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3663.robot.commands;
 
+import org.usfirst.frc.team3663.robot.Robot;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,6 +13,7 @@ public class C_AutoSelect extends Command {
     public C_AutoSelect() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.ss_autoSelect);
     }
 
     // Called just before this Command runs the first time
@@ -18,11 +22,37 @@ public class C_AutoSelect extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	String leverPos = Robot.ss_autoSelect.getLeverPos();
+    	if(leverPos != null) {
+    		if (leverPos.charAt(0) == 'L') {
+    			if (DriverStation.getInstance().getLocation() == 1) {
+    				new CG_Auto1.CG_Auto1().start();
+    			}
+    			if (DriverStation.getInstance().getLocation() == 2) {
+    				new CG_Auto2.CG_Auto2().start();
+    			}
+    			if (DriverStation.getInstance().getLocation() == 3) {
+    				new CG_Auto3.CG_Auto3().start();
+    			}
+    		} else {
+    			if (DriverStation.getInstance().getLocation() == 1) {
+    				new CG_Auto4.CG_Auto4().start();
+    			}
+    			if (DriverStation.getInstance().getLocation() == 2) {
+    				new CG_Auto5.CG_Auto5().start();
+    			}
+    			if (DriverStation.getInstance().getLocation() == 3) {
+    				new CG_Auto6.CG_Auto6().start();
+    			}
+    		}
+        } else {
+        	new C_Wait.C_Wait(50).start();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

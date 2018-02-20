@@ -29,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Griff ss_griff;
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
+	public static SS_AutoSelect ss_autoSelect;
 	
 	
 
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_elevator = new SS_Elevator();
+		ss_autoSelect = new SS_AutoSelect();
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 		

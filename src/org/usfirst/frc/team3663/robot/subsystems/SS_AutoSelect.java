@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -7,12 +8,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SS_AutoSelect extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    public String getLeverPos() {
+    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+        return gameData;
+    }
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }
 
