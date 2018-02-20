@@ -9,7 +9,6 @@ package org.usfirst.frc.team3663.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_AutoSelect;
-import org.usfirst.frc.team3663.robot.commands.C_Gyro;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
@@ -55,7 +54,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		C_Gyro c_Gyro = new C_Gyro(10);
 		C_AutoSelect c_Auto = new C_AutoSelect();
 		c_Auto.start();
 	}
