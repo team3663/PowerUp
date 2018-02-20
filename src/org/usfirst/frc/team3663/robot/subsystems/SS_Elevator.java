@@ -23,7 +23,7 @@ public class SS_Elevator extends Subsystem {
 	public static final double TICKS_PER_INCH = 66.86;
 	
 	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 4000;
+	public static final int ELEVATOR_MAX = 5600;
 	
 	// position to go to if elevator hits bottom
 	public static final int ELEVATOR_SAFE_BOT_IN = 3;
@@ -86,6 +86,10 @@ public class SS_Elevator extends Subsystem {
 			//elevator2.set(-.1);
 		}
 		else {*/
+		if (get() >= ELEVATOR_MAX && speed > 0)
+			speed = 0;
+		if (get() <= 0 && speed < 0)
+			speed = 0;
 		
 			elevator1.set(speed);
 			elevator2.set(speed);
