@@ -33,7 +33,7 @@ public class C_MoveElevatorToPos extends Command {
 	
 	@Override
 	protected void execute() {
-		//Robot.ss_elevator.elevator1(pidController.get(Robot.ss_elevator.getPos()));
+		Robot.ss_elevator.set(pidController.get(Robot.ss_elevator.getPos()));
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class C_MoveElevatorToPos extends Command {
 		}
 		
 		if (atDest)
-			Robot.ss_elevator.elvSet(0);
+			Robot.ss_elevator.set(0);
 		return atDest;
 	}
 

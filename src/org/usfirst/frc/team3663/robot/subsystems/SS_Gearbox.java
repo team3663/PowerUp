@@ -7,12 +7,10 @@
 
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
-import org.usfirst.frc.team3663.robot.SpeedControllerGroup;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -23,54 +21,48 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * and a gyro.
  */
 
-public class SS_DriveTrain extends Subsystem {
+public class SS_Gearbox extends Subsystem {
 	
-	@Override
-	public void initDefaultCommand() {
-		setDefaultCommand(new C_Drive());
-	}
-	 
-	WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
-	WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
-	WPI_TalonSRX left3 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_3);
+	private WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
+	private WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
+	private WPI_TalonSRX left3 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_3);
 	
-	WPI_TalonSRX right1 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
-	WPI_TalonSRX right2 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
-	WPI_TalonSRX right3= new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
-
-	public DifferentialDrive drive // arcade drive
-			= new DifferentialDrive(right1, left1);
-
-	public void initDrive() {
+	private WPI_TalonSRX right1 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
+	private WPI_TalonSRX right2 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_2);
+	private WPI_TalonSRX right3 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_3);
+	
+	private DifferentialDrive drive = new DifferentialDrive(left1, right1);
+	
+	public SS_Gearbox() {
 		left2.follow(left1);
 		left3.follow(left1);
 		
 		right2.follow(right1);
 		right3.follow(right1);
+	}
 
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
 		
-		left1.setInverted(false);
-		left2.setInverted(false);
-		left3.setInverted(false);
-		
-		right1.setInverted(false);
-		right2.setInverted(false);
-		right3.setInverted(false);
+	}
+
+	
+	public void stop() {
+		drive.arcadeDrive(0, 0);
+	}
+
+	public void driveForward(double speed) {
+		drive.arcadeDrive(speed, 0);
 	}
 	
-	public void drive(double spd) {
-		//foward  +
-		//backward   -
-		drive.arcadeDrive(spd, 0);
+	/**
+	 * Turns in place
+	 * @param turns clockwise if positive
+	 */
+	public void turn(double speed) {
+		drive.arcadeDrive(0, speed);
 	}
-
-	public void turn(double spd) {
-		//left  -
-		//right  +
-		drive.arcadeDrive(0, spd);
-
-	}
-
 
 
 

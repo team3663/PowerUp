@@ -34,11 +34,11 @@ public class RobotMap {
 	
 
 	// Pneumatics
-	public static final int CUBE_SHOOTER_FORWARD = 3;
-	public static final int CUBE_SHOOTER_REVERSE = 2;
-
-	public static final int CUBE_INTAKE_FORWARD = 1;
-	public static final int CUBE_INTAKE_REVERSE = 0;
+	public static final int CLIMBER_PNEUM_FWD = 3; // TODO: figure out this order
+	public static final int CLIMBER_PNEUM_REV = 2;
+	
+	public static final int GRIFF_SQUEEZE_FWD = 1;
+	public static final int GRIFF_SQUEEZE_REV = 0;
 
 	public static final int CUBE_INTAKE_LIFT_FOWARD = 7;
 	public static final int CUBE_INTAKE_LIFT_REVERSE = 6;

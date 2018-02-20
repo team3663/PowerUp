@@ -15,8 +15,7 @@ import org.usfirst.frc.team3663.robot.Robot;
  */
 public class C_Drive extends Command {
 	public C_Drive() {
-		requires(Robot.ss_griff);
-		requires(Robot.ss_drivetrain);
+		requires(Robot.ss_gearbox);
 		requires(Robot.ss_elevator);
 	}
 
@@ -30,7 +29,7 @@ public class C_Drive extends Command {
 	@Override
 	protected void execute() {
 		//Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-		
+		Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
 		//System.out.println(Robot.ss_griff.getSwitchState());
 		// SS_Camera.initCam();
 		// Robot.ss_limitSwitch.Limit();

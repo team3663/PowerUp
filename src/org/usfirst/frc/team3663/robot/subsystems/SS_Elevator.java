@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import java.util.Optional;
+
+import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
@@ -25,11 +28,19 @@ public class SS_Elevator extends Subsystem {
 	// position to go to if elevator exceeds maximum
 	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
 	
+	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
+	// Keep within range (0, 1]
+	public static final double ELEVATOR_SPEED = 0.333;
+	
 	 WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	 WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 	 
-	//private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
-	//private DigitalInput limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
+	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
+	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
+	
+	public SS_Elevator() {
+		elevator2.follow(elevator1);
+	}
 	
 	public static int inchesToTicks(double inches) {
 		return (int)(inches * TICKS_PER_INCH);
@@ -57,9 +68,8 @@ public class SS_Elevator extends Subsystem {
 		elevator2.setNeutralMode(mode);
 	}
 	
-	public void elvSet(double speed) {
-		elevator1.set(speed);
-		elevator2.set(speed);
+	public void set(double speed) {
+		elevator1.set(speed * ELEVATOR_SPEED);
 	}
 	
 	/**
@@ -79,45 +89,29 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		return getPos() >= ELEVATOR_MAX/* || limitSwitchTop.get()*/;
+		return getPos() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		return getPos() <= ELEVATOR_MIN /*|| limitSwitchBottom.get()*/;
+		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
-	public int thresh = 50;
-	public int last_err;
-	public boolean elvSetPos(int target) {
-		
-		int err = target-getPos();
-		int Kp = 60;
-		
-		if(target < getPos()+thresh && target > getPos()-thresh) {
-			return true;
-		}
-		else {
-			return false;
-			//last_err = err;
-			
-		}
-	}
 	/**
 	 * Make sure the elevator isn't going out of bounds
 	 * 
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		/*if (limitSwitchBottom.get())
+		if (limitSwitchBottom.map(DigitalInput::get).orElse(false))
 			initEnc(); // reset the encoder
-		*/
+		
 		if (atBottom()) {
 			// should always be true so long as the previous `if` is true
 			
 			// if elevator going down, stop ASAP
 			if (elevator1.get() < 0)
-				elvSet(0);
+				set(0);
 			
 			return false;
 		}
@@ -125,7 +119,7 @@ public class SS_Elevator extends Subsystem {
 		if (atTop()) {
 			// if elevator going up, stop ASAP
 			if (elevator1.get() > 0)
-				elvSet(0);
+				set(0);
 			
 			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
 			return false;

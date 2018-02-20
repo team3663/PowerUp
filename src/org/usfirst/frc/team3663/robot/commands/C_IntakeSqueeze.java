@@ -13,8 +13,6 @@ public class C_IntakeSqueeze extends Command {
 
 	public C_IntakeSqueeze(boolean state) {
 		requires(Robot.ss_cubeIntake);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 
 		goingDown = state;
 	}

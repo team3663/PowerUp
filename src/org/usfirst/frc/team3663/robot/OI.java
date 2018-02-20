@@ -17,7 +17,7 @@ public class OI {
 
 	public OI() {
 		// Button exampleButton = new JoystickButton(driveStick, 1);
-		// exampleButton.whenPressed(randomms);
+		// exampleButton.whenPressed(randoms);
 		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 

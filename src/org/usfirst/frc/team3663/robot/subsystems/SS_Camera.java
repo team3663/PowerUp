@@ -52,10 +52,10 @@ public class SS_Camera extends Subsystem {
 
 					if (tgtOffset > 0) {
 						System.out.println("right");
-						//Robot.ss_drivetrain.turnRight(speed);
+						Robot.ss_gearbox.turn(speed);
 					} else {
 						System.out.println("left");
-						//Robot.ss_drivetrain.turnRight(-speed);
+						Robot.ss_gearbox.turn(-speed);
 					}
 					time.reset();
 				} else {
@@ -67,7 +67,7 @@ public class SS_Camera extends Subsystem {
 
 			if (time.getElapsedMillis() > 500) {
 				if (tgtArea < 45) {
-					//Robot.ss_drivetrain.driveForward(.3);
+					Robot.ss_gearbox.driveForward(.3);
 				}
 				System.out.println("drivefowward u tard");
 			}
