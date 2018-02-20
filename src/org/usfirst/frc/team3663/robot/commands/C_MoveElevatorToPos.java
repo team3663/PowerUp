@@ -40,9 +40,9 @@ public class C_MoveElevatorToPos extends Command {
 	protected boolean isFinished() {
 		boolean atDest;
 		if (goingUp) {
-			atDest = Robot.ss_elevator.get() >= destination || Robot.ss_elevator.atTop();
+			atDest = Robot.ss_elevator.get() >= destination || Robot.ss_elevator.getTop();
 		} else {
-			atDest = Robot.ss_elevator.get() <= destination || Robot.ss_elevator.atBottom();
+			atDest = Robot.ss_elevator.get() <= destination || Robot.ss_elevator.getBottom();
 		}
 		
 		if (atDest)
