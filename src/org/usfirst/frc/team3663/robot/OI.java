@@ -55,8 +55,17 @@ public class OI {
 	}
 }
 /*
- * 1 = A 2 = B 3 = X 4 = Y 5 = LEFT-BUMPER 6 = RIGHT-BUMPER 7 = BACK 8 = START 9
- * = LEFT-STICK as a side note please refrain from using 9-10 10 = RIGHT-STICK
+ * 1 = A
+ *  2 = B 
+ *  3 = X
+ *   4 = Y
+ *    5 = LEFT-BUMPER
+ *     6 = RIGHT-BUMPER 
+ *     7 = BACK
+ *      8 = START
+ *       9 * = LEFT-STICK 
+ *       as a side note please refrain from using 9-10
+ *        10 = RIGHT-STICK
  * because the can cause issues with commands using the stick axis AXIS ARE AS
  * FOLLOWS
  *  0 = LEFT-X-AXIS

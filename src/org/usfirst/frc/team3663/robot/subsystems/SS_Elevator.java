@@ -80,15 +80,16 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-		if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
+		/*if (Math.abs(Robot.oi.driveStick.getRawAxis(5)) >= thresh)
 		{
-			elevator1.set(-.1);
-			elevator2.set(-.1);
+			//elevator1.set(-.1);
+			//elevator2.set(-.1);
 		}
-		else {
+		else {*/
+		
 			elevator1.set(speed);
 			elevator2.set(speed);
-		}
+		//}
 	}
 	
 	/**
@@ -102,25 +103,17 @@ public class SS_Elevator extends Subsystem {
 	 * Sets up encoder for use
 	 */
 	public void initEnc() {
-		//TODO convert to greyhill enc
+		encoder.reset();
 	}
-	
-	public int getPos() {
-		//TODO convert to greyhill enc
-		return 1;
-	}
-	
-	
-	
-	
+		
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		return getPos() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
+		return get() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
+		return get() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
 	/**

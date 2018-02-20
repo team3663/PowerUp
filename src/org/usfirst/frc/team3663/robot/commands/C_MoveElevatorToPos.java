@@ -27,22 +27,22 @@ public class C_MoveElevatorToPos extends Command {
 	
 	@Override
 	protected void initialize() {
-		int originalPosition = Robot.ss_elevator.getPos();
+		int originalPosition = Robot.ss_elevator.get();
 		goingUp = destination > originalPosition;
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.ss_elevator.set(pidController.get(Robot.ss_elevator.getPos()));
+		Robot.ss_elevator.set(pidController.get(Robot.ss_elevator.get()));
 	}
 
 	@Override
 	protected boolean isFinished() {
 		boolean atDest;
 		if (goingUp) {
-			atDest = Robot.ss_elevator.getPos() >= destination || Robot.ss_elevator.atTop();
+			atDest = Robot.ss_elevator.get() >= destination || Robot.ss_elevator.atTop();
 		} else {
-			atDest = Robot.ss_elevator.getPos() <= destination || Robot.ss_elevator.atBottom();
+			atDest = Robot.ss_elevator.get() <= destination || Robot.ss_elevator.atBottom();
 		}
 		
 		if (atDest)

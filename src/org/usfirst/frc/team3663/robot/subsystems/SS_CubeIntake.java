@@ -23,7 +23,7 @@ public class SS_CubeIntake extends Subsystem {
 	private final Optional<DoubleSolenoid> intakeLift = HardwareUtil.getDoubleSolenoid(RobotMap.INTAKE_LIFT_FOWARD,
 			RobotMap.INTAKE_LIFT_REVERSE);
 	*/
-	private final DoubleSolenoid intakeLift = new DoubleSolenoid(RobotMap.INTAKE_LIFT_FOWARD, RobotMap.INTAKE_LIFT_REVERSE);
+	private final DoubleSolenoid intakeLift = new DoubleSolenoid(RobotMap.INTAKE_LIFT_REVERSE, RobotMap.INTAKE_LIFT_FOWARD);
 	private final DoubleSolenoid intakeSqz = new DoubleSolenoid(RobotMap.INTAKE_SQZ_FOWARD, RobotMap.INTAKE_SQZ_REVERSE);
 	
 	int counter = 0;

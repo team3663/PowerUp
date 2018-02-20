@@ -27,7 +27,12 @@ public class SS_Griff extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 	
-	public static final double GRIFF_ROT_LIMIT = 85; // in degrees
+	public static final double GRIFF_ROT_LIMIT_R = 45;
+	public static final double GRIFF_ROT_LIMIT_L = 85;
+	
+	public static final double GRIFF_ROT_SAFE_R = 85;
+	public static final double GRIFF_ROT_SAFE_L = 85;
+	// in degrees
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -72,11 +77,17 @@ public class SS_Griff extends Subsystem {
 		return dataRaw;
 	} 
 	
+	//TODO : use pid to slow down imput at the very end of the ROT 
 	
-	public boolean rotatorWithinRange() {
-		return Math.abs(getAngle()) <= GRIFF_ROT_LIMIT;
+	public boolean rotInRange() {
+		//true returns safe
+		return getAngle() <= GRIFF_ROT_LIMIT_R && getAngle() >= GRIFF_ROT_LIMIT_L ;
 	}
 
+	public boolean rotSaftey() {
+		//true returns safe
+		return getAngle() <= GRIFF_ROT_SAFE_R && getAngle() >= GRIFF_ROT_SAFE_L ;
+	}	
 	public boolean getSwitchState() {
 		boolean jank;
 		// Returns digital input result if exists; false otherwise
