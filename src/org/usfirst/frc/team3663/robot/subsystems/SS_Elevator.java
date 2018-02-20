@@ -3,17 +3,15 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
-import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
-import org.usfirst.frc.team3663.robot.commands.C_DisplayEncoders;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
-import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
@@ -25,10 +23,12 @@ public class SS_Elevator extends Subsystem {
 	
 	// Highest position elevator should go
 	public static final int ELEVATOR_MAX = 4000;
-	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);
+	
+	// position to go to if elevator hits bottom
+	public static final int ELEVATOR_SAFE_BOT_IN = 3;
 	
 	// position to go to if elevator exceeds maximum
-	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
+	public static final int ELEVATOR_SAFE_TOP_IN = 3;
 	
 	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
 	// Keep within range (0, 1]
@@ -59,7 +59,6 @@ public class SS_Elevator extends Subsystem {
 		
 		setDefaultCommand(new C_Elevator());
 		//setDefaultCommand(new C_DisplayEncoders());
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -105,16 +104,6 @@ public class SS_Elevator extends Subsystem {
 	public void initEnc() {
 		encoder.reset();
 	}
-		
-	public boolean atTop() {
-		// Uses both softcoded maximum and hardware limit switch
-		return get() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
-	}
-	
-	public boolean atBottom() {
-		// Uses both softcoded minimum and hardware limit switch
-		return get() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
-	}
 	
 	/**
 	 * Make sure the elevator isn't going out of bounds
@@ -122,29 +111,32 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (limitSwitchBottom.map(DigitalInput::get).orElse(false))
+		if (getBottom()) {
 			initEnc(); // reset the encoder
-		
-		if (atBottom()) {
-			// should always be true so long as the previous `if` is true
 			
-			// if elevator going down, stop ASAP
-			if (elevator1.get() < 0)
+			if (elevator1.get() <= 0) {
 				set(0);
+				C_MoveElevatorToPos(ELEVATOR_SAFE_BOT_IN).start();
+			}
 			
 			return false;
 		}
 		
-		if (atTop()) {
-			// if elevator going up, stop ASAP
-			if (elevator1.get() > 0)
+		if (getTop() || get() >= ELEVATOR_MAX) {
+			if (elevator1.get() >= 0) {
 				set(0);
+				C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
+			}
 			
-			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
 			return false;
 		}
 		
 		return true;
+	}
+
+	private Command C_MoveElevatorToPos(int elevatorMin) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

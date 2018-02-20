@@ -24,6 +24,9 @@ public class C_Elevator extends Command {
     protected void execute() {
     	//Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
     	System.out.println("ELEVATOR  :  "  + Robot.ss_elevator.get());
+    	
+    	// Makes sure elevator is in working order
+    	Robot.ss_elevator.checkElevator();
     }
 
     // Make this return true when this Command no longer needs to run execute()
