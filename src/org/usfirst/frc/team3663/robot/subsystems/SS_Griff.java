@@ -1,8 +1,12 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import java.util.Optional;
+
+import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -22,18 +26,27 @@ public class SS_Griff extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 	
-	public static final double GRIFF_ROT_LIMIT = 85; // in degrees
+	public static final double GRIFF_ROT_LIMIT_R = 45;
+	public static final double GRIFF_ROT_LIMIT_L = 85;
+	
+	public static final double GRIFF_ROT_SAFE_R = 85;
+	public static final double GRIFF_ROT_SAFE_L = 85;
+	// in degrees
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
-	private final WPI_TalonSRX griffRot = new WPI_TalonSRX(RobotMap.CUBE_ROTATOR);
-	private final DoubleSolenoid griffPneumatics = new DoubleSolenoid(RobotMap.CUBE_SHOOTER_FORWARD, RobotMap.CUBE_SHOOTER_REVERSE);
+	private final WPI_VictorSPX griffon = new WPI_VictorSPX(RobotMap.CUBE_SHOOTER);
+	private final WPI_VictorSPX griffRot = new WPI_VictorSPX(RobotMap.CUBE_ROTATOR);
+	private final Optional<DoubleSolenoid> griffPneumatics = HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
+	// Measures the rotation of the griff
 	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
-	private final DigitalInput cubePresent = new DigitalInput(RobotMap.LIMIT_SWITCH_INTAKE);
+	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
 
 	private void rotateCube(double speed, Double angle) {
+		if(Robot.ss_elevator.get() < 100) {
+			
+		}
 		griffRot.set(speed);
 	}
 
@@ -44,29 +57,45 @@ public class SS_Griff extends Subsystem {
 		griffon.set(pSpd);
 	}
 
-	public void turnCube(double speed) {
+	public void turnGriff(double speed) {
 		rotateCube(speed, null);
 	}
 
 	public void sqzGriff(boolean pState) {
 		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
-		griffPneumatics.set(direction);
+		griffPneumatics.ifPresent(p -> p.set(direction));
 	}
 	
 	public double getAngle() {
-		// TODO: Convert raw potentiometer data to angles.
+		// TODO: convert raw data to angles
 		double dataRaw = griffRotSensor.get();
 		System.out.println(dataRaw);
 		
 		return dataRaw;
-	}
+	} 
 	
-	public boolean rotatorWithinRange() {
-		return Math.abs(getAngle()) <= GRIFF_ROT_LIMIT;
+	//TODO : use pid to slow down imput at the very end of the ROT 
+	
+	public boolean rotInRange() {
+		//true returns safe
+		return getAngle() <= GRIFF_ROT_LIMIT_R && getAngle() >= GRIFF_ROT_LIMIT_L ;
 	}
 
+	public boolean rotSaftey() {
+		//true returns safe
+		return getAngle() <= GRIFF_ROT_SAFE_R && getAngle() >= GRIFF_ROT_SAFE_L ;
+	}	
 	public boolean getSwitchState() {
-		return cubePresent.get();
+		boolean jank;
+		// Returns digital input result if exists; false otherwise
+		if (cubePresent.map(DigitalInput::get).orElse(false)) {
+			jank = false;
+			
+		}
+		else {
+			jank = true;
+		}
+		return jank;
 	}
 
 }

@@ -5,37 +5,60 @@ package org.usfirst.frc.team3663.robot;
  * thing
  */
 public class RobotMap {
-	// Digital Inputs
-	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 1;
-	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = -1;
-	public static final int LIMIT_SWITCH_INTAKE = 0;
-
-	// Talons
-	public static final int DRIVE_LEFT_1 = 0;
-	public static final int DRIVE_LEFT_2 = -1;
-	public static final int DRIVE_LEFT_3 = -1;
 	
-	public static final int DRIVE_RIGHT_1 = 1;
-	public static final int DRIVE_RIGHT_2 = -1;
-	public static final int DRIVE_RIGHT_3 = -1;
+	/// You expected analog ports, but it's me!-- DIO!
+	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 0;
+	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = 2;
+	public static final int LIMIT_SWITCH_CUBE_PRESENT = 1; // Optical sensor for griff
+	
+	
+	// Encoders
+	public static final int DRIVE_RIGHT_ENC_1 = 4;
+	public static final int DRIVE_RIGHT_ENC_2 = 5;
+	public static final int DRIVE_LEFT_ENC_1 = 6;
+	public static final int DRIVE_LEFT_ENC_2 = 7;
+	public static final int ELEVATOR_ENC_1 = 9;
+	public static final int ELEVATOR_ENC_2 = 10;
 
-	public static final int LIFT = 35;
-	public static final int ELEVATOR = 1;
+	
+	/// Analog
+	public static final int CUBE_ROTATOR_SENSOR = 0; // Potentiometer
 
-	public static final int CUBE_INTAKE_LEFT = 51;
-	public static final int CUBE_INTAKE_RIGHT = 3;
-	public static final int CUBE_SHOOTER = 2;
-	public static final int CUBE_ROTATOR = 53;
-	public static final int CUBE_ROTATOR_SENSOR = -1;
+	
+	/// CAN BUS
+	// Talons
+	public static final int CLIMBER_1 = 1;
+	public static final int CLIMBER_2 = 4;
+	
+	public static final int ELEVATOR_1 = 2;
+	public static final int ELEVATOR_2 = 3;
+	
+	public static final int DRIVE_RIGHT_1 = 8;
+	public static final int DRIVE_RIGHT_2 = 9;
+	public static final int DRIVE_RIGHT_3 = 10;
+	
+	public static final int DRIVE_LEFT_1 = 11;
+	public static final int DRIVE_LEFT_2 = 12;
+	public static final int DRIVE_LEFT_3 = 13;
+
+	public static final int CUBE_INTAKE_LEFT = 0;
+	public static final int CUBE_INTAKE_RIGHT = 5;
+	
+	public static final int CUBE_SHOOTER = 6;
+	public static final int CUBE_ROTATOR = 7;
 
 	// Pneumatics
-	public static final int CUBE_SHOOTER_FORWARD = 3;
-	public static final int CUBE_SHOOTER_REVERSE = 2;
+	public static final int GRIFF_SQUEEZE_FWD = 0;
+	public static final int GRIFF_SQUEEZE_REV = 1;
+	
+	public static final int CLIMBER_PNEUM_FWD = 3;
+	public static final int CLIMBER_PNEUM_REV = 2;
 
-	public static final int CUBE_INTAKE_FORWARD = 1;
-	public static final int CUBE_INTAKE_REVERSE = 0;
-
-	public static final int CUBE_INTAKE_LIFT_FOWARD = 7;
-	public static final int CUBE_INTAKE_LIFT_REVERSE = 6;
+	public static final int INTAKE_LIFT_FOWARD = 5;
+	public static final int INTAKE_LIFT_REVERSE = 7;
+	
+	public static final int INTAKE_SQZ_FOWARD = 4;
+	public static final int INTAKE_SQZ_REVERSE = 6;
+	
 
 }

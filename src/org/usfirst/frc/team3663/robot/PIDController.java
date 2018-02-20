@@ -15,6 +15,8 @@ public class PIDController {
 	
 	private double target = 0; // Desired position
 	
+	
+	
 	private boolean firstTime = true;
 	private ElapsedTime timer = new ElapsedTime();
 	
@@ -30,10 +32,16 @@ public class PIDController {
 		this(gainProportional, gainDerivative, -1, 1);
 	}
 	
+	public PIDController(double gainProportional, double gainDerivative, double min, double max, double target) {
+		this(gainProportional, gainDerivative, min, max);
+		set(target);
+	}
+	
 	/**
 	 * Constrains value to min and max output
 	 */
 	private double clamp(double val) {
+		
 		if (val > maxOutput)
 			val = maxOutput;
 		else if (val < minOutput)

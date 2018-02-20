@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -47,7 +48,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI(); // oi must be initilized last PLEASE
 		
 		
-		Robot.ss_gyro.initGyro();
 		// SS_DriveTrain.setEnc();
 	}
 

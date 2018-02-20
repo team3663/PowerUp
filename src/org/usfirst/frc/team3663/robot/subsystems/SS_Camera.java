@@ -52,10 +52,10 @@ public class SS_Camera extends Subsystem {
 
 					if (tgtOffset > 0) {
 						System.out.println("right");
-						Robot.ss_drivetrain.turnRight(speed);
+						Robot.ss_drivetrain.turn(speed);
 					} else {
 						System.out.println("left");
-						Robot.ss_drivetrain.turnRight(-speed);
+						Robot.ss_drivetrain.turn(-speed);
 					}
 					time.reset();
 				} else {
