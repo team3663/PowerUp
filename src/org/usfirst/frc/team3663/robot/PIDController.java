@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3663.robot;
 
+import edu.wpi.first.wpilibj.Timer;
+
 /**
  * Generic PID controller for the motors
  * 
@@ -14,6 +16,8 @@ public class PIDController {
 	private double gainDerivative;
 	
 	private double target = 0; // Desired position
+	
+	
 	
 	private boolean firstTime = true;
 	private ElapsedTime timer = new ElapsedTime();
@@ -34,6 +38,7 @@ public class PIDController {
 	 * Constrains value to min and max output
 	 */
 	private double clamp(double val) {
+		
 		if (val > maxOutput)
 			val = maxOutput;
 		else if (val < minOutput)

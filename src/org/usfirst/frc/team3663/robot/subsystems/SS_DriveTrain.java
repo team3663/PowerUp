@@ -15,6 +15,8 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.SpeedControllerGroup;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 /**
  * The DriveTrain subsystem incorporates the sensors and actuators attached to
  * the robots chassis. These include four drive motors, a left and right encoder
@@ -23,38 +25,53 @@ import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
 public class SS_DriveTrain extends Subsystem {
 	
-	 
-	private SpeedController left = new SpeedControllerGroup(RobotMap.DRIVE_LEFT_1);
-	private SpeedController right = new SpeedControllerGroup(RobotMap.DRIVE_RIGHT_1);
-
-	public DifferentialDrive drive // arcade drive
-			= new DifferentialDrive(right, left);
-
-	public void driveForward(double speed) {
-		left.set(speed);
-		right.set(-speed);
-	}
-
-	public void turnRight(double speed) {
-		left.set(speed);
-		right.set(speed);
-
-	}
-
-	/*
-	 * Encoders may measure differently in the real world and in simulation. In this
-	 * example the robot moves 0.042 barleycorns per tick in the real world, but the
-	 * simulated encoders simulate 360 tick encoders. This if statement allows for
-	 * the real robot to handle this difference in devices. this is a test boi x2
-	 */
-
-	/**
-	 * When no other command is running let the operator drive around using the PS3
-	 * joystick.
-	 */
 	@Override
 	public void initDefaultCommand() {
 		setDefaultCommand(new C_Drive());
 	}
+	 
+	WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
+	WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
+	WPI_TalonSRX left3 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_3);
+	
+	WPI_TalonSRX right1 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
+	WPI_TalonSRX right2 = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
+	WPI_TalonSRX right3= new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1);
+
+	public DifferentialDrive drive // arcade drive
+			= new DifferentialDrive(right1, left1);
+
+	public void initDrive() {
+		left2.follow(left1);
+		left3.follow(left1);
+		
+		right2.follow(right1);
+		right3.follow(right1);
+
+		
+		left1.setInverted(false);
+		left2.setInverted(false);
+		left3.setInverted(false);
+		
+		right1.setInverted(false);
+		right2.setInverted(false);
+		right3.setInverted(false);
+	}
+	
+	public void drive(double spd) {
+		//foward  +
+		//backward   -
+		drive.arcadeDrive(spd, 0);
+	}
+
+	public void turn(double spd) {
+		//left  -
+		//right  +
+		drive.arcadeDrive(0, spd);
+
+	}
+
+
+
 
 }

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_Drive;
+import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -26,8 +28,8 @@ public class SS_Elevator extends Subsystem {
 	 WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	 WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 	 
-	private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
-	private DigitalInput limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
+	//private DigitalInput limitSwitchTop = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
+	//private DigitalInput limitSwitchBottom = new DigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
 	public static int inchesToTicks(double inches) {
 		return (int)(inches * TICKS_PER_INCH);
@@ -39,6 +41,8 @@ public class SS_Elevator extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
+		
+		setDefaultCommand(new C_Elevator());
 		// TODO Auto-generated method stub
 
 	}
@@ -54,8 +58,8 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	public void elvSet(double speed) {
-		elevator1.set(speed/3);
-		//elevator2.set(speed);
+		elevator1.set(speed);
+		elevator2.set(speed);
 	}
 	
 	/**
@@ -75,12 +79,12 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		return getPos() >= ELEVATOR_MAX || limitSwitchTop.get();
+		return getPos() >= ELEVATOR_MAX/* || limitSwitchTop.get()*/;
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.get();
+		return getPos() <= ELEVATOR_MIN /*|| limitSwitchBottom.get()*/;
 	}
 	
 	public int thresh = 50;
@@ -105,9 +109,9 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (limitSwitchBottom.get())
+		/*if (limitSwitchBottom.get())
 			initEnc(); // reset the encoder
-		
+		*/
 		if (atBottom()) {
 			// should always be true so long as the previous `if` is true
 			

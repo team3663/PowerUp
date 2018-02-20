@@ -49,6 +49,7 @@ public class Robot extends IterativeRobot {
 		
 		
 		Robot.ss_gyro.initGyro();
+		Robot.ss_drivetrain.initDrive();
 		// SS_DriveTrain.setEnc();
 	}
 
