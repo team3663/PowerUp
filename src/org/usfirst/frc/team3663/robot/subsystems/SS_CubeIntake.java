@@ -18,11 +18,12 @@ public class SS_CubeIntake extends Subsystem {
 	private final WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_RIGHT);
 	private final WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
 
-	private final Optional<DoubleSolenoid> intakePneumaticSqueeze = HardwareUtil.getDoubleSolenoid(RobotMap.CLIMBER_PNEUM_FWD,
+	private final Optional<DoubleSolenoid> pneumaticClimber = HardwareUtil.getDoubleSolenoid(RobotMap.CLIMBER_PNEUM_FWD,
 			RobotMap.CLIMBER_PNEUM_REV);
 	
 	private final Optional<DoubleSolenoid> intakePneumaticLift = HardwareUtil.getDoubleSolenoid(RobotMap.CUBE_INTAKE_LIFT_FOWARD,
 			RobotMap.CUBE_INTAKE_LIFT_REVERSE);
+	
 	
 	int counter = 0;
 
@@ -33,7 +34,7 @@ public class SS_CubeIntake extends Subsystem {
 
 	public void squeezeIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		intakePneumaticSqueeze.ifPresent(p -> p.set(direction));
+		pneumaticClimber.ifPresent(p -> p.set(direction));
 	}
 
 	public void extendIntake(boolean isForward) {
@@ -42,6 +43,7 @@ public class SS_CubeIntake extends Subsystem {
 	}
 
 	// TODO this is test code pls do use unless ur a potato
+	/*
 	public void testIntake() {
 		counter++;
 		squeezeIntake(counter > 10);
@@ -49,7 +51,7 @@ public class SS_CubeIntake extends Subsystem {
 		if (counter > 20)
 			counter = 0;
 	}
-
+*/
 	@Override
 	public void initDefaultCommand() {
 		setDefaultCommand(new C_IntakeMonitor());

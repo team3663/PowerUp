@@ -26,7 +26,7 @@ public class C_IntakeMonitor extends Command {
 	@Override
 	protected void execute() {
 		// System.out.println(Robot.ss_cubeIntake.getSwitchState());
-		Robot.ss_cubeIntake.testIntake(); // WARNING DO NOT USE THIS UNLESS UR A POTATO
+		// Robot.ss_cubeIntake.testIntake(); // WARNING DO NOT USE THIS UNLESS UR A POTATO
 		// Robot.ss_cubeIntake.extendIntake(true);
 
 	}

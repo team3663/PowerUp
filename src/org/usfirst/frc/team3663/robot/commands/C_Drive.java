@@ -15,7 +15,7 @@ import org.usfirst.frc.team3663.robot.Robot;
  */
 public class C_Drive extends Command {
 	public C_Drive() {
-		requires(Robot.ss_gearbox);
+		requires(Robot.ss_drivetrain);
 		requires(Robot.ss_elevator);
 	}
 
@@ -28,8 +28,10 @@ public class C_Drive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-		//System.out.println(Robot.ss_griff.getSwitchState());
+		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
+	
+		System.out.println("TOP:  " + Robot.ss_elevator.getTop());
+		System.out.println("BOTTOM:  " + Robot.ss_griff.getSwitchState());
 		// SS_Camera.initCam();
 		// Robot.ss_limitSwitch.Limit();
 	}

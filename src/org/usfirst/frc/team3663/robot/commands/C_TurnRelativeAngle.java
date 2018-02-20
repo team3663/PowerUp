@@ -18,7 +18,7 @@ public class C_TurnRelativeAngle extends Command {
 	
 	public C_TurnRelativeAngle(double degrees, double speed) {
 		requires(Robot.ss_gyro);
-		requires(Robot.ss_gearbox);
+		requires(Robot.ss_drivetrain);
 		
 		this.destination = degrees + Robot.ss_gyro.gyroGetAngle();
 		this.controller = new PIDController(1, 1, -speed, speed, destination);
@@ -26,7 +26,7 @@ public class C_TurnRelativeAngle extends Command {
 	
 	@Override
 	protected void execute() {
-		Robot.ss_gearbox.turn(controller.get(getError()));
+		Robot.ss_drivetrain.turn(controller.get(getError()));
 	}
 
 	@Override

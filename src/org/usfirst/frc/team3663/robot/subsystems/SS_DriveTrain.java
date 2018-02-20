@@ -21,7 +21,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  * and a gyro.
  */
 
-public class SS_Gearbox extends Subsystem {
+public class SS_DriveTrain extends Subsystem {
 	
 	private WPI_TalonSRX left1 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1);
 	private WPI_TalonSRX left2 = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2);
@@ -34,9 +34,9 @@ public class SS_Gearbox extends Subsystem {
 	private Encoder leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENC_1, RobotMap.DRIVE_LEFT_ENC_2);
 	private Encoder rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENC_1, RobotMap.DRIVE_RIGHT_ENC_2);
 	
-	private DifferentialDrive drive = new DifferentialDrive(left1, right1);
+	public DifferentialDrive drive = new DifferentialDrive(left1, right1);
 	
-	public SS_Gearbox() {
+	public SS_DriveTrain() {
 		left2.follow(left1);
 		left3.follow(left1);
 		

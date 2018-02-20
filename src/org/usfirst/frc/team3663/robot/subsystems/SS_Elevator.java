@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_DisplayEncoders;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
@@ -56,10 +57,18 @@ public class SS_Elevator extends Subsystem {
 	protected void initDefaultCommand() {
 		
 		setDefaultCommand(new C_Elevator());
+		setDefaultCommand(new C_DisplayEncoders());
 		// TODO Auto-generated method stub
 
 	}
 	
+	public boolean getTop() {
+		return limitSwitchTop.map(DigitalInput::get).orElse(false);
+	}
+	
+	public boolean getBottom() {
+		return limitSwitchBottom.map(DigitalInput::get).orElse(false);
+	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
 		// If breaks enabled, use Brake mode. Else, use Coast mode.

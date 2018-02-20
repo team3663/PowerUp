@@ -8,7 +8,7 @@ public class RobotMap {
 	
 	/// You expected analog ports, but it's me!-- DIO!
 	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 0;
-	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = -1;
+	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = 2;
 	public static final int LIMIT_SWITCH_CUBE_PRESENT = 1; // Optical sensor for griff
 	
 	
