@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team3663.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
 
@@ -31,7 +32,11 @@ public class C_Drive extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.drive.arcadeDrive(-Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
+		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0)/1.25);
+		
+		
+		//DriverStation.Alliance side = DriverStation.getInstance().getAlliance();
+		//DriverStation.Alliance side = DriverStation.getInstance().getLocation();
 		
 		//System.out.println("RIGHT :  " + Robot.ss_drivetrain.getRight());
 		//System.out.println("LEFT  :  " + Robot.ss_drivetrain.getLeft());
