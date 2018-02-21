@@ -7,7 +7,6 @@ import org.usfirst.frc.team3663.robot.HardwareUtil;
 import com.kauailabs.navx.frc.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
