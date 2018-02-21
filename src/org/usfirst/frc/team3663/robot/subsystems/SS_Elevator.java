@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
-import org.usfirst.frc.team3663.robot.commands.C_DisplayEncoders;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
@@ -33,7 +32,7 @@ public class SS_Elevator extends Subsystem {
 	
 	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
 	// Keep within range (0, 1]
-	public static final double ELEVATOR_SPEED = 0.333;
+	public static final double ELEVATOR_SPEED = .75;
 	
 	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	public WPI_TalonSRX elevator2 = new  WPI_TalonSRX (RobotMap.ELEVATOR_2);

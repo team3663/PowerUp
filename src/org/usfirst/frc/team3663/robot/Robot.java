@@ -39,11 +39,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
+		ss_elevator = new SS_Elevator();
 		ss_drivetrain = new SS_DriveTrain();
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
-		ss_elevator = new SS_Elevator();
+		
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 		

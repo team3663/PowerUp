@@ -16,7 +16,7 @@ public class C_MoveElevatorToPos extends Command {
 	private PIDController pidController = new PIDController(1, 1, -ELEVATOR_SPEED, ELEVATOR_SPEED);
 	
 	public C_MoveElevatorToPos(double inches) {
-		requires(Robot.ss_elevator);
+		//requires(Robot.ss_elevator);
 		this.destination = SS_Elevator.clampTicks(SS_Elevator.inchesToTicks(inches));
 	}
 	

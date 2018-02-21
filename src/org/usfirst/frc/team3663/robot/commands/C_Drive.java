@@ -18,14 +18,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 public class C_Drive extends Command {
 	public C_Drive() {
 		requires(Robot.ss_drivetrain);
-		requires(Robot.ss_elevator);
 	}
 
 	@Override
 	protected void initialize() {
 
-		Robot.ss_elevator.elevator1.setNeutralMode(NeutralMode.Brake);
-		Robot.ss_elevator.elevator2.setNeutralMode(NeutralMode.Brake);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
