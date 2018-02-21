@@ -26,14 +26,9 @@ public class OI {
 		griffSqz.whenReleased(new C_GriffSqueeze(false));
 		
 
-		final Button intakeLift = new JoystickButton(driveStick, 7);
-		intakeLift.whenPressed(new C_IntakeExtend(true));
-		intakeLift.whenReleased(new C_IntakeExtend(false));
-		
-		final Button intakeSqz = new JoystickButton(driveStick, 8);
-		intakeSqz.whenPressed(new C_IntakeSqueeze(true));
-		intakeSqz.whenReleased(new C_IntakeSqueeze(false));
-
+		final Button intakePneumatics = new JoystickButton(driveStick, 7);
+		intakePneumatics.whenPressed(new C_SetIntakeState(true, true));
+		intakePneumatics.whenReleased(new C_SetIntakeState(false, false));
 		
 		/*
 		 * Button intakeExtnd = new JoystickButton(driveStick, 2);
