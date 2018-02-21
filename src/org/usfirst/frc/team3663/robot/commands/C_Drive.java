@@ -7,11 +7,8 @@
 
 package org.usfirst.frc.team3663.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3663.robot.Robot;
-
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 /**
  * Have the robot drive tank style using the PS3 Joystick until interrupted.
