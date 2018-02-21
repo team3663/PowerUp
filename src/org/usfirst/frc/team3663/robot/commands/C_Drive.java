@@ -32,12 +32,12 @@ public class C_Drive extends Command {
 	@Override
 	protected void execute() {
 	//	Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-		Robot.ss_drivetrain.drive.arcadeDrive(-Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
+		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0)/1.25);
 		
 		Robot.ss_drivetrain.getRight();
 		Robot.ss_drivetrain.getLeft();
 		//Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
-		Robot.ss_griff.turnGriff(-Robot.oi.driveStick.getRawAxis(4));
+		//Robot.ss_griff.turnGriff(-Robot.oi.driveStick.getRawAxis(4));
 
 		System.out.println(Robot.ss_griff.getSwitchState());
 		

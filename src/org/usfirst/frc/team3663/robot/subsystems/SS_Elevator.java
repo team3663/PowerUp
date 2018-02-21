@@ -11,6 +11,7 @@ import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -34,8 +35,8 @@ public class SS_Elevator extends Subsystem {
 	// Keep within range (0, 1]
 	public static final double ELEVATOR_SPEED = 0.333;
 	
-	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
-	public WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
+	public WPI_VictorSPX elevator1 = new WPI_VictorSPX(RobotMap.ELEVATOR_1);
+	public WPI_VictorSPX elevator2 = new  WPI_VictorSPX (RobotMap.ELEVATOR_2);
 	 
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);

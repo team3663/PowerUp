@@ -16,11 +16,13 @@ public class C_Elevator extends Command {
     }
 
     // Called just before this Command runs the first time
+    @Override
     protected void initialize() {
     	Robot.ss_elevator.enableBreakMode(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
+    @Override
     protected void execute() {
     	Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
     }
