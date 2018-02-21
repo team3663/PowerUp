@@ -32,7 +32,7 @@ public class C_Drive extends Command {
 	@Override
 	protected void execute() {
 	//	Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
-		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0)/1.25);
+		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
 		
 		Robot.ss_drivetrain.getRight();
 		Robot.ss_drivetrain.getLeft();

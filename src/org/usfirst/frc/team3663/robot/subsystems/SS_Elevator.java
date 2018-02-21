@@ -35,8 +35,8 @@ public class SS_Elevator extends Subsystem {
 	// Keep within range (0, 1]
 	public static final double ELEVATOR_SPEED = 0.333;
 	
-	public WPI_VictorSPX elevator1 = new WPI_VictorSPX(RobotMap.ELEVATOR_1);
-	public WPI_VictorSPX elevator2 = new  WPI_VictorSPX (RobotMap.ELEVATOR_2);
+	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
+	public WPI_TalonSRX elevator2 = new  WPI_TalonSRX (RobotMap.ELEVATOR_2);
 	 
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
@@ -81,15 +81,15 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-		if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
+		/*if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
 		{
 			elevator1.set(-.1);
 			elevator2.set(-.1);
 		}
-		else {
-			elevator1.set(speed);
-			elevator2.set(speed);
-		}
+		else {*/
+			elevator1.set(speed*ELEVATOR_SPEED);
+			elevator2.set(speed*ELEVATOR_SPEED);
+		//}
 	}
 	
 	/**
