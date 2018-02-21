@@ -5,7 +5,7 @@ import org.usfirst.frc.team3663.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Sets speed of intake wheels.
  */
 public class C_SetIntakeSpeed extends Command {
 
@@ -13,12 +13,8 @@ public class C_SetIntakeSpeed extends Command {
 
 	public C_SetIntakeSpeed(double spd) {
 		requires(Robot.ss_cubeIntake);
+		
 		this.spd = spd;
-	}
-
-	// Called just before this Command runs the first time
-	@Override
-	protected void initialize() {
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -27,20 +23,9 @@ public class C_SetIntakeSpeed extends Command {
 		Robot.ss_cubeIntake.spinIntake(spd);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return true; // Runs only once
 	}
-
-	// Called once after isFinished returns true
-	@Override
-	protected void end() {
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	@Override
-	protected void interrupted() {
-	}
+	
 }

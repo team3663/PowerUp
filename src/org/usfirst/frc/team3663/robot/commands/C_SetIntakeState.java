@@ -4,6 +4,9 @@ import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Sets whether intake is out/in and it's extended
+ */
 public class C_SetIntakeState extends Command {
 	
 	private final boolean squeeze;
@@ -24,7 +27,7 @@ public class C_SetIntakeState extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return true; // Runs only once
 	}
 
 }

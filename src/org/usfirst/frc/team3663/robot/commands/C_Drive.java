@@ -18,12 +18,7 @@ public class C_Drive extends Command {
 		requires(Robot.ss_drivetrain);
 	}
 
-	@Override
-	protected void initialize() {
 
-	}
-
-	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 	//	Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1), Robot.oi.driveStick.getRawAxis(0));
@@ -31,30 +26,10 @@ public class C_Drive extends Command {
 		
 		Robot.ss_drivetrain.getRight();
 		Robot.ss_drivetrain.getLeft();
-		//Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
-		//Robot.ss_griff.turnGriff(-Robot.oi.driveStick.getRawAxis(4));
-
-		//System.out.println(Robot.ss_griff.getSwitchState());
-		
-
-		
-		
-		
-		//System.out.println("TOP:    " + Robot.ss_elevator.getTop());
-		//System.out.println("BOTTOM:    " + Robot.ss_elevator.getBottom());
-		// SS_Camera.initCam();
-		// Robot.ss_limitSwitch.Limit();
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
 		return false; // Runs until interrupted
-	}
-
-	// Called once after isFinished returns true
-	@Override
-	protected void end() {
-
 	}
 }

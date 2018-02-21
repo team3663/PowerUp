@@ -4,6 +4,9 @@ import org.usfirst.frc.team3663.robot.ElapsedTime;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Waits for a given period
+ */
 public class C_Wait extends Command {
 	private final ElapsedTime time = new ElapsedTime();
 	private final int durationMillis;
@@ -15,10 +18,6 @@ public class C_Wait extends Command {
 	@Override
 	protected void initialize() {
 		time.reset();
-	}
-	
-	@Override
-	protected void execute() {
 	}
 
 	@Override

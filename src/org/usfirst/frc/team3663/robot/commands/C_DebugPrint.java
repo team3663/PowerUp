@@ -2,6 +2,10 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Prints text to console. Useful for determining Command Group status
+ *
+ */
 public class C_DebugPrint extends Command {
 	
 	private final String message;
