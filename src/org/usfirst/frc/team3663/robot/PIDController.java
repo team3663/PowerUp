@@ -13,6 +13,9 @@ public class PIDController {
 	private double gainProportional;
 	private double gainDerivative;
 	
+	private double target = 0; // Desired position
+	
+	
 	
 	private boolean firstTime = true;
 	private ElapsedTime timer = new ElapsedTime();
@@ -29,6 +32,11 @@ public class PIDController {
 		this(gainProportional, gainDerivative, -1, 1);
 	}
 	
+	public PIDController(double gainProportional, double gainDerivative, double min, double max, double target) {
+		this(gainProportional, gainDerivative, min, max);
+		set(target);
+	}
+	
 	/**
 	 * Constrains value to min and max output
 	 */
@@ -43,9 +51,17 @@ public class PIDController {
 	}
 	
 	/**
+	 * Sets the target value
+	 */
+	public void set(double target) {
+		this.target = target;
+	}
+	
+	/**
 	 * @return controller output
 	 */
-	public double get(double error) {
+	public double get(double actual) {
+		double error = target - actual;
 		double dt = timer.getElapsedSeconds();
 		
 		double pInput = gainProportional * error;

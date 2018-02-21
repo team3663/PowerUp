@@ -3,8 +3,11 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_DisplayEncoders;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
+import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -21,13 +24,11 @@ public class SS_Elevator extends Subsystem {
 	public static final double TICKS_PER_INCH = 66.86;
 	
 	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 5600;
-	
-	// position to go to if elevator hits bottom
-	public static final int ELEVATOR_SAFE_BOT_IN = 3;
+	public static final int ELEVATOR_MAX = 4000;
+	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);
 	
 	// position to go to if elevator exceeds maximum
-	public static final int ELEVATOR_SAFE_TOP_IN = 3;
+	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
 	
 	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
 	// Keep within range (0, 1]
@@ -58,15 +59,16 @@ public class SS_Elevator extends Subsystem {
 		
 		setDefaultCommand(new C_Elevator());
 		//setDefaultCommand(new C_DisplayEncoders());
+		// TODO Auto-generated method stub
 
 	}
 	
 	public boolean getTop() {
-		return !limitSwitchTop.map(DigitalInput::get).orElse(true);
+		return limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
 	
 	public boolean getBottom() {
-		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);
+		return limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -77,26 +79,16 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	double thresh = .05;
-	
-	/**
-	 * Moves the elevator up and down
-	 * 
-	 * @param speed negative = up; pos = down
-	 */
 	public void set(double speed) {
-		/*if (Math.abs(Robot.oi.driveStick.getRawAxis(5)) >= thresh)
+		if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
 		{
-			//elevator1.set(-.1);
-			//elevator2.set(-.1);
+			elevator1.set(-.1);
+			elevator2.set(-.1);
 		}
-		else {*/
-		/*if (get() >= ELEVATOR_MAX && speed > 0)
-			speed = 0;
-		if (get() <= 0 && speed > 0)
-			speed = 0;
-		*/
-			elevator1.set(speed*ELEVATOR_SPEED);
-			elevator2.set(speed*ELEVATOR_SPEED);
+		else {
+			elevator1.set(speed);
+			elevator2.set(speed);
+		}
 	}
 	
 	/**
@@ -110,7 +102,25 @@ public class SS_Elevator extends Subsystem {
 	 * Sets up encoder for use
 	 */
 	public void initEnc() {
-		encoder.reset();
+		//TODO convert to greyhill enc
+	}
+	
+	public int getPos() {
+		//TODO convert to greyhill enc
+		return 1;
+	}
+	
+	
+	
+	
+	public boolean atTop() {
+		// Uses both softcoded maximum and hardware limit switch
+		return getPos() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
+	}
+	
+	public boolean atBottom() {
+		// Uses both softcoded minimum and hardware limit switch
+		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
 	/**
@@ -119,26 +129,28 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (getBottom()) {
-			encoder.reset(); // reset the encoder
+		if (limitSwitchBottom.map(DigitalInput::get).orElse(false))
+			initEnc(); // reset the encoder
+		
+		if (atBottom()) {
+			// should always be true so long as the previous `if` is true
 			
-			if (elevator1.get() <= 0) {
+			// if elevator going down, stop ASAP
+			if (elevator1.get() < 0)
 				set(0);
-				//C_MoveElevatorToPos(ELEVATOR_SAFE_BOT_IN).start();
-			}
 			
 			return false;
 		}
 		
-		/*if (getTop() || get() >= ELEVATOR_MAX) {
-			if (elevator1.get() >= 0) {
+		if (atTop()) {
+			// if elevator going up, stop ASAP
+			if (elevator1.get() > 0)
 				set(0);
-				//C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
-			}
 			
+			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
 			return false;
 		}
-		*/
+		
 		return true;
 	}
 
