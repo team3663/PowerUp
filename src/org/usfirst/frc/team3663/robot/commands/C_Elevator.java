@@ -25,7 +25,8 @@ public class C_Elevator extends Command {
     @Override
     protected void execute() {
     	Robot.ss_elevator.elevator1.set(Robot.oi.driveStick.getRawAxis(5));
-    	System.out.println(Robot.ss_elevator.elevator1.get());
+    	System.out.println(Robot.oi.driveStick.getRawAxis(5));
+    	Robot.ss_elevator.checkElevator();
     }
 
     // Make this return true when this Command no longer needs to run execute()

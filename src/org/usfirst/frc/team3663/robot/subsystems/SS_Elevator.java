@@ -100,12 +100,13 @@ public class SS_Elevator extends Subsystem {
 	 * Sets up encoder for use
 	 */
 	public void initEnc() {
+		encoder.reset();
 		//TODO convert to greyhill enc
 	}
 	
 	public int getPos() {
 		//TODO convert to greyhill enc
-		return 1;
+		return encoder.get();
 	}
 	
 	
@@ -113,12 +114,12 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		return getPos() >= ELEVATOR_MAX || limitSwitchTop.map(DigitalInput::get).orElse(false);
+		return !limitSwitchTop.map(DigitalInput::get).orElse(true);
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		return getPos() <= ELEVATOR_MIN || limitSwitchBottom.map(DigitalInput::get).orElse(false);
+		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);
 	}
 	
 	/**
