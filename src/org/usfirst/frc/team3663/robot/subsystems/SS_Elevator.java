@@ -30,7 +30,7 @@ public class SS_Elevator extends Subsystem {
 	
 	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
 	// Keep within range (0, 1]
-	public static final double ELEVATOR_SPEED = .75;
+	public static final double ELEVATOR_SPEED = .5;
 	
 	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	public WPI_TalonSRX elevator2 = new  WPI_TalonSRX (RobotMap.ELEVATOR_2);
@@ -80,14 +80,7 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-		/*if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
-		{
-			elevator1.set(-.1);
-			elevator2.set(-.1); 
-		}
-		else {*/
 			elevator1.set(speed*ELEVATOR_SPEED);
-		//}
 	}
 	
 	/**

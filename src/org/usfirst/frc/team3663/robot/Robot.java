@@ -8,8 +8,7 @@ package org.usfirst.frc.team3663.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
-
-//import org.usfirst.frc.team3663.robot.commands.C_Gyro;
+import org.usfirst.frc.team3663.robot.commands.C_AutoSelect;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
@@ -29,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Griff ss_griff;
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
+	public static SS_AutoSelect ss_autoSelect;
 	
 	
 
@@ -44,7 +44,8 @@ public class Robot extends IterativeRobot {
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
-		
+		ss_elevator = new SS_Elevator();
+		ss_autoSelect = new SS_AutoSelect();
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 		
@@ -54,7 +55,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		//C_Gyro c_Gyro = new C_Gyro(10);
+		C_AutoSelect c_Auto = new C_AutoSelect();
+		c_Auto.start();
 	}
 
 	/**
