@@ -84,7 +84,7 @@ public class SS_Elevator extends Subsystem {
 		/*if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
 		{
 			elevator1.set(-.1);
-			elevator2.set(-.1);
+			elevator2.set(-.1); 
 		}
 		else {*/
 			elevator1.set(speed*ELEVATOR_SPEED);

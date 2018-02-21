@@ -39,7 +39,7 @@ public class C_Drive extends Command {
 		//Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
 		//Robot.ss_griff.turnGriff(-Robot.oi.driveStick.getRawAxis(4));
 
-		System.out.println(Robot.ss_griff.getSwitchState());
+		//System.out.println(Robot.ss_griff.getSwitchState());
 		
 
 		
