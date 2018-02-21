@@ -13,8 +13,6 @@ public class PIDController {
 	private double gainProportional;
 	private double gainDerivative;
 	
-	
-	
 	private boolean firstTime = true;
 	private ElapsedTime timer = new ElapsedTime();
 	
