@@ -86,11 +86,11 @@ public class SS_Elevator extends Subsystem {
 			//elevator2.set(-.1);
 		}
 		else {*/
-		if (get() >= ELEVATOR_MAX && speed > 0)
+		/*if (get() >= ELEVATOR_MAX && speed > 0)
 			speed = 0;
 		if (get() <= 0 && speed < 0)
 			speed = 0;
-		
+		*/
 			elevator1.set(speed*ELEVATOR_SPEED);
 			elevator2.set(speed*ELEVATOR_SPEED);
 		//}
@@ -127,7 +127,7 @@ public class SS_Elevator extends Subsystem {
 			return false;
 		}
 		
-		if (getTop() || get() >= ELEVATOR_MAX) {
+		/*if (getTop() || get() >= ELEVATOR_MAX) {
 			if (elevator1.get() >= 0) {
 				set(0);
 				//C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
@@ -135,7 +135,7 @@ public class SS_Elevator extends Subsystem {
 			
 			return false;
 		}
-		
+		*/
 		return true;
 	}
 

@@ -32,6 +32,7 @@ public class C_Elevator extends Command {
     	
 		Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
 		//Robot.ss_elevator.checkElevator();
+		//Robot.ss_elevator.checkElevator();
     	// Makes sure elevator is in working order
     	//Robot.ss_elevator.checkElevator();
     }
