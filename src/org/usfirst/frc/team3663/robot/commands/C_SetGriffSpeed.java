@@ -18,8 +18,8 @@ public class C_SetGriffSpeed extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-
-		Robot.ss_griff.setGriffSpd(spd);
+		Robot.ss_griff.griffon.set(spd);
+		//Robot.ss_griff.setGriffSpd(spd);;
 	}
 	@Override
 	protected boolean isFinished() {

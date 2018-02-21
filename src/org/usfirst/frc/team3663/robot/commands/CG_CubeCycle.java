@@ -18,7 +18,7 @@ public class CG_CubeCycle extends CommandGroup {
 		addSequential(new C_SetGriffSpeed(.7));
 		
 		// Wait for sensor
-		addSequential(new C_PrintForever("At sensor part"));
+		addSequential(new C_DebugPrint("At sensor part", true));
 		addSequential(new C_GriffSensor());
 		
 		// Disarm cube intake
@@ -28,5 +28,6 @@ public class CG_CubeCycle extends CommandGroup {
 		addSequential(new C_GriffSqueeze(true));
 		addSequential(new C_IntakeSqueeze(false));
 		addSequential(new C_IntakeExtend(false));
+		
 	}
 }

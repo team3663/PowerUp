@@ -33,8 +33,7 @@ public class SS_Gyro extends Subsystem {
 
 	//below is very much test code
 	public void leverSide() {
-		DriverStation.Alliance side = DriverStation.getInstance().getAlliance();
-		
+		DriverStation.Alliance side = DriverStation.getInstance().getAlliance();	
 	}
 	
 	/**

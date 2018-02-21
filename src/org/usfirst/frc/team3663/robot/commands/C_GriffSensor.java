@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_GriffSensor extends Command {
 
 	public C_GriffSensor() {
-
 		requires(Robot.ss_griff);
 	}
 	

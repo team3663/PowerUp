@@ -3,7 +3,6 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
-import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 
@@ -12,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
@@ -79,6 +77,12 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	double thresh = .05;
+	
+	/**
+	 * Moves the elevator up and down
+	 * 
+	 * @param speed negative = up; pos = down
+	 */
 	public void set(double speed) {
 		/*if (Math.abs(Robot.oi.driveStick.getRawAxis(5)) >= thresh)
 		{
@@ -88,12 +92,11 @@ public class SS_Elevator extends Subsystem {
 		else {*/
 		/*if (get() >= ELEVATOR_MAX && speed > 0)
 			speed = 0;
-		if (get() <= 0 && speed < 0)
+		if (get() <= 0 && speed > 0)
 			speed = 0;
 		*/
 			elevator1.set(speed*ELEVATOR_SPEED);
 			elevator2.set(speed*ELEVATOR_SPEED);
-		//}
 	}
 	
 	/**
@@ -137,11 +140,6 @@ public class SS_Elevator extends Subsystem {
 		}
 		*/
 		return true;
-	}
-
-	private Command C_MoveElevatorToPos(int elevatorMin) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
