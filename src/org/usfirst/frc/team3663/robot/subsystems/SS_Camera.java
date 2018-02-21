@@ -23,6 +23,7 @@ public class SS_Camera extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
+	// TODO fix this mess up
 	public static void initCam() {
 		CameraServer.getInstance().startAutomaticCapture();
 		/*

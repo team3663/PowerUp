@@ -44,7 +44,7 @@ public class C_TurnRelativeAngle extends Command {
 	@Override
 	protected void end() {
 		// Stops drivetrain
-		Robot.ss_drivetrain.turn(0);
+		Robot.ss_drivetrain.stop();
 	}
 
 }

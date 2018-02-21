@@ -57,7 +57,7 @@ public class C_DriveForwardRelative extends Command {
 	@Override
 	protected void end() {
 		// Stop wheels
-		Robot.ss_drivetrain.driveForward(0);
+		Robot.ss_drivetrain.stop();
 	}
 
 }

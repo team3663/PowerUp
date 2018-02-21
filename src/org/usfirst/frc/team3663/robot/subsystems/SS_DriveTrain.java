@@ -48,19 +48,16 @@ public class SS_DriveTrain extends Subsystem {
 	}
 	
 	public SS_DriveTrain() {
-		
 		left2.follow(left1);
 		left3.follow(left1);
 		
 		right2.follow(right1);
 		right3.follow(right1);
-		
 	}
 
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new C_Drive());
-		// TODO Auto-generated method stub
 	}
 	
 	public void stop() {
@@ -92,7 +89,5 @@ public class SS_DriveTrain extends Subsystem {
 	public void turn(double speed) {
 		drive.arcadeDrive(0, speed);
 	}
-
-
 
 }

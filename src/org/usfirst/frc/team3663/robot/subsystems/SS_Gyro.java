@@ -6,12 +6,11 @@ import org.usfirst.frc.team3663.robot.HardwareUtil;
 
 import com.kauailabs.navx.frc.*;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ *	Gyroscope that measures the orientation of the robot
  */
 public class SS_Gyro extends Subsystem {
 	private final Optional<AHRS> ahrs;
@@ -29,41 +28,7 @@ public class SS_Gyro extends Subsystem {
 	public void resetGyro() {
 		ahrs.ifPresent(AHRS::reset);
 	}
-	
-	
-	// NOTE: if the Gyro can't be read, all angle readings default to 0.
-
-	// Since we have readAngle, should we keep these methods?
-	public float gyroReadX() {
-		// Here's how this code works:
-		//  1. Optional<T>.map() accepts a function which takes in a T and
-		//     gives a different value. in this case, it takes an AHRS and
-		//     returns a float. `.map()` will always return an Optional<Float>.
-		//  2. If `ahrs` is a present Optional (i.e. it's not empty), then
-		//     it returns an Optional of ahrs.getRawGyroX(). Else, it returns
-		//     an empty Optional<Float>.
-		//  3. .orElse(default) takes an Optional<T> and, if it's present, returns the
-		//     value it holds. Else, it returns the default value given.
-		//
-		//  TL;DR: It returns the result of AHRS.getRawGyroX() if the sensor exists;
-		//    it returns 0 otherwise.
-		return ahrs.map(AHRS::getRawGyroX).orElse(0f);
-	}
-
-	public float gyroReadY() {
-		return ahrs.map(AHRS::getRawGyroY).orElse(0f);
-	}
-
-	public float gyroReadZ() {
-		return ahrs.map(AHRS::getRawGyroZ).orElse(0f);
-	}
-
-	//below is very much test code
-	public void leverSide() {
-		DriverStation.Alliance side = DriverStation.getInstance().getAlliance();
 		
-	}
-	
 	/**
 	 * Returns the total accumulated Z-axis angle reported by the sensor, in degrees.
 	 * <p>
@@ -73,6 +38,7 @@ public class SS_Gyro extends Subsystem {
 		return ahrs.map(AHRS::getAngle).orElse(0.0);
 	}
 
+	/*
 	// TODO document what this does
 	public double calcGyro(double pLoc) {
 		final double tract = .5; // field = .8
@@ -87,5 +53,6 @@ public class SS_Gyro extends Subsystem {
 		}
 		return speed;
 	}
+	*/
 
 }

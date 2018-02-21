@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
-import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
