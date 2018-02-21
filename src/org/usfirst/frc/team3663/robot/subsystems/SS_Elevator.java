@@ -42,6 +42,8 @@ public class SS_Elevator extends Subsystem {
 	
 	public SS_Elevator() {
 		//elevator2.follow(elevator1);
+		elevator1.setInverted(true);
+		elevator2.setInverted(true);
 	}
 	
 	public static int inchesToTicks(double inches) {
@@ -128,28 +130,21 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (limitSwitchBottom.map(DigitalInput::get).orElse(false))
+		if (atBottom()) { 
 			initEnc(); // reset the encoder
-		
-		if (atBottom()) {
-			// should always be true so long as the previous `if` is true
 			
-			// if elevator going down, stop ASAP
-			if (elevator1.get() < 0)
+			// If going down when already at bottom
+			if (elevator1.get() < 0) {
 				set(0);
-			
+				return false;
+			}
+		}
+				
+		if (atTop() && elevator1.get() > 0) {
+			set(0);
 			return false;
 		}
-		
-		if (atTop()) {
-			// if elevator going up, stop ASAP
-			if (elevator1.get() > 0)
-				set(0);
-			
-			new C_MoveElevatorToPos(ELEVATOR_SAFE_AREA).start();
-			return false;
-		}
-		
+				
 		return true;
 	}
 
