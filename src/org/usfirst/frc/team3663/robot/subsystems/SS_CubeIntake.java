@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_GriffSanityCheck;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -20,8 +22,6 @@ public class SS_CubeIntake extends Subsystem {
 	*/
 	private final DoubleSolenoid intakeLift = new DoubleSolenoid(RobotMap.INTAKE_LIFT_FOWARD, RobotMap.INTAKE_LIFT_REVERSE);
 	private final DoubleSolenoid intakeSqz = new DoubleSolenoid(RobotMap.INTAKE_SQZ_FOWARD, RobotMap.INTAKE_SQZ_REVERSE);
-	
-	int counter = 0;
 
 	public void spinIntake(double speed) {
 		rightIntake.set(speed);
@@ -30,14 +30,12 @@ public class SS_CubeIntake extends Subsystem {
 
 	public void sqzIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		//intakeSqz.ifPresent(p -> p.set(direction));
 		intakeSqz.set(direction);
 		
 	}
 
 	public void extendIntake(boolean isForward) {
 		DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
-		//intakeLift.ifPresent(p -> p.set(direction));
 		intakeLift.set(direction);
 	}
 
