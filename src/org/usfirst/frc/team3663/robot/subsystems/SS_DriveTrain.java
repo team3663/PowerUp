@@ -50,10 +50,10 @@ public class SS_DriveTrain extends Subsystem {
 	public SS_DriveTrain() {
 		
 		left2.follow(left1);
-		left3.follow(left1);
+		//left3.follow(left1);
 		
 		right2.follow(right1);
-		right3.follow(right1);
+		//right3.follow(right1);
 		
 	}
 

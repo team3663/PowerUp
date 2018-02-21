@@ -24,10 +24,12 @@ public class C_Elevator extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.ss_elevator.set(Robot.oi.driveStick.getRawAxis(5));
+    	Robot.ss_elevator.elevator1.set(Robot.oi.driveStick.getRawAxis(5));
+    	System.out.println(Robot.ss_elevator.elevator1.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
+    @Override
     protected boolean isFinished() {
         return false;
     }

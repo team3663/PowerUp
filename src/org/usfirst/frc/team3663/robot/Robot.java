@@ -9,7 +9,6 @@ package org.usfirst.frc.team3663.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_AutoSelect;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardToPosition;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
@@ -40,6 +39,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
+		ss_elevator = new SS_Elevator();
 		ss_drivetrain = new SS_DriveTrain();
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
@@ -55,7 +55,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		new C_DriveForwardToPosition(12, .1).start();
+		C_AutoSelect c_Auto = new C_AutoSelect();
+		c_Auto.start();
 	}
 
 	/**

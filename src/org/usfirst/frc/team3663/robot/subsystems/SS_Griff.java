@@ -20,6 +20,11 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
  */
 public class SS_Griff extends Subsystem {
 	
+	public static final int GRIFF_LIMIT_L = 85;
+	public static final int GRIFF_LIMIT_R = 45;
+	public static final int GRIFF_SAFE_L = 85;
+	public static final int GRIFF_SAFE_R = 85;
+	
 	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.

@@ -3,14 +3,12 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
-import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -32,10 +30,10 @@ public class SS_Elevator extends Subsystem {
 	
 	// Speed the elevator should go at, i.e. normal speed is multiplied by this.
 	// Keep within range (0, 1]
-	public static final double ELEVATOR_SPEED = 0.333;
+	public static final double ELEVATOR_SPEED = .75;
 	
-	public WPI_VictorSPX elevator1 = new WPI_VictorSPX(RobotMap.ELEVATOR_1);
-	public WPI_VictorSPX elevator2 = new  WPI_VictorSPX (RobotMap.ELEVATOR_2);
+	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
+	public WPI_TalonSRX elevator2 = new  WPI_TalonSRX (RobotMap.ELEVATOR_2);
 	 
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
@@ -80,15 +78,15 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-		if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
+		/*if (Robot.oi.driveStick.getRawAxis(5) > thresh && Robot.oi.driveStick.getRawAxis(5) < -thresh)
 		{
 			elevator1.set(-.1);
-			elevator2.set(-.1);
+			elevator2.set(-.1); 
 		}
-		else {
-			elevator1.set(speed);
-			elevator2.set(speed);
-		}
+		else {*/
+			elevator1.set(speed*ELEVATOR_SPEED);
+			elevator2.set(speed*ELEVATOR_SPEED);
+		//}
 	}
 	
 	/**
