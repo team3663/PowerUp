@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class C_MoveElevatorToPos extends Command {
 	
+	private static final int THRESHOLD = (int)(SS_Elevator.TICKS_PER_INCH * 3);
 	private static final double ELEVATOR_SPEED = 0.3;
 	
 	private boolean goingUp;
@@ -15,39 +16,41 @@ public class C_MoveElevatorToPos extends Command {
 	
 	private PIDController pidController = new PIDController(1, 1, -ELEVATOR_SPEED, ELEVATOR_SPEED);
 	
-	public C_MoveElevatorToPos(double inches) {
-		//requires(Robot.ss_elevator);
-		this.destination = SS_Elevator.clampTicks(SS_Elevator.inchesToTicks(inches));
-	}
-	
 	public C_MoveElevatorToPos(int ticks) {
 		requires(Robot.ss_elevator);
 		this.destination = SS_Elevator.clampTicks(ticks);
 	}
 	
+	public static C_MoveElevatorToPos fromInches(double inches) {
+		return new C_MoveElevatorToPos(SS_Elevator.inchesToTicks(inches));
+	}
+	
+	private int getError() {
+		return destination - Robot.ss_elevator.getPos();
+	}
+	
 	@Override
 	protected void initialize() {
-		int originalPosition = Robot.ss_elevator.getPos();
-		goingUp = destination > originalPosition;
+		goingUp = getError() >= 0;
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.ss_elevator.set(pidController.get(Robot.ss_elevator.getPos()));
+		Robot.ss_elevator.set(pidController.get(getError()));
 	}
 
 	@Override
 	protected boolean isFinished() {
-		boolean atDest;
-		if (goingUp) {
-			atDest = Robot.ss_elevator.getPos() >= destination || Robot.ss_elevator.atTop();
-		} else {
-			atDest = Robot.ss_elevator.getPos() <= destination || Robot.ss_elevator.atBottom();
-		}
+		if (Math.abs(getError()) < THRESHOLD) return true;
+		if (goingUp && Robot.ss_elevator.atTop()) return true;
+		if (!goingUp && Robot.ss_elevator.atBottom()) return true;
 		
-		if (atDest)
-			Robot.ss_elevator.set(0);
-		return atDest;
+		return false;
+	}
+	
+	@Override
+	protected void end() {
+		Robot.ss_elevator.set(0);
 	}
 
 }

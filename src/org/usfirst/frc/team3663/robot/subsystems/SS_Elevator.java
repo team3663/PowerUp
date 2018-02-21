@@ -24,7 +24,7 @@ public class SS_Elevator extends Subsystem {
 	public static final double TICKS_PER_INCH = 66.86;
 	
 	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 4000;
+	public static final int ELEVATOR_MAX = 5600;
 	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);
 	
 	// position to go to if elevator exceeds maximum
