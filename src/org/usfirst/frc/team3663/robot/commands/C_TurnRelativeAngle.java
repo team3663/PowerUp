@@ -21,7 +21,7 @@ public class C_TurnRelativeAngle extends Command {
 		requires(Robot.ss_drivetrain);
 		
 		this.destination = degrees + Robot.ss_gyro.gyroGetAngle();
-		this.controller = new PIDController(1, 1, -speed, speed, destination);
+		this.controller = new PIDController(1, 1, -speed, speed);
 	}
 	
 	@Override
@@ -32,6 +32,12 @@ public class C_TurnRelativeAngle extends Command {
 	@Override
 	protected boolean isFinished() {
 		return Math.abs(getError()) < ANGLE_THRESHOLD;
+	}
+	
+	@Override
+	protected void end() {
+		// Stop motors
+		Robot.ss_drivetrain.driveForward(0);
 	}
 
 }

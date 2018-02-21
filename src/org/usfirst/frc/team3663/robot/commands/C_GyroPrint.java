@@ -13,12 +13,6 @@ public class C_GyroPrint extends Command {
 		requires(Robot.ss_gyro);
 	}
 
-	// Called just before this Command runs the first time
-	@Override
-	protected void initialize() {
-
-	}
-
 	@Override
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
@@ -30,17 +24,5 @@ public class C_GyroPrint extends Command {
 	@Override
 	protected boolean isFinished() {
 		return false;
-	}
-
-	// Called once after isFinished returns true
-	@Override
-	protected void end() {
-
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	@Override
-	protected void interrupted() {
 	}
 }

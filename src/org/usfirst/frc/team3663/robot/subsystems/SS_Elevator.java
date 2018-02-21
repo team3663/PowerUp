@@ -11,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
@@ -22,7 +21,7 @@ public class SS_Elevator extends Subsystem {
 	public static final double TICKS_PER_INCH = 66.86;
 	
 	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 4000;
+	public static final int ELEVATOR_MAX = 5600;
 	
 	// position to go to if elevator hits bottom
 	public static final int ELEVATOR_SAFE_BOT_IN = 3;
@@ -63,11 +62,11 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	public boolean getTop() {
-		return limitSwitchTop.map(DigitalInput::get).orElse(false);
+		return !limitSwitchTop.map(DigitalInput::get).orElse(true);
 	}
 	
 	public boolean getBottom() {
-		return limitSwitchBottom.map(DigitalInput::get).orElse(false);
+		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);
 	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -78,17 +77,20 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	double thresh = .05;
+	
+	/**
+	 * Moves the elevator up and down
+	 * 
+	 * @param speed negative = up; pos = down
+	 */
 	public void set(double speed) {
-		/*if (Math.abs(Robot.oi.driveStick.getRawAxis(5)) >= thresh)
-		{
-			//elevator1.set(-.1);
-			//elevator2.set(-.1);
-		}
-		else {*/
+		if (get() >= ELEVATOR_MAX && speed < 0)
+			speed = 0;
+		if (get() <= 0 && speed > 0)
+			speed = 0;
 		
-			elevator1.set(speed);
-			elevator2.set(speed);
-		//}
+			elevator1.set(speed*ELEVATOR_SPEED);
+			elevator2.set(speed*ELEVATOR_SPEED);
 	}
 	
 	/**
@@ -112,11 +114,11 @@ public class SS_Elevator extends Subsystem {
 	 */
 	public boolean checkElevator() {
 		if (getBottom()) {
-			initEnc(); // reset the encoder
+			encoder.reset(); // reset the encoder
 			
 			if (elevator1.get() <= 0) {
 				set(0);
-				C_MoveElevatorToPos(ELEVATOR_SAFE_BOT_IN).start();
+				//C_MoveElevatorToPos(ELEVATOR_SAFE_BOT_IN).start();
 			}
 			
 			return false;
@@ -125,18 +127,13 @@ public class SS_Elevator extends Subsystem {
 		if (getTop() || get() >= ELEVATOR_MAX) {
 			if (elevator1.get() >= 0) {
 				set(0);
-				C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
+				//C_MoveElevatorToPos(ELEVATOR_SAFE_TOP_IN).start();
 			}
 			
 			return false;
 		}
 		
 		return true;
-	}
-
-	private Command C_MoveElevatorToPos(int elevatorMin) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
