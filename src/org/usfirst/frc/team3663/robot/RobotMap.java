@@ -18,7 +18,7 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_ENC_1 = 6;
 	public static final int DRIVE_LEFT_ENC_2 = 7;
 	public static final int ELEVATOR_ENC_1 = 9;
-	public static final int ELEVATOR_ENC_2 = 10;
+	public static final int ELEVATOR_ENC_2 = 8;
 
 	
 	/// Analog
