@@ -15,7 +15,7 @@ public class C_AutoSelect extends Command {
         // eg. requires(chassis);
     	requires(Robot.ss_autoSelect);
     }
-2
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }
@@ -23,7 +23,8 @@ public class C_AutoSelect extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	String leverPos = Robot.ss_autoSelect.getLeverPos();
-    	if(leverPos != null) {
+    	String sub = "LLL";
+    	if(true) {
     		if (leverPos.charAt(0) == 'L') {
     			if (DriverStation.getInstance().getLocation() == 1) {
     				new CG_Auto1().start();

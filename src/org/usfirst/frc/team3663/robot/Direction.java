@@ -29,11 +29,11 @@ public enum Direction {
 	public static Optional<Direction[]> fromGameData() {
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		
-		if (gameData == null) { 
+		/*if (gameData == heck) { 
 			// If gameData doesn't exist, there's a problem
 			System.err.println("WARN: DriverStation gave a null string!");
 			return Optional.empty();			
-		}
+		}*/
 			
 		if (gameData.length() != 3) {
 			// If gameData doesn't have 3 characters, there's a problem
