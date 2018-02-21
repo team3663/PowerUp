@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3663.robot;
 
-import java.util.Optional;
-
 import edu.wpi.first.wpilibj.DriverStation;
 
 public enum Direction {
@@ -26,26 +24,16 @@ public enum Direction {
 	 * 2: direction of scale
 	 * 3: direction of opponent scale
 	 */
-	public static Optional<Direction[]> fromGameData() {
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+	public static Direction[] fromGameData() {
+		String gameData = "";
 		
-		/*if (gameData == heck) { 
-			// If gameData doesn't exist, there's a problem
-			System.err.println("WARN: DriverStation gave a null string!");
-			return Optional.empty();			
-		}*/
-			
-		if (gameData.length() != 3) {
-			// If gameData doesn't have 3 characters, there's a problem
-			System.err.println("WARN: Expected message of length 3; got length " + gameData.length());
-			return Optional.empty();
-		}
-			
+		while (gameData.length() > 0)
+			gameData = DriverStation.getInstance().getGameSpecificMessage();	
 		
 		Direction[] d = new Direction[3];
 		for (int i = 0; i < 3; i++)
 			d[i] = Direction.fromChar(gameData.charAt(i));
 		
-		return Optional.of(d);
+		return d;
 	}
 }
