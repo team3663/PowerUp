@@ -41,7 +41,7 @@ public class SS_Elevator extends Subsystem {
 	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
 	
 	public SS_Elevator() {
-		//elevator2.follow(elevator1);
+		elevator2.follow(elevator1);
 		elevator1.setInverted(true);
 		elevator2.setInverted(true);
 	}
@@ -87,7 +87,6 @@ public class SS_Elevator extends Subsystem {
 		}
 		else {*/
 			elevator1.set(speed*ELEVATOR_SPEED);
-			elevator2.set(speed*ELEVATOR_SPEED);
 		//}
 	}
 	
