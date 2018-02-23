@@ -62,12 +62,11 @@ public class SS_Griff extends Subsystem {
 		rotateCube(speed, null);
 	}
 
-	public void sqzGriff(boolean pState) {
-		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
-		//griffPneumatics.ifPresent(p -> p.set(direction));
-		griffSqz.set(direction);
+	public boolean isBelowBar() {
+		return Robot.ss_elevator.get() < 3000;
 	}
 	
+
 	public double getAngle() {
 		// TODO: convert raw data to angles
 		double dataRaw = griffRotSensor.get();
@@ -78,11 +77,18 @@ public class SS_Griff extends Subsystem {
 	
 	
 	public boolean rotatorWithinRange() {
-		return Math.abs(getAngle()) <= GRIFF_ROT_LIMIT;
+		if (isBelowBar()) {
+			return true;
+		}
+		else {
+			
+		}
+		return false;
 	}
 
 	public boolean getSwitchState() {
 		boolean jank;
+		//TODO make this not jank sam, pls
 		// Returns digital input result if exists; false otherwise
 		if (cubePresent.map(DigitalInput::get).orElse(false)) {
 			jank = false;
@@ -93,5 +99,11 @@ public class SS_Griff extends Subsystem {
 		}
 		return jank;
 	}
+	public void sqzGriff(boolean pState) {
+		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
+		//griffPneumatics.ifPresent(p -> p.set(direction));
+		griffSqz.set(direction);
+	}
+	
 
 }
