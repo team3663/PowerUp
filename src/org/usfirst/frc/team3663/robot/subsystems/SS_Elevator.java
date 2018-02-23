@@ -95,7 +95,10 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-			elevator1.set(speed*ELEVATOR_SPEED);
+		if (get() < ELEVATOR_MAX)
+			elevator1.set(speed*ELEVATOR_SPEED + .05);
+		else 
+			elevator1.set(0);
 	}
 
 	
@@ -119,7 +122,6 @@ public class SS_Elevator extends Subsystem {
 	public boolean checkElevator() {
 		if (atBottom()) { 
 			resetEnc(); // reset the encoder
-			
 			// If going down when already at bottom
 			if (elevator1.get() < 0) {
 				set(0);

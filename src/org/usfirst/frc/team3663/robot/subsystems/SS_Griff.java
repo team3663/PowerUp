@@ -77,28 +77,20 @@ public class SS_Griff extends Subsystem {
 	
 	
 	public boolean rotatorWithinRange() {
+		//TODO FINNISH THIS CODE
 		if (isBelowBar()) {
 			return true;
 		}
 		else {
-			
+				
 		}
 		return false;
 	}
 
 	public boolean getSwitchState() {
-		boolean jank;
-		//TODO make this not jank sam, pls
-		// Returns digital input result if exists; false otherwise
-		if (cubePresent.map(DigitalInput::get).orElse(false)) {
-			jank = false;
-			
-		}
-		else {
-			jank = true;
-		}
-		return jank;
+		return !cubePresent.map(DigitalInput::get).orElse(false);
 	}
+	
 	public void sqzGriff(boolean pState) {
 		DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
 		//griffPneumatics.ifPresent(p -> p.set(direction));

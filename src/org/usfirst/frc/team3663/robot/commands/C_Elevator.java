@@ -20,11 +20,9 @@ public class C_Elevator extends Command {
 
     @Override
     protected void execute() {
-    	Robot.ss_elevator.elevator1.set(-Robot.oi.driveStick.getRawAxis(5));
     	Robot.ss_elevator.checkElevator();
-    	
-    	// System.out.println(-Robot.oi.driveStick.getRawAxis(5)); // Print negated controller value
-    }
+    	Robot.ss_elevator.elevator1.set(-Robot.oi.driveStick.getRawAxis(5));
+        }
 
     @Override
     protected boolean isFinished() {
