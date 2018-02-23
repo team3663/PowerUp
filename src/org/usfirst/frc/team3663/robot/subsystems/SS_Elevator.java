@@ -39,12 +39,15 @@ public class SS_Elevator extends Subsystem {
 	
 	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
 	
+	//***************************************************************************************
+	
 	public SS_Elevator() {
 		elevator2.follow(elevator1);
 		elevator1.setInverted(true);
 		elevator2.setInverted(true);
 	}
 	
+	//UTILITY METHODS
 	public static int inchesToTicks(double inches) {
 		return (int)(inches * TICKS_PER_INCH);
 	}
@@ -55,13 +58,12 @@ public class SS_Elevator extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		
 		setDefaultCommand(new C_Elevator());
 		//setDefaultCommand(new C_DisplayEncoders());
-		// TODO Auto-generated method stub
 
 	}
 	
+	//SWITCHES AND ENCODER GETS
 	public boolean getTop() {
 		return limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
@@ -77,14 +79,9 @@ public class SS_Elevator extends Subsystem {
 		elevator2.setNeutralMode(mode);
 	}
 	
-	double thresh = .05;
-	public void set(double speed) {
-			elevator1.set(speed*ELEVATOR_SPEED);
-	}
 	
-	/**
-	 * @return The current position of the encoders
-	 */
+	// @return The current position of the encoders
+	
 	public int get() {
 		return encoder.get();
 	}
@@ -92,16 +89,15 @@ public class SS_Elevator extends Subsystem {
 	/**
 	 * Sets up encoder for use
 	 */
-	public void initEnc() {
+	public void resetEnc() {
 		encoder.reset();
-		//TODO convert to greyhill enc
 	}
 	
-	public int getPos() {
-		//TODO convert to greyhill enc
-		return encoder.get();
+	double thresh = .05;
+	public void set(double speed) {
+			elevator1.set(speed*ELEVATOR_SPEED);
 	}
-	
+
 	
 	
 	
@@ -122,7 +118,7 @@ public class SS_Elevator extends Subsystem {
 	 */
 	public boolean checkElevator() {
 		if (atBottom()) { 
-			initEnc(); // reset the encoder
+			resetEnc(); // reset the encoder
 			
 			// If going down when already at bottom
 			if (elevator1.get() < 0) {

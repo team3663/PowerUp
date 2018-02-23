@@ -38,7 +38,7 @@ public class C_MoveElevatorToPos extends Command {
 	}
 	
 	private int getError() {
-		return destination - Robot.ss_elevator.getPos();
+		return destination - Robot.ss_elevator.get();
 	}
 	
 	@Override

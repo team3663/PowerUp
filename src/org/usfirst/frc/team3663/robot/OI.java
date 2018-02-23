@@ -67,7 +67,9 @@ public class OI {
  *
  * 9 = LEFT-STICK
  *
- * as a side note please refrain from using 9-10 10 = RIGHT-STICK because the
+ * 10 = RIGHT-STICK 
+ *
+ * as a side note please refrain from using 9-10 because the
  * can cause issues with commands using the stick axis AXIS ARE AS FOLLOWS
  *
  * 0 = LEFT-X-AXIS
