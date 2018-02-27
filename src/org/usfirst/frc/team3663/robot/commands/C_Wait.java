@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_Wait extends Command {
 	private final ElapsedTime time = new ElapsedTime();
 	private final int durationMillis;
-	
+
 	public C_Wait(int durationMillis) {
 		this.durationMillis = durationMillis;
 	}
-	
+
 	@Override
 	protected void initialize() {
 		time.reset();

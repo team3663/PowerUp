@@ -29,12 +29,10 @@ public class Robot extends IterativeRobot {
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	public static SS_AutoSelect ss_autoSelect;
-	
-	
 
 	/**
-	 * This function is run when the robot is first started up and should be used
-	 * for any initialization code.git test
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.git test
 	 */
 	@Override
 	public void robotInit() {
@@ -46,16 +44,15 @@ public class Robot extends IterativeRobot {
 		ss_gyro = new SS_Gyro();
 		ss_elevator = new SS_Elevator();
 		ss_autoSelect = new SS_AutoSelect();
-		
+
 		oi = new OI(); // oi must be initilized last PLEASE
-		
-		
+
 		// SS_DriveTrain.setEnc();
 	}
 
 	@Override
 	public void autonomousInit() {
-		C_AutoSelect c_Auto = new C_AutoSelect();
+		final C_AutoSelect c_Auto = new C_AutoSelect();
 		c_Auto.start();
 	}
 

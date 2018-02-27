@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Camera subsystem to test the vision tracking.
  */
 public class SS_Camera extends Subsystem {
-	static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-CPR");
+	static NetworkTable table = NetworkTableInstance.getDefault()
+			.getTable("limelight-CPR");
 	private static final ElapsedTime time = new ElapsedTime();
 
 	// Put methods for controlling this subsystem
@@ -40,9 +41,14 @@ public class SS_Camera extends Subsystem {
 		table.getEntry("ledMode").setNumber(0); // 0=on 1=off
 
 		// Get vision camera data
-		final double tgtOffset = tx.getDouble(0); // Horizontal offset from crosshair to target (-27° to 27°)
+		final double tgtOffset = tx.getDouble(0); // Horizontal offset from
+													// crosshair to target (-27°
+													// to 27°)
 		final double tgtArea = ta.getDouble(0); // Target area (range 0-100)
-		final boolean isTargetDetected = (tv.getDouble(0) == 1); // 1 = target detected; 0 otherwise
+		final boolean isTargetDetected = (tv.getDouble(0) == 1); // 1 = target
+																	// detected;
+																	// 0
+																	// otherwise
 
 		if (isTargetDetected) {
 			if (tgtArea < 60) {

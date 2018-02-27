@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *	Gyroscope that measures the orientation of the robot
+ * Gyroscope that measures the orientation of the robot
  */
 public class SS_Gyro extends Subsystem {
 	private final Optional<AHRS> ahrs;
@@ -20,7 +20,7 @@ public class SS_Gyro extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 	}
-	
+
 	public SS_Gyro() {
 		ahrs = HardwareUtil.getHardware(() -> new AHRS(SerialPort.Port.kUSB));
 	}
@@ -28,31 +28,16 @@ public class SS_Gyro extends Subsystem {
 	public void resetGyro() {
 		ahrs.ifPresent(AHRS::reset);
 	}
-		
+
 	/**
-	 * Returns the total accumulated Z-axis angle reported by the sensor, in degrees.
+	 * Returns the total accumulated Z-axis angle reported by the sensor, in
+	 * degrees.
 	 * <p>
-	 * NOTE: its range is beyond 360 degrees, so that algorithms don't have to worry about overflows
+	 * NOTE: its range is beyond 360 degrees, so that algorithms don't have to
+	 * worry about overflows
 	 */
 	public double gyroGetAngle() {
 		return ahrs.map(AHRS::getAngle).orElse(0.0);
 	}
-
-	/*
-	// TODO document what this does
-	public double calcGyro(double pLoc) {
-		final double tract = .5; // field = .8
-		double speed = (pLoc - gyroGetAngle()) / 60;
-
-		System.out.println(gyroGetAngle());
-		
-		if (speed < tract && speed > 0) {
-			speed = tract;
-		} else if (speed > -tract && speed < 0) {
-			speed = -tract;
-		}
-		return speed;
-	}
-	*/
 
 }

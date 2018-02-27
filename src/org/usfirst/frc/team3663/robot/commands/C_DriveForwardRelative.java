@@ -12,36 +12,41 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class C_DriveForwardRelative extends Command {
 	private final int THRESHOLD_TICKS = SS_DriveTrain.inchesToTicks(3);
-	
+
 	private final int destination;
 	private final PIDController controller;
-	
+
 	/**
-	 * 
-	 * @param ticks Negative value makes it go backwards instead
-	 * @param speed Maximum speed for robot
+	 *
+	 * @param ticks
+	 *            Negative value makes it go backwards instead
+	 * @param speed
+	 *            Maximum speed for robot
 	 */
 	public C_DriveForwardRelative(int ticks, double speed) {
 		requires(Robot.ss_drivetrain);
-		
+
 		destination = ticks;
 		controller = new PIDController(1, 1, -speed, speed);
 	}
-	
+
 	/**
 	 * Use inches instead
 	 */
-	public static C_DriveForwardRelative fromInches(double inches, double speed) {
-		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches), speed);
+	public static C_DriveForwardRelative fromInches(double inches,
+			double speed) {
+		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches),
+				speed);
 	}
-	
+
 	/**
-	 * Returns distance from destination. Positive value means it is forward; negative means backward
+	 * Returns distance from destination. Positive value means it is forward;
+	 * negative means backward
 	 */
 	private int getError() {
 		return destination - Robot.ss_drivetrain.getLeft();
 	}
-	
+
 	@Override
 	protected void execute() {
 		// set speed from PID controller
@@ -53,7 +58,7 @@ public class C_DriveForwardRelative extends Command {
 		// Finished if error within threshold
 		return Math.abs(getError()) < THRESHOLD_TICKS;
 	}
-	
+
 	@Override
 	protected void end() {
 		// Stop wheels
