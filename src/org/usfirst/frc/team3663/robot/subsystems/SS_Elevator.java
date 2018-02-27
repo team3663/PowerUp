@@ -34,10 +34,10 @@ public class SS_Elevator extends Subsystem {
 	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	public WPI_TalonSRX elevator2 = new  WPI_TalonSRX (RobotMap.ELEVATOR_2);
 		
-	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
-	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
+	//private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
+//	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 	
-	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
+	//private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
 	
 	//***************************************************************************************
 	
@@ -58,18 +58,18 @@ public class SS_Elevator extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new C_Elevator());
+		//setDefaultCommand(new C_Elevator());
 		//setDefaultCommand(new C_DisplayEncoders());
 
 	}
 	
 	//SWITCHES AND ENCODER GETS
 	public boolean getTop() {
-		return limitSwitchTop.map(DigitalInput::get).orElse(false);
+		return false;//limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
 	
 	public boolean getBottom() {
-		return limitSwitchBottom.map(DigitalInput::get).orElse(false);
+		return false;//limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -83,14 +83,14 @@ public class SS_Elevator extends Subsystem {
 	// @return The current position of the encoders
 	
 	public int get() {
-		return encoder.get();
+		return 0;//encoder.get();
 	}
 	
 	/**
 	 * Sets up encoder for use
 	 */
 	public void resetEnc() {
-		encoder.reset();
+		//encoder.reset();
 	}
 	
 	double thresh = .05;
@@ -106,12 +106,12 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {
 		// Uses both softcoded maximum and hardware limit switch
-		return !limitSwitchTop.map(DigitalInput::get).orElse(true);
+		return false ;//!limitSwitchTop.map(DigitalInput::get).orElse(true);
 	}
 	
 	public boolean atBottom() {
 		// Uses both softcoded minimum and hardware limit switch
-		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);
+		return false ;//!limitSwitchBottom.map(DigitalInput::get).orElse(true);
 	}
 	
 	/**
