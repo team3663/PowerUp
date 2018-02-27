@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SS_AutoSelect extends Subsystem {
 
-    public String getLeverPos() {
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
-        return gameData;
-    }
+	public String getLeverPos() {
+		final String gameData = DriverStation.getInstance()
+				.getGameSpecificMessage();
+		return gameData;
+	}
 
-    public void initDefaultCommand() {
-    }
+	@Override
+	public void initDefaultCommand() {
+	}
 }
-

@@ -13,7 +13,7 @@ public class C_SetIntakeSpeed extends Command {
 
 	public C_SetIntakeSpeed(double spd) {
 		requires(Robot.ss_cubeIntake);
-		
+
 		this.spd = spd;
 	}
 
@@ -27,5 +27,5 @@ public class C_SetIntakeSpeed extends Command {
 	protected boolean isFinished() {
 		return true; // Runs only once
 	}
-	
+
 }

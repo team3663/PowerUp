@@ -5,15 +5,15 @@ import org.usfirst.frc.team3663.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *	Sets whether the griff is squeezed
+ * Sets whether the griff is squeezed
  */
 public class C_GriffSqueeze extends Command {
 	public boolean state;
 
 	public C_GriffSqueeze(boolean state) {
 		requires(Robot.ss_griff);
-		
-		this.state = state;		
+
+		this.state = state;
 	}
 
 	@Override
