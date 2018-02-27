@@ -16,7 +16,7 @@ public class HardwareUtil {
 		try {
 			return Optional.ofNullable(supplier.get());
 		} catch (Exception e) {
-			System.err.println("WARNING: Hardware not detected. Using null default instead");
+			System.err.println("WARNING: Hardware not detected. Using n default instead");
 			e.printStackTrace();
 			
 			return Optional.empty();

@@ -69,6 +69,7 @@ public class SS_Griff extends Subsystem {
 
 	public double getAngle() {
 		// TODO: convert raw data to angles
+		//btw the person who did this todo is dumb, its already in angles
 		double dataRaw = griffRotSensor.get();
 		System.out.println(dataRaw);
 		
@@ -79,9 +80,16 @@ public class SS_Griff extends Subsystem {
 	public boolean rotatorWithinRange() {
 		//TODO FINNISH THIS CODE
 		if (isBelowBar()) {
-			return true;
+			if (getAngle() > 4)
+				return true;
+			else if (getAngle() > 3)
+				return true;
 		}
 		else {
+			if (getAngle() > 4)
+				return true;
+			else if (getAngle() > 3)
+				return true;
 				
 		}
 		return false;
