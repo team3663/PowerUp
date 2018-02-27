@@ -28,7 +28,7 @@ public class C_TurnRelativeAngle extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = degrees + Robot.ss_gyro.gyroGetAngle();
-		controller = new PIDController(1, 1, -speed, speed);
+		controller = new PIDController(1, 1, 1, -speed, speed);
 	}
 
 	@Override

@@ -20,7 +20,7 @@ public class C_MoveElevatorToPos extends Command {
 	private boolean goingUp;
 	private final int destination;
 
-	private final PIDController pidController = new PIDController(1, 1,
+	private final PIDController pidController = new PIDController(1, 1, 1,
 			-ELEVATOR_SPEED, ELEVATOR_SPEED);
 
 	/**
