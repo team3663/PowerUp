@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3663.robot;
 
-public class ElapsedTime {
+public final class ElapsedTime {
 	private long time = 0;
 
 	public ElapsedTime() {

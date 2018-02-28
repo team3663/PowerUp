@@ -6,7 +6,7 @@ package org.usfirst.frc.team3663.robot;
  * Only currently implements Proportional and Derivative; integral isn't needed
  * for what we're doing
  */
-public class PIDController {
+public final class PIDController {
 	private final double minOutput;
 	private final double maxOutput;
 

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 /**
  * Wraps risky hardware access with Optional<>.
  */
-public class HardwareUtil {
+public final class HardwareUtil {
 	private HardwareUtil() {
 	}
 

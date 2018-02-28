@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 /**
  * Input/Output devices for the driver station
  */
-public class OI {
+public final class OI {
 	// TODO: last is for the limit switch
 	public boolean last = true;
 
