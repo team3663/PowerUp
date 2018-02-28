@@ -24,6 +24,8 @@ public class C_AutoSelect extends Command {
 		//////////////DRIVE FORWARD ONLY TEST CODE/////////////////////
 		new CG_Auto3().start();
 
+		
+		///////////PROBABLY SCRAP THIS CODE///////////////////////////
 		/*if (leverPos.charAt(0) == 'L') {
 			if (DriverStation.getInstance().getLocation() == 1) {
 				new CG_Auto1().start();

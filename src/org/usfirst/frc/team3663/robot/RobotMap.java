@@ -5,7 +5,7 @@ package org.usfirst.frc.team3663.robot;
  * If the motor number is 19 that means that it will not be assigned to any
  * thing
  */
-public final class RobotMap {
+public class RobotMap {
 
 	/// You expected analog ports, but it's me!-- DIO!
 	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 0;

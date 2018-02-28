@@ -4,7 +4,7 @@ package org.usfirst.frc.team3663.robot;
  * Generic PID controller for the motors
  *
  * Only currently implements Proportional and Derivative; integral isn't needed
- * for what we're doing
+ * for what we're doing // yea but we added it anyway
  */
 public final class PIDController {
 	private final double minOutput;
