@@ -20,8 +20,11 @@ public class C_AutoSelect extends Command {
 	@Override
 	protected void execute() {
 		final String leverPos = Robot.ss_autoSelect.getLeverPos();
+		
+		//////////////DRIVE FORWARD ONLY TEST CODE/////////////////////
+		new CG_Auto3().start();
 
-		if (leverPos.charAt(0) == 'L') {
+		/*if (leverPos.charAt(0) == 'L') {
 			if (DriverStation.getInstance().getLocation() == 1) {
 				new CG_Auto1().start();
 			}
@@ -41,7 +44,7 @@ public class C_AutoSelect extends Command {
 			if (DriverStation.getInstance().getLocation() == 3) {
 				new CG_Auto6().start();
 			}
-		}
+		}*/
 
 	}
 
