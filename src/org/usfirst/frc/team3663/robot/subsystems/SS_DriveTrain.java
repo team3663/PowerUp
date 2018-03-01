@@ -50,7 +50,7 @@ public class SS_DriveTrain extends Subsystem {
 	}
 
 	public SS_DriveTrain() {
-		left2.follow(left1);
+		left2.follow(left1);				//Curtis: I see that you are setting the second motor to follow the first do you also need to do this for the third
 
 		right2.follow(right1);
 	}
