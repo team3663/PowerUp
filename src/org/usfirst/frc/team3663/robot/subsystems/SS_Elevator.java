@@ -37,10 +37,10 @@ public class SS_Elevator extends Subsystem {
 	public WPI_TalonSRX elevator1 = new WPI_TalonSRX(RobotMap.ELEVATOR_1);
 	public WPI_TalonSRX elevator2 = new  WPI_TalonSRX (RobotMap.ELEVATOR_2);
 		
-	//private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
-//	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
+	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);			//TODO figure DIO problem
+	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);		//TODO figure DIO problem
 	
-	//private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
+	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
 	
 	//***************************************************************************************
 	
@@ -86,14 +86,14 @@ public class SS_Elevator extends Subsystem {
 	// @return The current position of the encoders
 	
 	public int get() {								//curtis question : why is this a thing it seemed unused
-		return 0;//encoder.get();
+		return encoder.get();
 	}
 	
 	/**
 	 * Sets up encoder for use
 	 */
 	public void resetEnc() {
-		//encoder.reset();
+		encoder.reset();						// TODO figure out why encoder is not working
 	}
 	
 	double thresh = .05;
@@ -109,12 +109,12 @@ public class SS_Elevator extends Subsystem {
 	
 	public boolean atTop() {							//Curtis: this always returns false
 		// Uses both softcoded maximum and hardware limit switch
-		return false ;//!limitSwitchTop.map(DigitalInput::get).orElse(true);
+		return !limitSwitchTop.map(DigitalInput::get).orElse(true);		// TODO fix problem with DIO
 	}
 	
 	public boolean atBottom() {							//so far there is no way to see where you are
 		// Uses both softcoded minimum and hardware limit switch
-		return false ;//!limitSwitchBottom.map(DigitalInput::get).orElse(true);
+		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);	// TODO fix problem with DIO
 	}
 	
 	/**
@@ -139,5 +139,90 @@ public class SS_Elevator extends Subsystem {
 				
 		return true;
 	}
+	
+	/*MC list of TODO in elevator: 
+	* 	Zero Comand: example bellow 
+	*	Smoothing for joystick/all of elevator: example Bellow
+	*	Software encoder limits for elevator
+	*	Software is arms position 4 dont move down 
+	*/
+	
+	public boolean ZeroElevator()			// TODO example Zero Elevator moves elevator down slowly until limit switch is reached.
+	{
+		if (atBottom()) {
+			elevator1.set(0);
+			encoder.reset();
+			return true; 
+		}
+		else
+			elevator1.set(-.12);
+		return false;
+	}
+	
+	
+	// TODO example code simple move to encoder tick not very accurate but should work
+	double firstLimit = (TICKS_PER_INCH*12); // first value is +/-12 in range when near goal
+	double secondLimit = (TICKS_PER_INCH*5); // first value is +/-5 in range when near goal
+	double stopLimit = (TICKS_PER_INCH*1); // first value is +/-1 in range when near goal
+	double defaultSpeed = .75;
+	double firstSpeed = .25;
+	double secondSpeed = .125;
+	public boolean MoveTo(double goal) {	// goal is currently in ticks
+		int dir = 1;					// default goal is 1
+		double pos = get();				// get elevator in ticks 
+		if(goal < dir)					// if dir is smaller than goal move down
+			dir = -1;
+		if(Math.abs(goal - get()) > firstLimit)
+		{
+			set(defaultSpeed);
+		}
+		else if (Math.abs(goal - get()) < firstLimit)
+		{
+			set(firstSpeed);
+		}
+		else if (Math.abs(goal - get()) > secondLimit)
+		{
+			set(secondSpeed);
+		}
+		else if (Math.abs(goal - get()) > stopLimit)
+		{
+			set(0);
+			return true;
+		}
+		return false;
+
+		
+	}
+	
+	// TODO Smoothing simple example 
+	double Cur_Speed = 0; 
+	int smoothing = 10;		// smoothing change this to add steps don't make value over 20 
+	public void setSmoothing(double speed) 
+	{
+		if(atTop() && speed > 0)
+		{
+			Cur_Speed = 0;
+		}
+		else if(atBottom() && speed < 0)
+		{
+			Cur_Speed = 0;
+		}
+		else if(Math.abs(speed) < thresh) 
+		{
+			Cur_Speed = 0; 
+		}
+		else 
+		{
+			Cur_Speed = (Cur_Speed*(smoothing -1) + speed)/smoothing;					// linearization for 
+			if(Math.abs(Cur_Speed) < thresh)
+			{
+				Cur_Speed = 0; 
+			}		
+		}
+		elevator1.set(Cur_Speed);
+	}	
+	
+	
+	
 
 }

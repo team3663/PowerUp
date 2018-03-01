@@ -39,6 +39,7 @@ public class C_AutoSelect extends Command {
 		// all values in the command groups should be perfected, they were set lazily with eyeballing distances
 		
 		//LEFT
+		
 		if(location == 0) {
 			if (nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoBothHot(left).start();
