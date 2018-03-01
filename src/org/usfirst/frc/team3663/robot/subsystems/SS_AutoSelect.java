@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class SS_AutoSelect extends Subsystem {
+public class SS_AutoSelect extends Subsystem {								//Curtis: one of the things that i would do for this class is make it so that left and right are not strings but rather a true and false
 	
 	public enum Direction {
 		LEFT, RIGHT;
@@ -19,7 +19,7 @@ public class SS_AutoSelect extends Subsystem {
 					return RIGHT;
 				default :
 					throw new IllegalArgumentException(
-							"Character '" + c + "' invalid.");
+							"Character '" + c + "' invalid.");		//Curtis: Throwing exceptions could cause the robot to error out and do nothing:
 			}
 		}
 
