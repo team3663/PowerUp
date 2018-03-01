@@ -13,10 +13,8 @@ public class C_TurnRelativeAngle extends Command {
 	private static final double ANGLE_THRESHOLD = 10;
 
 	private final double destination;
-
-	private double getError() {
-		return destination - Robot.ss_gyro.gyroGetAngle();
-	}
+	
+	private int direction;
 
 	/**
 	 * If degrees is negative, turn left. Assumes speed is positive
@@ -26,12 +24,20 @@ public class C_TurnRelativeAngle extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = degrees + Robot.ss_gyro.gyroGetAngle();
-		controller = new PIDController(1, 1, 1, -speed, speed);
+	}
+
+	private double getError() {
+		return destination - Robot.ss_gyro.gyroGetAngle();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.turn(controller.get(getError()));
+		//calculate positive or negative direction
+		if(destination != 0)
+		{
+			int direction = (int) (destination / Math.abs(destination));
+		}
+		Robot.ss_drivetrain.turn(direction * speed);
 	}
 
 	@Override
