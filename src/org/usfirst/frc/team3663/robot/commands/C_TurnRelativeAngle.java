@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3663.robot.commands;
 
+import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,32 +14,26 @@ public class C_TurnRelativeAngle extends Command {
 	private static final double ANGLE_THRESHOLD = 10;
 
 	private final double destination;
-	private double speed;
-	private int direction;
-
-	/**
-	 * If degrees is negative, turn left. Assumes speed is positive
-	 */
-	public C_TurnRelativeAngle(double degrees, double pSpeed) {
-		requires(Robot.ss_gyro);
-		requires(Robot.ss_drivetrain);
-
-		destination = degrees + Robot.ss_gyro.gyroGetAngle();
-		speed = pSpeed;
-	}
+	private final PIDController controller;
 
 	private double getError() {
 		return destination - Robot.ss_gyro.gyroGetAngle();
 	}
 
+	/**
+	 * If degrees is negative, turn left. Assumes speed is positive
+	 */
+	public C_TurnRelativeAngle(double degrees, double speed) {
+		requires(Robot.ss_gyro);
+		requires(Robot.ss_drivetrain);
+
+		destination = degrees + Robot.ss_gyro.gyroGetAngle();
+		controller = new PIDController(1, 1, 1, -speed, speed);
+	}
+
 	@Override
 	protected void execute() {
-		//calculate positive or negative direction
-		if(destination != 0)
-		{
-			int direction = (int) (destination / Math.abs(destination));
-		}
-		Robot.ss_drivetrain.turn(direction * speed);
+		Robot.ss_drivetrain.turn(controller.get(getError()));
 	}
 
 	@Override

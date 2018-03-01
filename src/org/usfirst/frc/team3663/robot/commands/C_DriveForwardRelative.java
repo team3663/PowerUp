@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3663.robot.commands;
 
+import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
 
@@ -13,7 +14,7 @@ public class C_DriveForwardRelative extends Command {
 	private final int THRESHOLD_TICKS = SS_DriveTrain.inchesToTicks(3);
 
 	private final int destination;
-	private final double speed;
+	private final PIDController controller;
 
 	/**
 	 *
@@ -22,18 +23,20 @@ public class C_DriveForwardRelative extends Command {
 	 * @param speed
 	 *            Maximum speed for robot
 	 */
-	public C_DriveForwardRelative(int ticks, double pSpeed) {
+	public C_DriveForwardRelative(int ticks, double speed) {
 		requires(Robot.ss_drivetrain);
 
 		destination = ticks;
-		speed = pSpeed;
+		controller = new PIDController(1, 1, 1, -speed, speed);
 	}
 
 	/**
 	 * Use inches instead
 	 */
-	public static C_DriveForwardRelative fromInches(double inches, double speed) {
-		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches), speed);
+	public static C_DriveForwardRelative fromInches(double inches,
+			double speed) {
+		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches),
+				speed);
 	}
 
 	/**
@@ -41,13 +44,13 @@ public class C_DriveForwardRelative extends Command {
 	 * negative means backward
 	 */
 	private int getError() {
-		//This assumes that the encoder ticks are positive going forward
 		return destination - Robot.ss_drivetrain.getLeft();
 	}
 
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.driveForward(speed);
+		// set speed from PID controller
+		Robot.ss_drivetrain.driveForward(controller.get(getError()));
 	}
 
 	@Override
