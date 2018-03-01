@@ -13,17 +13,18 @@ public class C_TurnRelativeAngle extends Command {
 	private static final double ANGLE_THRESHOLD = 10;
 
 	private final double destination;
-	
+	private double speed;
 	private int direction;
 
 	/**
 	 * If degrees is negative, turn left. Assumes speed is positive
 	 */
-	public C_TurnRelativeAngle(double degrees, double speed) {
+	public C_TurnRelativeAngle(double degrees, double pSpeed) {
 		requires(Robot.ss_gyro);
 		requires(Robot.ss_drivetrain);
 
 		destination = degrees + Robot.ss_gyro.gyroGetAngle();
+		speed = pSpeed;
 	}
 
 	private double getError() {
