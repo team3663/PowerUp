@@ -32,7 +32,7 @@ public final class PIDController {
 	}
 
 	/**
-	 * Constrains value to min and max output
+	 * Constrains value to min and max output 
 	 */
 	private double clamp(double val) {
 
