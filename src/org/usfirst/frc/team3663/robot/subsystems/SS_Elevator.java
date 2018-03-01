@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+
+
+
 public class SS_Elevator extends Subsystem {	
 	// Drum diameter = 1.21875in
 	// Circumference = dia * pi = 3.8288in
@@ -22,7 +25,7 @@ public class SS_Elevator extends Subsystem {
 	
 	// Highest position elevator should go
 	public static final int ELEVATOR_MAX = 5600;
-	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);
+	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);				//curtis: you hard code the top but not the bottom?
 	
 	// position to go to if elevator exceeds maximum
 	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
@@ -64,17 +67,17 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	//SWITCHES AND ENCODER GETS
-	public boolean getTop() {
+	public boolean getTop() {								//Curtis: these functions are the same as thoues at the bottom
 		return false;//limitSwitchTop.map(DigitalInput::get).orElse(false);
 	}
 	
-	public boolean getBottom() {
+	public boolean getBottom() {								//CUrtis: look at line 112
 		return false;//limitSwitchBottom.map(DigitalInput::get).orElse(false);
 	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
 		// If breaks enabled, use Brake mode. Else, use Coast mode.
-		NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;
+		NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;		//Curtis: complicated code is cool and all but make sure all that view this code know what you mean
 		elevator1.setNeutralMode(mode);
 		elevator2.setNeutralMode(mode);
 	}
@@ -82,7 +85,7 @@ public class SS_Elevator extends Subsystem {
 	
 	// @return The current position of the encoders
 	
-	public int get() {
+	public int get() {								//curtis question : why is this a thing it seemed unused
 		return 0;//encoder.get();
 	}
 	
@@ -95,21 +98,21 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-		if (get() < ELEVATOR_MAX)
+		if (get() < ELEVATOR_MAX)						//Curtis in this you are gathering data from someing thing that is ais always 0 therr for this will constantly increment
 			elevator1.set(speed * ELEVATOR_SPEED + .05);
 		else 
-			elevator1.set(0);
+			elevator1.set(0);						//Curtis: something to consider make sure that there are curlly braces around if statments incase code gets more complicated 
 	}
 
 	
 	
 	
-	public boolean atTop() {
+	public boolean atTop() {							//Curtis: this always returns false
 		// Uses both softcoded maximum and hardware limit switch
 		return false ;//!limitSwitchTop.map(DigitalInput::get).orElse(true);
 	}
 	
-	public boolean atBottom() {
+	public boolean atBottom() {							//so far there is no way to see where you are
 		// Uses both softcoded minimum and hardware limit switch
 		return false ;//!limitSwitchBottom.map(DigitalInput::get).orElse(true);
 	}
@@ -120,8 +123,8 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (atBottom()) { 
-			resetEnc(); // reset the encoder
+		if (atBottom()) { 							//curtis comment: links to something that only returns false
+			resetEnc(); // reset the encoder				//		  function that does nothing
 			// If going down when already at bottom
 			if (elevator1.get() < 0) {
 				set(0);
