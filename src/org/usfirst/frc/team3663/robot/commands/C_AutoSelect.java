@@ -41,9 +41,9 @@ public class C_AutoSelect extends Command {
 		//LEFT
 		if(location == 0) {
 			if (nearSwitch == 'L' && scale == 'L') {
-				new CG_AutoBothHot(left).start();
+				//new CG_AutoBothHot(left).start();
 			} else if (scale == 'L'){
-				new CG_AutoHotScale(left).start();
+				//new CG_AutoHotScale(left).start();
 			} else if (nearSwitch == 'L') {
 				new CG_AutoHotSwitch(left).start();
 			} else {
@@ -57,17 +57,17 @@ public class C_AutoSelect extends Command {
 			} else if (nearSwitch == 'R' && scale == 'R') {
 				new CG_AutoMidSameSide(right).start();
 			} else if (nearSwitch == 'L' && scale == 'R') {
-				new CG_AutoMidDiffSide(left).start();
+				//new CG_AutoMidDiffSide(left).start();
 			} else if (nearSwitch == 'R' && scale == 'L') {
-				new CG_AutoMidDiffSide(right).start();
+				//new CG_AutoMidDiffSide(right).start();
 			}
 		}
 		//RIGHT
 		if(location == 2) {
 			if (nearSwitch == 'R' && scale == 'R') {
-				new CG_AutoBothHot(right).start();
+				//new CG_AutoBothHot(right).start();
 			} else if (scale == 'R'){
-				new CG_AutoHotScale(right).start();
+				//new CG_AutoHotScale(right).start();
 			} else if (nearSwitch == 'R') {
 				new CG_AutoHotSwitch(right).start();
 			} else {
