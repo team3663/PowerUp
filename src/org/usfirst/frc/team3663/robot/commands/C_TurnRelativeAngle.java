@@ -14,7 +14,7 @@ public class C_TurnRelativeAngle extends Command {
 
 	private final double destination;
 	private double speed;
-	private int direction;
+	private int direction = 1;
 
 	/**
 	 * If degrees is negative, turn left. Assumes speed is positive
@@ -35,9 +35,7 @@ public class C_TurnRelativeAngle extends Command {
 	protected void execute() {
 		//calculate positive or negative direction
 		if(destination != 0)
-		{
-			int direction = (int) (destination / Math.abs(destination));
-		}
+			direction = (int) (destination / Math.abs(destination));
 		Robot.ss_drivetrain.turn(direction * speed);
 	}
 
