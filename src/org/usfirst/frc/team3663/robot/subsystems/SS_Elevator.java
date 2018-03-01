@@ -141,10 +141,10 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	/*MC list of TODO in elevator: 
-	* 	Zero Comand: example bellow 
-	*	Smoothing for joystick/all of elevator: example Bellow
+	* 	Zero Command: example bellow 
+	*	Smoothing for joystick/all of elevator
 	*	Software encoder limits for elevator
-	*	Software is arms position 4 dont move down 
+	*	Software is arms position 4 don't move down 
 	*/
 	
 	public boolean ZeroElevator()			// TODO example Zero Elevator moves elevator down slowly until limit switch is reached.
@@ -170,40 +170,39 @@ public class SS_Elevator extends Subsystem {
 	public boolean MoveTo(double goal) {	// goal is currently in ticks
 		int dir = 1;					// default goal is 1
 		double pos = get();				// get elevator in ticks 
-		if(goal < dir)					// if dir is smaller than goal move down
+		if(goal < pos)					// if dir is smaller than goal move down
 			dir = -1;
-		if(Math.abs(goal - get()) > firstLimit)
+		if(Math.abs(goal - pos) > firstLimit)
 		{
-			set(defaultSpeed);
+			setSmoothing(dir*defaultSpeed);
 		}
-		else if (Math.abs(goal - get()) < firstLimit)
+		else if (Math.abs(goal - pos) < firstLimit)
 		{
-			set(firstSpeed);
+			setSmoothing(dir*firstSpeed);
 		}
-		else if (Math.abs(goal - get()) > secondLimit)
+		else if (Math.abs(goal - pos) > secondLimit)
 		{
-			set(secondSpeed);
+			setSmoothing(dir*secondSpeed);
 		}
-		else if (Math.abs(goal - get()) > stopLimit)
+		else if (Math.abs(goal - pos) >= stopLimit)
 		{
-			set(0);
+			setSmoothing(0);
 			return true;
 		}
 		return false;
-
-		
 	}
 	
 	// TODO Smoothing simple example 
-	double Cur_Speed = 0; 
-	int smoothing = 10;		// smoothing change this to add steps don't make value over 20 
+	//double Cur_Speed = 0; 
+	int smoothing = 4;		// smoothing change this to add steps don't make value over 20 
 	public void setSmoothing(double speed) 
 	{
-		if(atTop() && speed > 0)
+		double Cur_Speed = elevator1.get();
+		if((atTop() || get() >= ELEVATOR_MAX) && speed > 0)
 		{
 			Cur_Speed = 0;
 		}
-		else if(atBottom() && speed < 0)
+		else if((atBottom() || get() <= ELEVATOR_MIN) && speed < 0)
 		{
 			Cur_Speed = 0;
 		}
@@ -213,11 +212,7 @@ public class SS_Elevator extends Subsystem {
 		}
 		else 
 		{
-			Cur_Speed = (Cur_Speed*(smoothing -1) + speed)/smoothing;					// linearization for 
-			if(Math.abs(Cur_Speed) < thresh)
-			{
-				Cur_Speed = 0; 
-			}		
+			Cur_Speed = (Cur_Speed*(smoothing -1) + speed)/smoothing;					// linearization for 	
 		}
 		elevator1.set(Cur_Speed);
 	}	

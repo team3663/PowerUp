@@ -3,7 +3,10 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_Drive;
+import org.usfirst.frc.team3663.robot.commands.C_IntakeSanityCheck;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -27,6 +30,7 @@ public class SS_CubeIntake extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
+		setDefaultCommand(new C_IntakeSanityCheck());
 	}
 
 	public void spinIntake(double speed) {

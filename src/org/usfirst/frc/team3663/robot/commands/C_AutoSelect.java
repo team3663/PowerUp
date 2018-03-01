@@ -40,7 +40,7 @@ public class C_AutoSelect extends Command {
 		
 		//LEFT
 		
-		if(location == 0) {
+		if(location == 0) {											//TODO fix errors here 
 			if (nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoBothHot(left).start();
 			} else if (scale == 'L'){
@@ -52,7 +52,7 @@ public class C_AutoSelect extends Command {
 			}
 		}
 		//MIDDLE // give switch side
-		if(location == 1) {
+		if(location == 1) {											//TODO fix errors here 
 			if(nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoMidSameSide(left).start();
 			} else if (nearSwitch == 'R' && scale == 'R') {
