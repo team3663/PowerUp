@@ -53,8 +53,12 @@ public class SS_DriveTrain extends Subsystem {
 		/*																TODO need to add this to the constructor when we replace the Talons												
 		right1.enableCurrentLimit(true);
 		right1.configPeakCurrentLimit(35,2);							//max current followed by time in ms of allowable peak
+		right2.enableCurrentLimit(true);
+		right2.configPeakCurrentLimit(35,2);							//max current followed by time in ms of allowable peak
 		left1.enableCurrentLimit(true);
 		left1.configPeakCurrentLimit(35,2);
+		left2.enableCurrentLimit(true);
+		left2.configPeakCurrentLimit(35,2);
 		*/
 		
 		left2.follow(left1);				//Curtis: I see that you are setting the second motor to follow the first do you also need to do this for the third
