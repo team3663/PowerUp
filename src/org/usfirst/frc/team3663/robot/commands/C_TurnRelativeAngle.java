@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3663.robot.commands;
 
-import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,7 +13,6 @@ public class C_TurnRelativeAngle extends Command {
 	private static final double ANGLE_THRESHOLD = 10;
 
 	private final double destination;
-	private final PIDController controller;
 
 	private double getError() {
 		return destination - Robot.ss_gyro.gyroGetAngle();

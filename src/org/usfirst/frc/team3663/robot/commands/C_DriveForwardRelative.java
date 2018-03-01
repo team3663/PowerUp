@@ -14,7 +14,6 @@ public class C_DriveForwardRelative extends Command {
 	private final int THRESHOLD_TICKS = SS_DriveTrain.inchesToTicks(3);
 
 	private final int destination;
-	private final PIDController controller;
 
 	/**
 	 *
@@ -27,14 +26,12 @@ public class C_DriveForwardRelative extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = ticks;
-		controller = new PIDController(1, 1, 1, -speed, speed);
 	}
 
 	/**
 	 * Use inches instead
 	 */
-	public static C_DriveForwardRelative fromInches(double inches,
-			double speed) {
+	public static C_DriveForwardRelative fromInches(double inches, double speed) {
 		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches),
 				speed);
 	}
