@@ -50,16 +50,16 @@ public class C_AutoSelect extends Command {
 				new CG_AutoDriveFw().start();
 			}
 		}
-		//MIDDLE //
+		//MIDDLE // give switch side
 		if(location == 1) {
 			if(nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoMidSameSide(left).start();
 			} else if (nearSwitch == 'R' && scale == 'R') {
 				new CG_AutoMidSameSide(right).start();
 			} else if (nearSwitch == 'L' && scale == 'R') {
-				new 
+				new CG_AutoMidDiffSide(left).start();
 			} else if (nearSwitch == 'R' && scale == 'L') {
-				
+				new CG_AutoMidDiffSide(right).start();
 			}
 		}
 		//RIGHT
