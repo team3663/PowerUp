@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_zTestAll extends Command {
 
     public C_zTestAll() {
-        requires(
+        //requires(
     }
 
     // Called just before this Command runs the first time

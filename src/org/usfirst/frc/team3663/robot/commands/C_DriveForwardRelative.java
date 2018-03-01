@@ -47,7 +47,10 @@ public class C_DriveForwardRelative extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.driveForward(speed);
+		int direction = 0;
+		if (destination != 0)
+			direction = (int) (destination / Math.abs(destination));
+		Robot.ss_drivetrain.driveForward(direction * speed);
 	}
 
 	@Override

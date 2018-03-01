@@ -47,8 +47,10 @@ public class C_MoveElevatorToPos extends Command {
 
 	@Override
 	protected void execute() {
-		// Uses speed from PID Controller
-		Robot.ss_elevator.set(pidController.get(getError()));
+		int direction = 1;
+		if(goingUp)
+			direction = -1;
+		Robot.ss_elevator.set(direction * ELEVATOR_SPEED);
 	}
 
 	@Override
