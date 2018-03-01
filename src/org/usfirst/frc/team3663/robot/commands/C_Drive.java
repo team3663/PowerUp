@@ -30,7 +30,7 @@ public class C_Drive extends Command {
 	}
 
 	@Override
-	protected boolean isFinished() {
+	protected boolean isFinished() {					//Curtis: if it was me i would make sure that if this was interuped the robot would stop
 		return false; // Runs until interrupted
 	}
 }
