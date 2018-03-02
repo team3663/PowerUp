@@ -37,15 +37,13 @@ public class SS_CubeIntake extends Subsystem {
 	}
 
 	public void sqzIntake(boolean isForward) {
-		final DoubleSolenoid.Value direction = isForward
-				? Value.kForward: Value.kReverse;
+		final DoubleSolenoid.Value direction = isForward ? Value.kForward: Value.kReverse;
 		intakeSqz.set(direction);
 		//intakeSqz.ifPresent(p -> p.set(direction));
 	}
 
 	public void extendIntake(boolean isForward) {
-		final DoubleSolenoid.Value direction = isForward
-				? Value.kForward: Value.kReverse;
+		final DoubleSolenoid.Value direction = isForward? Value.kForward: Value.kReverse;
 		intakeLift.set(direction);
 		//intakeLift.ifPresent(p -> p.set(direction));
 	}

@@ -21,9 +21,9 @@ public class C_SetIntakeState extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.ss_cubeIntake.sqzIntake(this.squeeze);
-		Robot.ss_cubeIntake.extendIntake(this.extend);
-		System.out.println("work u garbage");
+		Robot.ss_cubeIntake.sqzIntake(squeeze);
+		Robot.ss_cubeIntake.extendIntake(extend);
+		
 	}
 
 	@Override

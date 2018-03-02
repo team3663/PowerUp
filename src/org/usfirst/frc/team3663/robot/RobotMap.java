@@ -53,10 +53,10 @@ public class RobotMap {
 	public static final int CLIMBER_PNEUM_FWD = 2;
 	public static final int CLIMBER_PNEUM_REV = 3;
 
-	public static final int INTAKE_LIFT_FOWARD = 7;
-	public static final int INTAKE_LIFT_REVERSE = 6;
+	public static final int INTAKE_LIFT_FOWARD = 5;
+	public static final int INTAKE_LIFT_REVERSE = 7;
 
-	public static final int INTAKE_SQZ_FOWARD = 5;
-	public static final int INTAKE_SQZ_REVERSE = 4;
+	public static final int INTAKE_SQZ_FOWARD = 4;
+	public static final int INTAKE_SQZ_REVERSE = 6;
 
 }
