@@ -22,7 +22,7 @@ public class C_Elevator extends Command {
 	protected void execute() {
 		//Robot.ss_elevator.checkElevator();
 		//Robot.ss_elevator.elevator1.set(-Robot.oi.driveStick.getRawAxis(5));
-		Robot.ss_elevator.setSmoothing(-Robot.oi.driveStick.getRawAxis(5));
+		Robot.ss_elevator.setSmoothing((-Robot.oi.driveStick.getRawAxis(5))*.75);
 	}
 
 	@Override
