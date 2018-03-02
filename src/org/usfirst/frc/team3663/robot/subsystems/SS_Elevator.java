@@ -40,6 +40,9 @@ public class SS_Elevator extends Subsystem {
 	private Optional<DigitalInput> limitSwitchTop = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);			//TODO figure DIO problem
 	private Optional<DigitalInput> limitSwitchBottom = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);		//TODO figure DIO problem
 	
+	
+	
+	
 	private Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
 	
 	//***************************************************************************************

@@ -42,7 +42,6 @@ public class Robot extends IterativeRobot {
 		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
-		ss_elevator = new SS_Elevator();
 		ss_autoSelect = new SS_AutoSelect();
 
 		oi = new OI(); // oi must be initilized last PLEASE

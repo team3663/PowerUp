@@ -50,13 +50,13 @@ public class RobotMap {
 	public static final int GRIFF_SQUEEZE_FWD = 0;
 	public static final int GRIFF_SQUEEZE_REV = 1;
 
-	public static final int CLIMBER_PNEUM_FWD = 6;
-	public static final int CLIMBER_PNEUM_REV = 4;
+	public static final int CLIMBER_PNEUM_FWD = 2;
+	public static final int CLIMBER_PNEUM_REV = 3;
 
 	public static final int INTAKE_LIFT_FOWARD = 7;
-	public static final int INTAKE_LIFT_REVERSE = 5;
+	public static final int INTAKE_LIFT_REVERSE = 6;
 
-	public static final int INTAKE_SQZ_FOWARD = 3;
-	public static final int INTAKE_SQZ_REVERSE = 2;
+	public static final int INTAKE_SQZ_FOWARD = 5;
+	public static final int INTAKE_SQZ_REVERSE = 4;
 
 }

@@ -13,8 +13,8 @@ public class C_GriffSanityCheck extends Command {
 
 	@Override
 	protected void execute() {
-		if (Robot.ss_elevator.get() <= GRIFF_CHECK_THRESHOLD)
-			Robot.ss_griff.sqzGriff(true);
+		if (Robot.ss_elevator.get() <= GRIFF_CHECK_THRESHOLD) {}
+			//Robot.ss_griff.sqzGriff(true);
 	}
 
 	@Override
