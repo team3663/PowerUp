@@ -23,7 +23,7 @@ public class SS_CubeIntake extends Subsystem {
 	//private final Optional<DoubleSolenoid> intakeSqz = HardwareUtil.getDoubleSolenoid(RobotMap.INTAKE_SQZ_FOWARD,RobotMap.INTAKE_SQZ_REVERSE);
 	//private final Optional<DoubleSolenoid> intakeLift = HardwareUtil.getDoubleSolenoid(RobotMap.INTAKE_LIFT_FOWARD,	RobotMap.INTAKE_LIFT_REVERSE);
 	
-	private final DoubleSolenoid intakeSqz = new DoubleSolenoid(RobotMap.INTAKE_SQZ_FOWARD,RobotMap.INTAKE_SQZ_REVERSE);
+	private final DoubleSolenoid intakeSqz = new DoubleSolenoid(RobotMap.INTAKE_SQZ_FOWARD,	RobotMap.INTAKE_SQZ_REVERSE);
 	private final DoubleSolenoid intakeLift = new DoubleSolenoid(RobotMap.INTAKE_LIFT_FOWARD,	RobotMap.INTAKE_LIFT_REVERSE);
 
 	@Override
@@ -51,12 +51,17 @@ public class SS_CubeIntake extends Subsystem {
 	}
 
 	// TODO this is test code pls do use unless ur a potato
-	/*
-	 * public void testIntake() { counter++; sqzIntake(counter > 10);
-	 *
-	 * if (counter > 20) counter = 0;
-	 *
-	 * }
-	 */
+	public int counter = 0;
+	 public void testIntake() { 
+		 counter++; 
+		 sqzIntake(counter<10);
+		 extendIntake(counter<10);
+	
+	 if (counter > 20) counter = 0;
+	 sqzIntake(false);
+	 extendIntake(true);
+	
+	 }
+	
 
 }
