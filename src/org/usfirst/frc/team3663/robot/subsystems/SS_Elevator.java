@@ -25,7 +25,8 @@ public class SS_Elevator extends Subsystem {
 	
 	// Highest position elevator should go
 	public static final int ELEVATOR_MAX = 5600;
-	public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);				//curtis: you hard code the top but not the bottom?
+	//public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);				//curtis: you hard code the top but not the bottom?
+	public static final int ELEVATOR_MIN = 30;
 	
 	// position to go to if elevator exceeds maximum
 	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
@@ -70,12 +71,15 @@ public class SS_Elevator extends Subsystem {
 	}
 	
 	//SWITCHES AND ENCODER GETS
-	public boolean getTop() {								//Curtis: these functions are the same as thoues at the bottom
-		return false;//limitSwitchTop.map(DigitalInput::get).orElse(false);
+	
+	public boolean atTop() {							
+		// Uses both softcoded maximum and hardware limit switch
+		return !limitSwitchTop.map(DigitalInput::get).orElse(true);		// TODO fix problem with DIO
 	}
 	
-	public boolean getBottom() {								//CUrtis: look at line 112
-		return false;//limitSwitchBottom.map(DigitalInput::get).orElse(false);
+	public boolean atBottom() {							//so far there is no way to see where you are
+		// Uses both softcoded minimum and hardware limit switch
+		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);	// TODO fix problem with DIO
 	}
 	
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -88,7 +92,7 @@ public class SS_Elevator extends Subsystem {
 	
 	// @return The current position of the encoders
 	
-	public int get() {								//curtis question : why is this a thing it seemed unused
+	public int get() {								
 		return encoder.get();
 	}
 	
@@ -101,7 +105,7 @@ public class SS_Elevator extends Subsystem {
 	
 	double thresh = .05;
 	public void set(double speed) {
-		if (get() < ELEVATOR_MAX)						//Curtis in this you are gathering data from someing thing that is ais always 0 therr for this will constantly increment
+		if (get() < ELEVATOR_MAX)						
 			elevator1.set(speed * ELEVATOR_SPEED + .05);
 		else 
 			elevator1.set(0);						//Curtis: something to consider make sure that there are curlly braces around if statments incase code gets more complicated 
@@ -110,15 +114,7 @@ public class SS_Elevator extends Subsystem {
 	
 	
 	
-	public boolean atTop() {							//Curtis: this always returns false
-		// Uses both softcoded maximum and hardware limit switch
-		return !limitSwitchTop.map(DigitalInput::get).orElse(true);		// TODO fix problem with DIO
-	}
-	
-	public boolean atBottom() {							//so far there is no way to see where you are
-		// Uses both softcoded minimum and hardware limit switch
-		return !limitSwitchBottom.map(DigitalInput::get).orElse(true);	// TODO fix problem with DIO
-	}
+
 	
 	/**
 	 * Make sure the elevator isn't going out of bounds
@@ -126,7 +122,7 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (atBottom()) { 							//curtis comment: links to something that only returns false
+		if (atBottom()) { 							
 			resetEnc(); // reset the encoder				//		  function that does nothing
 			// If going down when already at bottom
 			if (elevator1.get() < 0) {
@@ -195,11 +191,12 @@ public class SS_Elevator extends Subsystem {
 		return false;
 	}
 	
-	// TODO Smoothing simple example 
+
 	//double Cur_Speed = 0; 
 	int smoothing = 10;		// smoothing change this to add steps don't make value over 20 
 	public void setSmoothing(double speed) 
 	{
+		System.out.println(get());
 		double Cur_Speed = elevator1.get();
 		if((atTop() || get() >= ELEVATOR_MAX) && speed > 0)
 		{
@@ -212,10 +209,14 @@ public class SS_Elevator extends Subsystem {
 		else if (get() >= (ELEVATOR_MAX - 200) && speed > 0)
 		{
 			Cur_Speed = speed/3;
+		
 		}
 		else if (get() <= (ELEVATOR_MIN + 200) && speed < 0)
 		{
 			Cur_Speed = speed/3;
+			if(!atBottom()) {
+				Cur_Speed = -.1;
+			}
 		}
 		else 
 		{

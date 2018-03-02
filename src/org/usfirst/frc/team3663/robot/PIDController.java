@@ -14,6 +14,8 @@ public final class PIDController {
 	private final double gainIntegral;
 	private final double gainDerivative;
 
+	private double lastErr = 0;
+	
 	private boolean firstTime = true;
 	private final ElapsedTime timer = new ElapsedTime();
 

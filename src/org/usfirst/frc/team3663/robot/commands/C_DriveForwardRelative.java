@@ -27,7 +27,7 @@ public class C_DriveForwardRelative extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = ticks;
-		controller = new PIDController(1, 1, 1, -speed, speed);
+		controller = new PIDController(1, 0, 0, -speed, speed);
 	}
 
 	/**
