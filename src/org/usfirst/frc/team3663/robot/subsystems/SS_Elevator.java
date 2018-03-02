@@ -64,7 +64,7 @@ public class SS_Elevator extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new C_Elevator());
+		setDefaultCommand(new C_Elevator());
 		//setDefaultCommand(new C_DisplayEncoders());
 
 	}
@@ -197,7 +197,7 @@ public class SS_Elevator extends Subsystem {
 	
 	// TODO Smoothing simple example 
 	//double Cur_Speed = 0; 
-	int smoothing = 4;		// smoothing change this to add steps don't make value over 20 
+	int smoothing = 10;		// smoothing change this to add steps don't make value over 20 
 	public void setSmoothing(double speed) 
 	{
 		double Cur_Speed = elevator1.get();
@@ -209,14 +209,21 @@ public class SS_Elevator extends Subsystem {
 		{
 			Cur_Speed = 0;
 		}
-		else if(Math.abs(speed) < thresh) 
+		else if (get() >= (ELEVATOR_MAX - 200) && speed > 0)
 		{
-			Cur_Speed = 0; 
+			Cur_Speed = speed/3;
+		}
+		else if (get() <= (ELEVATOR_MIN + 200) && speed < 0)
+		{
+			Cur_Speed = speed/3;
 		}
 		else 
 		{
-			Cur_Speed = (Cur_Speed*(smoothing -1) + speed)/smoothing;					// linearization for 	
+			Cur_Speed = (Cur_Speed*(smoothing -1) + speed)/smoothing;					// linearization for 
+			if(Math.abs(Cur_Speed) < .05)
+				Cur_Speed = 0;
 		}
+		System.out.println(Cur_Speed);
 		elevator1.set(Cur_Speed);
 	}	
 	
