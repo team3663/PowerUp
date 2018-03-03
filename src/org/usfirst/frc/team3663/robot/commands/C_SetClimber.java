@@ -7,13 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class C_SetClimberPneum extends Command {
+public class C_SetClimber extends Command {
 
 	boolean state;
+	double spd;
 
-	public C_SetClimberPneum(boolean state) {
-		requires(Robot.ss_griff);
+	public C_SetClimber(boolean state, double spd) {
+		requires(Robot.ss_climber);
 		this.state = state;
+		this.spd = spd;
 	}
 
 	// Called just before this Command runs the first time
@@ -24,7 +26,8 @@ public class C_SetClimberPneum extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.ss_griff.setClimber(state);
+		Robot.ss_climber.setClimber(state);
+		Robot.ss_climber.setClimberSpd(spd);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -38,9 +41,4 @@ public class C_SetClimberPneum extends Command {
 	protected void end() {
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	@Override
-	protected void interrupted() {
-	}
 }

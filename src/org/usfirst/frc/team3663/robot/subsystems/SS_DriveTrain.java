@@ -74,6 +74,11 @@ public class SS_DriveTrain extends Subsystem {
 	public void stop() {
 		drive.arcadeDrive(0, 0);
 	}
+	
+	public void reset() {
+		leftEnc.reset();
+		rightEnc.reset();
+	}
 
 	public void driveForward(double speed) {
 		drive.arcadeDrive(speed, 0);

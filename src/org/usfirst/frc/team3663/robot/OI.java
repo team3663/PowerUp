@@ -47,8 +47,12 @@ public final class OI {
 		outGriff.whenPressed(new C_SetGriffSpeed(-1));
 		outGriff.whenReleased(new C_SetGriffSpeed(0));
 
-		final Button lowGoal = new JoystickButton(driveStick, 8);
-		lowGoal.whenPressed(new C_SimpleMoveElevator(500));
+		//final Button lowGoal = new JoystickButton(driveStick, 8);
+		//lowGoal.whenPressed(new C_SimpleMoveElevator(500));
+		
+		final Button climberPneum = new JoystickButton(driveStick, 8);
+		climberPneum.whenPressed(new C_SetClimber(true, 0));
+		climberPneum.whenReleased(new C_SetClimber(false, 0));
 	}
 }
 /*
