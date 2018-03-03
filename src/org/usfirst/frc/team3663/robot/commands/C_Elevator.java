@@ -21,6 +21,7 @@ public class C_Elevator extends Command {
 	private static boolean initialized = false;
 	@Override
 	protected void execute() {
+		//Robot.ss_cubeIntake.insanityCheck();            //insanity check
 		// Lower elevator until it's initialized
 		if (!initialized) {
 			Robot.ss_elevator.set(-.3);

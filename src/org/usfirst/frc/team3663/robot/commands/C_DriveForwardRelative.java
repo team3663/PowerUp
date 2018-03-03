@@ -27,7 +27,7 @@ public class C_DriveForwardRelative extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = ticks;
-		controller = new PIDController(1, 0, 0, -speed, speed);
+		controller = new PIDController(.05, 0, 0, -speed, speed);
 	}
 
 	/**
@@ -44,11 +44,21 @@ public class C_DriveForwardRelative extends Command {
 	private int getError() {
 		return destination - Robot.ss_drivetrain.getLeft();
 	}
+	
+	@Override
+	protected void initialize() {
+		Robot.ss_drivetrain.reset();
+	}
 
 	@Override
 	protected void execute() {
 		// set speed from PID controller
-		Robot.ss_drivetrain.driveForward(controller.get(getError()));
+		double error = getError();
+		double speed = controller.get(getError());
+		
+		// debug info
+		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		Robot.ss_drivetrain.driveForward(speed);
 	}
 
 	@Override

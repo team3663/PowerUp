@@ -215,7 +215,7 @@ public class SS_Elevator extends Subsystem {
 				Cur_Speed = 0;
 			}
 		}
-		System.out.println(Cur_Speed);
+		//System.out.println(Cur_Speed);
 		elevator1.set(Cur_Speed);
 	}
 

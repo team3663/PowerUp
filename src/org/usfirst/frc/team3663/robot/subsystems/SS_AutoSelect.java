@@ -35,6 +35,7 @@ public class SS_AutoSelect extends Subsystem {
 		 * 2: direction of scale
 		 * 3: direction of opponent scale
 		 */
+		
 		public static Direction[] fromGameData() {
 			String gameData = "";
 

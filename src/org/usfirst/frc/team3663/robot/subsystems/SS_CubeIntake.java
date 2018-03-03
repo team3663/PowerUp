@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -44,9 +45,15 @@ public class SS_CubeIntake extends Subsystem {
 		// intakeLift.ifPresent(p -> p.set(direction));
 	}
 
+	public void insanityCheck() {
+		if (Robot.ss_elevator.get() <= 1200 && -Robot.oi.driveStick.getRawAxis(5) < 0) {
+			sqzIntake(false);
+		}
+	}
 	// TODO this is test code pls do use unless ur a potato
 	public int counter = 0;
 
+	/*
 	public void testIntake() {
 		counter++;
 		sqzIntake(counter < 10);
@@ -59,5 +66,5 @@ public class SS_CubeIntake extends Subsystem {
 		extendIntake(true);
 
 	}
-
+*/
 }

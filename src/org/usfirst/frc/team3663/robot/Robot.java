@@ -30,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	public static SS_AutoSelect ss_autoSelect;
+	public static SS_Climber ss_climber;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_autoSelect = new SS_AutoSelect();
+		ss_climber = new SS_Climber();
 
 		oi = new OI(); // oi must be initilized last PLEASE
 

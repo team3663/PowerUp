@@ -19,14 +19,14 @@ public class C_AutoSelect extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		final String leverPos = Robot.ss_autoSelect.getLeverPos();
+		/*final String leverPos = Robot.ss_autoSelect.getLeverPos();
 
 		final int location = DriverStation.getInstance().getLocation();
 
 		final char nearSwitch = leverPos.charAt(0);
 		final char scale = leverPos.charAt(1);
-		leverPos.charAt(2);
-
+		final char farSwitch = leverPos.charAt(2);
+		*/
 		final boolean left = false;
 		final boolean right = true;
 
@@ -40,7 +40,7 @@ public class C_AutoSelect extends Command {
 		// with eyeballing distances
 
 		// LEFT
-
+/*
 		if (location == 0) { // TODO fix errors here
 			if (nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoBothHot(left).start();
@@ -76,7 +76,7 @@ public class C_AutoSelect extends Command {
 				new CG_AutoDriveFw().start();
 			}
 		}
-
+*/
 	}
 
 	@Override
