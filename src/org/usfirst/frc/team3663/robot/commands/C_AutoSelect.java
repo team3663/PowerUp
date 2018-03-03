@@ -25,7 +25,7 @@ public class C_AutoSelect extends Command {
 		
 		final char nearSwitch = leverPos.charAt(0);
 		final char scale = leverPos.charAt(1);
-		final char farSwitch = leverPos.charAt(2);
+		final char farSwitch = leverPos.charAt(2); 
 		
 		final boolean left = false;
 		final boolean right = true;
