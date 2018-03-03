@@ -84,7 +84,9 @@ public class SS_Elevator extends Subsystem {
 	
 	public void enableBreakMode(boolean breaksEnabled) {
 		// If breaks enabled, use Brake mode. Else, use Coast mode.
-		NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;		//Curtis: complicated code is cool and all but make sure all that view this code know what you mean
+		
+		 // Samuel Response: I knew what it meant in 5 seconds. It's Brake if breaksEnabled, else it's NeutralMode.
+		NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;
 		elevator1.setNeutralMode(mode);
 		elevator2.setNeutralMode(mode);
 	}
@@ -102,7 +104,7 @@ public class SS_Elevator extends Subsystem {
 	 * Sets up encoder for use
 	 */
 	public void resetEnc() {
-		encoder.reset();						// TODO figure out why encoder is not working
+		encoder.reset(); // TODO figure out why encoder is not working
 	}
 	
 	double thresh = .05;
@@ -110,12 +112,9 @@ public class SS_Elevator extends Subsystem {
 		if (get() < ELEVATOR_MAX)						
 			elevator1.set(speed * ELEVATOR_SPEED + .05);
 		else 
-			elevator1.set(0);						//Curtis: something to consider make sure that there are curlly braces around if statments incase code gets more complicated 
+			// Samuel Response: I'll enforce curly braces in my code cleanup.
+			elevator1.set(0);
 	}
-
-	
-	
-	
 
 	
 	/**

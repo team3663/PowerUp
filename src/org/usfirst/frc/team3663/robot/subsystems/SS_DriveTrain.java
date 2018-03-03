@@ -61,9 +61,11 @@ public class SS_DriveTrain extends Subsystem {
 		left2.configPeakCurrentLimit(35,2);
 		*/
 		
-		left2.follow(left1);				//Curtis: I see that you are setting the second motor to follow the first do you also need to do this for the third
+		left2.follow(left1);
+		left3.follow(left1);
 
 		right2.follow(right1);
+		right3.follow(right1);
 	}
 
 	@Override

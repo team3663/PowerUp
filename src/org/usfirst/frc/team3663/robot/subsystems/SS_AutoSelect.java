@@ -3,10 +3,12 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+// Samuel: We have to derive the game element positions by characters from getGameSpeficMessage().
+//   I made the enum Direction to abstract away from that as much as possible.
 /**
  *
  */
-public class SS_AutoSelect extends Subsystem {								//Curtis: one of the things that i would do for this class is make it so that left and right are not strings but rather a true and false
+public class SS_AutoSelect extends Subsystem {								
 	
 	public enum Direction {
 		LEFT, RIGHT;
@@ -18,8 +20,10 @@ public class SS_AutoSelect extends Subsystem {								//Curtis: one of the thing
 				case 'R' :
 					return RIGHT;
 				default :
+					// Samuel: getGameSpecificMessage(), as per the manual, should *only* return either L's or R's. Any other result would
+					//   be unpredicable, and if that's the case, the robot *should* do nothing.
 					throw new IllegalArgumentException(
-							"Character '" + c + "' invalid.");		//Curtis: Throwing exceptions could cause the robot to error out and do nothing:
+							"Character '" + c + "' invalid.");
 			}
 		}
 
