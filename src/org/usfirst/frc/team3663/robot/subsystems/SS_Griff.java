@@ -26,6 +26,7 @@ public class SS_Griff extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
+		
 		// setDefaultCommand(new C_GriffSanityCheck());
 	}
 
@@ -97,7 +98,11 @@ public class SS_Griff extends Subsystem {
 	}
 
 	public boolean getSwitchState() {
-		return !cubePresent.map(DigitalInput::get).orElse(false);
+		boolean result = !cubePresent.map(DigitalInput::get).orElse(false);
+		if (result)
+			setGriffSpd(.2);
+		
+		return result;
 	}
 
 	public void sqzGriff(boolean pState) {

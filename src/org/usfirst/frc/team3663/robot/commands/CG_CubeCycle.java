@@ -20,7 +20,7 @@ public class CG_CubeCycle extends CommandGroup {
 
 		// Disarm cube intake
 		addSequential(new C_SetIntakeSpeed(0));
-		addSequential(new C_SetGriffSpeed(0));
+		//addSequential(new C_SetGriffSpeed(0));
 		// addSequential(new C_MoveElevatorToPos(24)); // Moves cube up 24"
 		addSequential(new C_GriffSqueeze(false));
 		addSequential(new C_SetIntakeState(false, false));

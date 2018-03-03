@@ -188,6 +188,7 @@ public class SS_Elevator extends Subsystem {
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
 
 	public void setSmoothing(double speed) {
+		final int CLOSE_THRESHOLD = 300;
 		if (atBottom()) {
 			resetEnc();
 		}
@@ -198,10 +199,10 @@ public class SS_Elevator extends Subsystem {
 			Cur_Speed = 0;
 		} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
 			Cur_Speed = 0;
-		} else if (get() >= (ELEVATOR_MAX - 200) && speed > 0) {
+		} else if (get() >= (ELEVATOR_MAX - CLOSE_THRESHOLD) && speed > 0) {
 			Cur_Speed = speed / 3;
 
-		} else if (get() <= (ELEVATOR_MIN + 200) && speed < 0) {
+		} else if (get() <= (ELEVATOR_MIN + CLOSE_THRESHOLD) && speed < 0) {
 			Cur_Speed = speed / 3;
 			if (!atBottom()) {
 				Cur_Speed = -.1;
