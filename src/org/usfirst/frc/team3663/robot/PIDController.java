@@ -14,6 +14,7 @@ public final class PIDController {
 	private final double gainIntegral;
 	private final double gainDerivative;
 
+	private double lastError = 0;
 	private boolean firstTime = true;
 	private final ElapsedTime timer = new ElapsedTime();
 
@@ -62,10 +63,11 @@ public final class PIDController {
 		// Derivative
 		double dInput = 0;
 		if (!firstTime) {
-			dInput = gainDerivative * error / dt;
+			dInput = gainDerivative * lastError / dt;
 		}
 
 		firstTime = false;
+		lastError = error;
 
 		// Sum them up and constrain them to range [0..1]
 		final double result = clamp(pInput + iInput + dInput);
