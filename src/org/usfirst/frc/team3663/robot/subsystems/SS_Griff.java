@@ -26,8 +26,7 @@ public class SS_Griff extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		
-		// setDefaultCommand(new C_GriffSanityCheck());
+	// setDefaultCommand(new C_GriffSanityCheck());
 	}
 
 	public static final double GRIFF_ROT_LIMIT = 85; // in degrees
