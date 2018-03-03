@@ -9,6 +9,7 @@ package org.usfirst.frc.team3663.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_AutoSelect;
+import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
@@ -52,6 +53,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		final C_AutoSelect c_Auto = new C_AutoSelect();
+		final C_SetIntakeState c_intake = new C_SetIntakeState(false, true);
+		c_intake.start();
 		c_Auto.start();
 	}
 

@@ -26,7 +26,7 @@ public class SS_Elevator extends Subsystem {
 	// Highest position elevator should go
 	public static final int ELEVATOR_MAX = 5600;
 	//public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3);				//curtis: you hard code the top but not the bottom?
-	public static final int ELEVATOR_MIN = 30;
+	public static final int ELEVATOR_MIN = 50;
 	
 	// position to go to if elevator exceeds maximum
 	public static final int ELEVATOR_SAFE_AREA = ELEVATOR_MAX - (int)(TICKS_PER_INCH * 3);
@@ -92,8 +92,10 @@ public class SS_Elevator extends Subsystem {
 	
 	// @return The current position of the encoders
 	
-	public int get() {								
+	public int get() {			
+		System.out.println(encoder.get());
 		return encoder.get();
+		
 	}
 	
 	/**
@@ -123,7 +125,7 @@ public class SS_Elevator extends Subsystem {
 	 */
 	public boolean checkElevator() {
 		if (atBottom()) { 							
-			resetEnc(); // reset the encoder				//		  function that does nothing
+			resetEnc(); // reset the encoder
 			// If going down when already at bottom
 			if (elevator1.get() < 0) {
 				set(0);
@@ -202,6 +204,7 @@ public class SS_Elevator extends Subsystem {
 		{
 			Cur_Speed = 0;
 		}
+		
 		else if((atBottom() || get() <= ELEVATOR_MIN) && speed < 0)
 		{
 			Cur_Speed = 0;
