@@ -14,13 +14,10 @@ public final class PIDController {
 	private final double gainIntegral;
 	private final double gainDerivative;
 
-	private double lastErr = 0;
-	
 	private boolean firstTime = true;
 	private final ElapsedTime timer = new ElapsedTime();
 
-	public PIDController(double gainProportional, double gainIntegral, double gainDerivative,
-			double min, double max) {
+	public PIDController(double gainProportional, double gainIntegral, double gainDerivative, double min, double max) {
 		this.gainProportional = gainProportional;
 		this.gainIntegral = gainIntegral;
 		this.gainDerivative = gainDerivative;
@@ -34,14 +31,15 @@ public final class PIDController {
 	}
 
 	/**
-	 * Constrains value to min and max output 
+	 * Constrains value to min and max output
 	 */
 	private double clamp(double val) {
 
-		if (val > maxOutput)
+		if (val > maxOutput) {
 			val = maxOutput;
-		else if (val < minOutput)
+		} else if (val < minOutput) {
 			val = minOutput;
+		}
 
 		return val;
 	}
@@ -54,18 +52,19 @@ public final class PIDController {
 
 		// Proportional
 		final double pInput = gainProportional * error;
-		
+
 		// Integral
 		double iInput = 0;
-		if (!firstTime)
+		if (!firstTime) {
 			iInput = gainIntegral * error * dt;
+		}
 
 		// Derivative
 		double dInput = 0;
-		if (!firstTime)
+		if (!firstTime) {
 			dInput = gainDerivative * error / dt;
-		
-		
+		}
+
 		firstTime = false;
 
 		// Sum them up and constrain them to range [0..1]

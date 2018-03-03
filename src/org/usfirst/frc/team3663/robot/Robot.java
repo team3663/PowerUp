@@ -47,7 +47,7 @@ public class Robot extends IterativeRobot {
 
 		oi = new OI(); // oi must be initilized last PLEASE
 
-		//SS_DriveTrain.setEnc();
+		// SS_DriveTrain.setEnc();
 	}
 
 	@Override

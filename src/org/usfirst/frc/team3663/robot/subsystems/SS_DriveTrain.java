@@ -38,10 +38,8 @@ public class SS_DriveTrain extends Subsystem {
 	public WPI_VictorSPX right2 = new WPI_VictorSPX(RobotMap.DRIVE_RIGHT_2);
 	public WPI_VictorSPX right3 = new WPI_VictorSPX(RobotMap.DRIVE_RIGHT_3);
 
-	private final Encoder leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENC_1,
-			RobotMap.DRIVE_LEFT_ENC_2);
-	private final Encoder rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENC_1,
-			RobotMap.DRIVE_RIGHT_ENC_2);
+	private final Encoder leftEnc = new Encoder(RobotMap.DRIVE_LEFT_ENC_1, RobotMap.DRIVE_LEFT_ENC_2);
+	private final Encoder rightEnc = new Encoder(RobotMap.DRIVE_RIGHT_ENC_1, RobotMap.DRIVE_RIGHT_ENC_2);
 
 	public DifferentialDrive drive = new DifferentialDrive(left1, right1);
 
@@ -50,7 +48,7 @@ public class SS_DriveTrain extends Subsystem {
 	}
 
 	public SS_DriveTrain() {
-		/*																TODO need to add this to the constructor when we replace the Talons												
+		/*																TODO need to add this to the constructor when we replace the Talons
 		right1.enableCurrentLimit(true);
 		right1.configPeakCurrentLimit(35,2);							//max current followed by time in ms of allowable peak
 		right2.enableCurrentLimit(true);
@@ -60,7 +58,7 @@ public class SS_DriveTrain extends Subsystem {
 		left2.enableCurrentLimit(true);
 		left2.configPeakCurrentLimit(35,2);
 		*/
-		
+
 		left2.follow(left1);
 		left3.follow(left1);
 

@@ -33,7 +33,7 @@ public class C_Drive extends Command {
 	protected boolean isFinished() {
 		return false; // Runs until interrupted
 	}
-	
+
 	@Override
 	protected void interrupted() {
 		Robot.ss_drivetrain.stop();

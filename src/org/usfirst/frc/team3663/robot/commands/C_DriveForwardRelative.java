@@ -33,10 +33,8 @@ public class C_DriveForwardRelative extends Command {
 	/**
 	 * Use inches instead
 	 */
-	public static C_DriveForwardRelative fromInches(double inches,
-			double speed) {
-		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches),
-				speed);
+	public static C_DriveForwardRelative fromInches(double inches, double speed) {
+		return new C_DriveForwardRelative(SS_DriveTrain.inchesToTicks(inches), speed);
 	}
 
 	/**

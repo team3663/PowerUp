@@ -20,17 +20,14 @@ public class C_PrintSensors extends Command {
 		System.out.println(); // Extra line for spacing
 
 		// ELEVATOR - top switch, bottom switch, encoder position
-		System.out.printf("ELEVATOR\nTop %s\tBot %s\nPos %i\n",
-				Robot.ss_elevator.atTop(), Robot.ss_elevator.atBottom(),
+		System.out.printf("ELEVATOR\nTop %s\tBot %s\nPos %i\n", Robot.ss_elevator.atTop(), Robot.ss_elevator.atBottom(),
 				Robot.ss_elevator.get());
 
 		// GRIFF - optical limit switch, angle
-		System.out.printf("GRIFF\nSwitch %s\tAngle %f\n",
-				Robot.ss_griff.getSwitchState(), Robot.ss_griff.getAngle());
+		System.out.printf("GRIFF\nSwitch %s\tAngle %f\n", Robot.ss_griff.getSwitchState(), Robot.ss_griff.getAngle());
 
 		// DRIVE TRAIN - left & right encoder position
-		System.out.printf("DRIVE\nLeft %f\tRight %f\n",
-				Robot.ss_drivetrain.getLeft(), Robot.ss_drivetrain.getRight());
+		System.out.printf("DRIVE\nLeft %f\tRight %f\n", Robot.ss_drivetrain.getLeft(), Robot.ss_drivetrain.getRight());
 	}
 
 	@Override

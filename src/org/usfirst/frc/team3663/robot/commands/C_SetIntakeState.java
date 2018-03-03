@@ -23,7 +23,7 @@ public class C_SetIntakeState extends Command {
 	protected void execute() {
 		Robot.ss_cubeIntake.sqzIntake(squeeze);
 		Robot.ss_cubeIntake.extendIntake(extend);
-		
+
 	}
 
 	@Override

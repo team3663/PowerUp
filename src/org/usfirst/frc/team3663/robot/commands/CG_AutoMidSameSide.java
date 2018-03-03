@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_AutoMidSameSide extends CommandGroup {
 
 	public CG_AutoMidSameSide(boolean isRight) {
-		if(isRight) {
+		if (isRight) {
 			addSequential(new C_DriveForwardRelative(90, .5));
 			addSequential(new C_TurnRelativeAngle(60, .3));
 			addSequential(new C_DriveForwardRelative(30, .25));
