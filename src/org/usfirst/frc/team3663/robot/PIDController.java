@@ -57,7 +57,7 @@ public final class PIDController {
 		// Integral
 		double iInput = 0;
 		if (!firstTime) {
-			iInput = gainIntegral * error * dt;
+			iInput = gainIntegral * (lastError - error) * dt;
 		}
 
 		// Derivative
