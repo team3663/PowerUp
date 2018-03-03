@@ -1,20 +1,19 @@
 package org.usfirst.frc.team3663.robot.commands;
 
 import org.usfirst.frc.team3663.robot.Robot;
-import org.usfirst.frc.team3663.robot.subsystems.SS_Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class C_SimpleMoveElevator extends Command {
+public class C_SetClimberPneum extends Command {
 
-	private final int destination;
+	boolean state;
 
-	public C_SimpleMoveElevator(int ticks) {
-		requires(Robot.ss_elevator);
-		destination = SS_Elevator.clampTicks(ticks);
+	public C_SetClimberPneum(boolean state) {
+		requires(Robot.ss_griff);
+		this.state = state;
 	}
 
 	// Called just before this Command runs the first time
@@ -25,16 +24,13 @@ public class C_SimpleMoveElevator extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		Robot.ss_griff.setClimber(state);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		if (Math.abs(Robot.oi.driveStick.getRawAxis(5)) > .1) // if joystick moves leave move elevator
-		{
-			return true;
-		}
-		return Robot.ss_elevator.MoveTo(destination);
+		return true;
 	}
 
 	// Called once after isFinished returns true

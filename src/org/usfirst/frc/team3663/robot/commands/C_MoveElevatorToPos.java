@@ -20,8 +20,7 @@ public class C_MoveElevatorToPos extends Command {
 	private boolean goingUp;
 	private final int destination;
 
-	private final PIDController pidController = new PIDController(1, 1, 1,
-			-ELEVATOR_SPEED, ELEVATOR_SPEED);
+	private final PIDController pidController = new PIDController(1, 1, 1, -ELEVATOR_SPEED, ELEVATOR_SPEED);
 
 	/**
 	 * @param ticks
@@ -58,14 +57,17 @@ public class C_MoveElevatorToPos extends Command {
 	@Override
 	protected boolean isFinished() {
 		// Finish when within threshold
-		if (Math.abs(getError()) < THRESHOLD_TICKS)
+		if (Math.abs(getError()) < THRESHOLD_TICKS) {
 			return true;
+		}
 
 		// Stop anyways if one of the limit switches is reached
-		if (goingUp && Robot.ss_elevator.atTop())
+		if (goingUp && Robot.ss_elevator.atTop()) {
 			return true;
-		if (!goingUp && Robot.ss_elevator.atBottom())
+		}
+		if (!goingUp && Robot.ss_elevator.atBottom()) {
 			return true;
+		}
 
 		return false;
 	}

@@ -5,8 +5,6 @@ import java.util.Optional;
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
-import org.usfirst.frc.team3663.robot.commands.C_GriffSanityCheck;
-
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -28,28 +26,25 @@ public class SS_Griff extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		//setDefaultCommand(new C_GriffSanityCheck());
+		// setDefaultCommand(new C_GriffSanityCheck());
 	}
 
 	public static final double GRIFF_ROT_LIMIT = 85; // in degrees
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private final WPI_VictorSPX griffon = new WPI_VictorSPX(
-			RobotMap.CUBE_SHOOTER);
-	private final WPI_VictorSPX griffRot = new WPI_VictorSPX(
-			RobotMap.CUBE_ROTATOR);
+	private final WPI_VictorSPX griffon = new WPI_VictorSPX(RobotMap.CUBE_SHOOTER);
+	private final WPI_VictorSPX griffRot = new WPI_VictorSPX(RobotMap.CUBE_ROTATOR);
 	// private final Optional<DoubleSolenoid> griffPneumatics =
 	// HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD,
 	// RobotMap.GRIFF_SQUEEZE_REV);
-	private final DoubleSolenoid griffSqz = new DoubleSolenoid(
-			RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
+	private final DoubleSolenoid griffSqz = new DoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
+	private final DoubleSolenoid climberExtend = new DoubleSolenoid(RobotMap.CLIMBER_PNEUM_FWD,
+			RobotMap.CLIMBER_PNEUM_REV);
 	// Measures the rotation of the griff
-	private final Potentiometer griffRotSensor = new AnalogPotentiometer(
-			RobotMap.CUBE_ROTATOR_SENSOR);
+	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
-	private final Optional<DigitalInput> cubePresent = HardwareUtil
-			.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
+	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
 
 	private void rotateCube(double speed, Double angle) {
 		if (Robot.ss_elevator.get() < 100) {
@@ -85,15 +80,17 @@ public class SS_Griff extends Subsystem {
 	public boolean rotatorWithinRange() {
 		// TODO FINNISH THIS CODE
 		if (isBelowBar()) {
-			if (getAngle() > 4)
+			if (getAngle() > 4) {
 				return true;
-			else if (getAngle() > 3)
+			} else if (getAngle() > 3) {
 				return true;
+			}
 		} else {
-			if (getAngle() > 4)
+			if (getAngle() > 4) {
 				return true;
-			else if (getAngle() > 3)
+			} else if (getAngle() > 3) {
 				return true;
+			}
 
 		}
 		return false;
@@ -104,11 +101,14 @@ public class SS_Griff extends Subsystem {
 	}
 
 	public void sqzGriff(boolean pState) {
-		final DoubleSolenoid.Value direction = pState
-				? Value.kReverse
-				: Value.kForward;
+		final DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
 		// griffPneumatics.ifPresent(p -> p.set(direction));
 		griffSqz.set(direction);
+	}
+
+	public void setClimber(boolean pState) {
+		final DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
+		climberExtend.set(direction);
 	}
 
 }

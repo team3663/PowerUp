@@ -11,8 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * Camera subsystem to test the vision tracking.
  */
 public class SS_Camera extends Subsystem {
-	static NetworkTable table = NetworkTableInstance.getDefault()
-			.getTable("limelight-CPR");
+	static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-CPR");
 	private static final ElapsedTime time = new ElapsedTime();
 
 	// Put methods for controlling this subsystem
@@ -54,8 +53,9 @@ public class SS_Camera extends Subsystem {
 			if (tgtArea < 60) {
 				if (Math.abs(tgtOffset) > sThresh) {
 					double speed = .2;
-					if (Math.abs(tgtOffset) > lThresh)
+					if (Math.abs(tgtOffset) > lThresh) {
 						speed = .3;
+					}
 
 					if (tgtOffset > 0) {
 						System.out.println("right");

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3663.robot.commands;
 
-import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
 
@@ -45,7 +44,7 @@ public class C_DriveForwardSimple extends Command {
 	@Override
 	protected void execute() {
 		// set speed from PID controller
-		Robot.ss_drivetrain.driveForward(Math.signum(getError())*speed);
+		Robot.ss_drivetrain.driveForward(Math.signum(getError()) * speed);
 	}
 
 	@Override

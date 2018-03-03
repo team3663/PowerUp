@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_AutoMidSameSide extends CommandGroup {
 
 	public CG_AutoMidSameSide(boolean isRight) {
-		if(isRight) {
+		if (isRight) {
 			addSequential(new C_DriveForwardRelative(90, .5));
 			addSequential(new C_TurnRelativeAngle(60, .3));
-			addSequential(new C_DriveForwardRelative(20, .25));
+			addSequential(new C_DriveForwardRelative(30, .25));
 			addSequential(C_MoveElevatorToPos.fromInches(24.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(500));
@@ -24,7 +24,7 @@ public class CG_AutoMidSameSide extends CommandGroup {
 		} else {
 			addSequential(new C_DriveForwardRelative(90, .5));
 			addSequential(new C_TurnRelativeAngle(-60, .3));
-			addSequential(new C_DriveForwardRelative(20, .25));
+			addSequential(new C_DriveForwardRelative(30, .25));
 			addSequential(C_MoveElevatorToPos.fromInches(24.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(500));

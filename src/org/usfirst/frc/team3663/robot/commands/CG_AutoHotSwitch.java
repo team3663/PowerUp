@@ -7,8 +7,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CG_AutoHotSwitch extends CommandGroup {
 
-	public CG_AutoHotSwitch(boolean isRight) { 
-		if(isRight) {
+	public CG_AutoHotSwitch(boolean isRight) {
+		if (isRight) {
 			addSequential(new C_DriveForwardRelative(120, .5));
 			addSequential(new C_TurnRelativeAngle(-90, .5));
 			addSequential(C_MoveElevatorToPos.fromInches(24.0));
@@ -19,7 +19,7 @@ public class CG_AutoHotSwitch extends CommandGroup {
 			addSequential(new C_TurnRelativeAngle(90, .5));
 			addSequential(new C_DriveForwardRelative(15, .3));
 		} else {
-			addSequential(new C_DriveForwardRelative(120, .5));
+			addSequential(new C_DriveForwardRelative(145, .5));
 			addSequential(new C_TurnRelativeAngle(90, .5));
 			addSequential(C_MoveElevatorToPos.fromInches(24.0));
 			addSequential(new C_SetGriffSpeed(-1));

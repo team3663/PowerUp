@@ -30,7 +30,12 @@ public class C_Drive extends Command {
 	}
 
 	@Override
-	protected boolean isFinished() {					//Curtis: if it was me i would make sure that if this was interuped the robot would stop
+	protected boolean isFinished() {
 		return false; // Runs until interrupted
+	}
+
+	@Override
+	protected void interrupted() {
+		Robot.ss_drivetrain.stop();
 	}
 }

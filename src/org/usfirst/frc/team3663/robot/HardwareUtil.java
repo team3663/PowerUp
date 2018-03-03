@@ -17,18 +17,15 @@ public final class HardwareUtil {
 		try {
 			return Optional.ofNullable(supplier.get());
 		} catch (final Exception e) {
-			System.err.println(
-					"WARNING: Hardware not detected. Using n default instead");
+			System.err.println("WARNING: Hardware not detected. Using n default instead");
 			e.printStackTrace();
 
 			return Optional.empty();
 		}
 	}
 
-	public static Optional<DoubleSolenoid> getDoubleSolenoid(int forwardChannel,
-			int reverseChannel) {
-		return getHardware(
-				() -> new DoubleSolenoid(forwardChannel, reverseChannel));
+	public static Optional<DoubleSolenoid> getDoubleSolenoid(int forwardChannel, int reverseChannel) {
+		return getHardware(() -> new DoubleSolenoid(forwardChannel, reverseChannel));
 	}
 
 	public static Optional<DigitalInput> getDigitalInput(int id) {
