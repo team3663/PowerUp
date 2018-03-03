@@ -53,8 +53,12 @@ public class C_DriveForwardRelative extends Command {
 	@Override
 	protected void execute() {
 		// set speed from PID controller
-		Robot.ss_drivetrain.driveForward(controller.get(getError()));
-		System.out.println(Robot.ss_drivetrain.getRight());
+		double error = getError();
+		double speed = controller.get(getError());
+		
+		// debug info
+		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		Robot.ss_drivetrain.driveForward(speed);
 	}
 
 	@Override

@@ -54,10 +54,10 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		final C_AutoSelect c_Auto = new C_AutoSelect();
+		//final C_AutoSelect c_Auto = new C_AutoSelect();
 		final C_SetIntakeState c_intake = new C_SetIntakeState(false, false);
 		c_intake.start();
-		c_Auto.start();
+		//c_Auto.start();
 	}
 
 	/**
