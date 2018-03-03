@@ -119,7 +119,7 @@ public class SS_Elevator extends Subsystem {
 	 * @return true if the elevator doesn't need to correct itself
 	 */
 	public boolean checkElevator() {
-		if (atBottom()) { 							
+		if (atBottom()) {
 			resetEnc(); // reset the encoder
 			// If going down when already at bottom
 			if (elevator1.get() < 0) {

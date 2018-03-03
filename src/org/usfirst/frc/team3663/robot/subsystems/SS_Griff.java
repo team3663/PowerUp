@@ -38,10 +38,9 @@ public class SS_Griff extends Subsystem {
 	// private final Optional<DoubleSolenoid> griffPneumatics =
 	// HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD,
 	// RobotMap.GRIFF_SQUEEZE_REV);
-	private final DoubleSolenoid griffSqz = new DoubleSolenoid(
-			RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
-	private final DoubleSolenoid climberExtend = new DoubleSolenoid(
-			RobotMap.CLIMBER_PNEUM_FWD, RobotMap.CLIMBER_PNEUM_REV);
+	private final DoubleSolenoid griffSqz = new DoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
+	private final DoubleSolenoid climberExtend = new DoubleSolenoid(RobotMap.CLIMBER_PNEUM_FWD,
+			RobotMap.CLIMBER_PNEUM_REV);
 	// Measures the rotation of the griff
 	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
 
@@ -106,11 +105,9 @@ public class SS_Griff extends Subsystem {
 		// griffPneumatics.ifPresent(p -> p.set(direction));
 		griffSqz.set(direction);
 	}
-	
+
 	public void setClimber(boolean pState) {
-		final DoubleSolenoid.Value direction = pState
-				? Value.kReverse
-				: Value.kForward;
+		final DoubleSolenoid.Value direction = pState ? Value.kReverse : Value.kForward;
 		climberExtend.set(direction);
 	}
 
