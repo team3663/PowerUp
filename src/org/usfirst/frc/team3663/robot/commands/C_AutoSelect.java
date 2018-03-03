@@ -40,7 +40,7 @@ public class C_AutoSelect extends Command {
 		
 		//LEFT
 		
-		if(location == 0) {											//TODO fix errors here 
+		/*if(location == 0) {											//TODO fix errors here 
 			if (nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoBothHot(left).start();
 			} else if (scale == 'L'){
@@ -74,7 +74,9 @@ public class C_AutoSelect extends Command {
 			} else {
 				new CG_AutoDriveFw().start();
 			}
-		}
+		}*/
+		
+		
 		///////////PROBABLY SCRAP THIS CODE///////////////////////////
 		/*if (leverPos.charAt(0) == 'L') {
 			if (DriverStation.getInstance().getLocation() == 1) {

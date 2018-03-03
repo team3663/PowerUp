@@ -9,7 +9,7 @@ public class CG_AutoHotScale extends CommandGroup {
 
     public CG_AutoHotScale(boolean isRight) {
     	if(isRight) {
-    		addSequential(new C_DriveForwardRelative(200, .5));
+    		addSequential(new C_DriveForwardRelative(315, .5));
     		addSequential(new C_TurnRelativeAngle(-90, .5));
     		addSequential(C_MoveElevatorToPos.fromInches(75.0));
     		addSequential(new C_SetGriffSpeed(-1));
@@ -17,9 +17,9 @@ public class CG_AutoHotScale extends CommandGroup {
     		addSequential(new C_SetGriffSpeed(0));
     		addSequential(C_MoveElevatorToPos.fromInches(0.0));
     		addSequential(new C_TurnRelativeAngle(90, .5));
-    		addSequential(new C_DriveForwardRelative(15, .3));
+    		//addSequential(new C_DriveForwardRelative(15, .3));
     	} else {
-    		addSequential(new C_DriveForwardRelative(200, .5));
+    		addSequential(new C_DriveForwardRelative(315, .5));
     		addSequential(new C_TurnRelativeAngle(90, .5));
     		addSequential(C_MoveElevatorToPos.fromInches(75.0));
     		addSequential(new C_SetGriffSpeed(-1));
@@ -27,7 +27,7 @@ public class CG_AutoHotScale extends CommandGroup {
     		addSequential(new C_SetGriffSpeed(0));
     		addSequential(C_MoveElevatorToPos.fromInches(0.0));
     		addSequential(new C_TurnRelativeAngle(-90, .5));
-    		addSequential(new C_DriveForwardRelative(15, .3));
+    		//addSequential(new C_DriveForwardRelative(15, .3));
     	}
     }
 }
