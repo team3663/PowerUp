@@ -35,7 +35,7 @@ public final class OI {
 		 * intakeExtnd.whenReleased(new C_IntakeExtnd(true));
 		 */
 
-		final Button inGriff = new JoystickButton(driveStick, 5);
+		final Button inGriff = new JoystickButton(driveStick, 2);
 		inGriff.whenPressed(new C_SetGriffSpeed(1));
 		inGriff.whenReleased(new C_SetGriffSpeed(0));
 
@@ -43,7 +43,7 @@ public final class OI {
 		setIntakeSpd.whenPressed(new C_SetIntakeSpeed(-1));
 		setIntakeSpd.whenReleased(new C_SetIntakeSpeed(0));
 
-		final Button outGriff = new JoystickButton(driveStick, 2);
+		final Button outGriff = new JoystickButton(driveStick, 5);
 		outGriff.whenPressed(new C_SetGriffSpeed(-1));
 		outGriff.whenReleased(new C_SetGriffSpeed(0));
 

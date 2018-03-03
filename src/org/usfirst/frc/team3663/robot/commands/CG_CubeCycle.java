@@ -12,7 +12,7 @@ public class CG_CubeCycle extends CommandGroup {
 		// Arm cube intake
 		addSequential(new C_SetIntakeState(true, true));
 		addSequential(new C_GriffSqueeze(true));
-		addSequential(new C_SetIntakeSpeed(.7));
+		addSequential(new C_SetIntakeSpeed(1));
 		addSequential(new C_SetGriffSpeed(.5));
 
 		// Wait for sensor
