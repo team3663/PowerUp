@@ -188,6 +188,10 @@ public class SS_Elevator extends Subsystem {
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
 
 	public void setSmoothing(double speed) {
+		if (atBottom()) {
+			resetEnc();
+		}
+		
 		System.out.println(get());
 		double Cur_Speed = elevator1.get();
 		if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
@@ -201,6 +205,8 @@ public class SS_Elevator extends Subsystem {
 			Cur_Speed = speed / 3;
 			if (!atBottom()) {
 				Cur_Speed = -.1;
+			} else {
+				Cur_Speed = 0;
 			}
 		} else {
 			Cur_Speed = (Cur_Speed * (smoothing - 1) + speed) / smoothing; // linearization for
