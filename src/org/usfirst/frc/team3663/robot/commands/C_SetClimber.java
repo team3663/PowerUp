@@ -35,7 +35,7 @@ public class C_SetClimber extends Command {
 	@Override
 	protected void execute() {
 		Robot.ss_climber.setClimber(state);
-		//Robot.ss_climber.setClimberSpd(Robot.oi.driveStick.getRawAxis(7));
+		Robot.ss_climber.setClimberSpd(spd);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

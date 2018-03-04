@@ -108,12 +108,17 @@ public class SS_DriveTrain extends Subsystem {
 	public void turn(double speed) {
 		drive.arcadeDrive(0, speed);
 	}
-		
+	
+	
+	int pickles = 15; //  at +/- 15 degrees the rotation will turn at 1
 	public void driveStraight(double pSpd) {
 		double angle = Robot.ss_gyro.gyroGetAngle();
-		if (angle < .1 && angle > -.1)
+		angle = -angle/pickles;
+		if (angle < .05 && angle > -.05) //to prevent ocillations
 			angle = 0;
-		drive.arcadeDrive(pSpd, -angle/5);
+		drive.arcadeDrive(pSpd, angle);
 	}
+	
+	//This code is like a pid for rotation of drivetrain using gyro, pickles is the kP
 
 }

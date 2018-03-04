@@ -31,7 +31,7 @@ public class C_DriveForwardSimple extends Command {
 		this.speed = pSpeed;
 	}
 	
-	public C_DriveForwardSimple fromInches(double inches, double pSpeed) {
+	public static C_DriveForwardSimple fromInches(double inches, double pSpeed) {
 		
 		return new C_DriveForwardSimple(Robot.ss_drivetrain.inchesToTicks(inches), pSpeed);
 	}
@@ -41,7 +41,7 @@ public class C_DriveForwardSimple extends Command {
 		Robot.ss_gyro.resetGyro();
 		if (distance < 0)
 			speed = -speed;
-		Robot.ss_drivetrain.driveForward(speed);
+		
 	}
 	
 	@Override
@@ -49,7 +49,10 @@ public class C_DriveForwardSimple extends Command {
 		if ((distance - Robot.ss_drivetrain.getLeft()) <= SLOW_RANGE && 
 				Robot.ss_drivetrain.left1.get() > MIN_SPEED)
 		{
-			Robot.ss_drivetrain.driveForward(speed * 0.9);
+			Robot.ss_drivetrain.driveStraight(speed * 0.9);
+		}
+		else {
+			Robot.ss_drivetrain.driveStraight(speed);
 		}
 
 	}

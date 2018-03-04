@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_TurnRelativeAngle extends Command {
 	// Finish the command if the robot is within this margin of error (by
 	// degrees)
-	private static final double ANGLE_THRESHOLD = 10;
+	private static final double ANGLE_THRESHOLD = 5;
 
 	private final double destination;
 	private final PIDController controller;
