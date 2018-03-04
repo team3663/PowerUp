@@ -59,6 +59,10 @@ public final class OI {
 		climberTurn.whenPressed(new C_SetClimber(-.5));
 		climberTurn.whenReleased(new C_SetClimber(0));
 		
+		
+		final Button rotateTheCube = new JoystickButton(op, 5);
+		rotateTheCube.whileHeld(new C_RotateCube());
+		
 		//pneu = x winch = right trigg
 	}
 }
