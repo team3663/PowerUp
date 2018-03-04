@@ -16,7 +16,6 @@ import org.usfirst.frc.team3663.robot.Robot;
 public class C_Drive extends Command {
 	public C_Drive() {
 		requires(Robot.ss_drivetrain);
-		requires(Robot.ss_autoSelect);
 	}
 
 	@Override
@@ -28,7 +27,7 @@ public class C_Drive extends Command {
 
 		Robot.ss_drivetrain.getRight();
 		Robot.ss_drivetrain.getLeft();
-		System.out.println(Robot.ss_autoSelect.getAngle());
+
 	}
 
 	@Override

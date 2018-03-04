@@ -12,10 +12,6 @@ import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
-<<<<<<< HEAD
-=======
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
->>>>>>> 0856b7615dc1666872d7cb9af0ffbd0e36e9fad8
 import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 

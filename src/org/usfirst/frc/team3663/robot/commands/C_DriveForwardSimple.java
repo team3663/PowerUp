@@ -32,10 +32,6 @@ public class C_DriveForwardSimple extends Command {
 	}
 	
 	public static C_DriveForwardSimple fromInches(double inches, double pSpeed) {
-<<<<<<< HEAD:src/org/usfirst/frc/team3663/robot/commands/C_DriveForwardSimple.java
-		
-=======
->>>>>>> 0856b7615dc1666872d7cb9af0ffbd0e36e9fad8:src/org/usfirst/frc/team3663/robot/commands/C_DriveForwardSimple.java
 		return new C_DriveForwardSimple(Robot.ss_drivetrain.inchesToTicks(inches), pSpeed);
 	}
 	
