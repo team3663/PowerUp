@@ -41,7 +41,7 @@ public class SS_Griff extends Subsystem {
 	private final DoubleSolenoid griffSqz = new DoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD, RobotMap.GRIFF_SQUEEZE_REV);
 	
 	// Measures the rotation of the griff
-	private final Potentiometer griffRotSensor = new AnalogPotentiometer(RobotMap.CUBE_ROTATOR_SENSOR);
+	
 
 	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
 
@@ -67,17 +67,10 @@ public class SS_Griff extends Subsystem {
 		return Robot.ss_elevator.get() < 3000;
 	}
 
-	public double getAngle() {
-		// TODO: convert raw data to angles
-		// btw the person who did this todo is dumb, its already in angles
-		final double dataRaw = griffRotSensor.get();
-		System.out.println(dataRaw);
+	
 
-		return dataRaw;
-	}
-
-	public boolean rotatorWithinRange() {
-		// TODO FINNISH THIS CODE
+	//public boolean rotatorWithinRange() {
+	/*	// TODO FINNISH THIS CODE
 		if (isBelowBar()) {
 			if (getAngle() > 4) {
 				return true;
@@ -94,6 +87,7 @@ public class SS_Griff extends Subsystem {
 		}
 		return false;
 	}
+	*/
 
 	public boolean getSwitchState() {
 		boolean result = !cubePresent.map(DigitalInput::get).orElse(false);

@@ -19,19 +19,22 @@ public class C_AutoSelect extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		/*final String leverPos = Robot.ss_autoSelect.getLeverPos();
+		final String leverPos = Robot.ss_autoSelect.getLeverPos();
 
-		final int location = DriverStation.getInstance().getLocation();
+		final double location = Robot.ss_autoSelect.getAngle();
 
 		final char nearSwitch = leverPos.charAt(0);
 		final char scale = leverPos.charAt(1);
 		final char farSwitch = leverPos.charAt(2);
-		*/
+		
 		final boolean left = false;
 		final boolean right = true;
 
 		////////////// DRIVE FORWARD ONLY TEST CODE////////////////////
-		new CG_AutoDriveFw().start();
+		//new CG_AutoDriveFw().start();
+		/*if(nearSwitch == 'R') {
+			new CG_AutoRightSwitch(right);
+		}*/
 
 		/////////// NEW SELECT CODE////////////////////////////////////
 
@@ -40,11 +43,9 @@ public class C_AutoSelect extends Command {
 		// with eyeballing distances
 
 		// LEFT
-/*
-		if (location == 0) { // TODO fix errors here
-			if (nearSwitch == 'L' && scale == 'L') {
-				new CG_AutoBothHot(left).start();
-			} else if (scale == 'L') {
+
+		if (location >= 75 && location <= 100) { // TODO fix errors here
+			if (scale == 'L') {
 				new CG_AutoHotScale(left).start();
 			} else if (nearSwitch == 'L') {
 				new CG_AutoHotSwitch(left).start();
@@ -53,7 +54,7 @@ public class C_AutoSelect extends Command {
 			}
 		}
 		// MIDDLE // give switch side
-		if (location == 1) { // TODO fix errors here
+		if (location >= 40 && location <= 75) { // TODO fix errors here
 			if (nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoMidSameSide(left).start();
 			} else if (nearSwitch == 'R' && scale == 'R') {
@@ -65,19 +66,17 @@ public class C_AutoSelect extends Command {
 			}
 		}
 		// RIGHT
-		if (location == 2) {
-			if (nearSwitch == 'R' && scale == 'R') {
-				new CG_AutoBothHot(right).start();
-			} else if (scale == 'R') {
+		if (location >= 13 && location <= 40) {
+			if (scale == 'R') {
 				new CG_AutoHotScale(right).start();
 			} else if (nearSwitch == 'R') {
 				new CG_AutoHotSwitch(right).start();
 			} else {
 				new CG_AutoDriveFw().start();
 			}
-		}
-*/
+		}*/
 	}
+
 
 	@Override
 	protected boolean isFinished() {

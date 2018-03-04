@@ -12,7 +12,7 @@ public class C_DriveForwardByTime extends Command {
 	private final double speed;
 	
 	public C_DriveForwardByTime(double seconds, double speed) {
-		requires(Robot.ss_drivetrain);
+		//requires(Robot.ss_drivetrain);
 		
 		this.seconds = seconds;
 		this.speed = speed;

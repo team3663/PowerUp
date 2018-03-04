@@ -1,7 +1,11 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 // Samuel: We have to derive the game element positions by characters from getGameSpeficMessage().
 //   I made the enum Direction to abstract away from that as much as possible.
@@ -39,7 +43,7 @@ public class SS_AutoSelect extends Subsystem {
 		public static Direction[] fromGameData() {
 			String gameData = "";
 
-			while (gameData.length() > 0) {
+			if (gameData.length() > 0) {
 				gameData = DriverStation.getInstance().getGameSpecificMessage();
 			}
 
@@ -50,6 +54,15 @@ public class SS_AutoSelect extends Subsystem {
 
 			return d;
 		}
+	}
+	
+	private final Potentiometer posPot = new AnalogPotentiometer(RobotMap.AUTO_POS_POT);
+	
+	public double getAngle() {
+		double dataRaw = posPot.get() * 100;
+		System.out.println(dataRaw);
+
+		return dataRaw ;
 	}
 
 	public String getLeverPos() {

@@ -24,7 +24,7 @@ public class C_PrintSensors extends Command {
 				Robot.ss_elevator.get());
 
 		// GRIFF - optical limit switch, angle
-		System.out.printf("GRIFF\nSwitch %s\tAngle %f\n", Robot.ss_griff.getSwitchState(), Robot.ss_griff.getAngle());
+	//	System.out.printf("GRIFF\nSwitch %s\tAngle %f\n", Robot.ss_griff.getSwitchState(), Robot.ss_griff.getAngle());
 
 		// DRIVE TRAIN - left & right encoder position
 		System.out.printf("DRIVE\nLeft %f\tRight %f\n", Robot.ss_drivetrain.getLeft(), Robot.ss_drivetrain.getRight());

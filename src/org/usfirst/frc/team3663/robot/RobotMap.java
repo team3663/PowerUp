@@ -22,7 +22,7 @@ public class RobotMap {
 	public static final int ELEVATOR_ENC_2 = 8;
 
 	/// Analog
-	public static final int CUBE_ROTATOR_SENSOR = 0; // Potentiometer
+	public static final int AUTO_POS_POT = 0; // Potentiometer
 
 	/// CAN BUS
 	// Talons

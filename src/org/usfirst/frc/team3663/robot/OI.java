@@ -53,6 +53,8 @@ public final class OI {
 		final Button climberPneum = new JoystickButton(driveStick, 8);
 		climberPneum.whenPressed(new C_SetClimber(true, 0));
 		climberPneum.whenReleased(new C_SetClimber(false, 0));
+		
+		
 	}
 }
 /*
