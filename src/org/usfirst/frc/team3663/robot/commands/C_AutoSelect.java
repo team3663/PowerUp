@@ -54,7 +54,7 @@ public class C_AutoSelect extends Command {
 				} else if (nearSwitch == 'L') {
 					new CG_AutoHotSwitch(left).start();
 				} else {
-					new C_DriveForwardByTime(4, .5).start();
+					C_DriveForwardSimple.fromInches(145, 0.5).start();
 				}
 			}
 			// MIDDLE // give switch side
@@ -69,7 +69,7 @@ public class C_AutoSelect extends Command {
 					new CG_AutoMidDiffSide(right).start();
 				}*/
 				
-				new C_DriveForwardByTime(4, .5).start();
+				C_DriveForwardSimple.fromInches(145, .5).start();
 			}
 			// RIGHT
 			if (location >= 13 && location <= 40) {
@@ -78,7 +78,7 @@ public class C_AutoSelect extends Command {
 				} else if (nearSwitch == 'R') {
 					new CG_AutoHotSwitch(right).start();
 				} else {
-					new C_DriveForwardByTime(4, .5).start();
+					C_DriveForwardSimple.fromInches(145, .5).start();
 				}
 			}
 		}
