@@ -15,12 +15,12 @@ public class C_MoveElevatorToPos extends Command {
 	// Finish when elevator within 3 inches of destination
 	private static final int THRESHOLD_TICKS = SS_Elevator.inchesToTicks(3);
 
-	private static final double ELEVATOR_SPEED = 0.3;
+	private static final double ELEVATOR_SPEED = 0.5;
 
 	private boolean goingUp;
 	private final int destination;
 
-	private final PIDController pidController = new PIDController(1, 1, 1, -ELEVATOR_SPEED, ELEVATOR_SPEED);
+	private final PIDController pidController = new PIDController(1, 0, 0, -ELEVATOR_SPEED, ELEVATOR_SPEED);
 
 	/**
 	 * @param ticks

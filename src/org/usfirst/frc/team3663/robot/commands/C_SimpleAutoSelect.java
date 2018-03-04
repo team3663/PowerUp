@@ -31,7 +31,7 @@ public class C_SimpleAutoSelect extends Command {
 
 		//RIGHT
 		if (nearSwitch == 'R') {
-			new C_SimpleDropCube().start();
+			new CG_SimpleDropCube().start();
 		}
 		else {
 			new C_SimpleDriveForward((int) (13.304 * 12 * 10), 0.8);

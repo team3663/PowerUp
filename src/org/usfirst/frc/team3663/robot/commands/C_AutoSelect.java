@@ -42,37 +42,44 @@ public class C_AutoSelect extends Command {
 		// all values in the command groups should be perfected, they were set lazily
 		// with eyeballing distances
 
-		// LEFT
+		
 
-		if (location >= 75 && location <= 100) { // TODO fix errors here
-			if (scale == 'L') {
-				new CG_AutoHotScale(left).start();
-			} else if (nearSwitch == 'L') {
-				new CG_AutoHotSwitch(left).start();
-			} else {
-				new CG_AutoDriveFw().start();
+		
+		if(leverPos != "") {
+			
+			//LEFT
+			if (location >= 75 && location <= 100) { // TODO fix errors here
+				if (scale == 'L') {
+					new CG_AutoHotScale(left).start();
+				} else if (nearSwitch == 'L') {
+					new CG_AutoHotSwitch(left).start();
+				} else {
+					new C_DriveForwardByTime(4, .5).start();
+				}
 			}
-		}
-		// MIDDLE // give switch side
-		if (location >= 40 && location <= 75) { // TODO fix errors here
-			if (nearSwitch == 'L' && scale == 'L') {
-				new CG_AutoMidSameSide(left).start();
-			} else if (nearSwitch == 'R' && scale == 'R') {
-				new CG_AutoMidSameSide(right).start();
-			} else if (nearSwitch == 'L' && scale == 'R') {
-				new CG_AutoMidDiffSide(left).start();
-			} else if (nearSwitch == 'R' && scale == 'L') {
-				new CG_AutoMidDiffSide(right).start();
+			// MIDDLE // give switch side
+			if (location >= 40 && location <= 75) { // TODO fix errors here
+				/*if (nearSwitch == 'L' && scale == 'L') {
+					new CG_AutoMidSameSide(left).start();
+				} else if (nearSwitch == 'R' && scale == 'R') {
+					new CG_AutoMidSameSide(right).start();
+				} else if (nearSwitch == 'L' && scale == 'R') {
+					new CG_AutoMidDiffSide(left).start();
+				} else if (nearSwitch == 'R' && scale == 'L') {
+					new CG_AutoMidDiffSide(right).start();
+				}*/
+				
+				new C_DriveForwardByTime(4, .5).start();
 			}
-		}
-		// RIGHT
-		if (location >= 13 && location <= 40) {
-			if (scale == 'R') {
-				new CG_AutoHotScale(right).start();
-			} else if (nearSwitch == 'R') {
-				new CG_AutoHotSwitch(right).start();
-			} else {
-				new CG_AutoDriveFw().start();
+			// RIGHT
+			if (location >= 13 && location <= 40) {
+				if (scale == 'R') {
+					new CG_AutoHotScale(right).start();
+				} else if (nearSwitch == 'R') {
+					new CG_AutoHotSwitch(right).start();
+				} else {
+					new C_DriveForwardByTime(4, .5).start();
+				}
 			}
 		}
 	}
@@ -80,6 +87,7 @@ public class C_AutoSelect extends Command {
 
 	@Override
 	protected boolean isFinished() {
+		
 		return true;
 	}
 }

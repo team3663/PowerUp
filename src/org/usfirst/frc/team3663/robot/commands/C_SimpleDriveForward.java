@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class C_SimpleDriveForward extends Command {
-	private final int SLOW_RANGE = SS_DriveTrain.inchesToTicks(6);
+	private final int SLOW_RANGE = Robot.ss_drivetrain.inchesToTicks(6);
 	private final double MIN_SPEED = 0.3;
 
 	private final int distance;
@@ -28,6 +28,10 @@ public class C_SimpleDriveForward extends Command {
 
 		distance = Robot.ss_drivetrain.getLeft() + ticks;
 		this.speed = pSpeed;
+	}
+	
+	public C_SimpleDriveForward fromInches(double inches, double pSpeed) {
+		return new C_SimpleDriveForward(Robot.ss_drivetrain.inchesToTicks(inches), pSpeed);
 	}
 	
 	@Override

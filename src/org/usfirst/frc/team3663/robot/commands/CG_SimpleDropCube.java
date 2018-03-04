@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class C_SimpleDropCube extends CommandGroup {
+public class CG_SimpleDropCube extends CommandGroup {
 
-    public C_SimpleDropCube() {
+    public CG_SimpleDropCube() {
     	//Drive into the wall
     	addSequential(new C_SimpleDriveForward((int) (13.304 * 12 * 10.5), 0.8));
 

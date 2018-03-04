@@ -43,7 +43,7 @@ public class SS_DriveTrain extends Subsystem {
 
 	public DifferentialDrive drive = new DifferentialDrive(left1, right1);
 
-	public static int inchesToTicks(double inches) {
+	public int inchesToTicks(double inches) {
 		return (int) (inches * TICKS_PER_IN);
 	}
 
