@@ -8,6 +8,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_AutoDriveFw extends CommandGroup {
 
 	public CG_AutoDriveFw() {
-		addSequential(C_DriveForwardRelative.fromInches(145, .8));
+		addSequential(C_DriveForwardSimple.fromInches(145, .8));
 	}
 }
