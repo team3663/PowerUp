@@ -17,6 +17,14 @@ public class C_SetClimber extends Command {
 		this.state = state;
 		this.spd = spd;
 	}
+	
+	public C_SetClimber(boolean state) {
+		this(state, 0);
+	}
+	
+	public C_SetClimber(double spd) {
+		this(false, spd);
+	}
 
 	// Called just before this Command runs the first time
 	@Override

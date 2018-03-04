@@ -14,6 +14,7 @@ public final class OI {
 	public boolean last = true;
 
 	public Joystick driveStick = new Joystick(0);
+	public Joystick op = new Joystick(1);
 
 	public OI() {
 		// Button exampleButton = new JoystickButton(driveStick, 1);
@@ -50,9 +51,17 @@ public final class OI {
 		//final Button lowGoal = new JoystickButton(driveStick, 8);
 		//lowGoal.whenPressed(new C_SimpleMoveElevator(500));
 		
-		final Button climberPneum = new JoystickButton(driveStick, 8);
-		climberPneum.whenPressed(new C_SetClimber(true, 0));
-		climberPneum.whenReleased(new C_SetClimber(false, 0));
+		
+		
+		final Button climberPneum = new JoystickButton(op, 3);
+		climberPneum.whenPressed(new C_SetClimber(true));
+		climberPneum.whenReleased(new C_SetClimber(false));
+		
+		final Button climberTurn = new JoystickButton(op, 6);
+		climberTurn.whenPressed(new C_SetClimber(-.5));
+		climberTurn.whenReleased(new C_SetClimber(0));
+		
+		//pneu = x winch = right trigg
 	}
 }
 /*

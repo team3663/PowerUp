@@ -21,7 +21,7 @@ public class SS_Climber extends Subsystem {
 	private final WPI_TalonSRX climber2 = new WPI_TalonSRX(RobotMap.CLIMBER_2);
 	
 	public SS_Climber() {
-		//elevator2.follow(elevator1);
+		climber2.follow(climber1);
 		//elevator1.setInverted(true);
 		//elevator2.setInverted(true);
 	}

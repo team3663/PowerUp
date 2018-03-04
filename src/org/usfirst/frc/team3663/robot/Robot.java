@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
 import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
+import org.usfirst.frc.team3663.robot.commands.C_SimpleDriveForward;
+import org.usfirst.frc.team3663.robot.commands.C_SimpleDropCube;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
@@ -20,6 +22,8 @@ import org.usfirst.frc.team3663.robot.subsystems.*;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	//   |   || 
+	//  ||   |__
 	public static OI oi;
 	public static SS_DriveTrain ss_drivetrain;
 
@@ -32,6 +36,7 @@ public class Robot extends IterativeRobot {
 	public static SS_AutoSelect ss_autoSelect;
 	public static SS_Climber ss_climber;
 
+	private Command driveForward;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.git test
@@ -46,17 +51,20 @@ public class Robot extends IterativeRobot {
 		ss_gyro = new SS_Gyro();
 		ss_autoSelect = new SS_AutoSelect();
 		ss_climber = new SS_Climber();
-
+		
 		oi = new OI(); // oi must be initilized last PLEASE
+
+		driveForward = new C_DriveForwardByTime(4, .5);
+		//driveForward = new C_SimpleDriveForward((int) (1000), 0.8);
+		//driveForward = new C_SimpleDropCube();
 
 		// SS_DriveTrain.setEnc();
 	}
 
 	// private final Command driveForward = new C_DriveForwardByTime(5, .5);
-	private final Command driveForward = new C_DriveForwardByTime(5, .5);
 	@Override
 	public void autonomousInit() {
-		new C_SetIntakeState(false, true).start();
+		new C_SetIntakeState(false, false).start();
 		driveForward.start();
 	}
 
