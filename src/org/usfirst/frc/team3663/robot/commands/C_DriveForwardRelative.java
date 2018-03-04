@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class C_DriveForwardRelative extends Command {
-	private final int THRESHOLD_TICKS = Robot.ss_drivetrain.inchesToTicks(3);
+	private int THRESHOLD_TICKS = Robot.ss_drivetrain.inchesToTicks(3.0);
 
 	private final int destination;
 	private final PIDController controller;
