@@ -9,6 +9,8 @@ package org.usfirst.frc.team3663.robot;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
+import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
+import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
 import org.usfirst.frc.team3663.robot.commands.C_SimpleDriveForward;
 import org.usfirst.frc.team3663.robot.commands.C_SimpleDropCube;
@@ -67,7 +69,7 @@ public class Robot extends IterativeRobot {
 		new C_SetIntakeState(false, false).start();
 		driveForward.start();
 	}
-
+ 
 	/**
 	 * This function is called periodically during autonomous.
 	 */
@@ -79,7 +81,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		driveForward.cancel();
+		//driveForward.cancel();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

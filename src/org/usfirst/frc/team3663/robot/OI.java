@@ -52,7 +52,6 @@ public final class OI {
 		//lowGoal.whenPressed(new C_SimpleMoveElevator(500));
 		
 		
-		
 		final Button climberPneum = new JoystickButton(op, 3);
 		climberPneum.whenPressed(new C_SetClimber(true));
 		climberPneum.whenReleased(new C_SetClimber(false));
