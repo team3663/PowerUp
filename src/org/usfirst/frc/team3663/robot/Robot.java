@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
+import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
-import org.usfirst.frc.team3663.robot.commands.C_SimpleDriveForward;
 import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
@@ -55,8 +55,8 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 
-		driveForward = new C_DriveForwardByTime(4, .5);
-		//driveForward = new C_SimpleDriveForward((int) (1000), 0.8);
+		//driveForward = new C_DriveForwardByTime(4, .5);
+		//driveForward = new C_DriveForwardSimple.fromInches ( 1000, 0.8);
 		//driveForward = new C_SimpleDropCube();
 
 		// SS_DriveTrain.setEnc();

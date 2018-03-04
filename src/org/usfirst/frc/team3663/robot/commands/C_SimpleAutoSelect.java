@@ -34,7 +34,7 @@ public class C_SimpleAutoSelect extends Command {
 			new CG_SimpleDropCube().start();
 		}
 		else {
-			new C_SimpleDriveForward((int) (13.304 * 12 * 10), 0.8);
+			new C_DriveForwardSimple((int) (13.304 * 12 * 10), 0.8);
 		}
 	}
 

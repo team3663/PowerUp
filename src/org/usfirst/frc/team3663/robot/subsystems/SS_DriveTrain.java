@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
@@ -106,6 +107,13 @@ public class SS_DriveTrain extends Subsystem {
 	 */
 	public void turn(double speed) {
 		drive.arcadeDrive(0, speed);
+	}
+		
+	public void driveStraight(double pSpd) {
+		double angle = Robot.ss_gyro.gyroGetAngle();
+		if (angle < .1 && angle > -.1)
+			angle = 0;
+		drive.arcadeDrive(pSpd, -angle/5);
 	}
 
 }

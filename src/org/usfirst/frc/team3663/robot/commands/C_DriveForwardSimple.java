@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * Drive forward set amount of ticks.
  *
  */
-public class C_SimpleDriveForward extends Command {
+public class C_DriveForwardSimple extends Command {
 	private final int SLOW_RANGE = Robot.ss_drivetrain.inchesToTicks(6);
 	private final double MIN_SPEED = 0.3;
 
@@ -23,19 +23,22 @@ public class C_SimpleDriveForward extends Command {
 	 * @param speed
 	 *            Maximum speed for robot
 	 */
-	public C_SimpleDriveForward(int ticks, double pSpeed) {
+	public C_DriveForwardSimple(int ticks, double pSpeed) {
 		requires(Robot.ss_drivetrain);
-
+		requires(Robot.ss_gyro);
+		
 		distance = Robot.ss_drivetrain.getLeft() + ticks;
 		this.speed = pSpeed;
 	}
 	
-	public C_SimpleDriveForward fromInches(double inches, double pSpeed) {
-		return new C_SimpleDriveForward(Robot.ss_drivetrain.inchesToTicks(inches), pSpeed);
+	public C_DriveForwardSimple fromInches(double inches, double pSpeed) {
+		
+		return new C_DriveForwardSimple(Robot.ss_drivetrain.inchesToTicks(inches), pSpeed);
 	}
 	
 	@Override
 	protected void initialize()	{
+		Robot.ss_gyro.resetGyro();
 		if (distance < 0)
 			speed = -speed;
 		Robot.ss_drivetrain.driveForward(speed);
@@ -43,12 +46,12 @@ public class C_SimpleDriveForward extends Command {
 	
 	@Override
 	protected void execute() {
-//		if ((distance - Robot.ss_drivetrain.getLeft()) <= SLOW_RANGE && 
-//				Robot.ss_drivetrain.left1.get() > MIN_SPEED)
-//		{
-//			Robot.ss_drivetrain.driveForward(speed * 0.9);
-//		}
-		Robot.ss_drivetrain.driveForward(speed);
+		if ((distance - Robot.ss_drivetrain.getLeft()) <= SLOW_RANGE && 
+				Robot.ss_drivetrain.left1.get() > MIN_SPEED)
+		{
+			Robot.ss_drivetrain.driveForward(speed * 0.9);
+		}
+
 	}
 
 	@Override
