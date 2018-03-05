@@ -39,5 +39,14 @@ public class SS_Gyro extends Subsystem {
 	public double gyroGetAngle() {
 		return ahrs.map(AHRS::getAngle).orElse(0.0);
 	}
-
+	
+	int pickles = 10; //  at +/- 10 degrees the rotation will turn at 1
+	public double gyroDiff(){
+		double angle = gyroGetAngle();
+		angle = -angle/pickles;
+		//TODO: make a clamp
+		//if (angle < .05 && angle > -.05) //to prevent ocillations TODO:Make this into a differential 
+		//	angle = 0;
+		return angle;
+	}
 }
