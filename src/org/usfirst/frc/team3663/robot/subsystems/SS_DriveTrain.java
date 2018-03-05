@@ -98,6 +98,19 @@ public class SS_DriveTrain extends Subsystem {
 	public int getRight() {
 		return rightEnc.get();
 	}
+	
+	public int get() {
+		if (L() && R())
+			return (getLeft() + getRight()) / 2; //average the two encoders
+		else if (L())
+			return getLeft();
+		else if (R())
+			return getRight();
+		else{
+			System.out.println("WARNING ENCODERS NOT PLUGGED IN, FIX NOW");
+			return 0;
+		}
+	}
 
 	/**
 	 * Turns in place
@@ -109,16 +122,46 @@ public class SS_DriveTrain extends Subsystem {
 		drive.arcadeDrive(0, speed);
 	}
 	
-	
-	int pickles = 15; //  at +/- 15 degrees the rotation will turn at 1
-	public void driveStraight(double pSpd) {
-		double angle = Robot.ss_gyro.gyroGetAngle();
-		angle = -angle/pickles;
-		if (angle < .05 && angle > -.05) //to prevent ocillations
-			angle = 0;
-		drive.arcadeDrive(pSpd, angle);
+	public boolean L(){
+		if (getLeft() != 0 && left1.get() != 0) 
+			return true;
+		else {
+			System.out.println("WARNING LEFT ENCODER NOT PLUGGED IN, FIX NOW");
+			return false;
+		}
+	}
+	public boolean R(){
+		if (getRight() != 0 && right1.get() != 0) 
+			return true;
+		else {
+			System.out.println("WARNING RIGHT ENCODER NOT PLUGGED IN, FIX NOW");
+			return false;
+		}
+	}
+		
+	int pickles = 200; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
+	public double encoderDiff(){
+		if (R() && L())
+			return (getLeft()-getRight)/pickles; // TODO: make sure they are in the right direction
+		else
+			return 0;
+	}
+	//This code is like a PID for rotation of drivetrain using gyro and encoders, averaging the two for a smoother experiance
+	public double diff(){
+		if( L() && R() ) { //Put in gyroPresent for proper redundency
+			return (Robot.ss_gyro.gyroDiff() + encoderDiff()) / 2;
+		else if (L()) //TODO: Gyropresent here
+			return Robot.ss_gyro.gyroDiff();
+		else if (L() && R())
+			return encoderDiff();
+		else
+			return 0;
 	}
 	
-	//This code is like a pid for rotation of drivetrain using gyro, pickles is the kP
+	public void driveStraight(double pSpd) {
+		drive.arcadeDrive(pSpd, diff());
+	}
+	
+	
 
 }
