@@ -55,9 +55,9 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 
-		//driveForward = new C_DriveForwardByTime(4, .5);
+		driveForward = new C_DriveForwardByTime(4, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		driveForward = new CG_SimpleDropCube();
+		//driveForward = new CG_SimpleDropCube();
 
 		// SS_DriveTrain.setEnc();
 	}
