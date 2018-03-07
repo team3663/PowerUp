@@ -99,6 +99,7 @@ public class SS_DriveTrain extends Subsystem {
 		return rightEnc.get();
 	}
 	
+	//averages the two enc, but defaults to the other if unplugged
 	public int get() {
 		if (L() && R())
 			return (getLeft() + getRight()) / 2; //average the two encoders
@@ -121,7 +122,7 @@ public class SS_DriveTrain extends Subsystem {
 	public void turn(double speed) {
 		drive.arcadeDrive(0, speed);
 	}
-	
+	// checks to make sure that the encoders are plugged in
 	public boolean L(){
 		if (getLeft() != 0 && left1.get() != 0) 
 			return true;
@@ -142,15 +143,15 @@ public class SS_DriveTrain extends Subsystem {
 	int pickles = 200; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
 	public double encoderDiff(){
 		if (R() && L())
-			return (getLeft()-getRight)/pickles; // TODO: make sure they are in the right direction
+			return (getLeft()-getRight())/pickles; // TODO: make sure they are in the right direction
 		else
 			return 0;
 	}
 	//This code is like a PID for rotation of drivetrain using gyro and encoders, averaging the two for a smoother experiance
 	public double diff(){
-		if( L() && R() ) { //Put in gyroPresent for proper redundency
+		if( L() && R() ) 
 			return (Robot.ss_gyro.gyroDiff() + encoderDiff()) / 2;
-		else if (L()) //TODO: Gyropresent here
+		else if (Robot.ss_gyro.gyroPresent()) 
 			return Robot.ss_gyro.gyroDiff();
 		else if (L() && R())
 			return encoderDiff();

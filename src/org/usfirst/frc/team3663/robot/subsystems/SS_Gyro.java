@@ -28,7 +28,11 @@ public class SS_Gyro extends Subsystem {
 	public void resetGyro() {
 		ahrs.ifPresent(AHRS::reset);
 	}
-
+	
+	//TODO: Gyropresent here
+	public boolean gyroPresent() {
+		return true;
+	}
 	/**
 	 * Returns the total accumulated Z-axis angle reported by the sensor, in
 	 * degrees.
@@ -39,9 +43,7 @@ public class SS_Gyro extends Subsystem {
 	public double gyroGetAngle() {
 		return ahrs.map(AHRS::getAngle).orElse(0.0);
 	}
-	
-	//TODO: add code for isPresent to make sure diff() in DT works properly
-	
+		
 	int pickles = 10; //  at +/- 10 degrees the rotation will turn at 1
 	public double gyroDiff(){
 		double angle = gyroGetAngle();
