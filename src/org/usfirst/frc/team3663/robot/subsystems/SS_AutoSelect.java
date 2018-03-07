@@ -1,6 +1,10 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoHotScale;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
+import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -68,6 +72,69 @@ public class SS_AutoSelect extends Subsystem {
 	public String getLeverPos() {
 		final String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		return gameData;
+	}
+	
+	public boolean runAuto() {
+		final String leverPos = Robot.ss_autoSelect.getLeverPos();
+
+		final double location = Robot.ss_autoSelect.getAngle();
+
+		final char nearSwitch = leverPos.charAt(0);
+		final char scale = leverPos.charAt(1);
+		final char farSwitch = leverPos.charAt(2);
+		
+		final boolean left = false;
+		final boolean right = true;
+
+		/////////// NEW SELECT CODE////////////////////////////////////
+
+		// add delays if you want, there aren't any
+		// all values in the command groups should be perfected, they were set lazily
+		// with eyeballing distances
+
+		
+
+		
+		if(leverPos != "") {
+			
+			//LEFT
+			if (location >= 75 && location <= 100) { // TODO fix errors here
+				if (scale == 'L') {
+					new CG_AutoHotScale(left).start();
+				} else if (nearSwitch == 'L') {
+					new CG_AutoHotSwitch(left).start();
+				} else {
+					C_DriveForwardSimple.fromInches(145, 0.5).start();
+				}
+			}
+			// MIDDLE // give switch side
+			if (location >= 40 && location <= 75) { // TODO fix errors here
+				/*if (nearSwitch == 'L' && scale == 'L') {
+					new CG_AutoMidSameSide(left).start();
+				} else if (nearSwitch == 'R' && scale == 'R') {
+					new CG_AutoMidSameSide(right).start();
+				} else if (nearSwitch == 'L' && scale == 'R') {
+					new CG_AutoMidDiffSide(left).start();
+				} else if (nearSwitch == 'R' && scale == 'L') {
+					new CG_AutoMidDiffSide(right).start();
+				}*/
+				
+				C_DriveForwardSimple.fromInches(145, .5).start();
+			}
+			// RIGHT
+			if (location >= 13 && location <= 40) {
+				if (scale == 'R') {
+					new CG_AutoHotScale(right).start();
+				} else if (nearSwitch == 'R') {
+					new CG_AutoHotSwitch(right).start();
+				} else {
+					C_DriveForwardSimple.fromInches(145, .5).start();
+				}
+				
+			}
+			return true;
+		}
+		return false;
 	}
 
 	@Override

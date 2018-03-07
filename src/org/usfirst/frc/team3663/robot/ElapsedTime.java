@@ -1,26 +1,26 @@
 package org.usfirst.frc.team3663.robot;
 
 public final class ElapsedTime {
-	private long time = 0;
+	private static long time = 0;
 
 	public ElapsedTime() {
 		reset();
 	}
 
-	public void reset() {
+	public static void reset() {
 		time = System.nanoTime();
 	}
 
-	public long getElapsedNano() {
+	public static long getElapsedNano() {
 		final long currTime = System.nanoTime();
 		return currTime - time;
 	}
 
-	public long getElapsedMillis() {
+	public static long getElapsedMillis() {
 		return getElapsedNano() / 1000000;
 	}
 
-	public double getElapsedSeconds() {
+	public static double getElapsedSeconds() {
 		return getElapsedNano() / 1000000000.0;
 	}
 }

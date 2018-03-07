@@ -136,25 +136,25 @@ public class SS_Elevator extends Subsystem {
 		return true;
 	}
 
-	/*MC list of TODO in elevator:
-	* 	Zero Command: example bellow
-	*	Smoothing for joystick/all of elevator
-	*	Software encoder limits for elevator
-	*	Software is arms position 4 don't move down
-	*/
+	
+	
+	
+	
+	
+	
 
-	public boolean ZeroElevator() // TODO example Zero Elevator moves elevator down slowly until limit switch is
-									// reached.
-	{
-		if (atBottom()) {
-			elevator1.set(0);
-			encoder.reset();
-			return true;
-		} else {
-			elevator1.set(-.12);
-		}
-		return false;
-	}
+	
+									
+	
+		
+			
+			
+			
+		
+			
+		
+
+	
 
 	// TODO example code simple move to encoder tick not very accurate but should
 	// work
