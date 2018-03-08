@@ -143,7 +143,7 @@ public class SS_DriveTrain extends Subsystem {
 	int pickles = 200; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
 	public double encoderDiff(){
 		if (R() && L())
-			return (getLeft()-getRight())/pickles; // TODO: make sure they are in the right direction
+			return (getLeft()-getRight())/pickles; // TODO: make sure the encoders are in the right direction
 		else
 			return 0;
 	}
@@ -161,6 +161,28 @@ public class SS_DriveTrain extends Subsystem {
 	
 	public void driveStraight(double pSpd) {
 		drive.arcadeDrive(pSpd, diff());
+	}
+	
+	//spins and moves foward whie spinning (extremely useful)
+	int spinningPickles  = 180;
+	public void driveSpin() {
+		drive.arcadeDrive(Robot.ss_gyro.getAngle()/spinningPickles , 1); //TODO: find where the turn ovverrides the foward
+	}
+	
+	//(radius that the robot makes) * (2) * (3.14 pi) / (360)
+	double radius = 0;
+	double distancePerDegree = 0; // 2 pi (radius) / 360
+	double distancePerTicks = .074; //in (just documenting)
+	double ticksPerInch = 13.5;
+	
+	double encPickles = 90; // at +/- 90 degrees speed will be one
+	public double encTurn(double target) {
+		
+		double angle = (get()/TICKS_PER_IN); //converts ticks to inches
+		angle = (( 2 * 3.1415 * radius * target)/360); //finds the angle 
+		angle = -angle/this.encPickles; //converts to motorcontroller spd porportionaly
+		return angle;
+		
 	}
 	
 	
