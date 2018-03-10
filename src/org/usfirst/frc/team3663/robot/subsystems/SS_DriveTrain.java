@@ -179,7 +179,7 @@ public class SS_DriveTrain extends Subsystem {
 	public double encTurn(double target) {
 		
 		double angle = (get()/TICKS_PER_IN); //converts ticks to inches
-		angle = (( 2 * 3.1415 * radius * target)/360); //finds the angle 
+		angle = (( 2 * 3.1415 * radius * angle)/360); //finds the angle 
 		angle = -angle/this.encPickles; //converts to motorcontroller spd porportionaly
 		return angle;
 		
