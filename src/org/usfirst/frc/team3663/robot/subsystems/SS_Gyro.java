@@ -31,7 +31,7 @@ public class SS_Gyro extends Subsystem {
 	
 	//TODO: Gyropresent here
 	public boolean gyroPresent() {
-		return true;
+		return ahrs.isPresent();
 	}
 	/**
 	 * Returns the total accumulated Z-axis angle reported by the sensor, in
