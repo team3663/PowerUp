@@ -30,12 +30,10 @@ public class Robot extends IterativeRobot {
 
 	public static RobotMap RobotMap;
 	public static SS_Gyro ss_gyro;
-	public static SS_CubeIntake ss_cubeIntake;
 	public static SS_Griff ss_griff;
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	public static SS_AutoSelect ss_autoSelect;
-	public static SS_Climber ss_climber;
 
 	private Command driveForward;
 	/**
@@ -47,11 +45,9 @@ public class Robot extends IterativeRobot {
 		// Initialize all subsystems
 		ss_elevator = new SS_Elevator();
 		ss_drivetrain = new SS_DriveTrain();
-		ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_autoSelect = new SS_AutoSelect();
-		ss_climber = new SS_Climber();
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 
@@ -67,7 +63,6 @@ public class Robot extends IterativeRobot {
 	// private final Command driveForward = new C_DriveForwardByTime(5, .5);
 	@Override
 	public void autonomousInit() {
-		new C_SetIntakeState(false, false).start();
 		driveForward.start();
 	}
  

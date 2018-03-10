@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Sets speed of intake wheels.
  */
+
+/*
 public class C_SetIntakeSpeed extends Command {
 
 	private final double spd;
@@ -29,3 +31,4 @@ public class C_SetIntakeSpeed extends Command {
 	}
 
 }
+*/

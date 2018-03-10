@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+
+/*
 public class C_IntakeSanityCheck extends Command {
 
 	public static final int INTAKE_CHECK_THRESHOLD = 2500;
@@ -30,3 +32,4 @@ public class C_IntakeSanityCheck extends Command {
 	}
 
 }
+*/

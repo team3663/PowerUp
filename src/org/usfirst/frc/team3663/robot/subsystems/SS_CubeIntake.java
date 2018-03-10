@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+
+/*
 public class SS_CubeIntake extends Subsystem {
 	private final WPI_TalonSRX rightIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_RIGHT);
 	private final WPI_TalonSRX leftIntake = new WPI_TalonSRX(RobotMap.CUBE_INTAKE_LEFT);
@@ -53,7 +55,7 @@ public class SS_CubeIntake extends Subsystem {
 	// TODO this is test code pls do use unless ur a potato
 	public int counter = 0;
 
-	/*
+	
 	public void testIntake() {
 		counter++;
 		sqzIntake(counter < 10);
@@ -66,5 +68,5 @@ public class SS_CubeIntake extends Subsystem {
 		extendIntake(true);
 
 	}
-*/
 }
+*/

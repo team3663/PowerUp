@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
- */
+ *
 public class SS_Climber extends Subsystem {
 
     
@@ -38,4 +38,4 @@ public class SS_Climber extends Subsystem {
 		climber1.set(spd);
 	}
 }
-
+*/

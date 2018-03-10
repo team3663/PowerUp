@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+
+/*
 public class C_SetClimber extends Command {
 
 	boolean state;
@@ -50,3 +52,4 @@ public class C_SetClimber extends Command {
 	}
 
 }
+*/
