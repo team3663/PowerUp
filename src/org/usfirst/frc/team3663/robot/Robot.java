@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
-import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
 import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 

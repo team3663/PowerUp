@@ -26,10 +26,10 @@ public final class OI {
 		griffSqz.whenPressed(new C_GriffSqueeze(true));
 		griffSqz.whenReleased(new C_GriffSqueeze(false));
 
-		final Button intakePneumatics = new JoystickButton(driveStick, 7);
+		/*final Button intakePneumatics = new JoystickButton(driveStick, 7);
 		intakePneumatics.whenPressed(new C_SetIntakeState(true, true));
 		intakePneumatics.whenReleased(new C_SetIntakeState(false, false));
-
+*/
 		/*
 		 * Button intakeExtnd = new JoystickButton(driveStick, 2);
 		 * intakeExtnd.whenPressed(new C_IntakeExtnd(true));
@@ -39,18 +39,18 @@ public final class OI {
 		final Button inGriff = new JoystickButton(driveStick, 2);
 		inGriff.whenPressed(new C_SetGriffSpeed(1));
 		inGriff.whenReleased(new C_SetGriffSpeed(0));
-
+/*
 		final Button setIntakeSpd = new JoystickButton(driveStick, 6);
 		setIntakeSpd.whenPressed(new C_SetIntakeSpeed(-1));
 		setIntakeSpd.whenReleased(new C_SetIntakeSpeed(0));
-
+*/
 		final Button outGriff = new JoystickButton(driveStick, 5);
 		outGriff.whenPressed(new C_SetGriffSpeed(-1));
 		outGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		//final Button lowGoal = new JoystickButton(driveStick, 8);
 		//lowGoal.whenPressed(new C_SimpleMoveElevator(500));
-		
+	/*	
 		final Button climberPneum = new JoystickButton(op, 3);
 		climberPneum.whenPressed(new C_SetClimber(true));
 		climberPneum.whenReleased(new C_SetClimber(false));
@@ -58,7 +58,7 @@ public final class OI {
 		final Button climberTurn = new JoystickButton(op, 6);
 		climberTurn.whenPressed(new C_SetClimber(-.5));
 		climberTurn.whenReleased(new C_SetClimber(0));
-		
+		*/
 		//pneu = x winch = right trigg
 	}
 }

@@ -10,19 +10,19 @@ public class CG_CubeCycle extends CommandGroup {
 
 	public CG_CubeCycle() {
 		// Arm cube intake
-		addSequential(new C_SetIntakeState(true, true));
+		//addSequential(new C_SetIntakeState(true, true));
 		addSequential(new C_GriffSqueeze(true));
-		addSequential(new C_SetIntakeSpeed(1));
+		//addSequential(new C_SetIntakeSpeed(1));
 		addSequential(new C_SetGriffSpeed(.5));
 
 		// Wait for sensor
 		addSequential(new C_GriffSensor());
 
 		// Disarm cube intake
-		addSequential(new C_SetIntakeSpeed(0));
+		//addSequential(new C_SetIntakeSpeed(0));
 		//addSequential(new C_SetGriffSpeed(0));
 		// addSequential(new C_MoveElevatorToPos(24)); // Moves cube up 24"
 		addSequential(new C_GriffSqueeze(false));
-		addSequential(new C_SetIntakeState(false, false));
+		//addSequential(new C_SetIntakeState(false, false));
 	}
 }
