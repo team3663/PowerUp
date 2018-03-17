@@ -24,7 +24,7 @@ public class C_Elevator extends Command {
 		//Robot.ss_cubeIntake.insanityCheck();            //insanity check
 		// Lower elevator until it's initialized
 		if (!initialized) {
-			Robot.ss_elevator.set(-.3);
+			Robot.ss_elevator.set(-.5);
 			initialized = Robot.ss_elevator.atBottom();
 			System.out.println("Lowering Elevator");
 			return;

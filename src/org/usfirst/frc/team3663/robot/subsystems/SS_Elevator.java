@@ -76,7 +76,7 @@ public class SS_Elevator extends Subsystem {
 
 	public boolean atBottom() { // so far there is no way to see where you are
 		// Uses both softcoded minimum and hardware limit switch
-		return !limitSwitchBottom.map(DigitalInput::get).orElse(true); // TODO fix problem with DIO
+		return limitSwitchBottom.map(DigitalInput::get).orElse(true); // TODO fix problem with DIO
 	}
 
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -92,7 +92,7 @@ public class SS_Elevator extends Subsystem {
 	// @return The current position of the encoders
 
 	public int get() {
-		return encoder.get();
+		return -encoder.get();
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class SS_Elevator extends Subsystem {
 		
 		System.out.println(get());
 		double Cur_Speed = elevator1.get();
-		if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
+		if (( get() >= ELEVATOR_MAX) && speed > 0) {
 			Cur_Speed = 0;
 		} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
 			Cur_Speed = 0;
@@ -215,7 +215,7 @@ public class SS_Elevator extends Subsystem {
 				Cur_Speed = 0;
 			}
 		}
-		//System.out.println(Cur_Speed);
+		System.out.println(Cur_Speed);
 		elevator1.set(Cur_Speed);
 	}
 

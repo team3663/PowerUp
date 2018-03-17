@@ -34,7 +34,7 @@ public class SS_Griff extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	private final WPI_VictorSPX griffon = new WPI_VictorSPX(RobotMap.CUBE_SHOOTER);
-	private final WPI_VictorSPX griffRot = new WPI_VictorSPX(RobotMap.CUBE_ROTATOR);
+	
 	// private final Optional<DoubleSolenoid> griffPneumatics =
 	// HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD,
 	// RobotMap.GRIFF_SQUEEZE_REV);
@@ -49,7 +49,7 @@ public class SS_Griff extends Subsystem {
 		if (Robot.ss_elevator.get() < 100) {
 
 		}
-		griffRot.set(speed);
+		//griffRot.set(speed);
 	}
 
 	/**
