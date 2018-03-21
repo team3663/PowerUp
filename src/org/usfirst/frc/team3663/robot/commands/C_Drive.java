@@ -24,10 +24,6 @@ public class C_Drive extends Command {
 		// Robot.oi.driveStick.getRawAxis(0));
 		Robot.ss_drivetrain.drive.arcadeDrive(Robot.oi.driveStick.getRawAxis(1),
 				Robot.oi.driveStick.getRawAxis(0));
-
-		Robot.ss_drivetrain.getRight();
-		Robot.ss_drivetrain.getLeft();
-
 	}
 
 	@Override

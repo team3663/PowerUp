@@ -150,6 +150,9 @@ public class SS_DriveTrain extends Subsystem {
 	}
 	//This code is like a PID for rotation of drivetrain using gyro and encoders, averaging the two for a smoother experiance
 	public double diff(){
+		
+		System.out.println(Robot.ss_gyro.gyroDiff() + "   " + encoderDiff());
+		System.out.println( L() + "   " + R());
 		if( L() && R() && Robot.ss_gyro.gyroPresent()) 
 			return (Robot.ss_gyro.gyroDiff() + encoderDiff()) / 2;
 		else if (Robot.ss_gyro.gyroPresent()) 

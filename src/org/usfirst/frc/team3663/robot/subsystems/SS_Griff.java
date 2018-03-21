@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -33,7 +35,7 @@ public class SS_Griff extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	private final WPI_VictorSPX griffon = new WPI_VictorSPX(RobotMap.CUBE_SHOOTER);
+	private final WPI_TalonSRX griffon = new WPI_TalonSRX(RobotMap.CUBE_SHOOTER);
 	
 	// private final Optional<DoubleSolenoid> griffPneumatics =
 	// HardwareUtil.getDoubleSolenoid(RobotMap.GRIFF_SQUEEZE_FWD,

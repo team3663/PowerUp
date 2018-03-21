@@ -21,7 +21,7 @@ public class SS_Elevator extends Subsystem {
 	public static final double TICKS_PER_INCH = 66.86;
 
 	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 5600;
+	public static final int ELEVATOR_MAX = 3500;
 	// public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3); //curtis:
 	// you hard code the top but not the bottom?
 	public static final int ELEVATOR_MIN = 30;

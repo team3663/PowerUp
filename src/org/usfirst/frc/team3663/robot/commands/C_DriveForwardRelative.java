@@ -48,6 +48,7 @@ public class C_DriveForwardRelative extends Command {
 	
 	@Override
 	protected void initialize() {
+		Robot.ss_gyro.resetGyro();
 		Robot.ss_drivetrain.reset();
 		Timer.delay(.5);
 	}
