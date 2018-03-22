@@ -112,13 +112,13 @@ public class SS_AutoSelect extends Subsystem {
 	    	if(nearSwitch == 'L') {
 	    		new CG_AutoHotSwitch(left).start();
 	    	} else {
-	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
 	    } else if (location == 3) {
 	    	if(nearSwitch == 'R') {
 	    		new CG_AutoHotSwitch(right).start();
 	    	} else {
-	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
 	    } else if (location == 4) {
 	    	if (scale == 'L') {
@@ -126,7 +126,7 @@ public class SS_AutoSelect extends Subsystem {
 	    	} else if(nearSwitch == 'L') {
 	    		new CG_AutoHotSwitch(left).start();
 	    	} else {
-	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
 	    } else if (location == 5) {
 	    	if (scale == 'R') {
@@ -134,7 +134,7 @@ public class SS_AutoSelect extends Subsystem {
 	    	} else if(nearSwitch == 'R') {
 	    		new CG_AutoHotSwitch(right).start();
 	    	} else {
-	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
 	    }
 

@@ -6,12 +6,15 @@
 
 package org.usfirst.frc.team3663.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
+import org.usfirst.frc.team3663.robot.commands.C_AutoSelect;
 import org.usfirst.frc.team3663.robot.subsystems.*;
 
 /**
@@ -33,6 +36,8 @@ public class Robot extends IterativeRobot {
 	public static SS_Camera ss_camera;
 	public static SS_Elevator ss_elevator;
 	public static SS_AutoSelect ss_autoSelect;
+	public static NetworkTableInstance nti;
+	public static NetworkTable autoControlTable;
 
 	private Command driveForward;
 	/**
@@ -44,18 +49,23 @@ public class Robot extends IterativeRobot {
 		// Initialize all subsystems
 		ss_elevator = new SS_Elevator();
 		ss_drivetrain = new SS_DriveTrain();
+		//ss_cubeIntake = new SS_CubeIntake();
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_autoSelect = new SS_AutoSelect();
+		//ss_climber = new SS_Climber();
 		
 		oi = new OI(); // oi must be initilized last PLEASE
-
+		nti = NetworkTableInstance.getDefault();
+		autoControlTable = nti.getTable("hashboard");
 		//driveForward = new C_DriveForwardByTime(4, .5);
-		//driveForward = C_DriveForwardRelative.fromInches(120, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		driveForward = new CG_SimpleDropCube();
-
+		//driveForward = new CG_SimpleDropCube();
+		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
+		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		// SS_DriveTrain.setEnc();
+		
+	
 	}
 	
 	
@@ -64,6 +74,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.ss_drivetrain.enableBreakMode(true);
+
+		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
+		new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
+		//new C_SetIntakeState(false, false).start();
 		driveForward.start();
 	}
  
