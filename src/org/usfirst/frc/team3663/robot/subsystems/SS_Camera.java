@@ -3,7 +3,6 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -48,23 +47,21 @@ public class SS_Camera extends Subsystem {
 	private NetworkTableEntry area;
 	private NetworkTableEntry valid;
 	
-	public void initCam() {
-		CameraServer.getInstance().startAutomaticCapture();
+	public SS_Camera() {
+		//CameraServer.getInstance().startAutomaticCapture();
 		
 		table = NetworkTableInstance.getDefault().getTable("limelight");
 		x = table.getEntry("tx");
 		y = table.getEntry("ty");
 		area = table.getEntry("ta");
 		valid = table.getEntry("tv");
-		turnLightOn(true);
+		turnLightOn(0);
 		setPipeline(0);
 	}
 	
-	public void turnLightOn(boolean on) {
-		if(on)
-			table.getEntry("ledMode").setNumber(0);
-		else
-			table.getEntry("ledMode").setNumber(1);
+	//0 = on, 1 = off, 2 = blink
+	public void turnLightOn(int mode) {
+		table.getEntry("ledMode").setNumber(mode);
 	}
 	
 	//Sets the cube detecion settings 0-9
