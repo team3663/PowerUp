@@ -15,6 +15,7 @@ import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
@@ -73,6 +74,15 @@ public class SS_DriveTrain extends Subsystem {
 		setDefaultCommand(new C_Drive());
 	}
 
+	public void enableBreakMode(boolean breaksEnabled) {
+		// If breaks enabled, use Brake mode. Else, use Coast mode.
+
+		// Samuel Response: I knew what it meant in 5 seconds. It's Brake if
+		// breaksEnabled, else it's NeutralMode.
+		final NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;
+		left1.setNeutralMode(mode);
+		right1.setNeutralMode(mode);
+	}
 	public void stop() {
 		drive.arcadeDrive(0, 0);
 	}

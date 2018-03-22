@@ -51,9 +51,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI(); // oi must be initilized last PLEASE
 
 		//driveForward = new C_DriveForwardByTime(4, .5);
-		driveForward = C_DriveForwardRelative.fromInches(120, .5);
+		//driveForward = C_DriveForwardRelative.fromInches(120, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		//driveForward = new CG_SimpleDropCube();
+		driveForward = new CG_SimpleDropCube();
 
 		// SS_DriveTrain.setEnc();
 	}
@@ -63,6 +63,7 @@ public class Robot extends IterativeRobot {
 	// private final Command driveForward = new C_DriveForwardByTime(5, .5);
 	@Override
 	public void autonomousInit() {
+		Robot.ss_drivetrain.enableBreakMode(true);
 		driveForward.start();
 	}
  
@@ -78,6 +79,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		driveForward.cancel();
+		Robot.ss_drivetrain.enableBreakMode(true);
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
