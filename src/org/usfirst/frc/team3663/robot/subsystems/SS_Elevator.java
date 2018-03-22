@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_ELEVATORfix;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -64,6 +65,7 @@ public class SS_Elevator extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new C_Elevator());
+		//setDefaultCommand(new C_ELEVATORfix());
 		// setDefaultCommand(new C_DisplayEncoders());
 
 	}

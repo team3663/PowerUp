@@ -13,10 +13,13 @@ public class C_AutoSelect extends Command {
 		requires(Robot.ss_autoSelect);
 		this.target = target;
 	}
-
+	boolean first = true;
 	@Override
 	protected void execute(){
-		Robot.ss_autoSelect.runAuto(target);
+		if(first) {
+			Robot.ss_autoSelect.runAuto(target);
+			first = false;
+		}
 	}
 
 	
@@ -29,5 +32,9 @@ public class C_AutoSelect extends Command {
 	protected void interrupted() {
 		Robot.ss_autoSelect.end();
 		end();
+	}
+	@Override
+	protected void end() {
+	first = true;
 	}
 }

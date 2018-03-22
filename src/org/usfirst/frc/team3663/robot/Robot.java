@@ -83,8 +83,8 @@ public class Robot extends IterativeRobot {
 		//new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
 		//new C_SetIntakeState(false, false).start();
-		//driveForward.start();
-		new C_VisionSeekCube(0.3).start();
+		driveForward.start();
+		//new C_VisionSeekCube(0.3).start();
 	}
  
 	/**
