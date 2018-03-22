@@ -50,7 +50,12 @@ public class C_MoveElevatorToPos extends Command {
 
 	@Override
 	protected void execute() {
+		// Lower elevator until it's initialized
+		if (Robot.ss_elevator.reset()) {
+			return;
+		}
 		// Uses speed from PID Controller
+		System.out.println(Robot.ss_elevator.get());
 		Robot.ss_elevator.set(pidController.get(getError()));
 	}
 

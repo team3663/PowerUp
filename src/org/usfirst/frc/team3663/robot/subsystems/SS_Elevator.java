@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 
@@ -99,9 +100,22 @@ public class SS_Elevator extends Subsystem {
 	 * Sets up encoder for use
 	 */
 	public void resetEnc() {
-		encoder.reset(); // TODO figure out why encoder is not working
+		encoder.reset(); 
 	}
-
+	
+	boolean initialized = false;
+	public boolean reset() {
+		if (!initialized) {
+			Robot.ss_elevator.set(-.5);
+			initialized = Robot.ss_elevator.atBottom();
+			resetEnc();
+			System.out.println("Lowering Elevator  :  " + get());
+			return true;
+		}
+		else
+			return false;
+	}
+	
 	double thresh = .05;
 
 	public void set(double speed) {
@@ -215,7 +229,7 @@ public class SS_Elevator extends Subsystem {
 				Cur_Speed = 0;
 			}
 		}
-		System.out.println(Cur_Speed);
+		//System.out.println(Cur_Speed);
 		elevator1.set(Cur_Speed);
 	}
 

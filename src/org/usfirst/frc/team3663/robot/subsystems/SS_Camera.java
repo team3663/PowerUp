@@ -74,15 +74,15 @@ public class SS_Camera extends Subsystem {
 						System.out.println("left");
 						Robot.ss_drivetrain.turn(-speed);
 					}
-					Robot.time.reset();
+					//Robot.time.reset();
 				} else {
 					System.out.println(">>>>>>better");
-					System.out.println(Robot.time.getElapsedMillis());
+					//System.out.println(Robot.time.getElapsedMillis());
 				}
 
 			}
 
-			if (time.getElapsedMillis() > 500) {
+			if (1 > 500) {
 				if (tgtArea < 45) {
 					Robot.ss_drivetrain.driveForward(.3);
 				}

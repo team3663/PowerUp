@@ -60,7 +60,7 @@ public class C_DriveForwardRelative extends Command {
 		double speed = controller.get(getError());
 		
 		// debug info
-		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		//System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
 		Robot.ss_drivetrain.driveStraight(speed);
 	}
 

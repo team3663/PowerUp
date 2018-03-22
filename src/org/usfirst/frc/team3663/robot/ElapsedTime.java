@@ -7,20 +7,20 @@ public final class ElapsedTime {
 		reset();
 	}
 
-	public static void reset() {
+	public void reset() {
 		time = System.nanoTime();
 	}
 
-	public static long getElapsedNano() {
+	public long getElapsedNano() {
 		final long currTime = System.nanoTime();
 		return currTime - time;
 	}
 
-	public static long getElapsedMillis() {
+	public long getElapsedMillis() {
 		return getElapsedNano() / 1000000;
 	}
 
-	public static double getElapsedSeconds() {
+	public double getElapsedSeconds() {
 		return getElapsedNano() / 1000000000.0;
 	}
 }

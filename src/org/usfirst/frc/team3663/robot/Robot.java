@@ -10,7 +10,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
+import org.usfirst.frc.team3663.robot.commands.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static SS_AutoSelect ss_autoSelect;
 	public static NetworkTableInstance nti;
 	public static NetworkTable autoControlTable;
+	public static ElapsedTime time;
 
 	private Command driveForward;
 	/**
@@ -47,6 +48,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
+		time = new ElapsedTime();
 		ss_elevator = new SS_Elevator();
 		ss_drivetrain = new SS_DriveTrain();
 		//ss_cubeIntake = new SS_CubeIntake();
@@ -62,8 +64,10 @@ public class Robot extends IterativeRobot {
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
 		//driveForward = new CG_SimpleDropCube();
 		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
-		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
-		// SS_DriveTrain.setEnc();
+		driveForward = C_MoveElevatorToPos.fromInches(24);
+		
+		//driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
 		
 	
 	}
@@ -77,7 +81,7 @@ public class Robot extends IterativeRobot {
 
 		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
-		new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		//new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
 		//new C_SetIntakeState(false, false).start();
 		driveForward.start();
