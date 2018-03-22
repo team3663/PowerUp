@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
+import org.usfirst.frc.team3663.robot.commands.C_VisionSeekCube;
 import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
 import org.usfirst.frc.team3663.robot.commands.C_AutoSelect;
 import org.usfirst.frc.team3663.robot.subsystems.*;
@@ -53,6 +54,7 @@ public class Robot extends IterativeRobot {
 		ss_griff = new SS_Griff();
 		ss_gyro = new SS_Gyro();
 		ss_autoSelect = new SS_AutoSelect();
+		ss_camera = new SS_Camera();
 		//ss_climber = new SS_Climber();
 		
 		oi = new OI(); // oi must be initilized last PLEASE
@@ -62,7 +64,8 @@ public class Robot extends IterativeRobot {
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
 		//driveForward = new CG_SimpleDropCube();
 		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
-		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		//driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		driveForward = new C_VisionSeekCube(0.3);
 		// SS_DriveTrain.setEnc();
 		
 	
@@ -77,7 +80,7 @@ public class Robot extends IterativeRobot {
 
 		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
-		new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		//new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
 		//new C_SetIntakeState(false, false).start();
 		driveForward.start();

@@ -1,19 +1,31 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
-import org.usfirst.frc.team3663.robot.ElapsedTime;
-import org.usfirst.frc.team3663.robot.Robot;
-
-import edu.wpi.first.networktables.*;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Camera subsystem to test the vision tracking.
  */
-public class SS_Camera extends Subsystem {
-	static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-CPR");
-	
 
+/*
+ * from http://docs.limelightvision.io/en/latest/getting_started.html#basic-programming
+ * tv	Whether the limelight has any valid targets (0 or 1)
+ * tx	Horizontal Offset From Crosshair To Target (-27 degrees to 27 degrees)
+ * ty	Vertical Offset From Crosshair To Target (-20.5 degrees to 20.5 degrees)
+ * ta	Target Area (0% of image to 100% of image)
+ * ts	Skew or rotation (-90 degrees to 0 degrees)
+ * tl	The pipelines latency contribution (ms) Add at least 11ms for image capture latency.
+ * 
+ * ledMode		0 is on, 1 is off, 2 is blink
+ * camMode		0 is vision processor, 1 is driver camera (increases exposure, disables vision processing)
+ * pipeline		0 to 9, changes the limelight's pipeline (no idea what it does)
+ */
+
+public class SS_Camera extends Subsystem {
+	private NetworkTable table;
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
@@ -27,38 +39,60 @@ public class SS_Camera extends Subsystem {
 	final int sThresh = 4;
 	final int lThresh = 8;
 	
-	private double tgtArea;
+/*	private double tgtArea;
 	private boolean isTargetDetected;
-	private double tgtOffset;
+	private double tgtOffset;*/
+	
+	private NetworkTableEntry x;
+	private NetworkTableEntry y;
+	private NetworkTableEntry area;
+	private NetworkTableEntry valid;
 	
 	public void initCam() {
 		CameraServer.getInstance().startAutomaticCapture();
-		/*
-		 * Variables `tx`, `ta`, and `tv` are a part of the Limelight API. See:
-		 * https://goo.gl/G4rMVZ
-		 */
-		final NetworkTableEntry tx = table.getEntry("tx");
-		final NetworkTableEntry ta = table.getEntry("ta");
-		final NetworkTableEntry tv = table.getEntry("tv");
-
-
-
-		table.getEntry("ledMode").setNumber(0); // 0=on 1=off
-
-		// Get vision camera data
-		tgtOffset = tx.getDouble(0); // Horizontal offset from
-													// crosshair to target (-27°
-													// to 27°)
-		tgtArea = ta.getDouble(0); // Target area (range 0-100)
-		isTargetDetected = (tv.getDouble(0) == 1); // 1 = target
-																	// detected;
-																	// 0
-																	// otherwise
+		
+		table = NetworkTableInstance.getDefault().getTable("limelight");
+		x = table.getEntry("tx");
+		y = table.getEntry("ty");
+		area = table.getEntry("ta");
+		valid = table.getEntry("tv");
+		turnLightOn(true);
+		setPipeline(0);
 	}
 	
+	public void turnLightOn(boolean on) {
+		if(on)
+			table.getEntry("ledMode").setNumber(0);
+		else
+			table.getEntry("ledMode").setNumber(1);
+	}
 	
+	//Sets the cube detecion settings 0-9
+	public void setPipeline(int pipeline) {
+		table.getEntry("pipeline").setNumber(pipeline);
+	}
 	
-		public void trackCube() {
+	//Returns a number -27 to 27 degrees
+	public double getXOffset() {
+		return x.getDouble(-1);
+	}
+	
+	//Returns a number -20.5 degrees to 20.5 degrees
+	public double getYOffset() {
+		return y.getDouble(-1);
+	}
+	
+	//Returns a number 0 - 100% of area covered by the target
+	public double getArea() {
+		return area.getDouble(-1);
+	}
+	
+	//Returns 0 if there are no targets, 1 if there is a target
+	public boolean validTargets() {
+		return valid.getBoolean(false);
+	}
+	
+/*	public void trackCube() {
 		if (isTargetDetected) {
 			if (tgtArea < 60) {
 				if (Math.abs(tgtOffset) > sThresh) {
@@ -66,7 +100,6 @@ public class SS_Camera extends Subsystem {
 					if (Math.abs(tgtOffset) > lThresh) {
 						speed = .3;
 					}
-
 					if (tgtOffset > 0) {
 						System.out.println("right");
 						Robot.ss_drivetrain.turn(speed);
@@ -79,9 +112,9 @@ public class SS_Camera extends Subsystem {
 					System.out.println(">>>>>>better");
 					System.out.println(Robot.time.getElapsedMillis());
 				}
-
+	
 			}
-
+	
 			if (time.getElapsedMillis() > 500) {
 				if (tgtArea < 45) {
 					Robot.ss_drivetrain.driveForward(.3);
@@ -89,6 +122,6 @@ public class SS_Camera extends Subsystem {
 				System.out.println("drivefowward u tard");
 			}
 		}
-		
-	}
+	
+	}*/
 }

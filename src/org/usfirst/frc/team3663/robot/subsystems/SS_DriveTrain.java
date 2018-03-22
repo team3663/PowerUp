@@ -95,6 +95,10 @@ public class SS_DriveTrain extends Subsystem {
 	public void driveForward(double speed) {
 		drive.arcadeDrive(speed, 0);
 	}
+	
+	public void driveCurve(double speed, double curve) {
+		drive.arcadeDrive(speed, curve);
+	}
 
 	/**
 	 * @return position of left motor by ticks
