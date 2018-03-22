@@ -6,14 +6,22 @@
 
 package org.usfirst.frc.team3663.robot;
 
-import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.command.*;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
+import org.usfirst.frc.team3663.robot.commands.*;
 import org.usfirst.frc.team3663.robot.commands.C_SetIntakeState;
-import org.usfirst.frc.team3663.robot.commands.CG_SimpleDropCube;
-import org.usfirst.frc.team3663.robot.subsystems.*;
+import org.usfirst.frc.team3663.robot.subsystems.SS_AutoSelect;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Camera;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Climber;
+import org.usfirst.frc.team3663.robot.subsystems.SS_CubeIntake;
+import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Elevator;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Griff;
+import org.usfirst.frc.team3663.robot.subsystems.SS_Gyro;
+
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -57,8 +65,9 @@ public class Robot extends IterativeRobot {
 
 		driveForward = new C_DriveForwardByTime(4, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		//driveForward = new CG_SimpleDropCube();
-
+		driveForward = new CG_SimpleDropCube();
+		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
+		
 		// SS_DriveTrain.setEnc();
 	}
 	
@@ -67,6 +76,11 @@ public class Robot extends IterativeRobot {
 	// private final Command driveForward = new C_DriveForwardByTime(5, .5);
 	@Override
 	public void autonomousInit() {
+		Robot.ss_drivetrain.enableBreakMode(true);
+		NetworkTableInstance nti = NetworkTableInstance.getDefault();
+		NetworkTable autoControlTable = nti.getTable("hashboard");
+		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
 		new C_SetIntakeState(false, false).start();
 		driveForward.start();
 	}
@@ -83,6 +97,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		driveForward.cancel();
+		Robot.ss_drivetrain.enableBreakMode(false);
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

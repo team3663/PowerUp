@@ -4,6 +4,7 @@ import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.subsystems.SS_DriveTrain;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -27,7 +28,7 @@ public class C_DriveForwardRelative extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = ticks;
-		controller = new PIDController(.05, 0, 0, -speed, speed);
+		controller = new PIDController(.05, .01, .01, -speed, speed);
 	}
 
 	/**
@@ -48,6 +49,8 @@ public class C_DriveForwardRelative extends Command {
 	@Override
 	protected void initialize() {
 		Robot.ss_drivetrain.reset();
+		Robot.ss_gyro.resetGyro();
+		Timer.delay(.5);
 	}
 
 	@Override
@@ -57,8 +60,8 @@ public class C_DriveForwardRelative extends Command {
 		double speed = controller.get(getError());
 		
 		// debug info
-		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
-		Robot.ss_drivetrain.driveForward(speed);
+		//System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		Robot.ss_drivetrain.driveStraight(speed);
 	}
 
 	@Override

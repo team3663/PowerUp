@@ -193,7 +193,7 @@ public class SS_Elevator extends Subsystem {
 			resetEnc();
 		}
 		
-		System.out.println(get());
+		//System.out.println(get());
 		double Cur_Speed = elevator1.get();
 		if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
 			Cur_Speed = 0;

@@ -57,7 +57,7 @@ public class SS_Gyro extends Subsystem {
 		return ahrs.map(AHRS::getAngle).orElse(0.0);
 	}
 		
-	int pickles = 10; //  at +/- 10 degrees the rotation will turn at 1
+	int pickles = 7; //  at +/- 10 degrees the rotation will turn at 1
 	public double gyroDiff(){
 		double angle = get();
 		angle = -angle/pickles;

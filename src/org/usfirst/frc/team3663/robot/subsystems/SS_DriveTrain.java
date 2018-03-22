@@ -15,6 +15,7 @@ import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Drive;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 /**
@@ -81,6 +82,18 @@ public class SS_DriveTrain extends Subsystem {
 		rightEnc.reset();
 	}
 
+	public void enableBreakMode(boolean breaksEnabled) {
+		// If breaks enabled, use Brake mode. Else, use Coast mode.
+
+		// Samuel Response: I knew what it meant in 5 seconds. It's Brake if
+		// breaksEnabled, else it's NeutralMode.
+		final NeutralMode mode = breaksEnabled ? NeutralMode.Brake : NeutralMode.Coast;
+		left1.setNeutralMode(mode);
+		left2.setNeutralMode(mode);
+		right1.setNeutralMode(mode);
+		right2.setNeutralMode(mode);
+	}
+	
 	public void driveForward(double speed) {
 		drive.arcadeDrive(speed, 0);
 	}
@@ -140,27 +153,31 @@ public class SS_DriveTrain extends Subsystem {
 		}
 	}
 		
-	int pickles = 200; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
+	int pickles = 175; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
 	public double encoderDiff(){
 		if (R() && L())
 			return (getLeft()-getRight())/pickles; // TODO: make sure the encoders are in the right direction
 		else
+			System.out.println("WARNING some things are wrong");
 			return 0;
 	}
 	//This code is like a PID for rotation of drivetrain using gyro and encoders, averaging the two for a smoother experiance
 	public double diff(){
-		if( L() && R() ) 
+		System.out.println(encoderDiff() + "  " + Robot.ss_gyro.gyroDiff());
+		if( L() && R() && Robot.ss_gyro.gyroPresent() ) 
 			return (Robot.ss_gyro.gyroDiff() + encoderDiff()) / 2;
 		else if (Robot.ss_gyro.gyroPresent()) 
 			return Robot.ss_gyro.gyroDiff();
 		else if (L() && R())
 			return encoderDiff();
 		else
+			System.out.println("everything is wrong");
 			return 0;
 	}
 	
 	public void driveStraight(double pSpd) {
-		drive.arcadeDrive(pSpd, diff());
+		double turn = diff();
+		drive.arcadeDrive(pSpd, turn);
 	}
 	
 	//spins and moves foward whie spinning (extremely useful)

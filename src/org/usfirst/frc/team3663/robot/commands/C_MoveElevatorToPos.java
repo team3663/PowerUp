@@ -15,7 +15,7 @@ public class C_MoveElevatorToPos extends Command {
 	// Finish when elevator within 3 inches of destination
 	private static final int THRESHOLD_TICKS = SS_Elevator.inchesToTicks(3);
 
-	private static final double ELEVATOR_SPEED = 0.5;
+	private static final double ELEVATOR_SPEED = 0.8;
 
 	private boolean goingUp;
 	private final int destination;
