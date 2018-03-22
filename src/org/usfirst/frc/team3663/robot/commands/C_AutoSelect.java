@@ -23,6 +23,11 @@ public class C_AutoSelect extends Command {
 	@Override
 	protected boolean isFinished() {
 		
-		return true;
+		return false;
+	}
+	@Override
+	protected void interrupted() {
+		Robot.ss_autoSelect.end();
+		end();
 	}
 }
