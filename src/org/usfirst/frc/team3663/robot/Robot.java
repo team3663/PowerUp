@@ -65,12 +65,10 @@ public class Robot extends IterativeRobot {
 		//driveForward = new C_DriveForwardByTime(4, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
 		//driveForward = new CG_SimpleDropCube();
-		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
-		//driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
-		driveForward = new C_VisionSeekCube(0.3);
-		// SS_DriveTrain.setEnc();
-		//driveForward = C_MoveElevatorToPos.fromInches(24);
+		//driveForward = new C_DriveForwardRelative(50, .6);
+		//driveForward = C_MoveElevatorToPos.fromInches(24)
 		
+		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));		
 	}
 	
 	
@@ -85,7 +83,8 @@ public class Robot extends IterativeRobot {
 		//new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
 		//new C_SetIntakeState(false, false).start();
-		driveForward.start();
+		//driveForward.start();
+		new C_VisionSeekCube(0.3).start();
 	}
  
 	/**
