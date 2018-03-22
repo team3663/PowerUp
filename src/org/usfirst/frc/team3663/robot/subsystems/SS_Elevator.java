@@ -195,10 +195,11 @@ public class SS_Elevator extends Subsystem {
 
 	// double Cur_Speed = 0;
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
-
+	public boolean encPluggedIn = false;
+	
 	public void setSmoothing(double speed) {
 		
-		boolean encPluggedIn = false;
+		
 		
 		final int CLOSE_THRESHOLD = 300;
 		if (atBottom()) {
