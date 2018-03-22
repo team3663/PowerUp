@@ -44,6 +44,9 @@ public class Robot extends IterativeRobot {
 	public static SS_Elevator ss_elevator;
 	public static SS_AutoSelect ss_autoSelect;
 	public static SS_Climber ss_climber;
+	
+	public static NetworkTableInstance nti;
+	public static NetworkTable autoControlTable;
 
 	private Command driveForward;
 	/**
@@ -69,6 +72,9 @@ public class Robot extends IterativeRobot {
 		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
 		
 		// SS_DriveTrain.setEnc();
+		
+		nti = NetworkTableInstance.getDefault();
+		autoControlTable = nti.getTable("hashboard");
 	}
 	
 	
@@ -77,9 +83,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		Robot.ss_drivetrain.enableBreakMode(true);
-		NetworkTableInstance nti = NetworkTableInstance.getDefault();
-		NetworkTable autoControlTable = nti.getTable("hashboard");
+
 		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
+		new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
 		new C_SetIntakeState(false, false).start();
 		driveForward.start();

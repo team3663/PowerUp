@@ -12,20 +12,22 @@ public class CG_AutoHotSwitch extends CommandGroup {
 			addSequential(C_DriveForwardSimple.fromInches(145, .5));
 			addSequential(new C_TurnRelativeAngle(-90, .5));
 			addSequential(C_MoveElevatorToPos.fromInches(24.0));
+			addSequential(new C_Wait(400));
 			addSequential(new C_SetGriffSpeed(-1));
-			addSequential(new C_Wait(500));
+			addSequential(new C_Wait(300));
 			addSequential(new C_SetGriffSpeed(0));
-			addSequential(C_MoveElevatorToPos.fromInches(0.0));
+			addParallel(C_MoveElevatorToPos.fromInches(0.0));
 			addSequential(new C_TurnRelativeAngle(90, .5));
 			addSequential(C_DriveForwardSimple.fromInches(15, .3));
 		} else {
 			addSequential(C_DriveForwardSimple.fromInches(145, .5));
 			addSequential(new C_TurnRelativeAngle(90, .5));
 			addSequential(C_MoveElevatorToPos.fromInches(24.0));
+			addSequential(new C_Wait(400));
 			addSequential(new C_SetGriffSpeed(-1));
-			addSequential(new C_Wait(500));
+			addSequential(new C_Wait(300));
 			addSequential(new C_SetGriffSpeed(0));
-			addSequential(C_MoveElevatorToPos.fromInches(0.0));
+			addParallel(C_MoveElevatorToPos.fromInches(0.0));
 			addSequential(new C_TurnRelativeAngle(-90, .5));
 			addSequential(C_DriveForwardSimple.fromInches(15, .3));
 		}

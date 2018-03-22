@@ -101,6 +101,14 @@ public class SS_Elevator extends Subsystem {
 	public void resetEnc() {
 		encoder.reset(); // TODO figure out why encoder is not working
 	}
+	
+	public void checkEnc() {
+		if(!encPluggedIn && encoder.get() == 0 && elevator1.get() != 0) {
+			encPluggedIn = true;
+		} else {
+			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
+		}
+	}
 
 	double thresh = .05;
 
@@ -118,22 +126,23 @@ public class SS_Elevator extends Subsystem {
 	 *
 	 * @return true if the elevator doesn't need to correct itself
 	 */
+	
 	public boolean checkElevator() {
-		if (atBottom()) {
-			resetEnc(); // reset the encoder
-			// If going down when already at bottom
-			if (elevator1.get() < 0) {
+			if (atBottom()) {
+				resetEnc(); // reset the encoder
+				// If going down when already at bottom
+				if (elevator1.get() < 0) {
+					set(0);
+					return false;
+				}
+			}
+
+			if (atTop() && elevator1.get() > 0) {
 				set(0);
 				return false;
 			}
-		}
 
-		if (atTop() && elevator1.get() > 0) {
-			set(0);
-			return false;
-		}
-
-		return true;
+			return true;
 	}
 
 	
@@ -188,31 +197,49 @@ public class SS_Elevator extends Subsystem {
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
 
 	public void setSmoothing(double speed) {
+		
+		boolean encPluggedIn = false;
+		
 		final int CLOSE_THRESHOLD = 300;
 		if (atBottom()) {
 			resetEnc();
 		}
 		
+		if(encoder.get() == 0 && elevator1.get() != 0) {
+			encPluggedIn = false;
+			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
+		} else {
+			encPluggedIn = true;
+		}
+		
 		//System.out.println(get());
 		double Cur_Speed = elevator1.get();
-		if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
-			Cur_Speed = 0;
-		} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
-			Cur_Speed = 0;
-		} else if (get() >= (ELEVATOR_MAX - CLOSE_THRESHOLD) && speed > 0) {
-			Cur_Speed = speed / 3;
-
-		} else if (get() <= (ELEVATOR_MIN + CLOSE_THRESHOLD) && speed < 0) {
-			Cur_Speed = speed / 3;
-			if (!atBottom()) {
-				Cur_Speed = -.1;
+		if(encPluggedIn) {
+			if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
+				Cur_Speed = 0;
+			} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
+				Cur_Speed = 0;
+			} else if (get() >= (ELEVATOR_MAX - CLOSE_THRESHOLD) && speed > 0) {
+				Cur_Speed = speed / 3;
+	
+			} else if (get() <= (ELEVATOR_MIN + CLOSE_THRESHOLD) && speed < 0) {
+				Cur_Speed = speed / 3;
+				if (!atBottom()) {
+					Cur_Speed = -.1;
+				} else {
+					Cur_Speed = 0;
+				}
 			} else {
-				Cur_Speed = 0;
+				Cur_Speed = (Cur_Speed * (smoothing - 1) + speed) / smoothing; // linearization for
+				if (Math.abs(Cur_Speed) < .05) {
+					Cur_Speed = 0;
+				}
 			}
-		} else {
-			Cur_Speed = (Cur_Speed * (smoothing - 1) + speed) / smoothing; // linearization for
-			if (Math.abs(Cur_Speed) < .05) {
+		} else { //driving without elevator smoothing, unideal
+			if(atTop() && speed > 0) {
 				Cur_Speed = 0;
+			} else if (atBottom() && speed < 0) {
+				Cur_Speed = 0; 
 			}
 		}
 		//System.out.println(Cur_Speed);
