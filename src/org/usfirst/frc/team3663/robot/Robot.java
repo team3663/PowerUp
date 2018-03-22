@@ -10,7 +10,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.*;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardByTime;
+import org.usfirst.frc.team3663.robot.commands.*;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.C_VisionSeekCube;
@@ -39,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static SS_AutoSelect ss_autoSelect;
 	public static NetworkTableInstance nti;
 	public static NetworkTable autoControlTable;
+	public static ElapsedTime time;
 
 	private Command driveForward;
 	/**
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		// Initialize all subsystems
+		time = new ElapsedTime();
 		ss_elevator = new SS_Elevator();
 		ss_drivetrain = new SS_DriveTrain();
 		//ss_cubeIntake = new SS_CubeIntake();
@@ -67,8 +69,8 @@ public class Robot extends IterativeRobot {
 		//driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		driveForward = new C_VisionSeekCube(0.3);
 		// SS_DriveTrain.setEnc();
+		//driveForward = C_MoveElevatorToPos.fromInches(24);
 		
-	
 	}
 	
 	

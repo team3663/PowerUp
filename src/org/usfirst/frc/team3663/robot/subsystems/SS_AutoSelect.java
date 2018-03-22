@@ -98,7 +98,7 @@ public class SS_AutoSelect extends Subsystem {
 	    
 	    
 	    /////////// NEWER SELECT CODE/////////PROBABLY SCRAP LESS NEW SELECT CODE///////////
-	    if(location == 1) {
+	    if(location == c) {
 	    	if (nearSwitch == 'L' && scale == 'L') {
 				new CG_AutoMidSameSide(left).start();
 			} else if (nearSwitch == 'R' && scale == 'R') {
@@ -108,32 +108,37 @@ public class SS_AutoSelect extends Subsystem {
 			} else if (nearSwitch == 'R' && scale == 'L') {
 				new CG_AutoMidDiffSide(right).start();
 			}
-	    } else if (location == 2) {
+	    } else if (location == lw) {
 	    	if(nearSwitch == 'L') {
+	    		System.out.println("AUTO IS HOT LEFT");
 	    		new CG_AutoHotSwitch(left).start();
 	    	} else {
+	    		System.out.println("WARNING: ATUO IS STRAIGHT");
 	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
-	    } else if (location == 3) {
+	    } else if (location == rw) {
 	    	if(nearSwitch == 'R') {
 	    		new CG_AutoHotSwitch(right).start();
 	    	} else {
+	    		System.out.println("WARNING: ATUO IS STRAIGHT");
 	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
-	    } else if (location == 4) {
+	    } else if (location == lc) {
 	    	if (scale == 'L') {
 	    		new CG_AutoHotScale(left).start();
 	    	} else if(nearSwitch == 'L') {
 	    		new CG_AutoHotSwitch(left).start();
 	    	} else {
+	    		System.out.println("WARNING: ATUO IS STRAIGHT");
 	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
-	    } else if (location == 5) {
+	    } else if (location == rc) {
 	    	if (scale == 'R') {
 	    		new CG_AutoHotScale(right).start();
 	    	} else if(nearSwitch == 'R') {
 	    		new CG_AutoHotSwitch(right).start();
 	    	} else {
+	    		System.out.println("WARNING: ATUO IS STRAIGHT");
 	    		C_DriveForwardRelative.fromInches(50, 0.5).start();
 	    	}
 	    }
