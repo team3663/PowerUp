@@ -43,7 +43,7 @@ public class C_DriveForwardRelative extends Command {
 	 * negative means backward
 	 */
 	private int getError() {
-		return destination - Robot.ss_drivetrain.getLeft();
+		return destination - Robot.ss_drivetrain.get();
 	}
 	
 	@Override

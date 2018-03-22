@@ -15,6 +15,7 @@ public final class PIDController {
 	private final double gainDerivative;
 
 	private double lastError = 0;
+	private double totalError = 0;
 	private boolean firstTime = true;
 	private final ElapsedTime timer = new ElapsedTime();
 
@@ -57,13 +58,14 @@ public final class PIDController {
 		// Integral
 		double iInput = 0;
 		if (!firstTime) {
-			iInput = gainIntegral * (lastError - error) * dt;
+			totalError = totalError + error*dt;
+			iInput = gainIntegral * totalError;
 		}
 
 		// Derivative
 		double dInput = 0;
 		if (!firstTime) {
-			dInput = gainDerivative * lastError / dt;
+			dInput = gainDerivative * (error -lastError) / dt;
 		}
 
 		firstTime = false;

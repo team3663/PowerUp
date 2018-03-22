@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.commands;
 import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -28,10 +29,15 @@ public class C_TurnRelativeAngle extends Command {
 		requires(Robot.ss_drivetrain);
 
 		destination = degrees + Robot.ss_gyro.get();
-		controller = new PIDController(135, 0, 1, -speed, speed);// 360 is the full cricle so it makes sense? or 135 cuz thats 2/3 of the wrong direction
+		controller = new PIDController(60, 0, 1, -speed, speed);// 360 is the full cricle so it makes sense? or 135 cuz thats 2/3 of the wrong direction
 		//still need to figue out the way to find kD
 	}
 
+	@Override
+	protected void initialize() {
+		Robot.ss_gyro.resetGyro();
+		Timer.delay(.5);
+	}
 	@Override
 	protected void execute() {
 		Robot.ss_drivetrain.turn(controller.get(getError()));
