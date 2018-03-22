@@ -37,11 +37,11 @@ public class SS_Elevator extends Subsystem {
 	public WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 
 	private final Optional<DigitalInput> limitSwitchTop = HardwareUtil
-			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP); // TODO figure DIO problem
+			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private final Optional<DigitalInput> limitSwitchBottom = HardwareUtil
-			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM); // TODO figure DIO problem
+			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 
-	private final Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
+	private final Encoder encoder = new Encoder(0, 1);
 
 	// ***************************************************************************************
 
