@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3663.robot.commands;
 
+import org.usfirst.frc.team3663.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -9,6 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_CubeCycle extends CommandGroup {
 
 	public CG_CubeCycle() {
+		if(Robot.ss_elevator.get() < 1000) {
 		// Arm cube intake
 		addSequential(new C_SetIntakeState(true, true));
 		addSequential(new C_GriffSqueeze(true));
@@ -24,5 +27,6 @@ public class CG_CubeCycle extends CommandGroup {
 		// addSequential(new C_MoveElevatorToPos(24)); // Moves cube up 24"
 		addSequential(new C_GriffSqueeze(false));
 		addSequential(new C_SetIntakeState(false, false));
+		}
 	}
 }

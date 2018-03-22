@@ -22,9 +22,9 @@ public final class OI {
 		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
 		intakeCubeCycle.whenPressed(new CG_CubeCycle());
 
-		final Button griffSqz = new JoystickButton(driveStick, 1);
-		griffSqz.whenPressed(new C_GriffSqueeze(true));
-		griffSqz.whenReleased(new C_GriffSqueeze(false));
+		//final Button griffSqz = new JoystickButton(driveStick, 1);
+		//griffSqz.whenPressed(new C_GriffSqueeze(true));
+		//griffSqz.whenReleased(new C_GriffSqueeze(false));
 
 		final Button intakePneumatics = new JoystickButton(driveStick, 7);
 		intakePneumatics.whenPressed(new C_SetIntakeState(true, true));
@@ -35,6 +35,8 @@ public final class OI {
 		 * intakeExtnd.whenPressed(new C_IntakeExtnd(true));
 		 * intakeExtnd.whenReleased(new C_IntakeExtnd(true));
 		 */
+		
+		
 
 		final Button inGriff = new JoystickButton(driveStick, 2);
 		inGriff.whenPressed(new C_SetGriffSpeed(1));

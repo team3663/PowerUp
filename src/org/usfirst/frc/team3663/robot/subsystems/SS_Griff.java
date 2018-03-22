@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.usfirst.frc.team3663.robot.HardwareUtil;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_TriggerButton;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -26,6 +28,7 @@ public class SS_Griff extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
+		setDefaultCommand(new C_TriggerButton());
 	// setDefaultCommand(new C_GriffSanityCheck());
 	}
 
