@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SS_Camera extends Subsystem {
 	static NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-CPR");
-	private static final ElapsedTime time = new ElapsedTime();
+	
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -24,7 +24,14 @@ public class SS_Camera extends Subsystem {
 	}
 
 	// TODO fix this mess up
-	public static void initCam() {
+	final int sThresh = 4;
+	final int lThresh = 8;
+	
+	private double tgtArea;
+	private boolean isTargetDetected;
+	private double tgtOffset;
+	
+	public void initCam() {
 		CameraServer.getInstance().startAutomaticCapture();
 		/*
 		 * Variables `tx`, `ta`, and `tv` are a part of the Limelight API. See:
@@ -34,21 +41,24 @@ public class SS_Camera extends Subsystem {
 		final NetworkTableEntry ta = table.getEntry("ta");
 		final NetworkTableEntry tv = table.getEntry("tv");
 
-		final int sThresh = 4;
-		final int lThresh = 8;
+
 
 		table.getEntry("ledMode").setNumber(0); // 0=on 1=off
 
 		// Get vision camera data
-		final double tgtOffset = tx.getDouble(0); // Horizontal offset from
+		tgtOffset = tx.getDouble(0); // Horizontal offset from
 													// crosshair to target (-27°
 													// to 27°)
-		final double tgtArea = ta.getDouble(0); // Target area (range 0-100)
-		final boolean isTargetDetected = (tv.getDouble(0) == 1); // 1 = target
+		tgtArea = ta.getDouble(0); // Target area (range 0-100)
+		isTargetDetected = (tv.getDouble(0) == 1); // 1 = target
 																	// detected;
 																	// 0
 																	// otherwise
-
+	}
+	
+	
+	
+		public void trackCube() {
 		if (isTargetDetected) {
 			if (tgtArea < 60) {
 				if (Math.abs(tgtOffset) > sThresh) {
@@ -64,10 +74,10 @@ public class SS_Camera extends Subsystem {
 						System.out.println("left");
 						Robot.ss_drivetrain.turn(-speed);
 					}
-					time.reset();
+					Robot.time.reset();
 				} else {
 					System.out.println(">>>>>>better");
-					System.out.println(time.getElapsedMillis());
+					System.out.println(Robot.time.getElapsedMillis());
 				}
 
 			}
@@ -79,5 +89,6 @@ public class SS_Camera extends Subsystem {
 				System.out.println("drivefowward u tard");
 			}
 		}
+		
 	}
 }
