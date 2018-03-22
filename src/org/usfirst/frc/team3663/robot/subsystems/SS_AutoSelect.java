@@ -4,6 +4,9 @@ import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotScale;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoMidDiffSide;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoMidSameSide;
+import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -60,24 +63,24 @@ public class SS_AutoSelect extends Subsystem {
 		}
 	}
 	
-	private final Potentiometer posPot = new AnalogPotentiometer(RobotMap.AUTO_POS_POT);
+	/*private final Potentiometer posPot = new AnalogPotentiometer(RobotMap.AUTO_POS_POT);
 	
 	public double getAngle() {
 		double dataRaw = posPot.get() * 100;
 		System.out.println(dataRaw);
 
 		return dataRaw ;
-	}
+	}*/
 
 	public String getLeverPos() {
 		final String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		return gameData;
 	}
 	
-	public boolean runAuto() {
+	public boolean runAuto(int location) {
 		final String leverPos = Robot.ss_autoSelect.getLeverPos();
 
-		final double location = Robot.ss_autoSelect.getAngle();
+		//final double location = Robot.ss_autoSelect.getAngle();
 
 		final char nearSwitch = leverPos.charAt(0);
 		final char scale = leverPos.charAt(1);
@@ -85,6 +88,56 @@ public class SS_AutoSelect extends Subsystem {
 		
 		final boolean left = false;
 		final boolean right = true;
+		
+		final int n = 0;    // nothing
+	    final int c = 1;    // center
+	    final int lw = 2;    // left switch
+	    final int rw = 3;    // right switch
+	    final int lc = 4;    // left scale
+	    final int rc = 5;    // right scale
+	    
+	    
+	    /////////// NEWER SELECT CODE/////////PROBABLY SCRAP LESS NEW SELECT CODE///////////
+	    if(location == 1) {
+	    	if (nearSwitch == 'L' && scale == 'L') {
+				new CG_AutoMidSameSide(left).start();
+			} else if (nearSwitch == 'R' && scale == 'R') {
+				new CG_AutoMidSameSide(right).start();
+			} else if (nearSwitch == 'L' && scale == 'R') {
+				new CG_AutoMidDiffSide(left).start();
+			} else if (nearSwitch == 'R' && scale == 'L') {
+				new CG_AutoMidDiffSide(right).start();
+			}
+	    } else if (location == 2) {
+	    	if(nearSwitch == 'L') {
+	    		new CG_AutoHotSwitch(left).start();
+	    	} else {
+	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    	}
+	    } else if (location == 3) {
+	    	if(nearSwitch == 'R') {
+	    		new CG_AutoHotSwitch(right).start();
+	    	} else {
+	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    	}
+	    } else if (location == 4) {
+	    	if (scale == 'L') {
+	    		new CG_AutoHotScale(left).start();
+	    	} else if(nearSwitch == 'L') {
+	    		new CG_AutoHotSwitch(left).start();
+	    	} else {
+	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    	}
+	    } else if (location == 5) {
+	    	if (scale == 'R') {
+	    		new CG_AutoHotScale(right).start();
+	    	} else if(nearSwitch == 'R') {
+	    		new CG_AutoHotSwitch(right).start();
+	    	} else {
+	    		C_DriveForwardRelative.fromInches(145, 0.5).start();
+	    	}
+	    }
+
 
 		/////////// NEW SELECT CODE////////////////////////////////////
 
@@ -95,7 +148,7 @@ public class SS_AutoSelect extends Subsystem {
 		
 
 		
-		if(leverPos != "") {
+		/*if(leverPos != "") {
 			
 			//LEFT
 			if (location >= 75 && location <= 100) { // TODO fix errors here
@@ -104,12 +157,12 @@ public class SS_AutoSelect extends Subsystem {
 				} else if (nearSwitch == 'L') {
 					new CG_AutoHotSwitch(left).start();
 				} else {
-					C_DriveForwardSimple.fromInches(145, 0.5).start();
+					C_DriveForwardRelative.fromInches(145, 0.5).start();
 				}
 			}
 			// MIDDLE // give switch side
 			if (location >= 40 && location <= 75) { // TODO fix errors here
-				/*if (nearSwitch == 'L' && scale == 'L') {
+				if (nearSwitch == 'L' && scale == 'L') {
 					new CG_AutoMidSameSide(left).start();
 				} else if (nearSwitch == 'R' && scale == 'R') {
 					new CG_AutoMidSameSide(right).start();
@@ -117,7 +170,7 @@ public class SS_AutoSelect extends Subsystem {
 					new CG_AutoMidDiffSide(left).start();
 				} else if (nearSwitch == 'R' && scale == 'L') {
 					new CG_AutoMidDiffSide(right).start();
-				}*/
+				}
 				
 				C_DriveForwardSimple.fromInches(145, .5).start();
 			}
@@ -133,7 +186,7 @@ public class SS_AutoSelect extends Subsystem {
 				
 			}
 			return true;
-		}
+		}*/
 		return false;
 	}
 
