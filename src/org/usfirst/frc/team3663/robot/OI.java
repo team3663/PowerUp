@@ -61,6 +61,10 @@ public final class OI {
 		climberTurn.whenPressed(new C_SetClimber(-.5));
 		climberTurn.whenReleased(new C_SetClimber(0));
 		
+		final Button cubeAdjust = new JoystickButton(driveStick, 4);
+		cubeAdjust.whenPressed(new C_IntakeCubeAdjust(.3));
+		cubeAdjust.whenReleased(new C_IntakeCubeAdjust(0.0));
+		
 		//pneu = x winch = right trigg
 	}
 }

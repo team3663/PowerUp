@@ -32,6 +32,11 @@ public class SS_CubeIntake extends Subsystem {
 		rightIntake.set(speed);
 		leftIntake.set(-speed);
 	}
+	
+	public void spinIntakeSameWay(double speed) {
+		rightIntake.set(speed);
+		leftIntake.set(speed);
+	}
 
 	public void sqzIntake(boolean isForward) {
 		final DoubleSolenoid.Value direction = isForward ? Value.kForward : Value.kReverse;
