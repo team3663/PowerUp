@@ -36,10 +36,15 @@ public class SS_Gyro extends Subsystem {
 		return angle;
 	}
 	double fake = 0;
-	public void resetGyro() {
+	public void fakeResetGyro() {
 		System.out.println("WARNING: GYRO RESET");
 		fake = ahrs.map(AHRS::getAngle).orElse(0.0);
 		
+	}
+	
+	public void hardResetGyro() {
+		System.out.println("WARNING: HARD GYRO RESET");
+		ahrs.ifPresent(AHRS::reset);
 	}
 	
 	//TODO: Gyropresent here

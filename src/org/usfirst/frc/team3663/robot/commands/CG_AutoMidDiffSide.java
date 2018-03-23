@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 
-
+/*
 public class CG_AutoMidDiffSide extends CommandGroup {
 
 	public CG_AutoMidDiffSide(boolean switchRight) {
@@ -39,3 +39,4 @@ public class CG_AutoMidDiffSide extends CommandGroup {
 		}
 	}
 }
+*/

@@ -37,7 +37,7 @@ public class C_DriveForwardSimple extends Command {
 	
 	@Override
 	protected void initialize()	{
-		Robot.ss_gyro.resetGyro();
+		Robot.ss_gyro.fakeResetGyro();
 		if (distance < 0)
 			speed = -speed;
 		

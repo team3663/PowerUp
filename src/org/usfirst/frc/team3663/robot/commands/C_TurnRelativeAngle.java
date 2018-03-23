@@ -36,7 +36,7 @@ public class C_TurnRelativeAngle extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.ss_gyro.resetGyro();
+		Robot.ss_gyro.fakeResetGyro();
 		Timer.delay(.5);
 	}
 	@Override
