@@ -67,6 +67,9 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 
+		nti = NetworkTableInstance.getDefault();
+		autoControlTable = nti.getTable("hashboard");
+		
 		//driveForward = new C_DriveForwardByTime(4, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
 		//driveForward = new CG_SimpleDropCube();
@@ -75,8 +78,6 @@ public class Robot extends IterativeRobot {
 		
 		// SS_DriveTrain.setEnc();
 		
-		nti = NetworkTableInstance.getDefault();
-		autoControlTable = nti.getTable("hashboard");
 	}
 	
 	
