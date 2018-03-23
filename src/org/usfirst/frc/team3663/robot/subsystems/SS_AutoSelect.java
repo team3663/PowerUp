@@ -5,7 +5,7 @@ import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotScale;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoMidDiffSide;
-import org.usfirst.frc.team3663.robot.commands.CG_AutoMidSameSide;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 
@@ -102,15 +102,11 @@ public class SS_AutoSelect extends Subsystem {
 	    
 	    /////////// NEWER SELECT CODE/////////PROBABLY SCRAP LESS NEW SELECT CODE///////////
 	    if(location == c) {
-	    	if (nearSwitch == 'L' && scale == 'L') {
-				selected = new CG_AutoMidSameSide(left);
-			} else if (nearSwitch == 'R' && scale == 'R') {
-				selected = new CG_AutoMidSameSide(right);
-			} else if (nearSwitch == 'L' && scale == 'R') {
-				selected = new CG_AutoMidDiffSide(left);
-			} else if (nearSwitch == 'R' && scale == 'L') {
-				selected = new CG_AutoMidDiffSide(right);
-			}
+	    	if (nearSwitch == 'L') {
+	    		selected = new CG_AutoCenter(left);
+	    	} else {
+	    		selected = new CG_AutoCenter(right);
+	    	}
 	    } else if (location == lw) {
 	    	if(nearSwitch == 'L') {
 	    		System.out.println("AUTO IS HOT LEFT");
