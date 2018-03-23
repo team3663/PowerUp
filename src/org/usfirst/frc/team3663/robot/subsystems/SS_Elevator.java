@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import java.util.Optional;
 
 import org.usfirst.frc.team3663.robot.HardwareUtil;
+import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.C_Elevator;
 
@@ -21,7 +22,7 @@ public class SS_Elevator extends Subsystem {
 	public static final double TICKS_PER_INCH = 66.86;
 
 	// Highest position elevator should go
-	public static final int ELEVATOR_MAX = 5600;
+	public static final int ELEVATOR_MAX = 3500;
 	// public static final int ELEVATOR_MIN = (int)(TICKS_PER_INCH * 3); //curtis:
 	// you hard code the top but not the bottom?
 	public static final int ELEVATOR_MIN = 30;
@@ -37,11 +38,11 @@ public class SS_Elevator extends Subsystem {
 	public WPI_TalonSRX elevator2 = new WPI_TalonSRX(RobotMap.ELEVATOR_2);
 
 	private final Optional<DigitalInput> limitSwitchTop = HardwareUtil
-			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP); // TODO figure DIO problem
+			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_TOP);
 	private final Optional<DigitalInput> limitSwitchBottom = HardwareUtil
-			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM); // TODO figure DIO problem
+			.getDigitalInput(RobotMap.LIMIT_SWITCH_ELEVATOR_BOTTOM);
 
-	private final Encoder encoder = new Encoder(RobotMap.ELEVATOR_ENC_1, RobotMap.ELEVATOR_ENC_2);
+	private final Encoder encoder = new Encoder(0, 1);
 
 	// ***************************************************************************************
 
@@ -63,6 +64,7 @@ public class SS_Elevator extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new C_Elevator());
+		//setDefaultCommand(new C_ELEVATORfix());
 		// setDefaultCommand(new C_DisplayEncoders());
 
 	}
@@ -76,7 +78,7 @@ public class SS_Elevator extends Subsystem {
 
 	public boolean atBottom() { // so far there is no way to see where you are
 		// Uses both softcoded minimum and hardware limit switch
-		return !limitSwitchBottom.map(DigitalInput::get).orElse(true); // TODO fix problem with DIO
+		return limitSwitchBottom.map(DigitalInput::get).orElse(true); // TODO fix problem with DIO
 	}
 
 	public void enableBreakMode(boolean breaksEnabled) {
@@ -92,24 +94,29 @@ public class SS_Elevator extends Subsystem {
 	// @return The current position of the encoders
 
 	public int get() {
-		return encoder.get();
+		return -encoder.get();
 	}
 
 	/**
 	 * Sets up encoder for use
 	 */
 	public void resetEnc() {
-		encoder.reset(); // TODO figure out why encoder is not working
+		encoder.reset(); 
 	}
 	
-	public void checkEnc() {
-		if(!encPluggedIn && encoder.get() == 0 && elevator1.get() != 0) {
-			encPluggedIn = true;
-		} else {
-			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
+	boolean initialized = false;
+	public boolean reset() {
+		if (!initialized) {
+			Robot.ss_elevator.set(-.5);
+			initialized = Robot.ss_elevator.atBottom();
+			resetEnc();
+			System.out.println("Lowering Elevator  :  " + get());
+			return true;
 		}
+		else
+			return false;
 	}
-
+	
 	double thresh = .05;
 
 	public void set(double speed) {
@@ -126,23 +133,22 @@ public class SS_Elevator extends Subsystem {
 	 *
 	 * @return true if the elevator doesn't need to correct itself
 	 */
-	
 	public boolean checkElevator() {
-			if (atBottom()) {
-				resetEnc(); // reset the encoder
-				// If going down when already at bottom
-				if (elevator1.get() < 0) {
-					set(0);
-					return false;
-				}
-			}
-
-			if (atTop() && elevator1.get() > 0) {
+		if (atBottom()) {
+			resetEnc(); // reset the encoder
+			// If going down when already at bottom
+			if (elevator1.get() < 0) {
 				set(0);
 				return false;
 			}
+		}
 
-			return true;
+		if (atTop() && elevator1.get() > 0) {
+			set(0);
+			return false;
+		}
+
+		return true;
 	}
 
 	
@@ -195,52 +201,33 @@ public class SS_Elevator extends Subsystem {
 
 	// double Cur_Speed = 0;
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
-	public boolean encPluggedIn = false;
-	
+
 	public void setSmoothing(double speed) {
-		
-		
-		
 		final int CLOSE_THRESHOLD = 300;
 		if (atBottom()) {
 			resetEnc();
 		}
 		
-		if(encoder.get() == 0 && elevator1.get() != 0) {
-			encPluggedIn = false;
-			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
-		} else {
-			encPluggedIn = true;
-		}
-		
-		//System.out.println(get());
+		System.out.println(get());
 		double Cur_Speed = elevator1.get();
-		if(encPluggedIn) {
-			if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
-				Cur_Speed = 0;
-			} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
-				Cur_Speed = 0;
-			} else if (get() >= (ELEVATOR_MAX - CLOSE_THRESHOLD) && speed > 0) {
-				Cur_Speed = speed / 3;
-	
-			} else if (get() <= (ELEVATOR_MIN + CLOSE_THRESHOLD) && speed < 0) {
-				Cur_Speed = speed / 3;
-				if (!atBottom()) {
-					Cur_Speed = -.1;
-				} else {
-					Cur_Speed = 0;
-				}
+		if (( get() >= ELEVATOR_MAX) && speed > 0) {
+			Cur_Speed = 0;
+		} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
+			Cur_Speed = 0;
+		} else if (get() >= (ELEVATOR_MAX - CLOSE_THRESHOLD) && speed > 0) {
+			Cur_Speed = speed / 3;
+
+		} else if (get() <= (ELEVATOR_MIN + CLOSE_THRESHOLD) && speed < 0) {
+			Cur_Speed = speed / 3;
+			if (!atBottom()) {
+				Cur_Speed = -.1;
 			} else {
-				Cur_Speed = (Cur_Speed * (smoothing - 1) + speed) / smoothing; // linearization for
-				if (Math.abs(Cur_Speed) < .05) {
-					Cur_Speed = 0;
-				}
-			}
-		} else { //driving without elevator smoothing, unideal
-			if(atTop() && speed > 0) {
 				Cur_Speed = 0;
-			} else if (atBottom() && speed < 0) {
-				Cur_Speed = 0; 
+			}
+		} else {
+			Cur_Speed = (Cur_Speed * (smoothing - 1) + speed) / smoothing; // linearization for
+			if (Math.abs(Cur_Speed) < .05) {
+				Cur_Speed = 0;
 			}
 		}
 		//System.out.println(Cur_Speed);

@@ -15,7 +15,7 @@ public class C_MoveElevatorToPos extends Command {
 	// Finish when elevator within 3 inches of destination
 	private static final int THRESHOLD_TICKS = SS_Elevator.inchesToTicks(3);
 
-	private static final double ELEVATOR_SPEED = 0.8;
+	private static final double ELEVATOR_SPEED = 1;
 
 	private boolean goingUp;
 	private final int destination;
@@ -50,7 +50,12 @@ public class C_MoveElevatorToPos extends Command {
 
 	@Override
 	protected void execute() {
+		// Lower elevator until it's initialized
+		if (Robot.ss_elevator.reset()) {
+			return;
+		}
 		// Uses speed from PID Controller
+		System.out.println(Robot.ss_elevator.get());
 		Robot.ss_elevator.set(pidController.get(getError()));
 	}
 
