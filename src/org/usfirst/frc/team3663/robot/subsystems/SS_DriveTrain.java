@@ -157,7 +157,7 @@ public class SS_DriveTrain extends Subsystem {
 		}
 	}
 		
-	int pickles = 175; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
+	int pickles = 300; //TODO: this might be horribly wrong, i did math for it that i'm not to sure about sooooo
 	public double encoderDiff(){
 		if (R() && L())
 			return (getLeft()-getRight())/pickles; // TODO: make sure the encoders are in the right direction
@@ -168,12 +168,12 @@ public class SS_DriveTrain extends Subsystem {
 	//This code is like a PID for rotation of drivetrain using gyro and encoders, averaging the two for a smoother experiance
 	public double diff(){
 		System.out.println(encoderDiff() + "  " + Robot.ss_gyro.gyroDiff());
-		if( L() && R() && Robot.ss_gyro.gyroPresent() ) 
-			return (Robot.ss_gyro.gyroDiff() + encoderDiff()) / 2;
-		else if (Robot.ss_gyro.gyroPresent()) 
+		//if( L() && R() && Robot.ss_gyro.gyroPresent() ) 
+			//return (Robot.ss_gyro.gyroDiff() + encoderDiff()) / 2;
+		if (Robot.ss_gyro.gyroPresent()) 
 			return Robot.ss_gyro.gyroDiff();
-		else if (L() && R())
-			return encoderDiff();
+		//else if (L() && R())
+			//return encoderDiff();
 		else
 			System.out.println("everything is wrong");
 			return 0;

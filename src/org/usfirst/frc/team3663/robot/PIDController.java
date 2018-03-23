@@ -65,7 +65,10 @@ public final class PIDController {
 		if (!firstTime) {
 			dInput = gainDerivative * lastError / dt;
 		}
-
+		System.out.println("Print value" + pInput);
+		System.out.println("Print dt" + dt);
+		//System.out.println("Print sum" + );
+		
 		firstTime = false;
 		lastError = error;
 
