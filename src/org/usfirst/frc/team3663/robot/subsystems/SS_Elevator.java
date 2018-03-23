@@ -53,7 +53,7 @@ public class SS_Elevator extends Subsystem {
 	
 	boolean init = false;
 	public boolean reset() {
-	  if (init) {
+	  if (!init) {
 	    set(-.4);
 	    init = atBottom();
 	    if(atBottom())
@@ -160,23 +160,7 @@ public class SS_Elevator extends Subsystem {
 			return true;
 	}
 
-	
-	
-	
-	
-	
-	
 
-	
-									
-	
-		
-			
-			
-			
-		
-			
-		
 
 	
 
@@ -230,7 +214,7 @@ public class SS_Elevator extends Subsystem {
 		
 		//System.out.println(get());
 		double Cur_Speed = elevator1.get();
-		if(encPluggedIn) {
+		if(true) {
 			if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
 				Cur_Speed = 0;
 			} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
