@@ -64,11 +64,14 @@ public class Robot extends IterativeRobot {
 		autoControlTable = nti.getTable("hashboard");
 		//driveForward = new C_DriveForwardByTime(4, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		//driveForward = new CG_SimpleDropCube();
+		//driveForward = new CG_SimpleDropCube();SS
 		//driveForward = new C_DriveForwardRelative(50, .6);
 		//driveForward = C_MoveElevatorToPos.fromInches(24)
 		
-		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));		
+		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));	
+		
+		
+		System.out.println("NETWORK TABLE :    " +  NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(-1));
 	}
 	
 	
