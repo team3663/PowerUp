@@ -57,7 +57,7 @@ public class C_DriveForwardRelative extends Command {
 		this.start = Timer.getFPGATimestamp();
 		Robot.ss_gyro.resetGyro();
 		Robot.ss_drivetrain.reset();
-		Timer.delay(.5);
+		System.out.println("GYRO HAS BEEN RESET TO : " + Robot.ss_gyro.get());
 	}
 	
 	@Override

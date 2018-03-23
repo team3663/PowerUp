@@ -39,7 +39,7 @@ public final class OI {
 		
 
 		final Button inGriff = new JoystickButton(driveStick, 2);
-		inGriff.whenPressed(new C_SetGriffSpeed(1));
+		inGriff.whenPressed(new C_SetGriffSpeed(-1));
 		inGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		final Button setIntakeSpd = new JoystickButton(driveStick, 6);

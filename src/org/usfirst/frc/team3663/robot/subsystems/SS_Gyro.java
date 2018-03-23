@@ -35,9 +35,11 @@ public class SS_Gyro extends Subsystem {
 		}
 		return angle;
 	}
-	
+	double fake = 0;
 	public void resetGyro() {
-		ahrs.ifPresent(AHRS::reset);
+		System.out.println("WARNING: GYRO RESET");
+		fake = ahrs.map(AHRS::getAngle).orElse(0.0);
+		
 	}
 	
 	//TODO: Gyropresent here
@@ -54,10 +56,10 @@ public class SS_Gyro extends Subsystem {
 	 * worry about overflows
 	 */
 	public double get() {
-		return ahrs.map(AHRS::getAngle).orElse(0.0);
+		return ahrs.map(AHRS::getAngle).orElse(0.0) - fake;
 	}
 		
-	int pickles = 7; //  at +/- 10 degrees the rotation will turn at 1
+	int pickles = 10; //  at +/- 10 degrees the rotation will turn at 1
 	public double gyroDiff(){
 		double angle = get();
 		angle = -angle/pickles;

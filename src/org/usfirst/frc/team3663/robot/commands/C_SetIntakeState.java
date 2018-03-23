@@ -2,6 +2,7 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import org.usfirst.frc.team3663.robot.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -21,7 +22,8 @@ public class C_SetIntakeState extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.ss_cubeIntake.sqzIntake(squeeze);
+		Robot.ss_cubeIntake.sqzIntake(squeeze); 
+		Timer.delay(.25);
 		Robot.ss_cubeIntake.extendIntake(extend);
 
 	}

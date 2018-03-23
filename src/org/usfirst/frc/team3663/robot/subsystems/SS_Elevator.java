@@ -53,18 +53,19 @@ public class SS_Elevator extends Subsystem {
 	
 	boolean init = false;
 	public boolean reset() {
-	  if (init) {
+	  if (!init) {
 	    set(-.4);
 	    init = atBottom();
 	    if(atBottom())
 	      resetEnc();
-	    System.out.println(atBottom());
+	    //System.out.println(atBottom());
 	    System.out.println("Lowering Elevator  :  " + get());
 	    return true;
 	  }
 	  else
 	    return false;
 	}
+
 
 	// UTILITY METHODS
 	public static int inchesToTicks(double inches) {
@@ -117,13 +118,6 @@ public class SS_Elevator extends Subsystem {
 		encoder.reset(); // TODO figure out why encoder is not working
 	}
 	
-	public void checkEnc() {
-		if(!encPluggedIn && encoder.get() == 0 && elevator1.get() != 0) {
-			encPluggedIn = true;
-		} else {
-			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
-		}
-	}
 
 	double thresh = .05;
 
@@ -160,23 +154,7 @@ public class SS_Elevator extends Subsystem {
 			return true;
 	}
 
-	
-	
-	
-	
-	
-	
 
-	
-									
-	
-		
-			
-			
-			
-		
-			
-		
 
 	
 
@@ -210,10 +188,16 @@ public class SS_Elevator extends Subsystem {
 
 	// double Cur_Speed = 0;
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
-	public boolean encPluggedIn = false;
+
+	boolean encPluggedIn = true;
 	
 	public void setSmoothing(double speed) {
 		
+		if(!atBottom() && get() != 0) {
+			encPluggedIn = true;
+		}
+		else
+			encPluggedIn = false;
 		
 		
 		final int CLOSE_THRESHOLD = 300;

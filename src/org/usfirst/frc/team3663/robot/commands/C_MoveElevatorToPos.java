@@ -55,7 +55,7 @@ public class C_MoveElevatorToPos extends Command {
 			return;
 		}
 		// Uses speed from PID Controller
-		System.out.println(Robot.ss_elevator.get());
+		//System.out.println(Robot.ss_elevator.get());
 		Robot.ss_elevator.set(pidController.get(getError()));
 	}
 

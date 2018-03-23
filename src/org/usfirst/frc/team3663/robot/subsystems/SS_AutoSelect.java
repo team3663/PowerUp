@@ -112,14 +112,15 @@ public class SS_AutoSelect extends Subsystem {
 	    		System.out.println("AUTO IS HOT LEFT");
 	    		selected = new CG_AutoHotSwitch(left);
 	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT");
+	    		System.out.println("WARNING: ATUO IS STRAIGHT LEFT");
 	    		selected = new C_DriveForwardRelative(145, 0.5);
 	    	}
 	    } else if (location == rw) {
 	    	if(nearSwitch == 'R') {
 	    		selected = new CG_AutoHotSwitch(right);
+	    		System.out.println("AUTO HOT RIGHT");
 	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT");
+	    		System.out.println("WARNING: ATUO IS STRAIGHT RIGHT");
 	    		selected = new C_DriveForwardRelative(145, 0.5);
 	    	}
 	    } else if (location == lc) {
