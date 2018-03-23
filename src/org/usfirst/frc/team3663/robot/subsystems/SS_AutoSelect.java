@@ -117,14 +117,14 @@ public class SS_AutoSelect extends Subsystem {
 	    		selected = new CG_AutoHotSwitch(left);
 	    	} else {
 	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(50, 0.5);
+	    		selected = new C_DriveForwardRelative(145, 0.5);
 	    	}
 	    } else if (location == rw) {
 	    	if(nearSwitch == 'R') {
 	    		selected = new CG_AutoHotSwitch(right);
 	    	} else {
 	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(50, 0.5);
+	    		selected = new C_DriveForwardRelative(145, 0.5);
 	    	}
 	    } else if (location == lc) {
 	    	if (scale == 'L') {
@@ -133,7 +133,7 @@ public class SS_AutoSelect extends Subsystem {
 	    		selected = new CG_AutoHotSwitch(left);
 	    	} else {
 	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(50, 0.5);
+	    		selected = new C_DriveForwardRelative(145, 0.5);
 	    	}
 	    } else if (location == rc) {
 	    	if (scale == 'R') {
@@ -142,7 +142,7 @@ public class SS_AutoSelect extends Subsystem {
 	    		selected = new CG_AutoHotSwitch(right);
 	    	} else {
 	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(50, 0.5);
+	    		selected = new C_DriveForwardRelative(145, 0.5);
 	    	}
 	    	
 	    }

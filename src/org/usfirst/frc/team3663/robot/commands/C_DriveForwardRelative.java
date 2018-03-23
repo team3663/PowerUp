@@ -24,41 +24,49 @@ public class C_DriveForwardRelative extends Command {
 	 * @param speed
 	 *            Maximum speed for robot
 	 */
-	public C_DriveForwardRelative(int ticks, double speed) {
+	double start = 0;
+	double targetTime = 0;
+	double current= 0;
+	
+	public C_DriveForwardRelative(int inches, double speed) {
 		requires(Robot.ss_drivetrain);
 
+		targetTime = inches/(speed*27.25);
+		System.out.println(targetTime);
+		
+		int ticks = Robot.ss_drivetrain.inchesToTicks(inches);
 		destination = ticks;
-		controller = new PIDController(.05, .01, .01, -speed, speed);
+		controller = new PIDController(.025, 0, 0, -speed, speed);
 	}
 
 	/**
 	 * Use inches instead
 	 */
-	public static C_DriveForwardRelative fromInches(double inches, double speed) {
-		return new C_DriveForwardRelative(Robot.ss_drivetrain.inchesToTicks(inches), speed);
-	}
+
 
 	/**
 	 * Returns distance from destination. Positive value means it is forward;
 	 * negative means backward
 	 */
 	private int getError() {
-		return destination - Robot.ss_drivetrain.getLeft();
+		return destination - Robot.ss_drivetrain.get();
 	}
 	
 	@Override
 	protected void initialize() {
-		Robot.ss_drivetrain.reset();
+		this.start = Timer.getFPGATimestamp();
 		Robot.ss_gyro.resetGyro();
+		Robot.ss_drivetrain.reset();
 		Timer.delay(.5);
 	}
-
+	
 	@Override
 	protected void execute() {
 		// set speed from PID controller
 		double error = getError();
 		double speed = controller.get(getError());
 		
+		this.current = Timer.getFPGATimestamp();
 		// debug info
 		//System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
 		Robot.ss_drivetrain.driveStraight(speed);
@@ -67,11 +75,16 @@ public class C_DriveForwardRelative extends Command {
 	@Override
 	protected boolean isFinished() {
 		// Finished if error within threshold
-		return Math.abs(getError()) < THRESHOLD_TICKS;
+		if (targetTime <= current-start)
+			return true;
+		else
+			return Math.abs(getError()) < THRESHOLD_TICKS;
 	}
 
 	@Override
 	protected void end() {
+		
+		System.out.println(current-start);
 		// Stop wheels
 		Robot.ss_drivetrain.stop();
 	}
