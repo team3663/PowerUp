@@ -67,10 +67,11 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 
-		driveForward = new C_DriveForwardByTime(4, .5);
+		//driveForward = new C_DriveForwardByTime(4, .5);
 		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		driveForward = new CG_SimpleDropCube();
+		//driveForward = new CG_SimpleDropCube();
 		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
+		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));	
 		
 		// SS_DriveTrain.setEnc();
 		
@@ -87,7 +88,7 @@ public class Robot extends IterativeRobot {
 
 		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
-		new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
 		
 		new C_SetIntakeState(false, false).start();
 		driveForward.start();
