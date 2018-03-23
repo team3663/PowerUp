@@ -63,6 +63,7 @@ public class Robot extends IterativeRobot {
 		ss_gyro = new SS_Gyro();
 		ss_autoSelect = new SS_AutoSelect();
 		ss_climber = new SS_Climber();
+		ss_camera = new SS_Camera();
 		
 		oi = new OI(); // oi must be initilized last PLEASE
 
