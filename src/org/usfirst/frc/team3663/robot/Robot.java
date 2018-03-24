@@ -102,6 +102,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		driveForward.cancel();
 		Robot.ss_drivetrain.enableBreakMode(false);
+		Robot.ss_camera.turnLightOn(1);
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

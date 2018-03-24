@@ -3,6 +3,7 @@ package org.usfirst.frc.team3663.robot.commands;
 import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 
@@ -13,6 +14,11 @@ public class C_AutoSelect extends Command {
 		requires(Robot.ss_autoSelect);
 		this.target = target;
 	}
+	@Override
+	protected void initialize() {
+		Timer.delay(1);
+	}
+	
 	boolean first = true;
 	@Override
 	protected void execute(){

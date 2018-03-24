@@ -11,7 +11,7 @@ public class CG_AutoHotScale extends CommandGroup {
 		if (isRight) {
 			addSequential(C_DriveForwardSimple.fromInches(200, .5));
 			addSequential(new C_TurnRelativeAngle(-90, .5));
-			addParallel(C_MoveElevatorToPos.fromInches(75.0));
+			addSequential(C_MoveElevatorToPos.fromInches(75.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(500));
 			addSequential(new C_SetGriffSpeed(0));
@@ -21,7 +21,7 @@ public class CG_AutoHotScale extends CommandGroup {
 		} else {
 			addSequential(C_DriveForwardSimple.fromInches(200, .5));
 			addSequential(new C_TurnRelativeAngle(90, .5));
-			addParallel(C_MoveElevatorToPos.fromInches(75.0));
+			addSequential(C_MoveElevatorToPos.fromInches(75.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(500));
 			addSequential(new C_SetGriffSpeed(0));
