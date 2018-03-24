@@ -26,10 +26,10 @@ public class CG_AutoCenter extends CommandGroup {
 			addSequential(C_DriveForwardSimple.fromInches(36, .4));*/
 		} else {
 			addSequential(new C_DriveForwardRelative(40, .6));
-			addSequential(new C_TurnRelativeAngle(40, .8));
+			addSequential(new C_TurnRelativeAngle(-40, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_DriveForwardRelative(40, .6));
-			addSequential(new C_TurnRelativeAngle(-40, .8));
+			addSequential(new C_TurnRelativeAngle(40, .8));
 			addSequential(new C_DriveForwardRelative(20, .6));
 			addSequential(new C_Wait(500));
 			addSequential(new C_SetGriffSpeed(-1));
