@@ -3,7 +3,7 @@ package org.usfirst.frc.team3663.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Seether made a cover of Careless Whisper. Listen to it.
  */
 public class CG_AutoHotSwitch extends CommandGroup {
 

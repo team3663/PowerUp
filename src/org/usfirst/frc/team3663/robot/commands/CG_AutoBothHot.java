@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
+@Deprecated
 public class CG_AutoBothHot extends CommandGroup {
 
 	public CG_AutoBothHot(boolean isRight) {
