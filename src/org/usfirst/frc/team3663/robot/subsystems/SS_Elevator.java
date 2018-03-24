@@ -51,15 +51,23 @@ public class SS_Elevator extends Subsystem {
 		elevator2.setInverted(true);
 	}
 	
+	boolean encPluggedIn = true;
 	boolean init = false;
 	public boolean reset() {
+		if(!atBottom() && get() == 0) {
+			encPluggedIn = false;
+			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
+		}
+		else
+			encPluggedIn = true;
+		
 	  if (!init) {
 	    set(-.4);
 	    init = atBottom();
 	    if(atBottom())
 	      resetEnc();
 	    //System.out.println(atBottom());
-	    System.out.println("Lowering Elevator  :  " + get());
+	    System.out.println("Lowering Elevator  :  " + get() + atBottom());
 	    return true;
 	  }
 	  else
@@ -189,32 +197,28 @@ public class SS_Elevator extends Subsystem {
 	// double Cur_Speed = 0;
 	int smoothing = 10; // smoothing change this to add steps don't make value over 20
 
-	boolean encPluggedIn = true;
+	
 	
 	public void setSmoothing(double speed) {
 		
-		if(!atBottom() && get() != 0) {
-			encPluggedIn = true;
-		}
-		else
-			encPluggedIn = false;
-		
+	
 		
 		final int CLOSE_THRESHOLD = 300;
 		if (atBottom()) {
 			resetEnc();
 		}
 		
-		if(encoder.get() == 0 && elevator1.get() != 0) {
-			encPluggedIn = false;
-			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
-		} else {
-			encPluggedIn = true;
-		}
+//		if(encoder.get() == 0 && elevator1.get() != 0) {
+//			encPluggedIn = false;
+//			System.out.println("LIFT ENCODER NOT PLUGGED IN FIX ASAP");
+//		} else {
+//			encPluggedIn = true;
+//		}
 		
-		//System.out.println(get());
+		System.out.println(get());
+		System.out.println(encPluggedIn);
 		double Cur_Speed = elevator1.get();
-		if(encPluggedIn) {
+		if(true) {
 			if ((atTop() || get() >= ELEVATOR_MAX) && speed > 0) {
 				Cur_Speed = 0;
 			} else if ((atBottom() || get() <= ELEVATOR_MIN) && speed < 0) {
@@ -235,7 +239,8 @@ public class SS_Elevator extends Subsystem {
 					Cur_Speed = 0;
 				}
 			}
-		} else { //driving without elevator smoothing, unideal
+		}
+		else { //driving without elevator smoothing, unideal
 			if(atTop() && speed > 0) {
 				Cur_Speed = 0;
 			} else if (atBottom() && speed < 0) {

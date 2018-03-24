@@ -27,11 +27,17 @@ public class C_DriveForwardRelative extends Command {
 	double start = 0;
 	double targetTime = 0;
 	double current= 0;
+	boolean neg = false;
 	
 	public C_DriveForwardRelative(int inches, double speed) {
 		requires(Robot.ss_drivetrain);
 
-		targetTime = inches/(speed*27.25);
+		if (inches < 0) {
+			neg = true;
+			inches = inches*-1;
+		}
+		
+		targetTime = inches/(speed*27.25); //TODO: it was instatnly timing out because this was set to a negetive value
 		System.out.println(targetTime);
 		
 		int ticks = Robot.ss_drivetrain.inchesToTicks(inches);
@@ -69,7 +75,10 @@ public class C_DriveForwardRelative extends Command {
 		this.current = Timer.getFPGATimestamp();
 		// debug info
 		//System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
-		Robot.ss_drivetrain.driveStraight(speed);
+		if(neg)
+			Robot.ss_drivetrain.driveStraight(-speed);
+		else
+			Robot.ss_drivetrain.driveStraight(speed);
 	}
 
 	@Override
