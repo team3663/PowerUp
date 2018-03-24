@@ -25,7 +25,6 @@ public class C_AutoSelect extends Command {
 	
 	@Override
 	protected boolean isFinished() {
-		
 		return false;
 	}
 	@Override
