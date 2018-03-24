@@ -8,6 +8,7 @@ import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
+import org.usfirst.frc.team3663.robot.commands.C_Wait;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -165,6 +166,8 @@ public class SS_AutoSelect extends Subsystem {
 	    	}
 	    } else if (location == d) {
 	    	selected = new C_DriveForwardRelative(145, 0.5);
+	    } else if (location == n) {
+	    	selected = C_Wait.fromSeconds(15);
 	    }
 	    selected.start();
 	   
