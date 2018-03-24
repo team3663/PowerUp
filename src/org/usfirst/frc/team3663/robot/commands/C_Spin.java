@@ -12,6 +12,7 @@ public class C_Spin extends Command {
 	
 	double speed = .5;
 	int secs;
+	private final ElapsedTime timer = new ElapsedTime();
 
     public C_Spin(int secs) {
         requires (Robot.ss_drivetrain);
@@ -20,7 +21,7 @@ public class C_Spin extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	ElapsedTime.reset();
+    	timer.reset();
     	Robot.ss_drivetrain.turn(speed);
     }
 
@@ -30,7 +31,7 @@ public class C_Spin extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(ElapsedTime.getElapsedSeconds() >= secs) {
+    	if(timer.getElapsedSeconds() >= secs) {
     		return true;
     	} else {
     		return false;
