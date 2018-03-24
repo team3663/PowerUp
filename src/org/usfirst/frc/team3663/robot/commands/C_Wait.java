@@ -14,6 +14,10 @@ public class C_Wait extends Command {
 	public C_Wait(int durationMillis) {
 		this.durationMillis = durationMillis;
 	}
+	
+	public static C_Wait fromSeconds(int seconds) {
+		return new C_Wait(seconds * 1000);
+	}
 
 	@Override
 	protected void initialize() {
