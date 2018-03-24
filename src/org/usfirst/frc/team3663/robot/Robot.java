@@ -71,10 +71,8 @@ public class Robot extends IterativeRobot {
 		autoControlTable = nti.getTable("hashboard");
 		
 		//driveForward = new C_DriveForwardByTime(4, .5);
-		//driveForward =  C_DriveForwardSimple.fromInches( 120, 0.5);
-		//driveForward = new CG_SimpleDropCube();
-		//driveForward = C_DriveForwardRelative.fromInches(100, .8);
 		// SS_DriveTrain.setEnc();
+		//driveForward = new C_TurnRelativeAngle(90 , .7);
 		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 	}
 	
@@ -84,6 +82,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		
 		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		Robot.ss_drivetrain.enableBreakMode(true);
 		new C_SetIntakeState(false, false).start();
@@ -122,6 +121,11 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+	}
+	@Override
+	public void disabledInit() {
+		Robot.ss_gyro.fakeReset();
+		
 	}
 
 }
