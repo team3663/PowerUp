@@ -94,6 +94,9 @@ public class SS_AutoSelect extends Subsystem {
 		final boolean left = false;
 		final boolean right = true;
 		
+		final boolean startLeft = false;
+		final boolean startRight = true;
+		
 		final int n = 0;     // nothing
 	    final int c = 1;     // center
 	    final int lw = 2;    // left switch only
@@ -102,7 +105,7 @@ public class SS_AutoSelect extends Subsystem {
 	    final int rc = 5;    // right scale priority
 	    final int lwp = 6;   // left switch priority
 	    final int rwp = 7;   // right switch priority
-	    final int d = 8;     //drive forward
+	    final int d = 8;     // drive forward
 	    
 	    
 	    /////////// NEWER SELECT CODE/////////
