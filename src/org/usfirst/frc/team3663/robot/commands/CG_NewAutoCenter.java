@@ -5,16 +5,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CG_AutoCenter extends CommandGroup {
+public class CG_NewAutoCenter extends CommandGroup {
 
-	public CG_AutoCenter(boolean isRight) {
-		if (isRight) {
-			addSequential(new C_DriveForwardRelative(24, .6));
-					addSequential(new C_TurnRelativeAngle(50, .8));
-			addParallel(C_MoveElevatorToPos.fromInches(40.0));
-			addSequential(new C_DriveForwardRelative(55, .6));
-					addSequential(new C_TurnRelativeAngle(-45, .8));
-			addSequential(new C_DriveForwardRelative(25, .6));
+    public CG_NewAutoCenter(boolean isRight) {
+    	if (isRight) {
+			addSequential(new C_DriveForwardRelative(12, .6));
+					addSequential(new C_TurnRelativeAngle(30, .8));
+					addParallel(C_MoveElevatorToPos.fromInches(24.0));
+			addSequential(new C_DriveForwardRelative(80, .6));
+			addSequential(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));
 			addSequential(new C_SetGriffSpeed(0));
@@ -26,12 +25,11 @@ public class CG_AutoCenter extends CommandGroup {
 			addSequential(C_DriveForwardSimple.fromInches(36, .4));*/
 		} else {
 
-			addSequential(new C_DriveForwardRelative(24, .6));
-					addSequential(new C_TurnRelativeAngle(-50, .8));
-			addParallel(C_MoveElevatorToPos.fromInches(40.0));
-			addSequential(new C_DriveForwardRelative(55, .6));
-					addSequential(new C_TurnRelativeAngle(45, .8));
-			addSequential(new C_DriveForwardRelative(25, .6));
+			addSequential(new C_DriveForwardRelative(12, .6));
+					addSequential(new C_TurnRelativeAngle(-30, .8));
+					addParallel(C_MoveElevatorToPos.fromInches(24.0));
+			addSequential(new C_DriveForwardRelative(80, .6));
+			addSequential(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));
 			addSequential(new C_SetGriffSpeed(0));
@@ -42,5 +40,5 @@ public class CG_AutoCenter extends CommandGroup {
 			addSequential(new C_TurnRelativeAngle(90, .4));
 			addSequential(C_DriveForwardSimple.fromInches(36, .4));*/
 		}
-	}
+    }
 }

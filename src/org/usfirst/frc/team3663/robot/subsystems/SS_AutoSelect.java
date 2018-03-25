@@ -5,6 +5,7 @@ import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.RobotMap;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotScale;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
+import org.usfirst.frc.team3663.robot.commands.CG_NewAutoCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;

@@ -58,7 +58,7 @@ public final class OI {
 		climberPneum.whenReleased(new C_SetClimber(false));
 		
 		final Button climberTurn = new JoystickButton(op, 6);
-		climberTurn.whenPressed(new C_SetClimber(.5));
+		climberTurn.whenPressed(new C_SetClimber(-.5));
 		climberTurn.whenReleased(new C_SetClimber(0));
 		
 		final Button cubeAdjust = new JoystickButton(driveStick, 4);

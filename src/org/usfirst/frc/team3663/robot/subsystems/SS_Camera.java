@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
+import org.usfirst.frc.team3663.robot.commands.C_CameraInit;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -32,7 +34,7 @@ public class SS_Camera extends Subsystem {
 	@Override
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		setDefaultCommand(new C_CameraInit());
 	}
 
 	// TODO fix this mess up
@@ -55,14 +57,17 @@ public class SS_Camera extends Subsystem {
 		y = table.getEntry("ty");
 		area = table.getEntry("ta");
 		valid = table.getEntry("tv");
-		turnLightOn(1);//i dont want this on right now
-		setPipeline(0);
+
+	}
+	// 0 = processor 1 = driveCam
+	public boolean cameraMode(int mode) {
+		return table.getEntry("camMode").setNumber(mode);
 	}
 	
 	//0 = on, 1 = off, 2 = blink
 	public void turnLightOn(int mode) {
 		table.getEntry("ledMode").setNumber(mode);
-		System.out.println("Camera light Chnage");
+		System.out.println("Camera light Change");
 	}
 	
 	//Sets the cube detecion settings 0-9
@@ -89,4 +94,16 @@ public class SS_Camera extends Subsystem {
 	public boolean validTargets() {
 		return valid.getBoolean(false);
 	}
+	private boolean init = false;
+	public boolean waitAndInitCamera() {
+		if(getXOffset() != -1 && !init) {
+			turnLightOn(1);//i dont want this on right now
+			cameraMode(1);
+			setPipeline(0);
+			init = true;
+			return true;
+		}
+		else
+			return false;
+		}
 }
