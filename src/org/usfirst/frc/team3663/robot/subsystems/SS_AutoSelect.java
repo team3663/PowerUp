@@ -109,74 +109,76 @@ public class SS_AutoSelect extends Subsystem {
 	    
 	    
 	    /////////// NEWER SELECT CODE/////////
-	    if(location == c) {
-	    	if (nearSwitch == 'L') {
-	    		selected = new CG_AutoCenter(left);
-	    	} else {
-	    		selected = new CG_AutoCenter(right);
-	    	}
-	    } else if (location == lw) {
-	    	if(nearSwitch == 'L') {
-	    		System.out.println("AUTO IS HOT LEFT");
-	    		selected = new CG_AutoHotSwitch(left);
-	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT LEFT");
-	    		selected = new C_DriveForwardRelative(145, 0.6);
-	    	}
-	    } else if (location == rw) {
-	    	if(nearSwitch == 'R') {
-	    		selected = new CG_AutoHotSwitch(right);
-	    		System.out.println("AUTO HOT RIGHT");
-	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT RIGHT");
-	    		selected = new C_DriveForwardRelative(145, 0.6);
-	    	}
-	    } else if (location == lc) {
-	    	if (scale == 'L') {
-	    		selected = new CG_AutoHotScale(left);
-	    	} else if(nearSwitch == 'L') {
-	    		selected = new CG_AutoHotSwitch(left);
-	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(145, 0.6);
-	    	}
-	    } else if (location == rc) {
-	    	if (scale == 'R') {
-	    		selected = new CG_AutoHotScale(right);
-	    	} else if(nearSwitch == 'R') {
-	    		selected = new CG_AutoHotSwitch(right);
-	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(145, 0.6);
-	    	}
-	    	
-	    } else if (location == lwp) {
-	    	if (nearSwitch == 'L') {
-	    		selected = new CG_AutoHotSwitch(left);
-	    	} else if (scale == 'L') {
-	    		selected = new CG_AutoHotScale(left);
-	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(145, 0.6);
-	    	}
-	    } else if (location == rwp) {
-	    	if (nearSwitch == 'R') {
-	    		selected = new CG_AutoHotSwitch(right);
-	    	} else if(scale == 'R') {
-	    		selected = new CG_AutoHotScale(right);
-	    	} else {
-	    		System.out.println("WARNING: ATUO IS STRAIGHT");
-	    		selected = new C_DriveForwardRelative(145, 0.6);
-	    	}
-	    } else if (location == d) {
-	    	selected = new C_DriveForwardRelative(145, 0.6);
-	    	
-	    } else if (location == n) {
-	    	selected = C_Wait.fromSeconds(15);
+	    switch (location) {
+	    	case c:
+		    	if (nearSwitch == 'L') {
+		    		selected = new CG_AutoCenter(left);
+		    	} else {
+		    		selected = new CG_AutoCenter(right);
+		    	}
+	    	case lw:
+		    	if(nearSwitch == 'L') {
+		    		System.out.println("AUTO IS HOT LEFT");
+		    		selected = new CG_AutoHotSwitch(left);
+		    	} else {
+		    		System.out.println("WARNING: ATUO IS STRAIGHT LEFT");
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+	    	case rw:
+		    	if(nearSwitch == 'R') {
+		    		selected = new CG_AutoHotSwitch(right);
+		    		System.out.println("AUTO HOT RIGHT");
+		    	} else {
+		    		System.out.println("WARNING: ATUO IS STRAIGHT RIGHT");
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+	    	case lc:
+		    	if (scale == 'L') {
+		    		selected = new CG_AutoHotScale(left);
+		    	} else if(nearSwitch == 'L') {
+		    		selected = new CG_AutoHotSwitch(left);
+		    	} else {
+		    		System.out.println("WARNING: ATUO IS STRAIGHT");
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+	    	case rc:
+		    	if (scale == 'R') {
+		    		selected = new CG_AutoHotScale(right);
+		    	} else if(nearSwitch == 'R') {
+		    		selected = new CG_AutoHotSwitch(right);
+		    	} else {
+		    		System.out.println("WARNING: ATUO IS STRAIGHT");
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    	
+	    	case lwp:
+		    	if (nearSwitch == 'L') {
+		    		selected = new CG_AutoHotSwitch(left);
+		    	} else if (scale == 'L') {
+		    		selected = new CG_AutoHotScale(left);
+		    	} else {
+		    		System.out.println("WARNING: ATUO IS STRAIGHT");
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+	    	case rwp:
+		    	if (nearSwitch == 'R') {
+		    		selected = new CG_AutoHotSwitch(right);
+		    	} else if(scale == 'R') {
+		    		selected = new CG_AutoHotScale(right);
+		    	} else {
+		    		System.out.println("WARNING: ATUO IS STRAIGHT");
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+	    	case d:
+		    	selected = new C_DriveForwardRelative(145, 0.6);
+		    	
+	    	case n:
+		    	selected = C_Wait.fromSeconds(15);
+		 
 	    }
 	    selected.start();
 	   
-	}
+}
 
 	@Override
 	public void initDefaultCommand() {
