@@ -13,7 +13,7 @@ public class C_VisionSeekCube extends Command {
     public C_VisionSeekCube(double speed) {
         requires(Robot.ss_camera);
         requires(Robot.ss_drivetrain);
-        this.speed = 0.4; ////////////////Change this to speed
+        this.speed = speed; ////////////////Change this to speed
     }
 
     // Called just before this Command runs the first time
