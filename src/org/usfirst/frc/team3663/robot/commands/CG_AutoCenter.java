@@ -26,6 +26,7 @@ public class CG_AutoCenter extends CommandGroup {
 			addSequential(new C_TurnRelativeAngle(-90, .4));
 			addSequential(C_DriveForwardSimple.fromInches(36, .4));*/
 		} else {
+
 			addSequential(new C_DriveForwardRelative(24, .6));
 					addSequential(new C_TurnRelativeAngle(-50, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(40.0));

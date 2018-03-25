@@ -3,7 +3,7 @@ package org.usfirst.frc.team3663.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * unsafe to use in a match - untested
  */
 public class CG_AutoHotScale extends CommandGroup {
 

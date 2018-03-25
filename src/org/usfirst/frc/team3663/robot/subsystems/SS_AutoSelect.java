@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
  */
 public class SS_AutoSelect extends Subsystem {
 
+	@Deprecated
 	public enum Direction {
 		LEFT, RIGHT;
 
