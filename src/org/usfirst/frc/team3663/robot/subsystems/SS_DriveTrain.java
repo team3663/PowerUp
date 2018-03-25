@@ -139,6 +139,14 @@ public class SS_DriveTrain extends Subsystem {
 	public void turn(double speed) {
 		drive.arcadeDrive(0, speed);
 	}
+	
+	
+	public double slow = 1;
+	public void drive(double speed, double turn) {
+		drive.arcadeDrive(speed*slow, turn);
+	}
+	
+	
 	// checks to make sure that the encoders are plugged in
 	public boolean L(){
 		if (getLeft() != 0 && left1.get() != 0) 
@@ -152,7 +160,7 @@ public class SS_DriveTrain extends Subsystem {
 		if (getRight() != 0 && right1.get() != 0) 
 			return true;
 		else {
-			System.out.println("WARNING RIGHT ENCODER NOT PLUGGED IN, FIX NOW");
+			//System.out.println("WARNING RIGHT ENCODER NOT PLUGGED IN, FIX NOW");
 			return false;
 		}
 	}
@@ -162,7 +170,7 @@ public class SS_DriveTrain extends Subsystem {
 		if (R() && L())
 			return (getLeft()-getRight())/pickles; // TODO: make sure the encoders are in the right direction
 		else
-			System.out.println("WARNING some things are wrong");
+			//System.out.println("WARNING some things are wrong");
 			return 0;
 	}
 	//This code is like a PID for rotation of drivetrain using gyro and encoders, averaging the two for a smoother experiance

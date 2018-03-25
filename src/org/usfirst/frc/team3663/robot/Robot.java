@@ -19,6 +19,7 @@ import org.usfirst.frc.team3663.robot.subsystems.SS_Gyro;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -72,8 +73,10 @@ public class Robot extends IterativeRobot {
 		
 		//driveForward = new C_DriveForwardByTime(4, .5);
 		// SS_DriveTrain.setEnc();
-		//driveForward = new C_TurnRelativeAngle(90 , .7);
-		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		//driveForward = new C_TurnRelativeAngle(90 , .8);
+		//driveForward = new C_TurnRelativeAngle(45 , .8);
+		driveForward = null;
+		
 	}
 	
 	
@@ -81,14 +84,17 @@ public class Robot extends IterativeRobot {
 	// private final Command driveForward = new C_DriveForwardByTime(5, .5);
 	@Override
 	public void autonomousInit() {
+		
 		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
-		System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
+		//System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		Robot.ss_drivetrain.enableBreakMode(true);
 		new C_SetIntakeState(false, false).start();
 		driveForward.start();
+		
 	}
  
+
 	/**
 	 * This function is called periodically during autonomous.
 	 */
@@ -100,12 +106,16 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		driveForward.cancel();
+		if(driveForward != null)
+			driveForward.cancel();
 		Robot.ss_drivetrain.enableBreakMode(false);
-		Robot.ss_camera.turnLightOn(1);
+		//Robot.ss_camera.turnLightOn(1);
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
+		
+		
 	}
 
 	/**
@@ -126,6 +136,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 		Robot.ss_gyro.fakeReset();
+		Robot.ss_gyro.hardResetGyro();
 		
 	}
 

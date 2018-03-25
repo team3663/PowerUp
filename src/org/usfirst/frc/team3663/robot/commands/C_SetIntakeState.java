@@ -12,6 +12,7 @@ public class C_SetIntakeState extends Command {
 
 	private final boolean squeeze;
 	private final boolean extend;
+	
 
 	public C_SetIntakeState(boolean squeeze, boolean extend) {
 		requires(Robot.ss_cubeIntake);
@@ -30,6 +31,13 @@ public class C_SetIntakeState extends Command {
 
 	@Override
 	protected boolean isFinished() {
+		if (squeeze && extend) {
+			Robot.ss_drivetrain.slow = .75;
+		}
+		else if (!squeeze && !extend) {
+			Robot.ss_drivetrain.slow = 1;
+		
+		}
 		return true; // Runs only once
 	}
 

@@ -25,7 +25,7 @@ public class C_DriveForwardByTime extends Command {
 	
 	@Override
 	protected void execute() {
-		Robot.ss_drivetrain.driveForward(speed);
+		Robot.ss_drivetrain.driveStraight(speed);
 	}
 
 	@Override
