@@ -13,7 +13,7 @@ public class CG_AutoHotSwitch extends CommandGroup {
 		if (isRight) {
 			
 			addSequential(new C_DriveForwardRelative(125, .6));
-					addSequential(new C_TurnRelativeAngle(-90, .9));
+				addSequential(new C_TurnRelativeAngle(-90, .9));
 //			addSequential(new C_SimpleTurnRelative(-85, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_DriveForwardRelative(40, .5));

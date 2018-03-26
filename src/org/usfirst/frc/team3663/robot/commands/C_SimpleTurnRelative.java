@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Turns the robot set amount of degrees to the right
  */
+
+@Deprecated
 public class C_SimpleTurnRelative extends Command {
 
 	double speed;

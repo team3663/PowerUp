@@ -22,6 +22,6 @@ public class C_SetGriffSpeed extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true; // Runs only once
+		return true;
 	}
 }

@@ -19,7 +19,7 @@ public class CG_AutoCenter extends CommandGroup {
 			addSequential(new C_Wait(200));
 			addSequential(new C_SetGriffSpeed(0));
 			addParallel(C_MoveElevatorToPos.fromInches(0.0));
-//			addSequential(new C_DriveForwardRelative(-20, .6));
+			//addSequential(new C_DriveForwardRelative(-20, .6));
 			/*addSequential(new C_TurnRelativeAngle(30, .3));
 			addSequential(C_DriveForwardSimple.fromInches(65, .4));
 			addSequential(new C_TurnRelativeAngle(-90, .4));
@@ -27,7 +27,7 @@ public class CG_AutoCenter extends CommandGroup {
 		} else {
 
 			addSequential(new C_DriveForwardRelative(24, .6));
-					addSequential(new C_TurnRelativeAngle(-50, .8));
+			addSequential(new C_TurnRelativeAngle(-50, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_DriveForwardRelative(55, .6));
 					addSequential(new C_TurnRelativeAngle(45, .8));
@@ -36,7 +36,7 @@ public class CG_AutoCenter extends CommandGroup {
 			addSequential(new C_Wait(200));
 			addSequential(new C_SetGriffSpeed(0));
 			addParallel(C_MoveElevatorToPos.fromInches(0.0));
-//			addSequential(new C_DriveForwardRelative(-20, .6));
+			//addSequential(new C_DriveForwardRelative(-20, .6));
 			/*addSequential(new C_TurnRelativeAngle(-30, .3));
 			addSequential(C_DriveForwardSimple.fromInches(65, .4));
 			addSequential(new C_TurnRelativeAngle(90, .4));

@@ -69,18 +69,11 @@ public class Robot extends IterativeRobot {
 
 		nti = NetworkTableInstance.getDefault();
 		autoControlTable = nti.getTable("hashboard");
-		
-		//driveForward = new C_DriveForwardByTime(4, .5);
-		// SS_DriveTrain.setEnc();
-		//driveForward = new C_TurnRelativeAngle(90 , .8);
-		//driveForward = new C_TurnRelativeAngle(45 , .8);
+
 		driveForward = null;
 		
 	}
 	
-	
-
-	// private final Command driveForward = new C_DriveForwardByTime(5, .5);
 	@Override
 	public void autonomousInit() {
 		
@@ -113,8 +106,6 @@ public class Robot extends IterativeRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		
-		
 	}
 
 	/**
