@@ -3,7 +3,7 @@ package org.usfirst.frc.team3663.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Starts at either left or right and goes to the opposite side of the switch
  */
 public class CG_AutoFarSwitch extends CommandGroup {
 

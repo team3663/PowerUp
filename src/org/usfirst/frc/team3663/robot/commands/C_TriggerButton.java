@@ -10,16 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_TriggerButton extends Command {
 
     public C_TriggerButton() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.ss_griff);
     }
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
-
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(Robot.oi.driveStick.getRawAxis(2) >= .15) 
     		Robot.ss_griff.sqzGriff(true);
@@ -27,17 +20,7 @@ public class C_TriggerButton extends Command {
     		Robot.ss_griff.sqzGriff(false);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
     }
 }

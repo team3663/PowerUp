@@ -240,13 +240,13 @@ public class SS_Elevator extends Subsystem {
 				}
 			}
 		}
-		else { //driving without elevator smoothing, unideal
+		/*else { //driving without elevator smoothing, unideal
 			if(atTop() && speed > 0) {
 				Cur_Speed = 0;
 			} else if (atBottom() && speed < 0) {
 				Cur_Speed = 0; 
 			}
-		}
+		}*/
 		//System.out.println(Cur_Speed);
 		elevator1.set(Cur_Speed);
 	}

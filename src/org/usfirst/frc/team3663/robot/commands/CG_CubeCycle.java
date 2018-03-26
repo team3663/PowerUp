@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CG_CubeCycle extends CommandGroup {
 
-	public CG_CubeCycle() {
+	public CG_CubeCycle() { 
 		if(Robot.ss_elevator.get() < 200) {
 			// Arm cube intake
 			addSequential(new C_SetIntakeState(true, true));
@@ -27,9 +27,6 @@ public class CG_CubeCycle extends CommandGroup {
 			// addSequential(new C_MoveElevatorToPos(24)); // Moves cube up 24"
 			addSequential(new C_GriffSqueeze(false));
 			addSequential(new C_SetIntakeState(false, false));
-			
-		} else {
-			
 		}
 	}
 }

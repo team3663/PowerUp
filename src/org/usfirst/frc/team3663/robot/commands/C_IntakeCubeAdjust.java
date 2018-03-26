@@ -5,7 +5,8 @@ import org.usfirst.frc.team3663.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Turns both intake wheels the same way, one out, one in, as 
+ * to straighten the cube for pickup. It was Nathan-requested. 
  */
 public class C_IntakeCubeAdjust extends Command {
 	

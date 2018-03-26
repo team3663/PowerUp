@@ -5,6 +5,7 @@ import org.usfirst.frc.team3663.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+@Deprecated
 public class C_DriveForwardByTime extends Command {
 	
 	private final ElapsedTime timer = new ElapsedTime();

@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
  * Drive forward set amount of ticks.
  *
  */
+
+@Deprecated
 public class C_DriveForwardSimple extends Command {
 	private final int SLOW_RANGE = Robot.ss_drivetrain.inchesToTicks(6);
 	private final double MIN_SPEED = 0.3;

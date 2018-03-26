@@ -19,17 +19,11 @@ public class C_Spin extends Command {
         this.secs = secs;
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     	timer.reset();
     	Robot.ss_drivetrain.turn(speed);
     }
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if(timer.getElapsedSeconds() >= secs) {
     		return true;
@@ -38,7 +32,6 @@ public class C_Spin extends Command {
     	}
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	Robot.ss_drivetrain.stop();
     }

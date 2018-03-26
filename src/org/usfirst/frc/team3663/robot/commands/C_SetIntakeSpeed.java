@@ -17,7 +17,6 @@ public class C_SetIntakeSpeed extends Command {
 		this.spd = spd;
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		Robot.ss_cubeIntake.spinIntake(spd);
@@ -25,7 +24,7 @@ public class C_SetIntakeSpeed extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return true; // Runs only once
+		return true;
 	}
 
 }
