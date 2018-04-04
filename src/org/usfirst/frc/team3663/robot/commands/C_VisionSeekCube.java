@@ -17,7 +17,7 @@ public class C_VisionSeekCube extends Command {
     }
 
     protected void initialize() {
-    	Robot.ss_camera.turnLightOn(2);
+    	Robot.ss_camera.turnLightOn(0);
     	System.out.println("\t\t\tChanged light to blinking");
     }
 
