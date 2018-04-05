@@ -20,7 +20,7 @@ public final class OI {
 		// Button exampleButton = new JoystickButton(driveStick, 1);
 		// exampleButton.whenPressed(randoms);
 		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
-		intakeCubeCycle.whenPressed(new CG_CubeCycle());
+		intakeCubeCycle.whenPressed(new C_InsanityCheck());
 
 		//final Button griffSqz = new JoystickButton(driveStick, 1);
 		//griffSqz.whenPressed(new C_GriffSqueeze(true));

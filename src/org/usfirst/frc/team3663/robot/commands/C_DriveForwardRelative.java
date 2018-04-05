@@ -26,6 +26,7 @@ public class C_DriveForwardRelative extends Command {
 	double targetTime = 0;
 	double current= 0;
 	boolean neg = false;
+	double TEA = 27.25;
 	
 	public C_DriveForwardRelative(int inches, double speed) {
 		requires(Robot.ss_drivetrain);
@@ -35,17 +36,13 @@ public class C_DriveForwardRelative extends Command {
 			inches = inches*-1;
 		}
 		
-		targetTime = inches/(speed*27.25); //TODO: it was instatnly timing out because this was set to a negetive value
+		targetTime = inches/(speed*TEA); //TODO: it was instatnly timing out because this was set to a negetive value
 		System.out.println(targetTime);
 		
 		int ticks = Robot.ss_drivetrain.inchesToTicks(inches);
 		destination = ticks;
 		controller = new PIDController(.025, 0, 0, -speed, speed);
 	}
-
-	/**
-	 * Use inches instead
-	 */
 
 
 	/**

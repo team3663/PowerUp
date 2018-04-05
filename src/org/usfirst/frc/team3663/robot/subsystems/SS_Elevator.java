@@ -163,7 +163,6 @@ public class SS_Elevator extends Subsystem {
 	}
 
 
-
 	
 
 	// TODO example code simple move to encoder tick not very accurate but should

@@ -17,8 +17,7 @@ public class C_AutoSelect extends Command {
 	@Override
 	protected void initialize() {
 		Robot.ss_gyro.fakeReset();
-		Robot.ss_gyro.hardResetGyro();
-		Timer.delay(1);
+		Timer.delay(.5);
 	}
 	
 	boolean first = true;

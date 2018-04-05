@@ -11,21 +11,20 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_CubeCycle extends CommandGroup {
 
 	public CG_CubeCycle() { 
-		if(Robot.ss_elevator.get() < 200) {
-			// Arm cube intake
-			addSequential(new C_SetIntakeState(true, true));
-			addSequential(new C_GriffSqueeze(true));
-			addSequential(new C_SetIntakeSpeed(1));
-			addSequential(new C_SetGriffSpeed(.5));
-	
-			// Wait for sensor
-			addSequential(new C_GriffSensor());
-	
-			// Disarm cube intake
-			addSequential(new C_SetIntakeSpeed(0));
+		// Arm cube intake
+		addSequential(new C_SetIntakeState(true, true));
+		addSequential(new C_GriffSqueeze(true));
+		addSequential(new C_SetIntakeSpeed(1));
+		addSequential(new C_SetGriffSpeed(.5));
 
-			addSequential(new C_GriffSqueeze(false));
-			addSequential(new C_SetIntakeState(false, false));
-		}
+		// Wait for sensor
+		addSequential(new C_GriffSensor());
+
+		// Disarm cube intake
+		addSequential(new C_SetIntakeSpeed(0));
+
+		addSequential(new C_GriffSqueeze(false));
+		addSequential(new C_SetIntakeState(false, false));
+	
 	}
 }

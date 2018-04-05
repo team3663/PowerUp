@@ -8,7 +8,6 @@ import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
 import org.usfirst.frc.team3663.robot.commands.CG_NewAutoCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.C_Wait;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -66,6 +65,13 @@ public class SS_AutoSelect extends Subsystem {
 			return d;
 		}
 	}
+	public boolean gameMessagePresesnt() {
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == "" || gameData == null)
+			return false;
+		else
+			return true;
+	}
 	
 	/*private final Potentiometer posPot = new AnalogPotentiometer(RobotMap.AUTO_POS_POT);
 	
@@ -92,6 +98,8 @@ public class SS_AutoSelect extends Subsystem {
 		final char scale = leverPos.charAt(1);
 		final char farSwitch = leverPos.charAt(2);
 		
+		
+		
 		final boolean left = false;
 		final boolean right = true;
 		
@@ -114,8 +122,10 @@ public class SS_AutoSelect extends Subsystem {
 	    	case c:
 		    	if (nearSwitch == 'L') {
 		    		selected = new CG_AutoCenter(left);
+		    		//selected = new C_DriveCurve(100, .8, -.4);
 		    	} else {
 		    		selected = new CG_AutoCenter(right);
+		    		//selected = new C_DriveCurve(100, .8, .4);
 		    	}
 	    	case lw:
 		    	if(nearSwitch == 'L') {

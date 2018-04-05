@@ -38,7 +38,7 @@ public class C_TurnRelativeAngle extends Command {
 	@Override
 	protected void initialize() {
 		
-		Timer.delay(.5);
+		//Timer.delay(.5);
 	}
 	@Override
 	protected void execute() {
