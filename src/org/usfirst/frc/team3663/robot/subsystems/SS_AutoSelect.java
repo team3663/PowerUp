@@ -76,6 +76,14 @@ public class SS_AutoSelect extends Subsystem {
 		return dataRaw ;
 	}*/
 
+	public boolean waitForMessage() {
+		String gameData = getLeverPos();
+		if(gameData == "" || gameData == null)
+			return false;
+		else
+			return true;
+			
+	}
 	public String getLeverPos() {
 		final String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		return gameData;

@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 	public static NetworkTableInstance nti;
 	public static NetworkTable autoControlTable;
 
-	private Command driveForward;
+	private Command auto;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.git test
@@ -70,19 +70,19 @@ public class Robot extends IterativeRobot {
 		nti = NetworkTableInstance.getDefault();
 		autoControlTable = nti.getTable("hashboard");
 
-		driveForward = null;
+		auto = null;
 		
 	}
 	
 	@Override
 	public void autonomousInit() {
 		
-		driveForward = new C_AutoSelect((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
+		auto = new C_AutoWait((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
 		//System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		Robot.ss_drivetrain.enableBreakMode(true);
 		new C_SetIntakeState(false, false).start();
-		driveForward.start();
+		auto.start();
 		
 	}
  
@@ -98,9 +98,10 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		if(driveForward != null)
-			driveForward.cancel();
+		if(auto != null)
+			auto.cancel();
 		Robot.ss_drivetrain.enableBreakMode(false);
+		new C_TriggerButton().start();
 		//Robot.ss_camera.turnLightOn(1);
 		
 		// This makes sure that the autonomous stops running when

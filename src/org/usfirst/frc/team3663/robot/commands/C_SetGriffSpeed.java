@@ -24,4 +24,8 @@ public class C_SetGriffSpeed extends Command {
 	protected boolean isFinished() {
 		return true;
 	}
+	@Override
+	protected void end() {
+		new C_TriggerButton().start();
+	}
 }
