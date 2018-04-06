@@ -15,9 +15,9 @@ public class C_TriggerButton extends Command {
 
     protected void execute() {
     	if(Robot.oi.driveStick.getRawAxis(2) >= .15) 
-    		Robot.ss_griff.sqzGriff(true);
+    		Robot.ss_griff.setGriffSpd(-.25);
     	else
-    		Robot.ss_griff.sqzGriff(false);
+    		Robot.ss_griff.setGriffSpd(0);
     }
 
     protected boolean isFinished() {

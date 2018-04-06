@@ -76,6 +76,7 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void autonomousInit() {
+		Robot.ss_gyro.hardResetGyro();
 		
 		auto = new C_AutoWait((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		

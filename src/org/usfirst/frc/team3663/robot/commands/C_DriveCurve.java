@@ -2,6 +2,7 @@ package org.usfirst.frc.team3663.robot.commands;
 
 import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -122,5 +123,6 @@ public class C_DriveCurve extends Command {
 		// Stop wheels
 		Robot.ss_drivetrain.stop();
 	}
+
 
 }

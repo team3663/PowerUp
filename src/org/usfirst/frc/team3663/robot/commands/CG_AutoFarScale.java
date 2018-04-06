@@ -15,6 +15,7 @@ public class CG_AutoFarScale extends CommandGroup {
 	        addSequential(new C_TurnRelativeAngle(90, .7));
 	        addSequential(new C_DriveForwardRelative(18, .5)); 
 	        addSequential(new C_TurnRelativeAngle(90, .7));
+
 	        addSequential(new C_DriveForwardRelative(18, .5));
 	        addSequential(C_MoveElevatorToPos.fromInches(72));
 	        addSequential(new C_SetGriffSpeed(1));

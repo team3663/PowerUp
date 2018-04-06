@@ -67,6 +67,13 @@ public class SS_AutoSelect extends Subsystem {
 			return d;
 		}
 	}
+	public boolean gameMessagePresesnt() {
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if (gameData == "" || gameData == null)
+			return false;
+		else
+			return true;
+	}
 	
 	/*private final Potentiometer posPot = new AnalogPotentiometer(RobotMap.AUTO_POS_POT);
 	
@@ -101,6 +108,8 @@ public class SS_AutoSelect extends Subsystem {
 		final char nearSwitch = leverPos.charAt(0);
 		final char scale = leverPos.charAt(1);
 		final char farSwitch = leverPos.charAt(2);
+		
+		
 		
 		final boolean left = false;
 		final boolean right = true;
@@ -141,12 +150,14 @@ public class SS_AutoSelect extends Subsystem {
 	    	if( location == c) {
 		    	if (nearSwitch == 'L') {
 		    		selected = new CG_AutoCenter(left);
+
 		    		//selected = new CG_NewAutoCenter(left);
 		    		//selected = new CG_AutoCurveCenter(left);
 		    	} else {
 		    		selected = new CG_AutoCenter(right);
 		    		//selected = new CG_NewAutoCenter(right);
 		    		//selected = new CG_AutoCurveCenter(right);
+
 		    	}
 	    	}
 	    	//left switch only
