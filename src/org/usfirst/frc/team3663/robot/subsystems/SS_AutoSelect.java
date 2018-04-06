@@ -7,8 +7,8 @@ import org.usfirst.frc.team3663.robot.commands.CG_AutoHotScale;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
 import org.usfirst.frc.team3663.robot.commands.CG_NewAutoCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoCurveCenter;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardSimple;
 import org.usfirst.frc.team3663.robot.commands.C_Wait;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -96,6 +96,7 @@ public class SS_AutoSelect extends Subsystem {
 
 		//final double location = Robot.ss_autoSelect.getAngle();
 
+		//System.out.println("                       "+ location  +"        THIS SHOULD ONLY BE SEEN ONCE");
 		final char nearSwitch = leverPos.charAt(0);
 		final char scale = leverPos.charAt(1);
 		final char farSwitch = leverPos.charAt(2);
@@ -116,16 +117,30 @@ public class SS_AutoSelect extends Subsystem {
 	    final int rwp = 7;   // right switch priority
 	    final int d = 8;     // drive forward
 	    
+	    //test numbers for test hash
+	    final int c2lcp = 9; //two cube left scale priority
+	    final int c2rcp = 13;//two cube right scale priority
+	    
+	    final int c2lwp = 10;//two cube left switch priority
+	    final int c2rwp = 12;//two cube right switch priority
+	    
 	    
 	    /////////// NEWER SELECT CODE/////////
-	    switch (location) {
-	    	case c:
+	    
+	    	//center
+	    	if( location == c) {
 		    	if (nearSwitch == 'L') {
 		    		selected = new CG_AutoCenter(left);
+		    		//selected = new CG_NewAutoCenter(left);
+		    		//selected = new CG_AutoCurveCenter(left);
 		    	} else {
 		    		selected = new CG_AutoCenter(right);
+		    		//selected = new CG_NewAutoCenter(right);
+		    		//selected = new CG_AutoCurveCenter(right);
 		    	}
-	    	case lw:
+	    	}
+	    	//left switch only
+	    	else if( location == lw) {
 		    	if(nearSwitch == 'L') {
 		    		System.out.println("AUTO IS HOT LEFT");
 		    		selected = new CG_AutoHotSwitch(left);
@@ -133,7 +148,9 @@ public class SS_AutoSelect extends Subsystem {
 		    		System.out.println("WARNING: ATUO IS STRAIGHT LEFT");
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
-	    	case rw:
+		    }
+	    	//right switch only
+		    else if( location == rw) {
 		    	if(nearSwitch == 'R') {
 		    		selected = new CG_AutoHotSwitch(right);
 		    		System.out.println("AUTO HOT RIGHT");
@@ -141,7 +158,9 @@ public class SS_AutoSelect extends Subsystem {
 		    		System.out.println("WARNING: ATUO IS STRAIGHT RIGHT");
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
-	    	case lc:
+		    }
+	    	//hotscale priority left
+		    else  if( location == lc) {
 		    	if (scale == 'L') {
 		    		selected = new CG_AutoHotScale(left);
 		    	} else if(nearSwitch == 'L') {
@@ -150,7 +169,9 @@ public class SS_AutoSelect extends Subsystem {
 		    		System.out.println("WARNING: ATUO IS STRAIGHT");
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
-	    	case rc:
+		    }
+	    	//hotscale priority right
+		    else if( location == rc) {
 		    	if (scale == 'R') {
 		    		selected = new CG_AutoHotScale(right);
 		    	} else if(nearSwitch == 'R') {
@@ -159,8 +180,9 @@ public class SS_AutoSelect extends Subsystem {
 		    		System.out.println("WARNING: ATUO IS STRAIGHT");
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
-		    	
-	    	case lwp:
+		    }
+	    	//hotswitch priorty left
+		    else if( location == lwp) {
 		    	if (nearSwitch == 'L') {
 		    		selected = new CG_AutoHotSwitch(left);
 		    	} else if (scale == 'L') {
@@ -169,7 +191,9 @@ public class SS_AutoSelect extends Subsystem {
 		    		System.out.println("WARNING: ATUO IS STRAIGHT");
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
-	    	case rwp:
+		    }
+	    	//hotswitch  priority right
+		    else if( location == rwp) {
 		    	if (nearSwitch == 'R') {
 		    		selected = new CG_AutoHotSwitch(right);
 		    	} else if(scale == 'R') {
@@ -178,14 +202,82 @@ public class SS_AutoSelect extends Subsystem {
 		    		System.out.println("WARNING: ATUO IS STRAIGHT");
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
-	    	case d:
+		    }
+	    	//driveforward
+		    else if( location == d) {
 		    	selected = new C_DriveForwardRelative(145, 0.6);
-		    	
-	    	case n:
+		    	}
+		    //nothing
+		    else if( location == n) {
 		    	selected = C_Wait.fromSeconds(15);
+	    	}
+	    	
+	    	//***********test autos************//
+	    	
+	    	//two cube right side scale priority
+		    else if (location == c2rcp) {
+		    	if(scale == 'R' && nearSwitch == 'R') {
+		    		//2cube auto
+		    	}
+		    	else if (scale == 'R') {
+		    		selected = new CG_AutoHotScale(right);
+		    	}
+		    	else if (nearSwitch == 'R') {
+		    		selected = new CG_AutoHotSwitch(right);
+		    	}
+		    	else {
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    }
+	    	//two cube left side  scale priority
+		    else if (location == c2lcp) {
+		    	if(scale == 'L' && nearSwitch == 'L') {
+		    		//2cube auto
+		    	}
+		    	else if (scale == 'L') {
+		    		selected = new CG_AutoHotScale(left);
+		    	}
+		    	else if (nearSwitch == 'L') {
+		    		selected = new CG_AutoHotSwitch(left);
+		    	}
+		    	else {
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    }
+	    	//two cube right side switch priority
+		    else if (location == c2rwp) {
+		    	if(scale == 'R' && nearSwitch == 'R') {
+		    		//2cube auto
+		    	}
+		    	else if (nearSwitch == 'R') {
+		    		selected = new CG_AutoHotSwitch(right);
+		    	}
+		    	else if (scale == 'R') {
+		    		selected = new CG_AutoHotScale(right);
+		    	}
+		    	else {
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    }
+	    	//two cube left side switch priority
+		    else if (location == c2lwp) {
+		    	if(scale == 'L' && nearSwitch == 'L') {
+		    		//2cube auto
+		    	}
+		    	else if (nearSwitch == 'L') {
+		    		selected = new CG_AutoHotSwitch(left);
+		    	}
+		    	else if (scale == 'L') {
+		    		selected = new CG_AutoHotScale(left);
+		    	}
+		    	else {
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    }
+	    	
 		 
-	    }
 	    selected.start();
+	    //System.out.println(selected);
 	   
 }
 
@@ -194,6 +286,7 @@ public class SS_AutoSelect extends Subsystem {
 	}
 
 	public void end() {
+		System.out.println("WARNING:               AUTO HAS BEEN CANCLED FOR SOME REASON");
 		selected.cancel();
 
 	}

@@ -12,7 +12,7 @@ public class CG_NewAutoCenter extends CommandGroup {
 			addSequential(new C_DriveForwardRelative(12, .6));
 					addSequential(new C_TurnRelativeAngle(30, .8));
 					addParallel(C_MoveElevatorToPos.fromInches(24.0));
-			addSequential(new C_DriveForwardRelative(80, .6));
+			addSequential(new C_DriveForwardRelative(80, .7));
 			addSequential(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));
@@ -28,7 +28,7 @@ public class CG_NewAutoCenter extends CommandGroup {
 			addSequential(new C_DriveForwardRelative(12, .6));
 					addSequential(new C_TurnRelativeAngle(-30, .8));
 					addParallel(C_MoveElevatorToPos.fromInches(24.0));
-			addSequential(new C_DriveForwardRelative(80, .6));
+			addSequential(new C_DriveForwardRelative(80, .7));
 			addSequential(C_MoveElevatorToPos.fromInches(40.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));

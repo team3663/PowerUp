@@ -20,8 +20,9 @@ public final class OI {
 		// Button exampleButton = new JoystickButton(driveStick, 1);
 		// exampleButton.whenPressed(randoms);
 		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
-		intakeCubeCycle.whenPressed(new CG_CubeCycle());
-
+		intakeCubeCycle.whenPressed(new C_InsanityCheck());
+		//intakeCubeCycle.whenPressed(new CG_CubeCycle());
+		
 		//final Button griffSqz = new JoystickButton(driveStick, 1);
 		//griffSqz.whenPressed(new C_GriffSqueeze(true));
 		//griffSqz.whenReleased(new C_GriffSqueeze(false));
@@ -39,7 +40,7 @@ public final class OI {
 		
 
 		final Button inGriff = new JoystickButton(driveStick, 2);
-		inGriff.whenPressed(new C_SetGriffSpeed(-1));
+		inGriff.whenPressed(new C_SetGriffSpeed(-.8));
 		inGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		final Button setIntakeSpd = new JoystickButton(driveStick, 6);
@@ -47,7 +48,7 @@ public final class OI {
 		setIntakeSpd.whenReleased(new C_SetIntakeSpeed(0));
 
 		final Button outGriff = new JoystickButton(driveStick, 5);
-		outGriff.whenPressed(new C_SetGriffSpeed(-1));
+		outGriff.whenPressed(new C_SetGriffSpeed(-.8));
 		outGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		//final Button lowGoal = new JoystickButton(driveStick, 8);

@@ -28,7 +28,7 @@ public class SS_Griff extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		//setDefaultCommand(new C_TriggerButton());
+		setDefaultCommand(new C_TriggerButton());
 	// setDefaultCommand(new C_GriffSanityCheck());
 	}
 

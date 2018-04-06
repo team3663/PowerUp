@@ -50,18 +50,11 @@ public class C_DriveCurve extends Command {
 		
 		destination = ticks;
 		this.half = destination/2;
+		this.turn = turn;
 		controller = new PIDController(.025, 0, 0, -speed, speed);
 	}
-
-	/**
-	 * Use inches instead
-	 */
-
-
-	/**
-	 * Returns distance from destination. Positive value means it is forward;
-	 * negative means backward
-	 */
+	
+	
 	private int getError() {
 		return destination - getSide();
 	}
@@ -100,9 +93,9 @@ public class C_DriveCurve extends Command {
 		}
 		
 		if(neg)
-			Robot.ss_drivetrain.drive(-speed, turn);
+			Robot.ss_drivetrain.driveCurve(-speed, turn);
 		else
-			Robot.ss_drivetrain.drive(speed, turn);
+			Robot.ss_drivetrain.driveCurve(speed, turn);
 	}
 
 	@Override

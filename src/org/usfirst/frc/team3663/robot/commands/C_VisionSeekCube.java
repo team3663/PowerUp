@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3663.robot.commands;
+ package org.usfirst.frc.team3663.robot.commands;
 
 import org.usfirst.frc.team3663.robot.Robot;
 
@@ -15,22 +15,22 @@ public class C_VisionSeekCube extends Command {
         requires(Robot.ss_drivetrain);
         this.speed = speed; 
     }
-
-    protected void initialize() {
-    	Robot.ss_camera.turnLightOn(0);
-    	System.out.println("\t\t\tChanged light to blinking");
-    }
-
+	@Override
+	protected void initialize() {
+		new CG_CubeIn().start();
+	}
+    @Override
     protected void execute() {
-    	System.out.println("Vision driving at " + speed + " towards " + Robot.ss_camera.getXOffset());
+    	System.out.println("Vision driving at " + speed + " towards " + Robot.ss_griff.getSwitchState());
     	Robot.ss_drivetrain.driveCurve(speed, Robot.ss_camera.getXOffset());
     }
-
+    @Override
     protected boolean isFinished() {
-        return !Robot.ss_camera.validTargets() || Robot.ss_camera.getArea() > 30;
+        return !Robot.ss_camera.validTargets()  || Robot.ss_griff.getSwitchState();
     }
-
+    @Override
     protected void end() {
-    	System.out.println("Vision driving finished");
+    	new CG_CubeReset().start();
+    	Robot.ss_drivetrain.stop();
     }
 }

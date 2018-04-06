@@ -101,7 +101,6 @@ public class Robot extends IterativeRobot {
 		if(auto != null)
 			auto.cancel();
 		Robot.ss_drivetrain.enableBreakMode(false);
-		new C_TriggerButton().start();
 		//Robot.ss_camera.turnLightOn(1);
 		
 		// This makes sure that the autonomous stops running when

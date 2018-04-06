@@ -88,7 +88,7 @@ public class SS_Camera extends Subsystem {
 		return area.getDouble(-1);
 	}
 	
-	//Returns 0 if there are no targets, 1 if there is a target
+	//Returns 0 if there are no targets, 1 if there is a target00
 	public boolean validTargets() {
 		return valid.getBoolean(false);
 	}
@@ -96,7 +96,7 @@ public class SS_Camera extends Subsystem {
 	public boolean waitAndInitCamera() {
 		if(getXOffset() != -1 && !init) {
 			turnLightOn(1);//i dont want this on right now
-			cameraMode(1);
+			cameraMode(0);
 			setPipeline(0);
 			init = true;
 			return true;

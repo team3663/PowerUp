@@ -15,6 +15,7 @@ public class C_GriffSensor extends Command {
 
 	@Override
 	protected boolean isFinished() {
+		System.out.println(Robot.ss_griff.getSwitchState());
 		return Robot.ss_griff.getSwitchState();
 	}
 

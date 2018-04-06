@@ -31,7 +31,7 @@ public class C_TurnRelativeAngle extends Command {
 
 		Robot.ss_gyro.fakeResetGyro();
 		destination = degrees + Robot.ss_gyro.get();
-		controller = new PIDController(.8, .02, 0, -speed, speed);// 360 is the full cricle so it makes sense? or 135 cuz thats 2/3 of the wrong direction // 60,0,1
+		controller = new PIDController(.8, .005, 0, -speed, speed);// 360 is the full cricle so it makes sense? or 135 cuz thats 2/3 of the wrong direction // 60,0,1
 		//still need to figure out the way to find kD
 	}
 
