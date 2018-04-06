@@ -11,27 +11,27 @@ public class CG_AutoFarScale extends CommandGroup {
     	if (startRight) {
 	    	addSequential(new C_DriveForwardRelative(155, .7));
 	        addSequential(new C_TurnRelativeAngle(-90, .7));
-	        addSequential(new C_DriveForwardRelative(150, .7));
+	        addSequential(new C_DriveForwardRelative(160, .7));
 	        addSequential(new C_TurnRelativeAngle(90, .7));
-	        addParallel(C_MoveElevatorToPos.fromInches(72));
 	        addSequential(new C_DriveForwardRelative(18, .5)); 
 	        addSequential(new C_TurnRelativeAngle(90, .7));
-	        addSequential(new C_Wait(500));
+	        addSequential(new C_DriveForwardRelative(18, .5));
+	        addSequential(C_MoveElevatorToPos.fromInches(72));
 	        addSequential(new C_SetGriffSpeed(1));
-	        addSequential(new C_Wait(300));
+	        addSequential(new C_Wait(200));
 	        addSequential(new C_SetGriffSpeed(0));
 	        addParallel(C_MoveElevatorToPos.fromInches(0));
 	    } else {
 	    	addSequential(new C_DriveForwardRelative(155, .7));
 	        addSequential(new C_TurnRelativeAngle(90, .7));
-	        addSequential(new C_DriveForwardRelative(150, .7));
+	        addSequential(new C_DriveForwardRelative(160, .7));
 	        addSequential(new C_TurnRelativeAngle(-90, .7));
-	        addParallel(C_MoveElevatorToPos.fromInches(72));
-	        addSequential(new C_DriveForwardRelative(18, .5));
+	        addSequential(new C_DriveForwardRelative(18, .5)); 
 	        addSequential(new C_TurnRelativeAngle(-90, .7));
-	        addSequential(new C_Wait(500));
+	        addSequential(new C_DriveForwardRelative(18, .5)); 
+	        addSequential(C_MoveElevatorToPos.fromInches(72));
 	        addSequential(new C_SetGriffSpeed(1));
-	        addSequential(new C_Wait(300));
+	        addSequential(new C_Wait(200));
 	        addSequential(new C_SetGriffSpeed(0));
 	        addParallel(C_MoveElevatorToPos.fromInches(0));
 	    }

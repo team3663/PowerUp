@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3663.robot.subsystems;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
+import org.usfirst.frc.team3663.robot.commands.C_Climber;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -28,6 +29,7 @@ public class SS_Climber extends Subsystem {
 	
 
     public void initDefaultCommand() {
+    	setDefaultCommand(new C_Climber());
         
     }
 	public void setClimber(boolean pState) {

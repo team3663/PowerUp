@@ -8,6 +8,7 @@ import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
 import org.usfirst.frc.team3663.robot.commands.CG_NewAutoCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCurveCenter;
+import org.usfirst.frc.team3663.robot.commands.CG_AutoFarScale;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
 import org.usfirst.frc.team3663.robot.commands.C_Wait;
 
@@ -109,12 +110,16 @@ public class SS_AutoSelect extends Subsystem {
 		
 		final int n = 0;     // nothing
 	    final int c = 1;     // center
+	    
 	    final int lw = 2;    // left switch only
 	    final int rw = 3;    // right switch only
+	    
 	    final int lc = 4;    // left scale priority
 	    final int rc = 5;    // right scale priority
+	    
 	    final int lwp = 6;   // left switch priority
 	    final int rwp = 7;   // right switch priority
+	    
 	    final int d = 8;     // drive forward
 	    
 	    //test numbers for test hash
@@ -123,6 +128,11 @@ public class SS_AutoSelect extends Subsystem {
 	    
 	    final int c2lwp = 10;//two cube left switch priority
 	    final int c2rwp = 12;//two cube right switch priority
+	    
+	    final int cl = 15; //left chair
+	    final int cr = 16; //right chair
+	    
+	    final int test1 = 11;
 	    
 	    
 	    /////////// NEWER SELECT CODE/////////
@@ -273,6 +283,46 @@ public class SS_AutoSelect extends Subsystem {
 		    	else {
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
+		    }
+	    	//left chair
+		    else if (location == cl) {
+		    	if(scale == 'L') {
+		    		selected = new CG_AutoHotScale(left);
+		    	}
+		    	else if (scale == 'R') {
+		    		selected = new CG_AutoFarScale(right);
+		    	}
+		    	else {
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    }
+	    	//right chair
+		    else if (location == cr) {
+		    	if(scale == 'R') {
+		    		selected = new CG_AutoHotScale(right);
+		    	}
+		    	else if (scale == 'L') {
+		    		selected = new CG_AutoFarScale(left);
+		    	}
+		    	else {
+		    		selected = new C_DriveForwardRelative(145, 0.6);
+		    	}
+		    }
+		    else if (location == test1) {
+		    	if (nearSwitch == 'L') {
+		    		//selected = new CG_AutoCenter(left);
+		    		//selected = new CG_NewAutoCenter(left);
+		    		selected = new CG_AutoCurveCenter(left);
+		    	} else {
+		    		//selected = new CG_AutoCenter(right);
+		    		//selected = new CG_NewAutoCenter(right);
+		    		selected = new CG_AutoCurveCenter(right);
+		    	}
+		    	
+		    }
+	    	//if nothing is selected for some reason.
+		    else {
+		    	selected = new C_Wait(15);
 		    }
 	    	
 		 

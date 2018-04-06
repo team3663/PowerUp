@@ -29,6 +29,7 @@ public class C_DriveCurve extends Command {
 	double turn;
 	boolean leftSide;
 	int half = 0;
+	boolean turnFin = false;
 	
 	public C_DriveCurve(int inches, double speed, double turn) {
 		requires(Robot.ss_drivetrain);
@@ -43,7 +44,7 @@ public class C_DriveCurve extends Command {
 		else {
 			leftSide = false;
 		}
-		targetTime = inches/(speed*27); //TODO: it was instatnly timing out because this was set to a negetive value
+		targetTime = inches/(speed*27.25); //TODO: it was instatnly timing out because this was set to a negetive value
 		System.out.println(targetTime);
 		
 		int ticks = Robot.ss_drivetrain.inchesToTicks(inches);
@@ -59,7 +60,7 @@ public class C_DriveCurve extends Command {
 		return destination - getSide();
 	}
 	private int getSide() {
-		if(leftSide) {
+		if(!leftSide) {
 			return Robot.ss_drivetrain.getLeft();
 		}
 		else {
@@ -82,9 +83,17 @@ public class C_DriveCurve extends Command {
 		
 		this.current = Timer.getFPGATimestamp();
 		// debug info
-		//System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		System.out.println(turn);
 		
-		if(getSide() >= half) {
+		if(getSide() > half && !turnFin) {
+			turnFin = true;
+			if(turn < 0) {
+				turn -= .07;
+			}
+			else {
+				turn += .07;
+			}
 			turn *= -1;
 			if(leftSide)
 				leftSide = false;

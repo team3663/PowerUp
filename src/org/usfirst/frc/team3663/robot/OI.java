@@ -15,8 +15,15 @@ public final class OI {
 
 	public Joystick driveStick = new Joystick(0);
 	public Joystick op = new Joystick(1);
+	public Joystick debug = new Joystick(2);
 
 	public OI() {
+		//debug
+		final Button reverseClimb = new JoystickButton(debug, 3);
+		reverseClimb.whenPressed(new C_SetClimber(.5));
+		reverseClimb.whenReleased(new C_SetClimber(0));
+		
+		
 		// Button exampleButton = new JoystickButton(driveStick, 1);
 		// exampleButton.whenPressed(randoms);
 		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
@@ -58,9 +65,9 @@ public final class OI {
 		climberPneum.whenPressed(new C_SetClimber(true));
 		climberPneum.whenReleased(new C_SetClimber(false));
 		
-		final Button climberTurn = new JoystickButton(op, 6);
-		climberTurn.whenPressed(new C_SetClimber(-.5));
-		climberTurn.whenReleased(new C_SetClimber(0));
+		//final Button climberTurn = new JoystickButton(op, 6);
+		//climberTurn.whenPressed(new C_SetClimber(-.5));
+		//climberTurn.whenReleased(new C_SetClimber(0));
 		
 		final Button cubeAdjust = new JoystickButton(driveStick, 4);
 		cubeAdjust.whenPressed(new C_IntakeCubeAdjust(.5));
