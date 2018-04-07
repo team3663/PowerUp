@@ -321,20 +321,22 @@ public class SS_AutoSelect extends Subsystem {
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
 		    }
+	    	//currently used for retired center auto
 		    else if (location == test1) {
 		    	if (nearSwitch == 'L') {
-		    		//selected = new CG_AutoCenter(left);
+		    		selected = new CG_AutoCenter(left);
 		    		//selected = new CG_NewAutoCenter(left);
-		    		selected = new CG_AutoCurveCenter(left);
+		    		//selected = new CG_AutoCurveCenter(left);
 		    	} else {
-		    		//selected = new CG_AutoCenter(right);
+		    		selected = new CG_AutoCenter(right);
 		    		//selected = new CG_NewAutoCenter(right);
-		    		selected = new CG_AutoCurveCenter(right);
+		    		//selected = new CG_AutoCurveCenter(right);
 		    	}
 		    	
 		    }
+	    	
 		    else if (location == test2) {
-		    		selected = new C_MoveElevatorToPos(72);
+		    		
 		    }
 	    	//if nothing is selected for some reason.
 		    else {

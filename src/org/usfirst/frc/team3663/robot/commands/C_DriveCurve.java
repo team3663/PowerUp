@@ -84,8 +84,8 @@ public class C_DriveCurve extends Command {
 		
 		this.current = Timer.getFPGATimestamp();
 		// debug info
-		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
-		System.out.println(turn);
+		//System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
+		//System.out.println(turn);
 		
 		//the ol switcheroo, checeks if its been run before
 		if(getSide() > half && !turnFin) {
