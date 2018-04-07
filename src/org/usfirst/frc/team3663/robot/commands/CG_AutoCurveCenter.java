@@ -9,6 +9,7 @@ public class CG_AutoCurveCenter extends CommandGroup {
 
     public CG_AutoCurveCenter(boolean isRight) {
     	if(isRight) {
+    		addParallel(new C_SetGriffSpeed(.2));
 			addParallel(C_MoveElevatorToPos.fromInches(40.0));
     		addSequential(new C_DriveCurve(125, .7, .74));
 
@@ -18,6 +19,7 @@ public class CG_AutoCurveCenter extends CommandGroup {
 			addParallel(C_MoveElevatorToPos.fromInches(0.0));
     	}
     	else {
+    		addParallel(new C_SetGriffSpeed(.2));
 			addParallel(C_MoveElevatorToPos.fromInches(40.0));
     		addSequential(new C_DriveCurve(125, .7, -.74));
 

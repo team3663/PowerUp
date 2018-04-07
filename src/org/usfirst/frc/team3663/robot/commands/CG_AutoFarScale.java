@@ -8,17 +8,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CG_AutoFarScale extends CommandGroup {
 
     public CG_AutoFarScale(boolean startRight) {
+    	//this code is changed a bunch for elims for DC
     	if (startRight) {
+    		addParallel(new C_SetGriffSpeed(.2));
 	    	addSequential(new C_DriveForwardRelative(200, .8));
 	        addSequential(new C_TurnRelativeAngle(90, .65));
-	        addParallel(C_MoveElevatorToPos.fromInches(35));
-	        addSequential(new C_DriveForwardRelative(190, .7));
+	       //addParallel(C_MoveElevatorToPos.fromInches(35));
+	        addSequential(new C_DriveForwardRelative(144, .7));
 	        ////addParallel(C_MoveElevatorToPos.fromInches(80));
-	        addSequential(new C_TurnRelativeAngle(-90, .75));
+	        //addSequential(new C_TurnRelativeAngle(-90, .75));
 
 	        //addSequential(new C_DriveForwardRelative(30, .6)); 
 	       // addSequential(new C_TurnRelativeAngle(90, .7));
-
+	        /*
 	        addSequential(C_MoveElevatorToPos.fromInches(85));   
 	        addSequential(new C_DriveForwardRelative(35, .5));
 	        addParallel(C_MoveElevatorToPos.fromInches(85));
@@ -27,14 +29,17 @@ public class CG_AutoFarScale extends CommandGroup {
 	        addSequential(new C_SetGriffSpeed(0));
 	        addParallel(C_MoveElevatorToPos.fromInches(0));
 	        addSequential(new C_DriveForwardRelative(-12, .5));
+	        */
 	    } else {
+	    	addParallel(new C_SetGriffSpeed(.2));
 	    	addSequential(new C_DriveForwardRelative(200, .8));
 	        addSequential(new C_TurnRelativeAngle(-90, .75));
-	        addParallel(C_MoveElevatorToPos.fromInches(35));
-	        addSequential(new C_DriveForwardRelative(190, .7));
+	       // addParallel(C_MoveElevatorToPos.fromInches(35));
+	        addSequential(new C_DriveForwardRelative(144, .7));
 	        //addParallel(C_MoveElevatorToPos.fromInches(80));
-	        addSequential(new C_TurnRelativeAngle(90, .75));
-
+	      //  addSequential(new C_TurnRelativeAngle(90, .75));
+	        
+	        /*
 	        //addSequential(new C_DriveForwardRelative(30, .6)); 
 	       // addSequential(new C_TurnRelativeAngle(90, .7));
 
@@ -44,6 +49,7 @@ public class CG_AutoFarScale extends CommandGroup {
 	        addSequential(new C_Wait(200));
 	        addSequential(new C_SetGriffSpeed(0));
 	        addParallel(C_MoveElevatorToPos.fromInches(0));
+	        */
 	    }
     }
 }

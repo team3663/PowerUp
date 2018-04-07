@@ -11,7 +11,7 @@ public class CG_AutoHotSwitch extends CommandGroup {
 
 	public CG_AutoHotSwitch(boolean isRight) {
 		if (isRight) {
-			
+	    	addParallel(new C_SetGriffSpeed(.2));
 			addSequential(new C_DriveForwardRelative(125, .8));
 				addSequential(new C_TurnRelativeAngle(-90, .75));
 //			addSequential(new C_SimpleTurnRelative(-85, .8));
@@ -26,6 +26,7 @@ public class CG_AutoHotSwitch extends CommandGroup {
 //			addSequential(new C_TurnRelativeAngle(90, .8));
 //			addSequential(new C_SimpleTurnRelative(85, .8));
 		} else {
+	    	addParallel(new C_SetGriffSpeed(.2));
 			addSequential(new C_DriveForwardRelative(125, .8));
 					addSequential(new C_TurnRelativeAngle(90, .75));
 //			addSequential(new C_SimpleTurnRelative(-85, .8));
