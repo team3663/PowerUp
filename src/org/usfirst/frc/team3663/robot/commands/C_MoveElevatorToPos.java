@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3663.robot.commands;
+ 	package org.usfirst.frc.team3663.robot.commands;
 
 import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
@@ -15,7 +15,7 @@ public class C_MoveElevatorToPos extends Command {
 	// Finish when elevator within 3 inches of destination
 	private static final int THRESHOLD_TICKS = SS_Elevator.inchesToTicks(3);
 
-	private static final double ELEVATOR_SPEED = .9;
+	private static final double ELEVATOR_SPEED = 1;
 
 	private boolean goingUp;
 	private final int destination;

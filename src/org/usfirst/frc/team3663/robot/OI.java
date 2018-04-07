@@ -28,12 +28,8 @@ public final class OI {
 		// exampleButton.whenPressed(randoms);
 		final Button intakeCubeCycle = new JoystickButton(driveStick, 3);
 		intakeCubeCycle.whenPressed(new C_InsanityCheck());
-<<<<<<< HEAD
 		//intakeCubeCycle.whenPressed(new CG_CubeCycle());
-		
-=======
 
->>>>>>> 496e29f7867eea0b06d9aa831b7dcd185326e3fc
 		//final Button griffSqz = new JoystickButton(driveStick, 1);
 		//griffSqz.whenPressed(new C_GriffSqueeze(true));
 		//griffSqz.whenReleased(new C_GriffSqueeze(false));

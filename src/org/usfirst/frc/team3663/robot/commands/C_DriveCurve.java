@@ -87,21 +87,28 @@ public class C_DriveCurve extends Command {
 		System.out.println("\nDest: " + destination + "\tPos: " + Robot.ss_drivetrain.getLeft() + "\tErr: " + error + "\nSpd: " + speed);
 		System.out.println(turn);
 		
+		//the ol switcheroo, checeks if its been run before
 		if(getSide() > half && !turnFin) {
 			turnFin = true;
 			if(turn < 0) {
-				turn -= .07;
+				//left side, second half
+				turn += .08;
 			}
 			else {
-				turn += .07;
+				//right side, second half
+				turn -= .07;
 			}
+			//the switcharoo
 			turn *= -1;
+			
+			//makes sure is using the outside encoder
 			if(leftSide)
 				leftSide = false;
 			else
 				leftSide = true;
 		}
 		
+		//passes in the negetive	
 		if(neg)
 			Robot.ss_drivetrain.driveCurve(-speed, turn);
 		else

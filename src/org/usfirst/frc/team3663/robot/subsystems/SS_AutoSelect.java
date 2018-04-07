@@ -10,6 +10,7 @@ import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoCurveCenter;
 import org.usfirst.frc.team3663.robot.commands.CG_AutoFarScale;
 import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
+import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
 import org.usfirst.frc.team3663.robot.commands.C_Wait;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -142,6 +143,7 @@ public class SS_AutoSelect extends Subsystem {
 	    final int cr = 16; //right chair
 	    
 	    final int test1 = 11;
+	    final int test2 = 14;
 	    
 	    
 	    /////////// NEWER SELECT CODE/////////
@@ -149,14 +151,14 @@ public class SS_AutoSelect extends Subsystem {
 	    	//center
 	    	if( location == c) {
 		    	if (nearSwitch == 'L') {
-		    		selected = new CG_AutoCenter(left);
+		    		//selected = new CG_AutoCenter(left);
 
 		    		//selected = new CG_NewAutoCenter(left);
-		    		//selected = new CG_AutoCurveCenter(left);
+		    		selected = new CG_AutoCurveCenter(left);
 		    	} else {
-		    		selected = new CG_AutoCenter(right);
+		    		//selected = new CG_AutoCenter(right);
 		    		//selected = new CG_NewAutoCenter(right);
-		    		//selected = new CG_AutoCurveCenter(right);
+		    		selected = new CG_AutoCurveCenter(right);
 
 		    	}
 	    	}
@@ -331,6 +333,9 @@ public class SS_AutoSelect extends Subsystem {
 		    	}
 		    	
 		    }
+		    else if (location == test2) {
+		    		selected = new C_MoveElevatorToPos(72);
+		    }
 	    	//if nothing is selected for some reason.
 		    else {
 		    	selected = new C_Wait(15);
@@ -338,7 +343,7 @@ public class SS_AutoSelect extends Subsystem {
 	    	
 		 
 	    selected.start();
-	    //System.out.println(selected);
+	    System.out.println(selected);
 	   
 }
 
