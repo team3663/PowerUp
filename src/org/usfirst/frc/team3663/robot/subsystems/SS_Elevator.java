@@ -80,6 +80,9 @@ public class SS_Elevator extends Subsystem {
 		return (int) (inches * TICKS_PER_INCH);
 	}
 
+	public static double ticksToInches(int ticks) {
+		return (ticks/TICKS_PER_INCH);
+	}
 	public static int clampTicks(double val) {
 		return (int) Math.min(Math.max(0, val), ELEVATOR_MAX);
 	}

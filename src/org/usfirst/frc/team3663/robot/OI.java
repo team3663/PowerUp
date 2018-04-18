@@ -23,6 +23,10 @@ public final class OI {
 		reverseClimb.whenPressed(new C_SetClimber(.5));
 		reverseClimb.whenReleased(new C_SetClimber(0));
 		
+		final Button hold = new JoystickButton(debug, 2);
+		//hold.whileHeld(new C_ElevatorHold(false));
+		hold.toggleWhenPressed(new C_ElevatorHold(false));
+		
 		
 		// Button exampleButton = new JoystickButton(driveStick, 1);
 		// exampleButton.whenPressed(randoms);
