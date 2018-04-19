@@ -46,8 +46,8 @@ public class SS_Griff extends Subsystem {
 	// Measures the rotation of the griff
 	
 
-	private final Optional<DigitalInput> cubePresent = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
-
+	private final Optional<DigitalInput> cubePresentL = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT);
+	private final Optional<DigitalInput> cubePresentR = HardwareUtil.getDigitalInput(RobotMap.LIMIT_SWITCH_CUBE_PRESENT1);
 	private void rotateCube(double speed, Double angle) {
 		if (Robot.ss_elevator.get() < 100) {
 
@@ -92,12 +92,23 @@ public class SS_Griff extends Subsystem {
 	}
 	*/
 
-	public boolean getSwitchState() {
-		boolean result = !cubePresent.map(DigitalInput::get).orElse(false);
-		if (result)
-			setGriffSpd(.2);
+	public boolean getSwitchStateL() {
+		boolean result = !cubePresentL.map(DigitalInput::get).orElse(false);
 		
 		return result;
+	}
+	public boolean getSwitchStateR() {
+		boolean result = !cubePresentR.map(DigitalInput::get).orElse(false);
+
+		return result;
+	}
+	
+	public boolean getSwitchStateBoth() {
+		return getSwitchStateL() && getSwitchStateR();
+	}
+	
+	public boolean getSwitchStateAny() {
+		return getSwitchStateL() || getSwitchStateR();
 	}
 
 	public void sqzGriff(boolean pState) {

@@ -25,7 +25,7 @@ public final class OI {
 		
 		final Button hold = new JoystickButton(debug, 2);
 		//hold.whileHeld(new C_ElevatorHold(false));
-		hold.toggleWhenPressed(new C_ElevatorHold(false));
+		hold.toggleWhenPressed(new C_ElevatorHold());
 		
 		
 		// Button exampleButton = new JoystickButton(driveStick, 1);
@@ -55,11 +55,11 @@ public final class OI {
 		inGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		final Button setIntakeSpd = new JoystickButton(driveStick, 6);
-		setIntakeSpd.whenPressed(new C_SetIntakeSpeed(-1));
+		setIntakeSpd.whenPressed(new C_SetIntakeSpeed(-.5));
 		setIntakeSpd.whenReleased(new C_SetIntakeSpeed(0));
 
 		final Button outGriff = new JoystickButton(driveStick, 5);
-		outGriff.whenPressed(new C_SetGriffSpeed(-.8));
+		outGriff.whenPressed(new C_SetGriffSpeed(-.5));
 		outGriff.whenReleased(new C_SetGriffSpeed(0));
 
 		//final Button lowGoal = new JoystickButton(driveStick, 8);

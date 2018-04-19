@@ -14,6 +14,11 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class SS_Elevator extends Subsystem {
+	//1750 first stage
+	//3800 second stage
+	
+	
+	
 	// Drum diameter = 1.21875in
 	// Circumference = dia * pi = 3.8288in
 	// Ticks = 256 ticks / rev
@@ -217,7 +222,7 @@ public class SS_Elevator extends Subsystem {
 //			encPluggedIn = true;
 //		}
 		
-		System.out.println(get());
+		//System.out.println(get());
 		//System.out.println(encPluggedIn);
 		double Cur_Speed = elevator1.get();
 		if(true) {

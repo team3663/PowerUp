@@ -23,10 +23,10 @@ public class CG_AutoFarSwitch extends CommandGroup {
 	        addSequential(new C_DriveForwardRelative(155, .7));
 	        addSequential(new C_TurnRelativeAngle(90, .7));
 	        addParallel(C_MoveElevatorToPos.fromInches(30));
-	        addSequential(new C_DriveForwardRelative(130, .7));
+	        addSequential(new C_DriveForwardRelative(140, .7));
 	        addSequential(new C_TurnRelativeAngle(90, .7));
 	        addSequential(new C_Wait(400));
-			addSequential(new C_SetGriffSpeed(-1));
+			addSequential(new C_SetGriffSpeed(-.5));
 			addSequential(new C_Wait(300));
 			addSequential(new C_SetGriffSpeed(0));
 			addParallel(C_MoveElevatorToPos.fromInches(0.0));

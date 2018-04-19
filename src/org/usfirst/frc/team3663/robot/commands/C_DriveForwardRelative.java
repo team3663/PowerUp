@@ -28,18 +28,18 @@ public class C_DriveForwardRelative extends Command {
 	boolean neg = false;
 	double TEA = 27.25;
 	
-	public C_DriveForwardRelative(int inches, double speed) {
+	public C_DriveForwardRelative(double d /* inches */, double speed) {
 		requires(Robot.ss_drivetrain);
 
-		if (inches < 0) {
+		if (d < 0) {
 			neg = true;
-			inches = inches*-1;
+			d = d*-1;
 		}
 		
-		targetTime = inches/(speed*TEA); //TODO: it was instatnly timing out because this was set to a negetive value
-		System.out.println(targetTime);
+		targetTime = d/(speed*TEA); //TODO: it was instatnly timing out because this was set to a negetive value
+		//System.out.println(targetTime);
 		
-		int ticks = Robot.ss_drivetrain.inchesToTicks(inches);
+		int ticks = Robot.ss_drivetrain.inchesToTicks(d);
 		destination = ticks;
 		controller = new PIDController(.025, 0, 0, -speed, speed);
 	}
@@ -62,9 +62,10 @@ public class C_DriveForwardRelative extends Command {
 	
 	@Override
 	protected void execute() {
+		//System.out.println("DRIVE FORWARD RELATIVE");
 		// set speed from PID controller
 		double error = getError();
-		double speed = controller.get(getError());
+		double speed = controller.get(error);
 		
 		this.current = Timer.getFPGATimestamp();
 		// debug info
@@ -87,7 +88,7 @@ public class C_DriveForwardRelative extends Command {
 	@Override
 	protected void end() {
 		
-		System.out.println(current-start);
+		//System.out.println(current-start);
 		// Stop wheels
 		Robot.ss_drivetrain.stop();
 	}

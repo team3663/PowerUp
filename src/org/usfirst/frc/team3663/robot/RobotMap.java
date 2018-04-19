@@ -11,7 +11,7 @@ public class RobotMap {
 	public static final int LIMIT_SWITCH_ELEVATOR_TOP = 0;
 	public static final int LIMIT_SWITCH_ELEVATOR_BOTTOM = 2;
 	public static final int LIMIT_SWITCH_CUBE_PRESENT = 1; // Optical sensor for
-															// griff
+	public static final int LIMIT_SWITCH_CUBE_PRESENT1 = 3;															// griff
 
 	// Encoders
 	public static final int DRIVE_RIGHT_ENC_1 = 4;

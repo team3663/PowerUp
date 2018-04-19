@@ -80,6 +80,7 @@ public class Robot extends IterativeRobot {
 		
 		auto = new C_AutoWait((int) autoControlTable.getEntry("autoChoice").getDouble(-1));
 		
+		
 		//System.out.println( "TRENTS STUFF :    " + autoControlTable.getEntry("autoChoice").getDouble(-1));
 		Robot.ss_drivetrain.enableBreakMode(true);
 		new C_SetIntakeState(false, false).start();

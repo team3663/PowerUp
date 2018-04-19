@@ -24,4 +24,7 @@ public class C_IntakeCubeAdjust extends Command {
     protected boolean isFinished() {
         return true;
     }
+    protected void end() {
+        new CG_CubeCycle().start();
+    }
 }

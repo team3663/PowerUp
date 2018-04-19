@@ -90,7 +90,8 @@ public class SS_Camera extends Subsystem {
 	
 	//Returns 0 if there are no targets, 1 if there is a target00
 	public boolean validTargets() {
-		return valid.getBoolean(false);
+		
+		return valid.getDouble(0) == 1;
 	}
 	private boolean init = false;
 	public boolean waitAndInitCamera() {

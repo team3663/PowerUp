@@ -10,28 +10,29 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_ElevatorHold extends Command {
 
 	private int holdPos = 0;
-	private boolean release;
-    public C_ElevatorHold(boolean release) {
-    	this.release = release;
+	private double pickle = 10;
+
+    public C_ElevatorHold() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.ss_elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	holdPos = Robot.ss_elevator.get();
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	double pickle = 10;
     	int currPos = holdPos - Robot.ss_elevator.get();
     	Robot.ss_elevator.set(currPos/pickle);
     }
 
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+
+    }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return release;
+        return true;
     }
 
     protected void end() {

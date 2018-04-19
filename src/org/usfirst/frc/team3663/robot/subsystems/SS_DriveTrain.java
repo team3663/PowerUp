@@ -48,6 +48,9 @@ public class SS_DriveTrain extends Subsystem {
 	public int inchesToTicks(double inches) {
 		return (int) (inches * TICKS_PER_IN);
 	}
+	public double ticksToInches(int ticks) {
+		return (ticks / TICKS_PER_IN);
+	}
 
 	public SS_DriveTrain() {
 		/*																TODO need to add this to the constructor when we replace the Talons
@@ -61,6 +64,8 @@ public class SS_DriveTrain extends Subsystem {
 		left2.configPeakCurrentLimit(35,2);
 		*/
 
+		
+		
 		left2.follow(left1);
 		left3.follow(left1);
 
@@ -184,7 +189,8 @@ public class SS_DriveTrain extends Subsystem {
 			//return encoderDiff();
 		else
 			System.out.println("everything is wrong");
-			return 0;
+			
+		return 0;
 	}
 	
 	public void driveStraight(double pSpd) {

@@ -3,14 +3,7 @@ package org.usfirst.frc.team3663.robot.subsystems;
 import org.usfirst.frc.team3663.robot.Robot;
 
 import org.usfirst.frc.team3663.robot.RobotMap;
-import org.usfirst.frc.team3663.robot.commands.CG_AutoHotScale;
-import org.usfirst.frc.team3663.robot.commands.CG_AutoHotSwitch;
-import org.usfirst.frc.team3663.robot.commands.CG_AutoCenter;
-import org.usfirst.frc.team3663.robot.commands.CG_AutoCurveCenter;
-import org.usfirst.frc.team3663.robot.commands.CG_AutoFarScale;
-import org.usfirst.frc.team3663.robot.commands.C_DriveForwardRelative;
-import org.usfirst.frc.team3663.robot.commands.C_MoveElevatorToPos;
-import org.usfirst.frc.team3663.robot.commands.C_Wait;
+import org.usfirst.frc.team3663.robot.commands.*;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -320,21 +313,23 @@ public class SS_AutoSelect extends Subsystem {
 		    		selected = new C_DriveForwardRelative(145, 0.6);
 		    	}
 		    }
-	    	//currently used for retired center auto
+	    	//two cube center
 		    else if (location == test1) {
-		    	if (nearSwitch == 'L') {
-		    		selected = new CG_AutoCenter(left);
-		    		//selected = new CG_NewAutoCenter(left);
-		    		//selected = new CG_AutoCurveCenter(left);
+		    	if (nearSwitch == 'R') {
+		    		selected = new CG_Auto2SwitchCenter(right);
+		    		
+		    		//selected = new CG_Auto2Scale();
 		    	} else {
-		    		selected = new CG_AutoCenter(right);
-		    		//selected = new CG_NewAutoCenter(right);
-		    		//selected = new CG_AutoCurveCenter(right);
+		    		selected = new CG_Auto2SwitchCenter(left);
+		    		
+		    		//selected = new CG_Auto2Scale();
 		    	}
 		    	
 		    }
 	    	
 		    else if (location == test2) {
+		    	//selected = new C_BlindCubePickup();
+		    	selected = new C_VisionSeekCube(.5);
 		    		
 		    }
 	    	//if nothing is selected for some reason.
