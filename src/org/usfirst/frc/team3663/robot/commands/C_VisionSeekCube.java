@@ -21,18 +21,25 @@ public class C_VisionSeekCube extends Command {
 	
     public C_VisionSeekCube(double speed) {
         requires(Robot.ss_camera);
-        //requires(Robot.ss_griff);
+        requires(Robot.ss_griff);
         requires(Robot.ss_drivetrain);
+        requires(Robot.ss_cubeIntake);
         this.speed = speed; 
         valid = !Robot.ss_camera.validTargets();
     }
 	@Override
 	protected void initialize() {
-		
+
+		Robot.ss_cubeIntake.spinIntake(1);
+		Robot.ss_griff.setGriffSpd(.5);
 	}
     @Override
     protected void execute() {
-    	new CG_CubeIn().start();
+		Robot.ss_cubeIntake.extendIntake(true);
+		Robot.ss_cubeIntake.sqzIntake(true);
+
+    	Robot.ss_griff.sqzGriff(true);
+    	
     	
     	System.out.println("Vision driving at " + speed + " switch:   " + Robot.ss_griff.getSwitchStateBoth()
     	+ "  valid  " + Robot.ss_camera.validTargets() + "  offset is:  " + Robot.ss_camera.getXOffset());
@@ -43,14 +50,6 @@ public class C_VisionSeekCube extends Command {
     		turn = MAX_TURN;
     	}
     	
-    	if(active) {
-    		turn = turn + .0001;
-    		active = false;
-    	}
-    	else {
-    		turn = turn - .0001;
-    		active = true;
-    	}
     	
     	Robot.ss_drivetrain.driveCurve(speed, turn);
 
@@ -80,7 +79,11 @@ public class C_VisionSeekCube extends Command {
     }
     @Override
     protected void end() {
-    	new CG_CubeReset().start();
+    	Robot.ss_cubeIntake.spinIntake(0);
+    	Robot.ss_cubeIntake.extendIntake(false);
+		Robot.ss_cubeIntake.sqzIntake(false);
+
+    	Robot.ss_griff.sqzGriff(false);
     	Robot.ss_drivetrain.stop();
     }
 }

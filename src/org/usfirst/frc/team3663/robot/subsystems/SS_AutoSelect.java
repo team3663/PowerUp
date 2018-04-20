@@ -18,48 +18,7 @@ import edu.wpi.first.wpilibj.interfaces.Potentiometer;
  */
 public class SS_AutoSelect extends Subsystem {
 
-	@Deprecated
-	public enum Direction {
-		LEFT, RIGHT;
-
-		public static Direction fromChar(char c) {
-			switch (c) {
-			case 'L':
-				return LEFT;
-			case 'R':
-				return RIGHT;
-			default:
-				// Samuel: getGameSpecificMessage(), as per the manual, should *only* return
-				// either L's or R's. Any other result would
-				// be unpredicable, and if that's the case, the robot *should* do nothing.
-				throw new IllegalArgumentException("Character '" + c + "' invalid.");
-			}
-		}
-
-		/**
-		 * Give a list of 3 directions. Each direction corresponds to where our side
-		 * of the game elements are:
-		 *
-		 * 1: direction of switch at alliance's side
-		 * 2: direction of scale
-		 * 3: direction of opponent scale
-		 */
-		
-		public static Direction[] fromGameData() {
-			String gameData = "";
-
-			if (gameData.length() > 0) {
-				gameData = DriverStation.getInstance().getGameSpecificMessage();
-			}
-
-			final Direction[] d = new Direction[3];
-			for (int i = 0; i < 3; i++) {
-				d[i] = Direction.fromChar(gameData.charAt(i));
-			}
-
-			return d;
-		}
-	}
+	 	
 	public boolean gameMessagePresesnt() {
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		if (gameData == "" || gameData == null)
@@ -316,20 +275,22 @@ public class SS_AutoSelect extends Subsystem {
 	    	//two cube center
 		    else if (location == test1) {
 		    	if (nearSwitch == 'R') {
-		    		selected = new CG_Auto2SwitchCenter(right);
+		    		//selected = new CG_Auto2SwitchCenter(right);
 		    		
-		    		//selected = new CG_Auto2Scale();
+		    		selected = new CG_Auto2Scale(right);
 		    	} else {
-		    		selected = new CG_Auto2SwitchCenter(left);
+		    		//selected = new CG_Auto2SwitchCenter(left);
 		    		
-		    		//selected = new CG_Auto2Scale();
+		    		selected = new CG_Auto2Scale(left);
 		    	}
 		    	
 		    }
 	    	
 		    else if (location == test2) {
 		    	//selected = new C_BlindCubePickup();
-		    	selected = new C_VisionSeekCube(.5);
+		    	//selected = new C_VisionSeekCube(.5);
+		    	//selected = C_MoveElevatorToPos.fromInches(90);
+		    	selected = new CG_Auto2ScalePri();
 		    		
 		    }
 	    	//if nothing is selected for some reason.

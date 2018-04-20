@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class C_ElevatorHold extends Command {
 
 	private int holdPos = 0;
-	private double pickle = 10;
+	private double pickle = .01;
 
     public C_ElevatorHold() {
         // Use requires() here to declare subsystem dependencies

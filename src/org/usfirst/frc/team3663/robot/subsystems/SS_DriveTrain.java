@@ -63,7 +63,7 @@ public class SS_DriveTrain extends Subsystem {
 		left2.enableCurrentLimit(true);
 		left2.configPeakCurrentLimit(35,2);
 		*/
-
+		//drive.setExpiration(0.1);
 		
 		
 		left2.follow(left1);

@@ -17,32 +17,73 @@ public class CG_Auto2Scale extends CommandGroup {
 			addSequential(new C_TurnRelativeAngle(-90, .7));
 			//addSequential(new C_DriveForwardRelative(5, .5));
 			addSequential(C_MoveElevatorToPos.fromInches(80.0));
+			
+			//spit
+			addSequential(new C_SetGriffSpeed(-1));
+			addSequential(new C_Wait(200));
+			addSequential(new C_SetGriffSpeed(0));
+			
+			//second half ++++++
+			
+			addParallel(C_MoveElevatorToPos.fromInches(0.0));
+			addSequential(new C_TurnRelativeAngle(-60, .7));
+			addSequential(new C_DriveForwardRelative(25, .6));
+			
+			//pickup and turn
+			
+			addSequential(new C_VisionSeekCube(.45));
+			addSequential(new C_DriveForwardRelative(-15, .6));
+			addSequential(new C_TurnRelativeAngle(180, .8));
+			
+			//scoot scoot
+			addParallel(C_MoveElevatorToPos.fromInches(35));
+			addSequential(new C_DriveForwardRelative(25, .7));
+			addSequential(C_MoveElevatorToPos.fromInches(80.0));
+			addSequential(new C_DriveForwardRelative(10, .6));
+			
+			//spit
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));
 			addSequential(new C_SetGriffSpeed(0));
 			addParallel(C_MoveElevatorToPos.fromInches(0.0));
-			//addSequential(new C_TurnRelativeAngle(-180, .7));
-			//addSequential(new C_DriveForwardRelative(30, .6));
-			//addSequential(new C_DriveForwardRelative(30, .5));
-//			addSequential(new C_TurnRelativeAngle(90, .7));
-			//addSequential(new C_SimpleTurnRelative(85, .7));
+			
 		} else {
 	    	addParallel(new C_SetGriffSpeed(.2));
 			addSequential(new C_Wait(200));
 			addSequential(new C_DriveForwardRelative(265, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(35));
 			addSequential(new C_TurnRelativeAngle(90, .7));
-			addSequential(new C_DriveForwardRelative(-10, .5));
+			addSequential(new C_DriveForwardRelative(-10, .5));  //not sure if right side needs to backup too
 			addSequential(C_MoveElevatorToPos.fromInches(80.0));
+			
+			//spit
+			addSequential(new C_SetGriffSpeed(-1));
+			addSequential(new C_Wait(200));
+			addSequential(new C_SetGriffSpeed(0));
+			
+			
+			//second half ++++++
+			
+			addParallel(C_MoveElevatorToPos.fromInches(0.0));
+			addSequential(new C_TurnRelativeAngle(-60, .7));
+			addSequential(new C_DriveForwardRelative(25, .6));
+			
+			//pickup and turn
+			addSequential(new C_VisionSeekCube(.45));
+			addSequential(new C_DriveForwardRelative(-15, .6));
+			addSequential(new C_TurnRelativeAngle(-180, .8));
+			
+			//scoot scoot
+			addParallel(C_MoveElevatorToPos.fromInches(35));
+			addSequential(new C_DriveForwardRelative(25, .7));
+			addSequential(C_MoveElevatorToPos.fromInches(80.0));
+			addSequential(new C_DriveForwardRelative(10, .6));
+			
+			//spit
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));
 			addSequential(new C_SetGriffSpeed(0));
 			addParallel(C_MoveElevatorToPos.fromInches(0.0));
-		//	addSequential(new C_TurnRelativeAngle(-180, .8));
-			//addSequential(new C_DriveForwardRelative(30, .6));
-			//addSequential(new C_DriveForwardRelative(30, .5));
-//			addSequential(new C_TurnRelativeAngle(-90, .9));
-			//addSequential(new C_SimpleTurnRelative(85, .7));
 		}
     }
 }
