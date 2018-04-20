@@ -4,6 +4,7 @@ import org.usfirst.frc.team3663.robot.PIDController;
 import org.usfirst.frc.team3663.robot.Robot;
 import org.usfirst.frc.team3663.robot.subsystems.SS_Elevator;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -22,13 +23,23 @@ public class C_MoveElevatorToPos extends Command {
 
 	private final PIDController pidController = new PIDController(1, 0, 0, -ELEVATOR_SPEED, ELEVATOR_SPEED);
 
+	double start = 0;
+	double targetTime = 6;
+	double current= 0;
+	boolean neg = false;
+	
+	
+	
 	/**
+	 * 
 	 * @param ticks
 	 *            Destination in ticks
 	 */
 	public C_MoveElevatorToPos(int ticks) {
 		requires(Robot.ss_elevator);
 		destination = SS_Elevator.clampTicks(ticks);
+		
+		
 	}
 
 	/**
@@ -46,6 +57,7 @@ public class C_MoveElevatorToPos extends Command {
 	protected void initialize() {
 		// Elevator is going up if the distance to destination is positive
 		goingUp = (getError() >= 0);
+		this.start = Timer.getFPGATimestamp();
 	}
 
 	@Override
@@ -57,11 +69,18 @@ public class C_MoveElevatorToPos extends Command {
 		// Uses speed from PID Controller
 		//System.out.println(Robot.ss_elevator.get());
 		Robot.ss_elevator.set(pidController.get(getError()));
+		
+		
+		this.current = Timer.getFPGATimestamp();
 	}
 
 	@Override
 	protected boolean isFinished() {
 		// Finish when within threshold
+		if (targetTime <= current-start) {
+			return true;
+		}
+		
 		if (Math.abs(getError()) < THRESHOLD_TICKS) {
 			return true;
 		}

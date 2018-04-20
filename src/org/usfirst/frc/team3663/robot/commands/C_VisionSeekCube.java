@@ -13,7 +13,9 @@ public class C_VisionSeekCube extends Command {
 	boolean out = false;
 	int outCounter = 0;
 	boolean valid;
+	int validCounter = 0;
 	double PICKLES = 10;
+	
 	
 	boolean active= true;
 	
@@ -25,7 +27,7 @@ public class C_VisionSeekCube extends Command {
         requires(Robot.ss_drivetrain);
         requires(Robot.ss_cubeIntake);
         this.speed = speed; 
-        valid = !Robot.ss_camera.validTargets();
+        
     }
 	@Override
 	protected void initialize() {
@@ -50,10 +52,17 @@ public class C_VisionSeekCube extends Command {
     		turn = MAX_TURN;
     	}
     	
+    	if (!Robot.ss_camera.validTargets()) {
+    		validCounter ++;
+    	}
+    	else {
+    		validCounter = 0;
+    	}
+    	valid = validCounter > 15;
     	
     	Robot.ss_drivetrain.driveCurve(speed, turn);
 
-    	System.out.println(speed + turn);
+    	//System.out.println(speed + turn);
     	//adjustment code
     	if( Robot.ss_griff.getSwitchStateBoth()) {
     		Robot.ss_griff.setGriffSpd(.2);

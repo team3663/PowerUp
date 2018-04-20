@@ -274,7 +274,7 @@ public class SS_AutoSelect extends Subsystem {
 		    }
 	    	//two cube center
 		    else if (location == test1) {
-		    	if (nearSwitch == 'R') {
+		    	if (scale == 'R') {
 		    		//selected = new CG_Auto2SwitchCenter(right);
 		    		
 		    		selected = new CG_Auto2Scale(right);

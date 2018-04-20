@@ -15,7 +15,7 @@ public class CG_Auto2Scale extends CommandGroup {
 			addSequential(new C_DriveForwardRelative(265, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(35));
 			addSequential(new C_TurnRelativeAngle(-90, .7));
-			//addSequential(new C_DriveForwardRelative(5, .5));
+			addSequential(new C_DriveForwardRelative(-4, .6));
 			addSequential(C_MoveElevatorToPos.fromInches(80.0));
 			
 			//spit
@@ -32,6 +32,7 @@ public class CG_Auto2Scale extends CommandGroup {
 			//pickup and turn
 			
 			addSequential(new C_VisionSeekCube(.45));
+			
 			addSequential(new C_DriveForwardRelative(-15, .6));
 			addSequential(new C_TurnRelativeAngle(180, .8));
 			
@@ -53,7 +54,7 @@ public class CG_Auto2Scale extends CommandGroup {
 			addSequential(new C_DriveForwardRelative(265, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(35));
 			addSequential(new C_TurnRelativeAngle(90, .7));
-			addSequential(new C_DriveForwardRelative(-10, .5));  //not sure if right side needs to backup too
+			addSequential(new C_DriveForwardRelative(-15, .6));  //not sure if right side needs to backup too
 			addSequential(C_MoveElevatorToPos.fromInches(80.0));
 			
 			//spit
@@ -70,6 +71,7 @@ public class CG_Auto2Scale extends CommandGroup {
 			
 			//pickup and turn
 			addSequential(new C_VisionSeekCube(.45));
+			
 			addSequential(new C_DriveForwardRelative(-15, .6));
 			addSequential(new C_TurnRelativeAngle(-180, .8));
 			
