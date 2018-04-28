@@ -31,7 +31,7 @@ public class CG_AutoHotScale extends CommandGroup {
 			addSequential(new C_DriveForwardRelative(270, .8));
 			addParallel(C_MoveElevatorToPos.fromInches(35));
 			addSequential(new C_TurnRelativeAngle(90, .7));
-			addSequential(new C_DriveForwardRelative(-15, .6));
+			addSequential(new C_DriveForwardRelative(-10, .6));
 			addSequential(C_MoveElevatorToPos.fromInches(80.0));
 			addSequential(new C_SetGriffSpeed(-1));
 			addSequential(new C_Wait(200));
