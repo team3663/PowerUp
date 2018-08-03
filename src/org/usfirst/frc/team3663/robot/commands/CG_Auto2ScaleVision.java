@@ -31,7 +31,7 @@ public class CG_Auto2ScaleVision extends CommandGroup {
 			//find cube
 			addSequential(new C_DriveForwardRelative(20, .6)); 
 			addSequential(new C_VisionSeekCube(.6));
-			
+
 			
 			//set cube
 			addSequential(C_MoveElevatorToPos.fromInches(35.0));
@@ -67,7 +67,7 @@ public class CG_Auto2ScaleVision extends CommandGroup {
 			//find cube
 			addSequential(new C_DriveForwardRelative(20, .6)); 
 			addSequential(new C_VisionSeekCube(.6));
-			
+
 			
 			//set cube
 			addSequential(C_MoveElevatorToPos.fromInches(35.0));
