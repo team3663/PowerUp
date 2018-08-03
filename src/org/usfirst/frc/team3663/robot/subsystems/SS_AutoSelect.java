@@ -207,6 +207,7 @@ public class SS_AutoSelect extends Subsystem {
 		    else if (location == c2lcp) {
 		    	if(scale == 'L' && nearSwitch == 'L') {
 		    		//2cube auto
+		    		selected = new CG_Auto2ScaleBlind(left);
 		    	}
 		    	else if (scale == 'L') {
 		    		selected = new CG_AutoHotScale(left);
@@ -277,11 +278,11 @@ public class SS_AutoSelect extends Subsystem {
 		    	if (scale == 'R') {
 		    		//selected = new CG_Auto2SwitchCenter(right);
 		    		
-		    		selected = new CG_Auto2Scale(right);
+		    		selected = new CG_Auto2ScaleBlind(right);
 		    	} else {
 		    		//selected = new CG_Auto2SwitchCenter(left);
 		    		
-		    		selected = new CG_Auto2Scale(left);
+		    		selected = new CG_Auto2ScaleBlind(left);
 		    	}
 		    	
 		    }
@@ -290,7 +291,10 @@ public class SS_AutoSelect extends Subsystem {
 		    	//selected = new C_BlindCubePickup();
 		    	//selected = new C_VisionSeekCube(.5);
 		    	//selected = C_MoveElevatorToPos.fromInches(90);
-		    	selected = new CG_Auto2ScalePri();
+		    	//selected = new CG_Auto2ScalePri();
+		    	
+		    	//selected = new C_BlindCubePickup();
+		    	selected = new C_ForwardToPickup();
 		    		
 		    }
 	    	//if nothing is selected for some reason.

@@ -58,7 +58,7 @@ public class C_VisionSeekCube extends Command {
     	else {
     		validCounter = 0;
     	}
-    	valid = validCounter > 15;
+    	valid = validCounter > 25;
     	
     	Robot.ss_drivetrain.driveCurve(speed, turn);
 
@@ -84,7 +84,7 @@ public class C_VisionSeekCube extends Command {
     @Override
     protected boolean isFinished() {    	
     	//return false;
-        return valid || Robot.ss_griff.getSwitchStateBoth();
+        return /*valid ||*/ Robot.ss_griff.getSwitchStateBoth();
     }
     @Override
     protected void end() {

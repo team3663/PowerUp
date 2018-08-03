@@ -140,7 +140,7 @@ public class SS_DriveTrain extends Subsystem {
 	 *
 	 * @param turns
 	 *            clockwise if positive
-	 */
+	 */	
 	public void turn(double speed) {
 		drive.arcadeDrive(0, speed);
 	}

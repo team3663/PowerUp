@@ -26,13 +26,20 @@ public class C_BlindCubePickup extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     		startPos = Robot.ss_drivetrain.get();
+    		Robot.ss_cubeIntake.spinIntake(1);
+    		Robot.ss_griff.setGriffSpd(.5);
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+		Robot.ss_cubeIntake.extendIntake(true);
+		Robot.ss_cubeIntake.sqzIntake(true);
+
+    	Robot.ss_griff.sqzGriff(true);
+    	
     	if(reverse == null) {
-    		Robot.ss_drivetrain.driveStraight(.4);
+    		Robot.ss_drivetrain.driveStraight(.5);
     	}
     	
     	if( Robot.ss_griff.getSwitchStateBoth()) {
@@ -75,7 +82,7 @@ public class C_BlindCubePickup extends Command {
     	System.out.println(Robot.ss_griff.getSwitchStateBoth() + " " +  (ticksTravled >= DISTANCE_LIMIT));
     	
     	if(reverse == null && (Robot.ss_griff.getSwitchStateBoth() || ticksTravled >= DISTANCE_LIMIT)) {
-    		reverse = new C_DriveForwardRelative(-30 /*Robot.ss_drivetrain.ticksToInches(ticksTravled)*/, .7);
+    		reverse = new C_DriveForwardRelative(-5 /*Robot.ss_drivetrain.ticksToInches(ticksTravled)*/, .7);
     		reverse.start();
     	}
     	
@@ -92,6 +99,12 @@ public class C_BlindCubePickup extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.ss_cubeIntake.spinIntake(0);
+    	Robot.ss_cubeIntake.extendIntake(false);
+		Robot.ss_cubeIntake.sqzIntake(false);
+
+    	Robot.ss_griff.sqzGriff(false);
+    	Robot.ss_drivetrain.stop();
     	
     }
 
